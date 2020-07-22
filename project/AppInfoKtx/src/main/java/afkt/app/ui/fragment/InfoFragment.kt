@@ -33,8 +33,11 @@ class InfoFragment : BaseFragment() {
         }
     }
 
-    private var type: TypeEnum? = null
     private lateinit var binding: FragmentInfoBinding
+
+    // = Object =
+
+    private var type: TypeEnum? = null
 
     override fun layoutId(): Int {
         return R.layout.fragment_info
