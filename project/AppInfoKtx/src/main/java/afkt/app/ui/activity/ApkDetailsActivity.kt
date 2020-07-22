@@ -9,6 +9,8 @@ import afkt.app.ui.adapter.KeyValueAdapter
 import afkt.app.utils.EventBusUtils
 import afkt.app.utils.ProjectUtils
 import android.Manifest
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.Menu
@@ -28,6 +30,7 @@ import dev.utils.app.permission.PermissionUtils
 import dev.utils.app.toast.ToastTintUtils
 import dev.utils.common.FileUtils
 import dev.utils.common.StringUtils
+import dev.utils.common.thread.DevThreadManager
 import java.util.*
 
 class ApkDetailsActivity : AppCompatActivity(), View.OnClickListener {
@@ -158,6 +161,56 @@ class ApkDetailsActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.bmpi_share -> {
+                try {
+                    val intent = Intent()
+                    intent.action = Intent.ACTION_SEND
+                    intent.type = "*/*"
+                    intent.putExtra(
+                        Intent.EXTRA_STREAM,
+                        Uri.fromFile(
+                            FileUtils.getFile(apkInfoItem!!.appInfoBean.sourceDir)
+                        )
+                    )
+                    startActivity(intent)
+                } catch (e: java.lang.Exception) {
+                    ToastTintUtils.error(ResourceUtils.getString(R.string.str_share_fail))
+                }
+            }
+            R.id.bmpi_export_apk -> {// 提示导出中
+                DevThreadManager.getInstance(3).execute {
+                    val appInfoBean = apkInfoItem!!.appInfoBean
+
+                    // 应用名_包名_版本名.apk
+                    var fileName =
+                        appInfoBean.appName + "_" + appInfoBean.appPackName + "_" + appInfoBean.versionName + ".apk"
+
+                    var destFile = FileUtils.getFile(PathConfig.AEP_APK_PATH, fileName)
+                    if (destFile.exists()) {
+                        ToastTintUtils.success(
+                            ResourceUtils.getString(R.string.str_export_suc)
+                                    + " " + PathConfig.AEP_APK_PATH + fileName
+                        )
+                        return@execute
+                    }
+                    // 提示导出中
+                    ToastTintUtils.normal(ResourceUtils.getString(R.string.str_export_ing))
+                    // 导出应用
+                    var result = FileUtils.copyFile(
+                        appInfoBean.sourceDir,
+                        destFile.absolutePath,
+                        true
+                    )
+                    if (result) {
+                        ToastTintUtils.success(
+                            ResourceUtils.getString(R.string.str_export_suc)
+                                    + " " + PathConfig.AEP_APK_PATH + fileName
+                        )
+                    } else {
+                        ToastTintUtils.error(ResourceUtils.getString(R.string.str_export_fail))
+                    }
+                }
+            }
             R.id.bmpi_export_apk_msg -> {
                 HandlerUtils.postRunnable {
                     val appInfoBean = apkInfoItem!!.appInfoBean

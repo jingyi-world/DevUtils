@@ -166,17 +166,26 @@ class AppDetailsActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.bmai_export_app -> {// 提示导出中
                 DevThreadManager.getInstance(3).execute {
-                    // 提示导出中
-                    ToastTintUtils.normal(ResourceUtils.getString(R.string.str_export_ing))
-
                     val appInfoBean = appInfoItem!!.appInfoBean
+
                     // 应用名_包名_版本名.apk
                     var fileName =
                         appInfoBean.appName + "_" + appInfoBean.appPackName + "_" + appInfoBean.versionName + ".apk"
+
+                    var destFile = FileUtils.getFile(PathConfig.AEP_APK_PATH, fileName)
+                    if (destFile.exists()) {
+                        ToastTintUtils.success(
+                            ResourceUtils.getString(R.string.str_export_suc)
+                                    + " " + PathConfig.AEP_APK_PATH + fileName
+                        )
+                        return@execute
+                    }
+                    // 提示导出中
+                    ToastTintUtils.normal(ResourceUtils.getString(R.string.str_export_ing))
                     // 导出应用
                     var result = FileUtils.copyFile(
                         appInfoBean.sourceDir,
-                        FileUtils.getFile(PathConfig.AEP_APK_PATH, fileName).absolutePath,
+                        destFile.absolutePath,
                         true
                     )
                     if (result) {
