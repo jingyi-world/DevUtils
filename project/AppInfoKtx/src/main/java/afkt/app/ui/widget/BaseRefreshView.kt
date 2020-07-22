@@ -66,7 +66,7 @@ class BaseRefreshView : LinearLayout {
         smartRefreshLayout = view.findViewById(R.id.vid_brv_refresh)
         recyclerView = view.findViewById(R.id.vid_brv_recy)
 
-        smartRefreshLayout!!.let {
+        smartRefreshLayout?.let {
             // 设置刷新 View
             it.setRefreshHeader(ClassicsHeader(context))
             // 打开刷新、禁止加载
@@ -87,8 +87,8 @@ class BaseRefreshView : LinearLayout {
     // = get/set =
     // ===========
 
-    fun setLayoutManager(layoutManager: RecyclerView.LayoutManager?): BaseRefreshView {
-        recyclerView!!.layoutManager = layoutManager
+    fun setLayoutManager(layoutManager: RecyclerView.LayoutManager): BaseRefreshView {
+        recyclerView?.layoutManager = layoutManager
         return this
     }
 
@@ -96,10 +96,10 @@ class BaseRefreshView : LinearLayout {
         return adapter as T?
     }
 
-    fun setAdapter(adapter: BaseQuickAdapter<*, *>?): BaseRefreshView {
+    fun setAdapter(adapter: BaseQuickAdapter<*, *>): BaseRefreshView {
         if (adapter != null) {
             this.adapter = adapter
-            recyclerView!!.adapter = adapter
+            recyclerView?.adapter = adapter
         }
         return this
     }
@@ -114,7 +114,7 @@ class BaseRefreshView : LinearLayout {
      * @return [BaseRefreshView]
      */
     fun setEnableRefresh(enabled: Boolean): BaseRefreshView {
-        smartRefreshLayout!!.setEnableRefresh(enabled)
+        smartRefreshLayout?.setEnableRefresh(enabled)
         return this
     }
 
@@ -124,7 +124,7 @@ class BaseRefreshView : LinearLayout {
      * @return [BaseRefreshView]
      */
     fun setEnableLoadMore(enabled: Boolean): BaseRefreshView {
-        smartRefreshLayout!!.setEnableLoadMore(enabled)
+        smartRefreshLayout?.setEnableLoadMore(enabled)
         return this
     }
 
@@ -134,7 +134,7 @@ class BaseRefreshView : LinearLayout {
      * @return [BaseRefreshView]
      */
     fun setNoMoreData(noMoreData: Boolean): BaseRefreshView {
-        smartRefreshLayout!!.setNoMoreData(noMoreData)
+        smartRefreshLayout?.setNoMoreData(noMoreData)
         return this
     }
 
@@ -143,8 +143,8 @@ class BaseRefreshView : LinearLayout {
      * @param listener OnRefreshListener 刷新监听器
      * @return [BaseRefreshView]
      */
-    fun setOnRefreshListener(listener: OnRefreshListener?): BaseRefreshView {
-        if (listener != null) smartRefreshLayout!!.setOnRefreshListener(listener)
+    fun setOnRefreshListener(listener: OnRefreshListener): BaseRefreshView {
+        smartRefreshLayout?.setOnRefreshListener(listener)
         return this
     }
 
@@ -153,8 +153,8 @@ class BaseRefreshView : LinearLayout {
      * @param listener OnLoadMoreListener 加载监听器
      * @return [BaseRefreshView]
      */
-    fun setOnLoadMoreListener(listener: OnLoadMoreListener?): BaseRefreshView {
-        if (listener != null) smartRefreshLayout!!.setOnLoadMoreListener(listener)
+    fun setOnLoadMoreListener(listener: OnLoadMoreListener): BaseRefreshView {
+        smartRefreshLayout?.setOnLoadMoreListener(listener)
         return this
     }
 
@@ -163,8 +163,8 @@ class BaseRefreshView : LinearLayout {
      * @param listener OnRefreshLoadMoreListener 刷新加载监听器
      * @return [BaseRefreshView]
      */
-    fun setOnRefreshLoadMoreListener(listener: OnRefreshLoadMoreListener?): BaseRefreshView {
-        if (listener != null) smartRefreshLayout!!.setOnRefreshLoadMoreListener(listener)
+    fun setOnRefreshLoadMoreListener(listener: OnRefreshLoadMoreListener): BaseRefreshView {
+        smartRefreshLayout?.setOnRefreshLoadMoreListener(listener)
         return this
     }
 
@@ -173,7 +173,7 @@ class BaseRefreshView : LinearLayout {
      * @return [BaseRefreshView]
      */
     fun finishRefresh(): BaseRefreshView {
-        if (smartRefreshLayout!!.isRefreshing) smartRefreshLayout!!.finishRefresh()
+        smartRefreshLayout?.let { if (it.isRefreshing) it.finishRefresh() }
         return this
     }
 
@@ -182,7 +182,7 @@ class BaseRefreshView : LinearLayout {
      * @return [BaseRefreshView]
      */
     fun finishLoadMore(): BaseRefreshView {
-        smartRefreshLayout!!.finishLoadMore()
+        smartRefreshLayout?.finishLoadMore()
         return this
     }
 
@@ -208,15 +208,15 @@ class BaseRefreshView : LinearLayout {
      * @return 头部 View 数量
      */
     val headerLayoutCount: Int
-        get() = if (adapter != null) adapter!!.headerLayoutCount else 0
+        get() = adapter?.headerLayoutCount ?: 0
 
     /**
      * 添加头部 View
      * @param header header View
      * @return [BaseRefreshView]
      */
-    fun addHeaderView(header: View?): BaseRefreshView {
-        if (adapter != null) adapter!!.addHeaderView(header!!)
+    fun addHeaderView(header: View): BaseRefreshView {
+        adapter?.addHeaderView(header)
         return this
     }
 
@@ -226,8 +226,8 @@ class BaseRefreshView : LinearLayout {
      * @param index  index
      * @return [BaseRefreshView]
      */
-    fun addHeaderView(header: View?, index: Int): BaseRefreshView {
-        if (adapter != null && index >= 0) adapter!!.addHeaderView(header!!, index)
+    fun addHeaderView(header: View, index: Int): BaseRefreshView {
+        adapter?.let { if (index >= 0) it.addHeaderView(header, index) }
         return this
     }
 
@@ -236,26 +236,26 @@ class BaseRefreshView : LinearLayout {
      * @return 底部 View 数量
      */
     val footerLayoutCount: Int
-        get() = if (adapter != null) adapter!!.footerLayoutCount else 0
+        get() = adapter?.footerLayoutCount ?: 0
 
     /**
      * 添加底部 View
-     * @param header header View
+     * @param footer footer View
      * @return [BaseRefreshView]
      */
-    fun addFooterView(header: View?): BaseRefreshView {
-        if (adapter != null) adapter!!.addFooterView(header!!)
+    fun addFooterView(footer: View): BaseRefreshView {
+        adapter?.addFooterView(footer)
         return this
     }
 
     /**
      * 添加底部 View 到指定位置
-     * @param header header View
+     * @param footer footer View
      * @param index  index
      * @return [BaseRefreshView]
      */
-    fun addFooterView(header: View?, index: Int): BaseRefreshView {
-        if (adapter != null && index >= 0) adapter!!.addFooterView(header!!, index)
+    fun addFooterView(footer: View, index: Int): BaseRefreshView {
+        adapter?.let { if (index >= 0) it.addFooterView(footer, index) }
         return this
     }
 }
