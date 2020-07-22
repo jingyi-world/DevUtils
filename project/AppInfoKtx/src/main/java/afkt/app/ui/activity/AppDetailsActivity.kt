@@ -2,12 +2,9 @@ package afkt.app.ui.activity
 
 import afkt.app.R
 import afkt.app.base.Constants
-import afkt.app.base.config.PathConfig
 import afkt.app.databinding.ActivityAppDetailsBinding
 import afkt.app.ui.adapter.KeyValueAdapter
-import afkt.app.utils.ProjectUtils
-import android.content.Intent
-import android.net.Uri
+import afkt.app.utils.ExportUtils
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -15,7 +12,6 @@ import android.view.View
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import dev.utils.app.AppUtils
-import dev.utils.app.HandlerUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.ViewHelper
 import dev.utils.app.info.AppInfoItem
@@ -23,8 +19,6 @@ import dev.utils.app.info.AppInfoUtils
 import dev.utils.app.info.KeyValueBean
 import dev.utils.app.logger.DevLogger
 import dev.utils.app.toast.ToastTintUtils
-import dev.utils.common.FileUtils
-import dev.utils.common.thread.DevThreadManager
 
 class AppDetailsActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -149,75 +143,13 @@ class AppDetailsActivity : AppCompatActivity(), View.OnClickListener {
         }
         when (item.itemId) {
             R.id.bmai_share -> {
-                try {
-                    val intent = Intent()
-                    intent.action = Intent.ACTION_SEND
-                    intent.type = "*/*"
-                    intent.putExtra(
-                        Intent.EXTRA_STREAM,
-                        Uri.fromFile(
-                            FileUtils.getFile(appInfoItem!!.appInfoBean.sourceDir)
-                        )
-                    )
-                    startActivity(intent)
-                } catch (e: java.lang.Exception) {
-                    ToastTintUtils.error(ResourceUtils.getString(R.string.str_share_fail))
-                }
+                appInfoItem?.let { ExportUtils.shareApp(it) }
             }
-            R.id.bmai_export_app -> {// 提示导出中
-                DevThreadManager.getInstance(3).execute {
-                    val appInfoBean = appInfoItem!!.appInfoBean
-
-                    // 应用名_包名_版本名.apk
-                    var fileName =
-                        appInfoBean.appName + "_" + appInfoBean.appPackName + "_" + appInfoBean.versionName + ".apk"
-
-                    var destFile = FileUtils.getFile(PathConfig.AEP_APK_PATH, fileName)
-                    if (destFile.exists()) {
-                        ToastTintUtils.success(
-                            ResourceUtils.getString(R.string.str_export_suc)
-                                    + " " + PathConfig.AEP_APK_PATH + fileName
-                        )
-                        return@execute
-                    }
-                    // 提示导出中
-                    ToastTintUtils.normal(ResourceUtils.getString(R.string.str_export_ing))
-                    // 导出应用
-                    var result = FileUtils.copyFile(
-                        appInfoBean.sourceDir,
-                        destFile.absolutePath,
-                        true
-                    )
-                    if (result) {
-                        ToastTintUtils.success(
-                            ResourceUtils.getString(R.string.str_export_suc)
-                                    + " " + PathConfig.AEP_APK_PATH + fileName
-                        )
-                    } else {
-                        ToastTintUtils.error(ResourceUtils.getString(R.string.str_export_fail))
-                    }
-                }
+            R.id.bmai_export_app -> {
+                appInfoItem?.let { ExportUtils.exportApp(it) }
             }
             R.id.bmai_export_app_msg -> {
-                HandlerUtils.postRunnable {
-                    val appInfoBean = appInfoItem!!.appInfoBean
-                    // 应用名_包名_版本名.txt
-                    var fileName =
-                        appInfoBean.appName + "_" + appInfoBean.appPackName + "_" + appInfoBean.versionName + ".txt"
-                    // 导出数据
-                    var result = FileUtils.saveFile(
-                        FileUtils.getFile(PathConfig.AEP_APPMSG_PATH, fileName),
-                        ProjectUtils.toJson(appInfoItem)?.toByteArray()
-                    )
-                    if (result) {
-                        ToastTintUtils.success(
-                            ResourceUtils.getString(R.string.str_export_suc)
-                                    + " " + PathConfig.AEP_APPMSG_PATH + fileName
-                        )
-                    } else {
-                        ToastTintUtils.error(ResourceUtils.getString(R.string.str_export_fail))
-                    }
-                }
+                appInfoItem?.let { ExportUtils.exportInfo(it) }
             }
         }
         return true
