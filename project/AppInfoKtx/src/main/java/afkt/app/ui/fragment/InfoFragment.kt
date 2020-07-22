@@ -12,7 +12,7 @@ import afkt.app.module.event.InfoEvent
 import afkt.app.ui.adapter.InfoAdapter
 import afkt.app.utils.EventBusUtils
 import afkt.app.utils.ProjectUtils
-import afkt.app.widget.BaseRefreshView
+import afkt.app.ui.widget.BaseRefreshView
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup

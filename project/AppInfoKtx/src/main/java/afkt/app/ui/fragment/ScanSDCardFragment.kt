@@ -9,7 +9,7 @@ import afkt.app.ui.adapter.ApkListAdapter
 import afkt.app.utils.AppSearchUtils
 import afkt.app.utils.EventBusUtils
 import afkt.app.utils.ScanSDCardUtils
-import afkt.app.widget.BaseRefreshView
+import afkt.app.ui.widget.BaseRefreshView
 import android.Manifest
 import android.os.Bundle
 import android.view.View

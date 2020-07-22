@@ -10,7 +10,7 @@ import afkt.app.ui.adapter.AppListAdapter
 import afkt.app.utils.AppListUtils
 import afkt.app.utils.AppSearchUtils
 import afkt.app.utils.EventBusUtils
-import afkt.app.widget.BaseRefreshView
+import afkt.app.ui.widget.BaseRefreshView
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup

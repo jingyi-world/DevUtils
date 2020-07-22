@@ -1,4 +1,4 @@
-package afkt.app.widget
+package afkt.app.ui.widget
 
 import afkt.app.R
 import android.content.Context
