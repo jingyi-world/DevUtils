@@ -31,6 +31,7 @@ abstract class BaseFragment : Fragment() {
         } catch (e: Exception) {
             LogPrintUtils.e(e)
         }
+        readArguments()
         if (isRegister()) EventBusUtils.register(this)
         return mRootView
     }
@@ -41,5 +42,9 @@ abstract class BaseFragment : Fragment() {
     // 是否注册 EventBus
     open fun isRegister(): Boolean {
         return true
+    }
+
+    // 读取传参数据
+    open fun readArguments() {
     }
 }

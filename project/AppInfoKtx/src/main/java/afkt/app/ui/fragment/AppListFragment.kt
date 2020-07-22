@@ -53,12 +53,16 @@ class AppListFragment : BaseFragment() {
         return R.layout.fragment_app
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding = FragmentAppBinding.bind(view)
+    override fun readArguments() {
+        super.readArguments()
 
         var value = arguments?.getInt(Constants.Key.KEY_VALUE)
         type = value?.let { TypeEnum.get(it) }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = FragmentAppBinding.bind(view)
 
         whorlView = ViewUtils.findViewById(
             binding.vidFaState.getView(ViewAssist.TYPE_ING),
