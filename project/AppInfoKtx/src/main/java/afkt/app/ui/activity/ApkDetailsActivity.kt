@@ -154,7 +154,7 @@ class ApkDetailsActivity : AppCompatActivity(), View.OnClickListener {
     // = Menu =
     // ========
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.bar_menu_apk_info, menu)
         return super.onCreateOptionsMenu(menu)
     }
