@@ -31,21 +31,12 @@ abstract class BaseFragment : Fragment() {
         } catch (e: Exception) {
             LogPrintUtils.e(e)
         }
-        layoutInit(mRootView, container, savedInstanceState)
         if (isRegister()) EventBusUtils.register(this)
         return mRootView
     }
 
     // 获取 Layout
     abstract fun layoutId(): Int
-
-    // Layout View 初始化
-    open fun layoutInit(
-        view: View?,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ){
-    }
 
     // 是否注册 EventBus
     open fun isRegister(): Boolean {

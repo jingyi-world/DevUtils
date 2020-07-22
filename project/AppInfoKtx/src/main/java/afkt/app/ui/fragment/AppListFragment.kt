@@ -56,6 +56,7 @@ class AppListFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAppBinding.bind(view)
+
         var value = arguments?.getInt(Constants.Key.KEY_VALUE)
         type = value?.let { TypeEnum.get(it) }
 
