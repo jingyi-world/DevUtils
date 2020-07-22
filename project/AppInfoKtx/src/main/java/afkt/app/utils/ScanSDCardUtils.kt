@@ -6,7 +6,6 @@ import dev.utils.app.PathUtils
 import dev.utils.app.info.AppInfoUtils
 import dev.utils.app.logger.DevLogger
 import dev.utils.common.DevCommonUtils
-import dev.utils.common.FileUtils
 import dev.utils.common.assist.search.FileBreadthFirstSearchUtils
 import dev.utils.common.thread.DevThreadManager
 import java.io.File
@@ -106,7 +105,6 @@ class ScanSDCardUtils private constructor() {
                 lists.add(
                     FileApkItem(
                         file, file.name, file.path,
-                        FileUtils.getFileMD5ToHexString(file),
                         appInfoBean
                     )
                 )

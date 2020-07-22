@@ -176,7 +176,7 @@ class AppListFragment : BaseFragment() {
                 }
                 ActionEnum.CONTENT -> { // 搜索输入内容
                     if (it == type) {
-                        searchContent = event.content.toString()
+                        searchContent = event.content
                         AppListUtils.getAppLists(it) // 加载列表
                     }
                 }
