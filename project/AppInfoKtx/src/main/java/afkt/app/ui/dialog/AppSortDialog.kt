@@ -21,7 +21,7 @@ import dev.utils.app.share.SharedUtils
 class AppSortDialog(context: Context?) :
     Dialog(context!!, R.style.Theme_Light_FullScreenDialogOperate) {
 
-    private lateinit var binding: DialogAppSortBinding
+    private var binding: DialogAppSortBinding
 
     init {
         window!!.setFlags(
