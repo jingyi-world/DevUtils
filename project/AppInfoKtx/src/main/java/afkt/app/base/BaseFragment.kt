@@ -6,19 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import butterknife.Unbinder
 import dev.utils.LogPrintUtils
 
 abstract class BaseFragment : Fragment() {
 
     protected var mRootView: View? = null
 
-    protected var unbinder: Unbinder? = null
-
     override fun onDestroy() {
         super.onDestroy()
         EventBusUtils.unregister(this)
-        unbinder?.unbind()
     }
 
     override fun onCreateView(
@@ -44,11 +40,12 @@ abstract class BaseFragment : Fragment() {
     abstract fun layoutId(): Int
 
     // Layout View 初始化
-    abstract fun layoutInit(
+    open fun layoutInit(
         view: View?,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    )
+    ){
+    }
 
     // 是否注册 EventBus
     open fun isRegister(): Boolean {

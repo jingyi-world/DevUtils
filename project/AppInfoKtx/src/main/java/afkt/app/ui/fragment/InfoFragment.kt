@@ -4,18 +4,17 @@ import afkt.app.R
 import afkt.app.base.BaseFragment
 import afkt.app.base.Constants
 import afkt.app.base.config.PathConfig
+import afkt.app.databinding.FragmentInfoBinding
 import afkt.app.module.TypeEnum
 import afkt.app.module.bean.DeviceInfoBean
 import afkt.app.module.event.ExportEvent
 import afkt.app.module.event.FragmentEvent
 import afkt.app.module.event.InfoEvent
 import afkt.app.ui.adapter.InfoAdapter
-import afkt.app.ui.widget.BaseRefreshView
 import afkt.app.utils.EventBusUtils
 import afkt.app.utils.ProjectUtils
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
 import dev.utils.app.ResourceUtils
 import dev.utils.app.toast.ToastTintUtils
 import dev.utils.common.FileUtils
@@ -34,16 +33,17 @@ class InfoFragment : BaseFragment() {
         }
     }
 
-    var type: TypeEnum? = null
-    var baseRefreshView: BaseRefreshView? = null
+    private var type: TypeEnum? = null
+    private lateinit var binding: FragmentInfoBinding
 
     override fun layoutId(): Int {
         return R.layout.fragment_info
     }
 
-    override fun layoutInit(view: View?, container: ViewGroup?, savedInstanceState: Bundle?) {
-        baseRefreshView = view as BaseRefreshView
-        baseRefreshView?.setEnableRefresh(false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = FragmentInfoBinding.bind(view)
+        binding.root.setEnableRefresh(false)
         var value = arguments?.getInt(Constants.Key.KEY_VALUE)
         type = value?.let { TypeEnum.get(it) }
     }
@@ -55,7 +55,7 @@ class InfoFragment : BaseFragment() {
     @Subscribe(threadMode = ThreadMode.BACKGROUND, sticky = true)
     fun onEvent(event: FragmentEvent) {
         event.type?.let {
-            if (it == type && baseRefreshView?.adapter == null) {
+            if (it == type && binding.root.adapter == null) {
                 when (it) {
                     TypeEnum.DEVICE_INFO -> ProjectUtils.getDeviceInfos()
                     TypeEnum.SCREEN_INFO -> ProjectUtils.getScreenInfos()
@@ -68,7 +68,7 @@ class InfoFragment : BaseFragment() {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onEvent(event: InfoEvent) {
         event.type?.let {
-            if (it == type) baseRefreshView?.setAdapter(InfoAdapter(event.lists))
+            if (it == type) binding.root.setAdapter(InfoAdapter(event.lists))
         }
     }
 
@@ -76,8 +76,8 @@ class InfoFragment : BaseFragment() {
     fun onEvent(event: ExportEvent) {
         event.type?.let {
             if (it == type) {
-                if (baseRefreshView?.adapter != null) {
-                    var adapter: InfoAdapter? = baseRefreshView?.getAdapterT()
+                if (binding.root.adapter != null) {
+                    var adapter: InfoAdapter? = binding.root.getAdapterT()
                     if (adapter?.data != null) {
                         val content: String? = DeviceInfoBean.jsonString(adapter?.data)
                         var fileName =
