@@ -7,10 +7,10 @@ import afkt.app.module.ActionEnum
 import afkt.app.module.TypeEnum
 import afkt.app.module.event.*
 import afkt.app.ui.adapter.AppListAdapter
+import afkt.app.ui.widget.BaseRefreshView
 import afkt.app.utils.AppListUtils
 import afkt.app.utils.AppSearchUtils
 import afkt.app.utils.EventBusUtils
-import afkt.app.ui.widget.BaseRefreshView
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
