@@ -40,4 +40,5 @@ dependencies {
     // 下拉刷新框架 https://github.com/scwang90/SmartRefreshLayout
     implementation deps.lib.smartrefreshlayout
     implementation deps.lib.smartrefresh_header_classics
+    implementation deps.lib.smartrefresh_footer_classics
 }
