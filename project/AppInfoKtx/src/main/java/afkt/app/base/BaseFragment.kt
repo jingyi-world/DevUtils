@@ -5,9 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import dev.base.fragment.DevBaseFragment
+import androidx.viewbinding.ViewBinding
+import dev.base.expand.viewbinding.DevBaseViewBindingFragment
 
-abstract class BaseFragment : DevBaseFragment() {
+abstract class BaseFragment<VB : ViewBinding> : DevBaseViewBindingFragment<VB>() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,5 +40,13 @@ abstract class BaseFragment : DevBaseFragment() {
 
     override fun baseContentView(): View? {
         return null
+    }
+
+    // =======================
+    // = IDevBaseViewBinding =
+    // =======================
+
+    override fun getBindingView(): View? {
+        return mContentView
     }
 }

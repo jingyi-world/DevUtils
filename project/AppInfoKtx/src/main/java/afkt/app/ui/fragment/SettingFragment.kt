@@ -18,9 +18,7 @@ import dev.utils.app.toast.ToastTintUtils
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
-class SettingFragment : BaseFragment() {
-
-    private lateinit var binding: FragmentSettingBinding
+class SettingFragment : BaseFragment<FragmentSettingBinding>() {
 
     // = Object =
 
@@ -32,7 +30,6 @@ class SettingFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentSettingBinding.bind(view)
         binding.vidFsAppsortLinear.setOnClickListener { AppSortDialog(context).show() }
         binding.vidFsScanapkLinear.setOnClickListener { QuerySuffixDialog(context).show() }
         binding.vidFsResetLinear.setOnClickListener {
