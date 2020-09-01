@@ -47,7 +47,7 @@ class ScanSDCardFragment : BaseFragment() {
     private var type = TypeEnum.QUERY_APK
     private var searchContent: String = ""
 
-    override fun baseLayoutId(): Int {
+    override fun baseContentId(): Int {
         return R.layout.fragment_app
     }
 

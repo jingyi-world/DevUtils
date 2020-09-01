@@ -26,7 +26,7 @@ class SettingFragment : BaseFragment() {
 
     private var appSortArys: Array<String>? = null // 排序数据
 
-    override fun baseLayoutId(): Int {
+    override fun baseContentId(): Int {
         return R.layout.fragment_setting
     }
 

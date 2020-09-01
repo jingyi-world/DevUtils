@@ -49,7 +49,7 @@ class AppListFragment : BaseFragment() {
     private var type: TypeEnum? = null
     private var searchContent: String = ""
 
-    override fun baseLayoutId(): Int {
+    override fun baseContentId(): Int {
         return R.layout.fragment_app
     }
 
