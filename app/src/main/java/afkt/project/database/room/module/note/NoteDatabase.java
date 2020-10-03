@@ -1,9 +1,10 @@
-package afkt.project.database.room.dao;
+package afkt.project.database.room.module.note;
 
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
-import afkt.project.database.room.bean.Note;
+import afkt.project.database.room.module.note.bean.Note;
+import afkt.project.database.room.module.note.dao.NoteDao;
 
 /**
  * detail: Room 数据库创建

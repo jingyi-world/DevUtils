@@ -1,4 +1,4 @@
-package afkt.project.database.room.dao;
+package afkt.project.database.room.module.note.dao;
 
 import androidx.room.Dao;
 

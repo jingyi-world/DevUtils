@@ -1,4 +1,4 @@
-package afkt.project.database.room.bean;
+package afkt.project.database.room.module.note.bean;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
