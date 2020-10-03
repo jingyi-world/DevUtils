@@ -7,7 +7,7 @@ import android.text.TextUtils;
 import org.greenrobot.greendao.database.Database;
 
 import afkt.project.database.green.MigrationHelper;
-import afkt.project.database.green.able.GreenDatabase;
+import afkt.project.database.green.able.AbsGreenDatabase;
 import dev.DevUtils;
 import dev.utils.app.logger.DevLogger;
 import dev.utils.common.StringUtils;
@@ -20,7 +20,7 @@ import gen.greendao.NotePictureDao;
  * detail: Note 数据库
  * @author Ttt
  */
-public final class NoteDatabase extends GreenDatabase {
+public final class NoteDatabase extends AbsGreenDatabase {
 
     public NoteDatabase(UpgradeHelper helper, Database database, DaoMaster daoMaster,
                         DaoSession daoSession) {
@@ -63,7 +63,7 @@ public final class NoteDatabase extends GreenDatabase {
         // DBHelper
         UpgradeHelper helper = new UpgradeHelper(
                 DevUtils.getContext(),
-                GreenDatabase.createDatabaseName(dbName, StringUtils.isNotEmpty(password))
+                AbsGreenDatabase.createDatabaseName(dbName, StringUtils.isNotEmpty(password))
         );
         if (TextUtils.isEmpty(password)) {
             // regular SQLite database
@@ -126,7 +126,6 @@ public final class NoteDatabase extends GreenDatabase {
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             DevLogger.dTag(TAG, "oldVersion: " + oldVersion + ", newVersion: " + newVersion);
-//            super.onUpgrade(db, oldVersion, newVersion);
             MigrationHelper.migrate(db, NoteDao.class, NotePictureDao.class);
         }
     }
