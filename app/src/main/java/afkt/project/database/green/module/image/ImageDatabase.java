@@ -17,6 +17,29 @@ import gen.greendao.DaoSession;
  */
 public class ImageDatabase extends AbsGreenDatabase {
 
+    /**
+     * 创建数据库
+     * @param dbName 数据库名
+     * @return {@link ImageDatabase}
+     */
+    public static ImageDatabase database(final String dbName) {
+        return database(dbName, null);
+    }
+
+    /**
+     * 创建数据库
+     * @param dbName   数据库名
+     * @param password 数据库解密密码
+     * @return {@link ImageDatabase}
+     */
+    public static ImageDatabase database(final String dbName, final String password) {
+        return null;
+    }
+
+    // ====================
+    // = AbsGreenDatabase =
+    // ====================
+
     @Override
     public DaoMaster.OpenHelper getHelper() {
         return null;

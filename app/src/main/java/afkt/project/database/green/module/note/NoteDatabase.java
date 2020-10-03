@@ -40,6 +40,10 @@ public final class NoteDatabase extends AbsGreenDatabase {
     private final DaoMaster     mDaoMaster;
     private final DaoSession    mDaoSession;
 
+    // ============
+    // = database =
+    // ============
+
     /**
      * 创建数据库
      * @param dbName 数据库名
@@ -77,9 +81,9 @@ public final class NoteDatabase extends AbsGreenDatabase {
         return new NoteDatabase(helper, database, daoMaster, daoSession);
     }
 
-    // =================
-    // = GreenDatabase =
-    // =================
+    // ====================
+    // = AbsGreenDatabase =
+    // ====================
 
     @Override
     public DaoMaster.OpenHelper getHelper() {
