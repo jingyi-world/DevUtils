@@ -20,13 +20,32 @@ public class Note {
     @ColumnInfo(name = "text")
     private String text;
 
+    @ColumnInfo(name = "comment")
+    private String comment;
+
+    private Long date;
+
+    @ColumnInfo(name = "type")
+    private NoteType type; // Note 类型
+
     @Ignore
     public Note() {
     }
 
-    public Note(Long id, String text) {
+    public Note(Long id, String text, String comment, NoteType type) {
         this.id = id;
         this.text = text;
+        this.comment = comment;
+        this.type = type;
+    }
+
+    @Ignore
+    public Note(Long id, String text, String comment, Long date, NoteType type) {
+        this.id = id;
+        this.text = text;
+        this.comment = comment;
+        this.date = date;
+        this.type = type;
     }
 
     public Long getId() {
@@ -43,5 +62,29 @@ public class Note {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public Long getDate() {
+        return date;
+    }
+
+    public void setDate(Long date) {
+        this.date = date;
+    }
+
+    public NoteType getType() {
+        return type;
+    }
+
+    public void setType(NoteType type) {
+        this.type = type;
     }
 }

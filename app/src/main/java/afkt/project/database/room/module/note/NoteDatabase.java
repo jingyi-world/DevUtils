@@ -5,9 +5,11 @@ import android.text.TextUtils;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 
 import afkt.project.database.room.able.AbsRoomDatabase;
 import afkt.project.database.room.module.note.bean.Note;
+import afkt.project.database.room.module.note.bean.NoteTypeConverter;
 import afkt.project.database.room.module.note.dao.NoteDao;
 import dev.DevUtils;
 
@@ -16,9 +18,12 @@ import dev.DevUtils;
  * @author Ttt
  * <pre>
  *     exportSchema = true 导出 JSON 文件
+ *     build.gradle
+ *     arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
  * </pre>
  */
 @Database(entities = {Note.class,}, version = 1) // , exportSchema = false
+@TypeConverters({NoteTypeConverter.class})
 public abstract class NoteDatabase extends AbsRoomDatabase {
 
     /**
@@ -54,7 +59,11 @@ public abstract class NoteDatabase extends AbsRoomDatabase {
 
         NoteDatabase database = Room.databaseBuilder(
                 DevUtils.getContext(), NoteDatabase.class, dbName
-        ).build();
+        )
+                // 允许主线程访问数据库
+                .allowMainThreadQueries()
+                // 构建数据库
+                .build();
         return database;
     }
 }
