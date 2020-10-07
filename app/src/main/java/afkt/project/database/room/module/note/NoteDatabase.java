@@ -9,7 +9,8 @@ import androidx.room.TypeConverters;
 
 import afkt.project.database.room.able.AbsRoomDatabase;
 import afkt.project.database.room.module.note.bean.Note;
-import afkt.project.database.room.module.note.bean.NoteTypeConverter;
+import afkt.project.database.room.module.note.bean.NoteConverter;
+import afkt.project.database.room.module.note.bean.NotePicture;
 import afkt.project.database.room.module.note.dao.NoteDao;
 import dev.DevUtils;
 
@@ -22,8 +23,8 @@ import dev.DevUtils;
  *     arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
  * </pre>
  */
-@Database(entities = {Note.class,}, version = 1) // , exportSchema = false
-@TypeConverters({NoteTypeConverter.class})
+@Database(entities = {Note.class, NotePicture.class}, version = 1) // , exportSchema = false
+@TypeConverters({NoteConverter.class})
 public abstract class NoteDatabase extends AbsRoomDatabase {
 
     /**

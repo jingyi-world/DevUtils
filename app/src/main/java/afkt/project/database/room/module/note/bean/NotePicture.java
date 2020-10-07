@@ -1,57 +1,42 @@
 package afkt.project.database.room.module.note.bean;
 
-import androidx.room.ColumnInfo;
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
+
+import java.util.UUID;
 
 /**
  * detail: Note 图片资源
  * @author Ttt
  */
-@Entity
+@Entity(
+        primaryKeys = {"id", "noteId"}
+)
 public class NotePicture {
 
-    @PrimaryKey(autoGenerate = true)
-    private Long id;
+    @NonNull
+    public Long id;
 
-    @ColumnInfo(name = "picture")
-    private String picture;
+    @NonNull
+    public Long noteId; // 对应的 note id ( 外键 )
 
-    @ColumnInfo(name = "noteId")
-    private Long noteId; // 对应的 note id ( 外键 )
+    public String picture;
+
+    // ===========
+    // = 构造函数 =
+    // ===========
 
     @Ignore
-    public NotePicture() {
-    }
-
-    public NotePicture(Long id, String picture, Long noteId) {
-        this.id = id;
-        this.picture = picture;
+    public NotePicture(@NonNull Long noteId, String picture) {
+        this.id = (long) UUID.randomUUID().hashCode();
         this.noteId = noteId;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getPicture() {
-        return picture;
-    }
-
-    public void setPicture(String picture) {
         this.picture = picture;
     }
 
-    public Long getNoteId() {
-        return noteId;
-    }
-
-    public void setNoteId(Long noteId) {
+    public NotePicture(@NonNull Long id, @NonNull Long noteId, String picture) {
+        this.id = id;
         this.noteId = noteId;
+        this.picture = picture;
     }
 }

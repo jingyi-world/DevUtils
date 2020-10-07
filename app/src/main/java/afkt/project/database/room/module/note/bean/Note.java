@@ -5,6 +5,15 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.util.Date;
+
+/**
+ * detail: Note 实体类
+ * @author Ttt
+ * <pre>
+ *     可以不加 @ColumnInfo 默认为当前字段名, 如果不想创建该列可以增加 @Ignore 注解进行忽略
+ * </pre>
+ */
 @Entity(
         tableName = "NoteTable"
 //        primaryKeys = {"id"}, // 主键
@@ -15,76 +24,30 @@ import androidx.room.PrimaryKey;
 public class Note {
 
     @PrimaryKey(autoGenerate = true)
-    private Long id;
+    public Long id;
 
     @ColumnInfo(name = "text")
-    private String text;
+    public String text;
 
-    @ColumnInfo(name = "comment")
-    private String comment;
+    public String comment;
 
-    private Long date;
+    public Date date;
 
-    @ColumnInfo(name = "type")
-    private NoteType type; // Note 类型
+    public NoteType type; // Note 类型
+
+    // ===========
+    // = 构造函数 =
+    // ===========
 
     @Ignore
     public Note() {
     }
 
-    public Note(Long id, String text, String comment, NoteType type) {
-        this.id = id;
-        this.text = text;
-        this.comment = comment;
-        this.type = type;
-    }
-
-    @Ignore
-    public Note(Long id, String text, String comment, Long date, NoteType type) {
+    public Note(Long id, String text, String comment, Date date, NoteType type) {
         this.id = id;
         this.text = text;
         this.comment = comment;
         this.date = date;
-        this.type = type;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public Long getDate() {
-        return date;
-    }
-
-    public void setDate(Long date) {
-        this.date = date;
-    }
-
-    public NoteType getType() {
-        return type;
-    }
-
-    public void setType(NoteType type) {
         this.type = type;
     }
 }
