@@ -186,7 +186,7 @@ dependencies {
 	// banner
 	implementation 'com.youth.banner:banner:2.1.0'
 	// mmkv
-	implementation 'com.tencent:mmkv-static:1.2.3'
+	implementation 'com.tencent:mmkv-static:1.2.4'
 	// autosize
 	implementation 'me.jessyan:autosize:1.2.1'
 	// greenDAO
