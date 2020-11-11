@@ -109,11 +109,12 @@ class ApkDetailsActivity : AppCompatActivity(), View.OnClickListener {
                                     notFoundList: List<String>
                                 ) {
                                     var builder = StringBuilder()
-                                        .append("申请通过的权限" + Arrays.toString(grantedList.toTypedArray()))
+                                        .append("申请通过的权限")
+                                        .append(Arrays.toString(grantedList.toTypedArray()))
                                         .append(DevFinal.NEW_LINE_STR)
-                                        .append("拒绝的权限" + deniedList.toString())
+                                        .append("拒绝的权限").append(deniedList.toString())
                                         .append(DevFinal.NEW_LINE_STR)
-                                        .append("未找到的权限" + notFoundList.toString())
+                                        .append("未找到的权限").append(notFoundList.toString())
                                     if (deniedList.isNotEmpty()) {
                                         DevLogger.d(builder.toString())
                                         ToastTintUtils.info(ResourceUtils.getString(R.string.str_install_request_tips))
