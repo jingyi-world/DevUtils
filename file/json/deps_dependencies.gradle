@@ -61,7 +61,7 @@ dependencies {
 	// multidex
 	implementation 'androidx.multidex:multidex:2.0.1'
 	// constraint_layout
-	implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
+	implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 	// viewpager2
 	implementation 'androidx.viewpager2:viewpager2:1.0.0'
 	// sqlite
@@ -80,7 +80,7 @@ dependencies {
 	// glide_compiler
 	implementation 'com.github.bumptech.glide:compiler:4.11.0'
 	// glide_transformations
-	implementation 'jp.wasabeef:glide-transformations:4.1.0'
+	implementation 'jp.wasabeef:glide-transformations:4.3.0'
 	// gpuimage
 	implementation 'jp.co.cyberagent.android:gpuimage:2.1.0'
 	// eventbus
@@ -210,7 +210,7 @@ dependencies {
 	// arouter_compiler
 	implementation 'com.alibaba:arouter-compiler:1.2.2'
 	// leakcanary
-	implementation 'com.squareup.leakcanary:leakcanary-android:2.4'
+	implementation 'com.squareup.leakcanary:leakcanary-android:2.5'
 	// blockcanary_android
 	implementation 'com.github.markzhai:blockcanary-android:1.5.0'
 	// blockcanary_no_op
