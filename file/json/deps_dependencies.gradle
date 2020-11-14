@@ -3,7 +3,7 @@ dependencies {
 	// = dev =
 
 	// dev_app_x
-	implementation 'com.afkt:DevAppX:2.0.9'
+	implementation 'com.afkt:DevAppX:2.1.0'
 	// dev_assist
 	implementation 'com.afkt:DevAssist:1.0.4'
 	// dev_base
@@ -11,7 +11,7 @@ dependencies {
 	// dev_base_mvvm
 	implementation 'com.afkt:DevBaseMVVM:1.0.0'
 	// dev_java
-	implementation 'com.afkt:DevJava:1.2.2'
+	implementation 'com.afkt:DevJava:1.2.3'
 	// dev_widget_x
 	implementation 'com.afkt:DevWidgetX:1.0.4'
 	// dev_environment
@@ -210,7 +210,7 @@ dependencies {
 	// arouter_compiler
 	implementation 'com.alibaba:arouter-compiler:1.2.2'
 	// leakcanary
-	implementation 'com.squareup.leakcanary:leakcanary-android:2.5'
+	implementation 'com.squareup.leakcanary:leakcanary-android:2.4'
 	// blockcanary_android
 	implementation 'com.github.markzhai:blockcanary-android:1.5.0'
 	// blockcanary_no_op
