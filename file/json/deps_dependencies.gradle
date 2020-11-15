@@ -52,8 +52,6 @@ dependencies {
 	implementation 'androidx.appcompat:appcompat-resources:1.2.0'
 	// support_v4
 	implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-	// design
-	implementation 'com.google.android.material:material:1.2.1'
 	// cardview
 	implementation 'androidx.cardview:cardview:1.0.0'
 	// recyclerview
@@ -68,6 +66,8 @@ dependencies {
 	implementation 'androidx.sqlite:sqlite:2.1.0'
 	// lifecycle_common_java8
 	implementation 'androidx.lifecycle:lifecycle-common-java8:2.2.0'
+	// design
+	implementation 'com.google.android.material:material:1.2.1'
 
 	// = lib =
 
