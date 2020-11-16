@@ -6,7 +6,7 @@ import androidx.databinding.ViewDataBinding
 import dev.base.expand.viewdata.DevBaseViewDataBindingActivity
 
 /**
- * detail: Activity MVVM 基类
+ * detail: Activity 基类
  * @author Ttt
  */
 abstract class BaseActivity<VDB : ViewDataBinding> : DevBaseViewDataBindingActivity<VDB>() {

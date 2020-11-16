@@ -6,46 +6,44 @@
     <data>
 
         <variable
+            name="image"
+            type="android.graphics.drawable.Drawable" />
+
+        <variable
             name="title"
             type="java.lang.String" />
     </data>
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/vid_am_scrollView"
+        android:id="@+id/vid_fvdb_scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/color_d9"
         android:fadingEdge="none"
         android:fitsSystemWindows="true"
         android:overScrollMode="never"
         android:scrollbars="none">
 
         <LinearLayout
-            android:id="@+id/vid_am_linear"
+            android:id="@+id/vid_fvdb_linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/un_dp_100"
+                android:layout_height="@dimen/un_dp_100"
+                android:layout_gravity="center"
+                android:background="@{image}"
+                tools:background="@mipmap/icon_launcher_round" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:padding="@dimen/un_dp_15"
+                android:padding="@dimen/un_dp_10"
                 android:text="@{title}"
-                android:textSize="@dimen/un_sp_20"
+                android:textSize="@dimen/un_sp_18"
                 tools:text="标题" />
-
-            <FrameLayout
-                android:id="@+id/vid_am_frame"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <fragment
-                    android:id="@+id/vid_am_fragment"
-                    android:name="afkt.demo.ui.fragment.VDBFragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </FrameLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>
