@@ -2,8 +2,8 @@ package afkt.demo.ui.activity
 
 import afkt.demo.R
 import afkt.demo.base.app.BaseActivity
-import android.os.Bundle
 import afkt.demo.databinding.ActivityMainBinding
+import android.os.Bundle
 import dev.utils.common.ColorUtils
 
 /**
@@ -23,5 +23,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         // 随机设置背景色
         binding.vidAmInclude.color = ColorUtils.getRandomColor()
+
+//        // 跳转校验
+//        startActivity(Intent(this, MainNonViewDataActivity::class.java))
     }
 }
