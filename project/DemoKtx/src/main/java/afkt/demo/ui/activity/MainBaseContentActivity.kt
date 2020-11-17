@@ -56,7 +56,7 @@ class MainBaseContentActivity :
         )
 
         // 悬浮 View
-        contentAssist.addBodyView(
+        contentAssist.addFloatView(
             QuickHelper.get(ImageView(this))
                 .setWidthHeight(
                     ResourceUtils.getDimensionInt(R.dimen.un_dp_50),
@@ -67,8 +67,8 @@ class MainBaseContentActivity :
         )
 
         // 悬浮 View 居下显示 ( 需要 addBodyView 后进行设置 LayoutParams 才有效 )
-        contentAssist.bodyFrame?.let {
-            QuickHelper.get(ViewUtils.getChildAt<ImageView>(it, it.childCount - 1))
+        contentAssist.floatFrame?.let {
+            QuickHelper.get(ViewUtils.getChildAtLast<ImageView>(it))
                 .setMargin(ResourceUtils.getDimensionInt(R.dimen.un_dp_20))
                 .setLayoutGravity(Gravity.RIGHT or Gravity.BOTTOM)
                 .setOnClicks {
