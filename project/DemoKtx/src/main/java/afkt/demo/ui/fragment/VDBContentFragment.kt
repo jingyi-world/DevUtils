@@ -1,12 +1,13 @@
 package afkt.demo.ui.fragment
 
 import afkt.demo.R
-import afkt.demo.databinding.FragmentVdbBinding
+import afkt.demo.databinding.FragmentVdbContentBinding
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
 import android.widget.TextView
 import dev.base.expand.content.DevBaseContentViewDataBindingFragment
+import dev.utils.LogPrintUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.TextViewUtils
 import dev.utils.app.ViewUtils
@@ -14,10 +15,10 @@ import dev.utils.app.helper.QuickHelper
 import dev.utils.common.ChineseUtils
 import dev.utils.common.RandomUtils
 
-class VDBContentFragment : DevBaseContentViewDataBindingFragment<FragmentVdbBinding>() {
+class VDBContentFragment : DevBaseContentViewDataBindingFragment<FragmentVdbContentBinding>() {
 
     override fun baseLayoutId(): Int {
-        return R.layout.fragment_vdb
+        return R.layout.fragment_vdb_content
     }
 
     override fun baseLayoutView(): View? {
@@ -53,5 +54,14 @@ class VDBContentFragment : DevBaseContentViewDataBindingFragment<FragmentVdbBind
                 }
                 .getView()
         )
+
+        LogPrintUtils.dTag(
+            ParentFragment.LOG_TAG,
+            "VDBContentFragment => parentFragment: %s",
+            parentFragment
+        )
+
+        // 嵌套处理
+        ParentFragment.commit(childFragmentManager, binding.vidFvdbFrame.id, 0, 4)
     }
 }
