@@ -10,7 +10,7 @@
             type="android.graphics.drawable.Drawable" />
 
         <variable
-            name="title"
+            name="content"
             type="java.lang.String" />
     </data>
 
@@ -40,10 +40,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:includeFontPadding="false"
                 android:padding="@dimen/un_dp_10"
-                android:text="@{title}"
-                android:textSize="@dimen/un_sp_18"
-                tools:text="标题" />
+                android:text="@{content}"
+                android:textSize="@dimen/un_sp_14"
+                tools:text="随机内容" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

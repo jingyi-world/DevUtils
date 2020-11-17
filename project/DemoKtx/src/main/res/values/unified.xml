@@ -10,6 +10,7 @@
     <dimen name="un_dp_20">20.0dp</dimen>
     <dimen name="un_dp_50">50.0dp</dimen>
     <dimen name="un_dp_100">100.0dp</dimen>
+    <dimen name="un_dp_150">150.0dp</dimen>
     <dimen name="un_dp_200">200.0dp</dimen>
 
     <!-- 通用 SP -->

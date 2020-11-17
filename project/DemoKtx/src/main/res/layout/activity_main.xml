@@ -30,6 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:includeFontPadding="false"
                 android:padding="@dimen/un_dp_15"
                 android:text="@{title}"
                 android:textSize="@dimen/un_sp_20"
@@ -44,8 +45,13 @@
                     android:id="@+id/vid_am_fragment"
                     android:name="afkt.demo.ui.fragment.VDBFragment"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    tools:layout_height="@dimen/un_dp_200" />
             </FrameLayout>
+
+            <include
+                android:id="@+id/vid_am_include"
+                layout="@layout/include_view_data" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

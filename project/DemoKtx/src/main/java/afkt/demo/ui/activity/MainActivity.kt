@@ -4,6 +4,7 @@ import afkt.demo.R
 import afkt.demo.base.app.BaseActivity
 import android.os.Bundle
 import afkt.demo.databinding.ActivityMainBinding
+import dev.utils.common.ColorUtils
 
 /**
  * detail: Main Activity
@@ -19,5 +20,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         super.onCreate(savedInstanceState)
 
         binding.title = "DataBinding Title"
+
+        // 随机设置背景色
+        binding.vidAmInclude.color = ColorUtils.getRandomColor()
     }
 }
