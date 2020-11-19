@@ -27,12 +27,6 @@ class VDBContentFragment : DevBaseContentViewDataBindingFragment<FragmentVdbCont
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // 初始化顺序 ( 按顺序调用方法 )
-        initOrder()
-    }
-
-    override fun initValue() {
-        super.initValue()
 
         // 设置图片
         binding.image = ResourceUtils.getDrawable(R.mipmap.icon_launcher_round)
