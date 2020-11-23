@@ -83,8 +83,8 @@ class ApplicationMVVMFragment :
     }
 
     override fun initViewModel() {
-        viewModel = DevBaseViewModelAssist().getAppViewModelProvider(
-            BaseApplication.getApplication()
-        )?.get(ApplicationViewModel::class.java)!!
+        viewModel = DevBaseViewModelAssist().getAppViewModel(
+            BaseApplication.getApplication(), ApplicationViewModel::class.java
+        )!!
     }
 }

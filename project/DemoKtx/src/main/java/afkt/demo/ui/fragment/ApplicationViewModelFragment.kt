@@ -41,9 +41,9 @@ class ApplicationViewModelFragment : DevBaseViewBindingFragment<FragmentParentBi
             // 设置索引文案
             binding.vidFpPositionTv.text = positionStr
 
-            var viewModel = DevBaseViewModelAssist().getAppViewModelProvider(
-                BaseApplication.getApplication()
-            )?.get(ApplicationViewModel::class.java)!!
+            var viewModel = DevBaseViewModelAssist().getAppViewModel(
+                BaseApplication.getApplication(), ApplicationViewModel::class.java
+            )!!
             // 进行 ViewModel 绑定
             ViewModelTempUtils.observe(TAG + positionStr, this, viewModel)
             // 临时改变值

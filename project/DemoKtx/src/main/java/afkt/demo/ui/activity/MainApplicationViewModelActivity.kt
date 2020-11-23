@@ -44,7 +44,7 @@ class MainApplicationViewModelActivity : DevBaseViewModelActivity<ApplicationVie
 
     override fun initViewModel() {
         viewModel =
-            getAppViewModelProvider(BaseApplication.getApplication())?.get(ApplicationViewModel::class.java)!!
+            getAppViewModel(BaseApplication.getApplication(), ApplicationViewModel::class.java)!!
         // 复用方法进行监听
         ViewModelTempUtils.observe(TAG, this, viewModel)
         // 临时改变值
