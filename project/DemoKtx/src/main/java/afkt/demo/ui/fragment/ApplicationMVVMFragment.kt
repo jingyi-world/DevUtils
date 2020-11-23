@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentTransaction
 import dev.base.expand.mvvm.DevBaseMVVMFragment
 import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
+import dev.utils.common.RandomUtils
 
 /**
  * detail: 测试 Application ViewModel Fragment
@@ -47,7 +48,7 @@ class ApplicationMVVMFragment :
             ViewModelTempUtils.observe(TAG + positionStr, this, viewModel)
             // 临时改变值
             Handler().postDelayed(Runnable {
-                viewModel.number.value = (position + 1)
+                viewModel.number.value = RandomUtils.nextInt()
             }, (position + 1) * 1000L + 2000L)
             // 判断是否达到最大值
             if (position >= max) return

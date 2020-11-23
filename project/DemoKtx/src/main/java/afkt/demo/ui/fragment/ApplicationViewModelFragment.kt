@@ -14,6 +14,7 @@ import dev.base.expand.viewbinding.DevBaseViewBindingFragment
 import dev.base.utils.assist.DevBaseViewModelAssist
 import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
+import dev.utils.common.RandomUtils
 
 /**
  * detail: 测试 Application ViewModel Fragment
@@ -48,7 +49,7 @@ class ApplicationViewModelFragment : DevBaseViewBindingFragment<FragmentParentBi
             ViewModelTempUtils.observe(TAG + positionStr, this, viewModel)
             // 临时改变值
             Handler().postDelayed(Runnable {
-                viewModel.number.value = (position + 1)
+                viewModel.number.value = RandomUtils.nextInt()
             }, (position + 1) * 1000L + 2000L)
             // 判断是否达到最大值
             if (position >= max) return

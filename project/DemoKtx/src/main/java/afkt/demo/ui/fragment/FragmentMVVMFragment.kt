@@ -2,7 +2,7 @@ package afkt.demo.ui.fragment
 
 import afkt.demo.R
 import afkt.demo.databinding.FragmentParentDataBinding
-import afkt.demo.model.ActivityViewModel
+import afkt.demo.model.FragmentViewModel
 import afkt.demo.utils.ViewModelTempUtils
 import android.os.Bundle
 import android.os.Handler
@@ -15,11 +15,11 @@ import dev.utils.LogPrintUtils
 import dev.utils.common.RandomUtils
 
 /**
- * detail: 测试 Activity ViewModel Fragment
+ * detail: 测试 Fragment ViewModel Fragment
  * @author Ttt
  */
-class ActivityMVVMFragment :
-    DevBaseMVVMFragment<FragmentParentDataBinding, ActivityViewModel>() {
+class FragmentMVVMFragment :
+    DevBaseMVVMFragment<FragmentParentDataBinding, FragmentViewModel>() {
 
     override fun baseContentId(): Int {
         return R.layout.fragment_parent_data
@@ -56,15 +56,15 @@ class ActivityMVVMFragment :
             commit(childFragmentManager, binding.vidFpdFrame.id, position + 1, max)
         }
 
-        LogPrintUtils.dTag(LOG_TAG, "ActivityMVVMFragment => parentFragment: %s", parentFragment)
+        LogPrintUtils.dTag(LOG_TAG, "FragmentMVVMFragment => parentFragment: %s", parentFragment)
     }
 
     companion object {
         fun get(
             position: Int,
             max: Int
-        ): DevBaseMVVMFragment<FragmentParentDataBinding, ActivityViewModel> {
-            val fragment = ActivityMVVMFragment()
+        ): DevBaseMVVMFragment<FragmentParentDataBinding, FragmentViewModel> {
+            val fragment = FragmentMVVMFragment()
             val bundle = Bundle()
             bundle.putInt(DevFinal.POSITION, position)
             bundle.putInt(DevFinal.MAX, max)
@@ -78,10 +78,14 @@ class ActivityMVVMFragment :
             transaction.commit()
         }
 
-        const val LOG_TAG = "ActivityMVVMFragment_TAG"
+        const val LOG_TAG = "FragmentMVVMFragment_TAG"
     }
 
     override fun initViewModel() {
-        viewModel = getActivityViewModel(ActivityViewModel::class.java)!!
+        if (parentFragment == null) {
+            viewModel = getFragmentViewModel(FragmentViewModel::class.java)!!
+        } else {
+            viewModel = getFragmentViewModel(parentFragment, FragmentViewModel::class.java)!!
+        }
     }
 }
