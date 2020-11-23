@@ -1,28 +1,27 @@
 package afkt.demo.ui.fragment
 
 import afkt.demo.R
-import afkt.demo.base.BaseApplication
-import afkt.demo.databinding.FragmentParentBinding
-import afkt.demo.model.ApplicationViewModel
+import afkt.demo.databinding.FragmentParentDataBinding
+import afkt.demo.model.ActivityViewModel
 import afkt.demo.utils.ViewModelTempUtils
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import dev.base.expand.viewbinding.DevBaseViewBindingFragment
-import dev.base.utils.assist.DevBaseViewModelAssist
+import dev.base.expand.mvvm.DevBaseMVVMFragment
 import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
 
 /**
- * detail: 测试 Application ViewModel Fragment
+ * detail: 测试 Activity ViewModel Fragment
  * @author Ttt
  */
-class ApplicationViewModelFragment : DevBaseViewBindingFragment<FragmentParentBinding>() {
+class ActivityMVVMFragment :
+    DevBaseMVVMFragment<FragmentParentDataBinding, ActivityViewModel>() {
 
     override fun baseContentId(): Int {
-        return R.layout.fragment_parent
+        return R.layout.fragment_parent_data
     }
 
     override fun baseContentView(): View? {
@@ -32,6 +31,8 @@ class ApplicationViewModelFragment : DevBaseViewBindingFragment<FragmentParentBi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initViewModel()
+
         arguments?.let {
             var position = it.getInt(DevFinal.POSITION)
             var max = it.getInt(DevFinal.MAX)
@@ -39,11 +40,8 @@ class ApplicationViewModelFragment : DevBaseViewBindingFragment<FragmentParentBi
             var positionStr = (position + 1).toString();
 
             // 设置索引文案
-            binding.vidFpPositionTv.text = positionStr
+            binding.position = positionStr
 
-            var viewModel = DevBaseViewModelAssist().getAppViewModel(
-                BaseApplication.getApplication(), ApplicationViewModel::class.java
-            )!!
             // 进行 ViewModel 绑定
             ViewModelTempUtils.observe(TAG + positionStr, this, viewModel)
             // 临时改变值
@@ -54,15 +52,18 @@ class ApplicationViewModelFragment : DevBaseViewBindingFragment<FragmentParentBi
             if (position >= max) return
 
             // 设置 Fragment
-            commit(childFragmentManager, binding.vidFpFrame.id, position + 1, max)
+            commit(childFragmentManager, binding.vidFpdFrame.id, position + 1, max)
         }
 
-        LogPrintUtils.dTag(LOG_TAG, "ApplicationViewModelFragment => parentFragment: %s", parentFragment)
+        LogPrintUtils.dTag(LOG_TAG, "ActivityMVVMFragment => parentFragment: %s", parentFragment)
     }
 
     companion object {
-        fun get(position: Int, max: Int): DevBaseViewBindingFragment<FragmentParentBinding> {
-            val fragment = ApplicationViewModelFragment()
+        fun get(
+            position: Int,
+            max: Int
+        ): DevBaseMVVMFragment<FragmentParentDataBinding, ActivityViewModel> {
+            val fragment = ActivityMVVMFragment()
             val bundle = Bundle()
             bundle.putInt(DevFinal.POSITION, position)
             bundle.putInt(DevFinal.MAX, max)
@@ -76,6 +77,10 @@ class ApplicationViewModelFragment : DevBaseViewBindingFragment<FragmentParentBi
             transaction.commit()
         }
 
-        const val LOG_TAG = "ApplicationViewModelFragment_TAG"
+        const val LOG_TAG = "ActivityMVVMFragment_TAG"
+    }
+
+    override fun initViewModel() {
+        viewModel = getActivityViewModel(ActivityViewModel::class.java)!!
     }
 }

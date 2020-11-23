@@ -1,10 +1,9 @@
 package afkt.demo.ui.activity
 
 import afkt.demo.R
-import afkt.demo.base.BaseApplication
-import afkt.demo.databinding.ActivityMainApplicationMvvmBinding
-import afkt.demo.model.ApplicationViewModel
-import afkt.demo.ui.fragment.ApplicationMVVMFragment
+import afkt.demo.databinding.ActivityMainActivityMvvmBinding
+import afkt.demo.model.ActivityViewModel
+import afkt.demo.ui.fragment.ActivityMVVMFragment
 import afkt.demo.utils.ViewModelTempUtils
 import android.os.Bundle
 import android.os.Handler
@@ -13,14 +12,14 @@ import dev.base.expand.mvvm.DevBaseMVVMActivity
 import dev.utils.common.ColorUtils
 
 /**
- * detail: Main Application MVVM Activity
+ * detail: Main Activity MVVM Activity
  * @author Ttt
  */
-class MainApplicationMVVMActivity :
-    DevBaseMVVMActivity<ActivityMainApplicationMvvmBinding, ApplicationViewModel>() {
+class MainActivityMVVMActivity :
+    DevBaseMVVMActivity<ActivityMainActivityMvvmBinding, ActivityViewModel>() {
 
     override fun baseContentId(): Int {
-        return R.layout.activity_main_application_mvvm
+        return R.layout.activity_main_activity_mvvm
     }
 
     override fun baseContentView(): View? {
@@ -32,18 +31,17 @@ class MainApplicationMVVMActivity :
 
         initViewModel()
 
-        binding.title = "Application MVVM Title"
+        binding.title = "Activity MVVM Title"
 
         // 随机设置背景色
         binding.vidAmamvvmInclude.color = ColorUtils.getRandomColor()
 
         // 嵌套处理
-        ApplicationMVVMFragment.commit(supportFragmentManager, R.id.vid_amamvvm_frame, 0, 4)
+        ActivityMVVMFragment.commit(supportFragmentManager, R.id.vid_amamvvm_frame, 0, 4)
     }
 
     override fun initViewModel() {
-        viewModel =
-            getAppViewModel(BaseApplication.getApplication(), ApplicationViewModel::class.java)!!
+        viewModel = getActivityViewModel(ActivityViewModel::class.java)!!
         // 复用方法进行监听
         ViewModelTempUtils.observe(TAG, this, viewModel)
         // 临时改变值

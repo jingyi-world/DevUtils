@@ -29,6 +29,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 //        startActivity(Intent(this, MainNonViewDataActivity::class.java))
 //        startActivity(Intent(this, MainBaseContentActivity::class.java))
 //        startActivity(Intent(this, MainApplicationViewModelActivity::class.java))
-        startActivity(Intent(this, MainApplicationMVVMActivity::class.java))
+//        startActivity(Intent(this, MainApplicationMVVMActivity::class.java))
+        startActivity(Intent(this, MainActivityMVVMActivity::class.java))
     }
 }

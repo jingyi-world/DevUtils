@@ -11,7 +11,6 @@ import android.view.View
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import dev.base.expand.mvvm.DevBaseMVVMFragment
-import dev.base.utils.assist.DevBaseViewModelAssist
 import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
 
@@ -83,7 +82,7 @@ class ApplicationMVVMFragment :
     }
 
     override fun initViewModel() {
-        viewModel = DevBaseViewModelAssist().getAppViewModel(
+        viewModel = getAppViewModel(
             BaseApplication.getApplication(), ApplicationViewModel::class.java
         )!!
     }
