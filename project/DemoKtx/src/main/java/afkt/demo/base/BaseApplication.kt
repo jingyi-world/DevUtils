@@ -1,17 +1,23 @@
 package afkt.demo.base
 
-import androidx.lifecycle.ViewModelStore
-import androidx.lifecycle.ViewModelStoreOwner
+import afkt.demo.utils.ViewModelTempUtils
+import androidx.lifecycle.*
 import androidx.multidex.MultiDexApplication
 import dev.DevUtils
 import dev.utils.app.logger.DevLogger
 import dev.utils.app.logger.LogConfig
 import dev.utils.app.logger.LogLevel
 
-class BaseApplication : MultiDexApplication(), ViewModelStoreOwner {
+class BaseApplication : MultiDexApplication(), ViewModelStoreOwner, LifecycleOwner {
 
+    // 日志 TAG
     private val TAG = "DemoKtx_TAG"
+
+    // ViewModelStore
     private lateinit var mAppViewModelStore: ViewModelStore
+
+    // LifecycleRegistry 为了实现 Application 注册 ViewModel 才进行实现
+    private lateinit var mLifecycleRegistry: LifecycleRegistry
 
     override fun onCreate() {
         super.onCreate()
@@ -30,11 +36,15 @@ class BaseApplication : MultiDexApplication(), ViewModelStoreOwner {
 
         application = this
         mAppViewModelStore = ViewModelStore()
+        mLifecycleRegistry = LifecycleRegistry(this)
+
+        // 绑定全局
+        ViewModelTempUtils.observeApplication(TAG, this, application)
     }
 
-    override fun getViewModelStore(): ViewModelStore {
-        return mAppViewModelStore
-    }
+    // ===========
+    // = 静态方法 =
+    // ===========
 
     companion object {
 
@@ -43,5 +53,21 @@ class BaseApplication : MultiDexApplication(), ViewModelStoreOwner {
         fun getApplication(): BaseApplication {
             return application
         }
+    }
+
+    // =======================
+    // = ViewModelStoreOwner =
+    // =======================
+
+    override fun getViewModelStore(): ViewModelStore {
+        return mAppViewModelStore
+    }
+
+    // ==================
+    // = LifecycleOwner =
+    // ==================
+
+    override fun getLifecycle(): Lifecycle {
+        return mLifecycleRegistry
     }
 }

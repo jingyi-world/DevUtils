@@ -5,9 +5,9 @@ import androidx.lifecycle.ViewModel
 
 class MainActivityViewModel : ViewModel() {
 
-    val result = MutableLiveData<Int>()
+    val number = MutableLiveData<Int>()
 
     init {
-        result.value = 150
+        number.value = -100
     }
 }

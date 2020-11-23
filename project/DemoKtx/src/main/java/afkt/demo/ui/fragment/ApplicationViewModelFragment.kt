@@ -1,21 +1,25 @@
 package afkt.demo.ui.fragment
 
 import afkt.demo.R
+import afkt.demo.base.BaseApplication
 import afkt.demo.databinding.FragmentParentBinding
+import afkt.demo.model.MainActivityViewModel
+import afkt.demo.utils.ViewModelTempUtils
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import dev.base.expand.viewbinding.DevBaseViewBindingFragment
+import dev.base.utils.assist.DevBaseViewModelAssist
 import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
 
-
 /**
- * detail: 测试 parentFragment
+ * detail: 测试 Application ViewModel Fragment
  * @author Ttt
  */
-class ParentFragment : DevBaseViewBindingFragment<FragmentParentBinding>() {
+class ApplicationViewModelFragment : DevBaseViewBindingFragment<FragmentParentBinding>() {
 
     override fun baseContentId(): Int {
         return R.layout.fragment_parent
@@ -36,6 +40,16 @@ class ParentFragment : DevBaseViewBindingFragment<FragmentParentBinding>() {
 
             // 设置索引文案
             binding.vidFpPositionTv.text = positionStr
+
+            var viewModel = DevBaseViewModelAssist().getAppViewModelProvider(
+                BaseApplication.getApplication()
+            )?.get(MainActivityViewModel::class.java)!!
+            // 进行 ViewModel 绑定
+            ViewModelTempUtils.observe(TAG + positionStr, this, viewModel)
+            // 临时改变值
+            Handler().postDelayed(Runnable {
+                viewModel.number.value = (position + 1)
+            }, (position + 1) * 3000L + 2000L)
             // 判断是否达到最大值
             if (position >= max) return
 
@@ -48,7 +62,7 @@ class ParentFragment : DevBaseViewBindingFragment<FragmentParentBinding>() {
 
     companion object {
         fun get(position: Int, max: Int): DevBaseViewBindingFragment<FragmentParentBinding> {
-            val fragment = ParentFragment()
+            val fragment = ApplicationViewModelFragment()
             val bundle = Bundle()
             bundle.putInt(DevFinal.POSITION, position)
             bundle.putInt(DevFinal.MAX, max)
