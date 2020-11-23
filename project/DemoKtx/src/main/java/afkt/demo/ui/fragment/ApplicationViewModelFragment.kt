@@ -49,7 +49,7 @@ class ApplicationViewModelFragment : DevBaseViewBindingFragment<FragmentParentBi
             // 临时改变值
             Handler().postDelayed(Runnable {
                 viewModel.number.value = (position + 1)
-            }, (position + 1) * 3000L + 2000L)
+            }, (position + 1) * 1000L + 2000L)
             // 判断是否达到最大值
             if (position >= max) return
 

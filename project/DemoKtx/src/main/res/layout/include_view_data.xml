@@ -76,6 +76,7 @@
         </LinearLayout>
 
         <View
+            android:id="@+id/vid_ivd_view"
             android:layout_width="match_parent"
             android:layout_height="@dimen/un_dp_150"
             android:layout_weight="1"
