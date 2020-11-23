@@ -1,9 +1,8 @@
 package afkt.demo.ui.fragment
 
 import afkt.demo.R
-import afkt.demo.base.BaseApplication
 import afkt.demo.databinding.FragmentParentDataBinding
-import afkt.demo.model.ApplicationViewModel
+import afkt.demo.model.FragmentViewModel
 import afkt.demo.utils.ViewModelTempUtils
 import android.os.Bundle
 import android.os.Handler
@@ -16,11 +15,11 @@ import dev.utils.LogPrintUtils
 import dev.utils.common.RandomUtils
 
 /**
- * detail: 测试 Application MVVM Fragment
+ * detail: 测试 Parent Fragment MVVM Fragment
  * @author Ttt
  */
-class ApplicationMVVMFragment :
-    DevBaseMVVMFragment<FragmentParentDataBinding, ApplicationViewModel>() {
+class FragmentParentMVVMFragment :
+    DevBaseMVVMFragment<FragmentParentDataBinding, FragmentViewModel>() {
 
     override fun baseContentId(): Int {
         return R.layout.fragment_parent_data
@@ -57,15 +56,19 @@ class ApplicationMVVMFragment :
             commit(childFragmentManager, binding.vidFpdFrame.id, position + 1, max)
         }
 
-        LogPrintUtils.dTag(LOG_TAG, "ApplicationMVVMFragment => parentFragment: %s", parentFragment)
+        LogPrintUtils.dTag(
+            LOG_TAG,
+            "FragmentParentMVVMFragment => parentFragment: %s",
+            parentFragment
+        )
     }
 
     companion object {
         fun get(
             position: Int,
             max: Int
-        ): DevBaseMVVMFragment<FragmentParentDataBinding, ApplicationViewModel> {
-            val fragment = ApplicationMVVMFragment()
+        ): DevBaseMVVMFragment<FragmentParentDataBinding, FragmentViewModel> {
+            val fragment = FragmentParentMVVMFragment()
             val bundle = Bundle()
             bundle.putInt(DevFinal.POSITION, position)
             bundle.putInt(DevFinal.MAX, max)
@@ -79,12 +82,14 @@ class ApplicationMVVMFragment :
             transaction.commit()
         }
 
-        const val LOG_TAG = "ApplicationMVVMFragment_TAG"
+        const val LOG_TAG = "FragmentParentMVVMFragment_TAG"
     }
 
     override fun initViewModel() {
-        viewModel = getAppViewModel(
-            BaseApplication.getApplication(), ApplicationViewModel::class.java
-        )!!
+        if (parentFragment == null) {
+            viewModel = getFragmentViewModel(FragmentViewModel::class.java)!!
+        } else {
+            viewModel = getFragmentViewModel(parentFragment, FragmentViewModel::class.java)!!
+        }
     }
 }

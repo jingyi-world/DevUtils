@@ -15,7 +15,7 @@ import dev.utils.LogPrintUtils
 import dev.utils.common.RandomUtils
 
 /**
- * detail: 测试 Activity ViewModel Fragment
+ * detail: 测试 Activity MVVM Fragment
  * @author Ttt
  */
 class ActivityMVVMFragment :

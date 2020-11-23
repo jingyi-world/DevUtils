@@ -43,5 +43,9 @@
         <activity
             android:name=".ui.activity.MainFragmentMVVMActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.activity.MainFragmentParentMVVMActivity"
+            android:screenOrientation="portrait" />
     </application>
 </manifest>

@@ -15,7 +15,7 @@ import dev.utils.LogPrintUtils
 import dev.utils.common.RandomUtils
 
 /**
- * detail: 测试 Fragment ViewModel Fragment
+ * detail: 测试 Fragment MVVM Fragment
  * @author Ttt
  */
 class FragmentMVVMFragment :
@@ -82,10 +82,6 @@ class FragmentMVVMFragment :
     }
 
     override fun initViewModel() {
-        if (parentFragment == null) {
-            viewModel = getFragmentViewModel(FragmentViewModel::class.java)!!
-        } else {
-            viewModel = getFragmentViewModel(parentFragment, FragmentViewModel::class.java)!!
-        }
+        viewModel = getFragmentViewModel(FragmentViewModel::class.java)!!
     }
 }
