@@ -27,7 +27,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
 //        // 跳转校验
 //        startActivity(Intent(this, MainNonViewDataActivity::class.java))
-        // 跳转校验
-        startActivity(Intent(this, MainBaseContentActivity::class.java))
+//        startActivity(Intent(this, MainBaseContentActivity::class.java))
+        startActivity(Intent(this, MainViewModelActivity::class.java))
     }
 }

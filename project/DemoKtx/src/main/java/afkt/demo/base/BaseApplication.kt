@@ -1,14 +1,17 @@
 package afkt.demo.base
 
+import androidx.lifecycle.ViewModelStore
+import androidx.lifecycle.ViewModelStoreOwner
 import androidx.multidex.MultiDexApplication
 import dev.DevUtils
 import dev.utils.app.logger.DevLogger
 import dev.utils.app.logger.LogConfig
 import dev.utils.app.logger.LogLevel
 
-class BaseApplication : MultiDexApplication() {
+class BaseApplication : MultiDexApplication(), ViewModelStoreOwner {
 
     private val TAG = "DemoKtx_TAG"
+    private lateinit var mAppViewModelStore: ViewModelStore
 
     override fun onCreate() {
         super.onCreate()
@@ -24,5 +27,21 @@ class BaseApplication : MultiDexApplication() {
         // 打开 lib 内部日志 - 线上环境, 不调用方法
         DevUtils.openLog()
         DevUtils.openDebug()
+
+        application = this
+        mAppViewModelStore = ViewModelStore()
+    }
+
+    override fun getViewModelStore(): ViewModelStore {
+        return mAppViewModelStore
+    }
+
+    companion object {
+
+        private lateinit var application: BaseApplication
+
+        fun getApplication(): BaseApplication {
+            return application
+        }
     }
 }

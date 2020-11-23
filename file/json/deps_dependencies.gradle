@@ -195,6 +195,8 @@ dependencies {
 	implementation 'net.zetetic:android-database-sqlcipher:4.4.0'
 	// luban
 	implementation 'top.zibin:Luban:1.1.8'
+	// kluban
+	implementation 'com.github.forJrking:KLuban:1.0.2'
 	// calendarview
 	implementation 'com.haibin:calendarview:3.6.9'
 	// xcrash

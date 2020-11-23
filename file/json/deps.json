@@ -98,6 +98,7 @@
         "greenDAO": "org.greenrobot:greendao:3.3.0",
         "sqlcipher": "net.zetetic:android-database-sqlcipher:4.4.0",
         "luban": "top.zibin:Luban:1.1.8",
+        "kluban": "com.github.forJrking:KLuban:1.0.2",
         "calendarview": "com.haibin:calendarview:3.6.9",
         "xcrash": "com.iqiyi.xcrash:xcrash-android-lib:2.4.9",
         "ucrop": "com.github.yalantis:ucrop:2.2.6",
