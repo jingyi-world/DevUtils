@@ -32,5 +32,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 //        startActivity(Intent(this, MainActivityMVVMActivity::class.java))
 //        startActivity(Intent(this, MainFragmentMVVMActivity::class.java))
 //        startActivity(Intent(this, MainFragmentParentMVVMActivity::class.java))
+//        startActivity(Intent(this, MainBaseContentVMImplActivity::class.java))
     }
 }
