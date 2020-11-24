@@ -86,10 +86,10 @@ class FragmentParentMVVMFragment :
     }
 
     override fun initViewModel() {
-        if (parentFragment == null) {
-            viewModel = getFragmentViewModel(FragmentViewModel::class.java)!!
+        viewModel = if (parentFragment == null) {
+            getFragmentViewModel(FragmentViewModel::class.java)!!
         } else {
-            viewModel = getFragmentViewModel(parentFragment, FragmentViewModel::class.java)!!
+            getFragmentViewModel(parentFragment, FragmentViewModel::class.java)!!
         }
     }
 }

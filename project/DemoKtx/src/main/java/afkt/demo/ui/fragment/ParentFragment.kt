@@ -10,7 +10,6 @@ import dev.base.expand.viewbinding.DevBaseViewBindingFragment
 import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
 
-
 /**
  * detail: 测试 parentFragment
  * @author Ttt

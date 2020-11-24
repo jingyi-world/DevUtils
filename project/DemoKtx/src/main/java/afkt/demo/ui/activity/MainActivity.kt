@@ -3,7 +3,6 @@ package afkt.demo.ui.activity
 import afkt.demo.R
 import afkt.demo.base.app.BaseActivity
 import afkt.demo.databinding.ActivityMainBinding
-import android.content.Intent
 import android.os.Bundle
 import dev.utils.common.ColorUtils
 
