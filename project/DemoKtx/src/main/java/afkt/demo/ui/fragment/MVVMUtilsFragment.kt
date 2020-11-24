@@ -10,15 +10,16 @@ import android.view.View
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import dev.base.expand.mvvm.DevBaseMVVMFragment
+import dev.base.utils.ViewModelUtils
 import dev.utils.DevFinal
 import dev.utils.LogPrintUtils
 import dev.utils.common.RandomUtils
 
 /**
- * detail: 测试 Activity MVVM Fragment
+ * detail: 测试 MVVM Utils Fragment
  * @author Ttt
  */
-class ActivityMVVMFragment :
+class MVVMUtilsFragment :
     DevBaseMVVMFragment<FragmentParentDataBinding, ActivityViewModel>() {
 
     override fun baseContentId(): Int {
@@ -56,7 +57,7 @@ class ActivityMVVMFragment :
             commit(childFragmentManager, binding.vidFpdFrame.id, position + 1, max)
         }
 
-        LogPrintUtils.dTag(LOG_TAG, "ActivityMVVMFragment => parentFragment: %s", parentFragment)
+        LogPrintUtils.dTag(LOG_TAG, "MVVMUtilsFragment => parentFragment: %s", parentFragment)
     }
 
     companion object {
@@ -64,7 +65,7 @@ class ActivityMVVMFragment :
             position: Int,
             max: Int
         ): DevBaseMVVMFragment<FragmentParentDataBinding, ActivityViewModel> {
-            val fragment = ActivityMVVMFragment()
+            val fragment = MVVMUtilsFragment()
             val bundle = Bundle()
             bundle.putInt(DevFinal.POSITION, position)
             bundle.putInt(DevFinal.MAX, max)
@@ -78,10 +79,36 @@ class ActivityMVVMFragment :
             transaction.commit()
         }
 
-        const val LOG_TAG = "ActivityMVVMFragment_TAG"
+        const val LOG_TAG = "MVVMUtilsFragment_TAG"
     }
 
     override fun initViewModel() {
-        viewModel = getActivityViewModel(ActivityViewModel::class.java)!!
+//        viewModel = ViewModelUtils.getActivityViewModel(
+//            viewModelAssist,
+//            activity,
+//            ActivityViewModel::class.java
+//        )!!
+
+//        viewModel = ViewModelUtils.getActivityViewModel(activity, ActivityViewModel::class.java)!!
+
+//        viewModel = if (parentFragment == null) {
+//            ViewModelUtils.getFragmentViewModel(this, ActivityViewModel::class.java)!!
+//        } else {
+//            ViewModelUtils.getFragmentViewModel(parentFragment, ActivityViewModel::class.java)!!
+//        }
+
+        viewModel = if (parentFragment == null) {
+            ViewModelUtils.getFragmentViewModel(
+                viewModelAssist,
+                this,
+                ActivityViewModel::class.java
+            )!!
+        } else {
+            ViewModelUtils.getFragmentViewModel(
+                viewModelAssist,
+                parentFragment,
+                ActivityViewModel::class.java
+            )!!
+        }
     }
 }

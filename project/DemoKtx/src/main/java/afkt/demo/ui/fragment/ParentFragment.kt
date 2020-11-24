@@ -31,7 +31,7 @@ class ParentFragment : DevBaseViewBindingFragment<FragmentParentBinding>() {
             var position = it.getInt(DevFinal.POSITION)
             var max = it.getInt(DevFinal.MAX)
 
-            var positionStr = (position + 1).toString();
+            var positionStr = (position + 1).toString()
 
             // 设置索引文案
             binding.vidFpPositionTv.text = positionStr

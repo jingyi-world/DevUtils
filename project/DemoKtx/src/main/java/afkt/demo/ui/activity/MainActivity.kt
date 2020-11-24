@@ -3,6 +3,7 @@ package afkt.demo.ui.activity
 import afkt.demo.R
 import afkt.demo.base.app.BaseActivity
 import afkt.demo.databinding.ActivityMainBinding
+import android.content.Intent
 import android.os.Bundle
 import dev.utils.common.ColorUtils
 
@@ -33,5 +34,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 //        startActivity(Intent(this, MainFragmentMVVMActivity::class.java))
 //        startActivity(Intent(this, MainFragmentParentMVVMActivity::class.java))
 //        startActivity(Intent(this, MainBaseContentVMImplActivity::class.java))
+        startActivity(Intent(this, MainMVVMUtilsActivity::class.java))
     }
 }
