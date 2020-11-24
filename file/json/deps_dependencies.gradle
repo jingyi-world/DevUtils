@@ -7,7 +7,7 @@ dependencies {
 	// dev_assist
 	implementation 'com.afkt:DevAssist:1.0.5'
 	// dev_base
-	implementation 'com.afkt:DevBase:1.0.1'
+	implementation 'com.afkt:DevBase:1.0.2'
 	// dev_base_mvvm
 	implementation 'com.afkt:DevBaseMVVM:1.0.0'
 	// dev_java
