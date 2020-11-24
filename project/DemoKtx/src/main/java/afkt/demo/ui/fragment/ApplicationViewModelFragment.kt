@@ -58,7 +58,11 @@ class ApplicationViewModelFragment : DevBaseViewBindingFragment<FragmentParentBi
             commit(childFragmentManager, binding.vidFpFrame.id, position + 1, max)
         }
 
-        LogPrintUtils.dTag(LOG_TAG, "ApplicationViewModelFragment => parentFragment: %s", parentFragment)
+        LogPrintUtils.dTag(
+            LOG_TAG,
+            "ApplicationViewModelFragment => parentFragment: %s",
+            parentFragment
+        )
     }
 
     companion object {
