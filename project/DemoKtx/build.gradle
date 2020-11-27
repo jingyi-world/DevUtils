@@ -7,6 +7,6 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':DevApp')
-    implementation project(path: ':DevBaseMVVM')
+    implementation project(':DevApp')
+    implementation project(':DevBaseMVVM')
 }
