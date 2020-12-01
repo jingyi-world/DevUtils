@@ -9,4 +9,5 @@ android {
 dependencies {
     implementation project(':DevApp')
     implementation project(':DevBaseMVVM')
+    implementation project(':DevOther')
 }
