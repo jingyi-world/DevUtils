@@ -1,18 +1,35 @@
 package afkt.demo.use.datastore
 
+import android.app.Activity
 import android.content.Context
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.asLiveData
 import dev.other.DataStoreUtils
 import dev.utils.app.logger.DevLogger
 import dev.utils.app.share.SPUtils
 import dev.utils.app.share.SharedUtils
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.FlowCollector
+import kotlinx.coroutines.flow.collect
 
 object DataStoreUse {
 
-    val TAG = DataStoreUse::class.java.simpleName
+    val TAG: String = DataStoreUse::class.java.simpleName
 
-    suspend fun use(context: Context) {
+    private const val spStoreName = "spStore"
+
+    suspend fun use(activity: AppCompatActivity) {
+        // 监听数据变化
+        listener(activity)
+        // 写入数据
+        write(activity)
+        // 读取数据
+        read(activity)
+    }
+
+    /**
+     * 写入数据
+     * @param context [Context]
+     */
+    private suspend fun write(context: Context) {
         // 首先进行 SP 数据存储存储
         // 会在 /data/data/afkt.demo/shared_prefs/ 创建 **.xml
         // 接着运行 migrationSPToDataStore 则会把 shared_prefs 文件夹内的 xml
@@ -37,7 +54,6 @@ object DataStoreUse {
         // 打印数据
         printSPData(context)
 
-        val spStoreName = "spStore"
         var dataStore = DataStoreUtils.migrationSPToDataStore(
             context, spStoreName,
             "AA", "BB", "CC", "DD"
@@ -66,7 +82,54 @@ object DataStoreUse {
         DataStoreUtils.get(context, storeName).put("double", 1.2312)
     }
 
-    fun printSPData(context: Context) {
+    /**
+     * 读取数据
+     * @param activity [Activity]
+     */
+    private suspend fun read(activity: AppCompatActivity) {
+        DataStoreUtils.get(activity, TAG).getString("aaaaa", "不存在该 key 返回指定值")
+            ?.collect { value ->
+                DevLogger.dTag(
+                    TAG, "get %s DataStore, key : %s, value : %s",
+                    TAG, "aaaaa", value
+                )
+            }
+    }
+
+    /**
+     * 监听数据变化
+     * @param activity [Activity]
+     */
+    private fun listener(activity: AppCompatActivity) {
+        /**
+         * 监听 [TAG] DataStore key "int" 值变化
+         */
+        DataStoreUtils.get(activity, TAG).getInt("int")?.let {
+            it.asLiveData().observe(activity) { value ->
+                DevLogger.dTag(
+                    TAG, "listener %s DataStore, key : %s, value : %s",
+                    TAG, "int", value
+                )
+            }
+        }
+        /**
+         * 监听 [spStoreName] DataStore key "userName" 值变化
+         */
+        DataStoreUtils.get(activity, spStoreName).getString("type")?.let {
+            it.asLiveData().observe(activity) { value ->
+                DevLogger.dTag(
+                    TAG, "listener %s DataStore, key : %s, value : %s",
+                    spStoreName, "type", value
+                )
+            }
+        }
+    }
+
+    /**
+     * 打印 SharedPreferences 存储数据
+     * @param context [Context]
+     */
+    private fun printSPData(context: Context) {
         var builder = StringBuilder()
             .append("SharedPreferences")
             .append("\n\nSPConfig.xml Data")
