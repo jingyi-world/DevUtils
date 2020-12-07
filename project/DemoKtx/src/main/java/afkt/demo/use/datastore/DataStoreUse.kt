@@ -8,7 +8,7 @@ import dev.other.DataStoreUtils
 import dev.utils.app.logger.DevLogger
 import dev.utils.app.share.SPUtils
 import dev.utils.app.share.SharedUtils
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.first
 
 object DataStoreUse {
 
@@ -55,13 +55,12 @@ object DataStoreUse {
         printSPData(context)
 
         var dataStore = DataStoreUtils.migrationSPToDataStore(
-            context, spStoreName,
-            "AA", "BB", "CC", "DD"
+            spStoreName, "AA", "BB", "CC", "DD"
         )
 
         dataStore.put("value", 1)
 
-        DataStoreUtils.get(context, spStoreName).put("key", "key Value")
+        DataStoreUtils.get(spStoreName).put("key", "key Value")
 
         // =============
         // = storeName =
@@ -69,17 +68,17 @@ object DataStoreUse {
 
         val storeName = TAG
 
-        DataStoreUtils.get(context, storeName).put("int", 9)
+        DataStoreUtils.get(storeName).put("int", 9)
 
-        DataStoreUtils.get(context, storeName).put("String", "xx")
+        DataStoreUtils.get(storeName).put("String", "xx")
 
-        DataStoreUtils.get(context, storeName).put("boolean", true)
+        DataStoreUtils.get(storeName).put("boolean", true)
 
-        DataStoreUtils.get(context, storeName).put("float", 0.48791F)
+        DataStoreUtils.get(storeName).put("float", 0.48791F)
 
-        DataStoreUtils.get(context, storeName).put("long", 555L)
+        DataStoreUtils.get(storeName).put("long", 555L)
 
-        DataStoreUtils.get(context, storeName).put("double", 1.2312)
+        DataStoreUtils.get(storeName).put("double", 1.2312)
     }
 
     /**
@@ -87,13 +86,23 @@ object DataStoreUse {
      * @param activity [Activity]
      */
     private suspend fun read(activity: AppCompatActivity) {
-        DataStoreUtils.get(activity, TAG).getString("aaaaa", "不存在该 key 返回指定值")
-            ?.collect { value ->
-                DevLogger.dTag(
-                    TAG, "get %s DataStore, key : %s, value : %s",
-                    TAG, "aaaaa", value
-                )
-            }
+        var value = DataStoreUtils.get(TAG).getString("aaaaa", "不存在该 key 返回指定值")?.first()
+        DevLogger.dTag(
+            TAG, "get %s DataStore, key : %s, value : %s",
+            TAG, "aaaaa", value
+        )
+
+        var value2 = DataStoreUtils.get(TAG).getDouble("double")?.first()
+        DevLogger.dTag(
+            TAG, "get %s DataStore, key : %s, value : %s",
+            TAG, "double", value2
+        )
+
+        var value3 = DataStoreUtils.get(spStoreName).getString("type")?.first()
+        DevLogger.dTag(
+            TAG, "get %s DataStore, key : %s, value : %s",
+            spStoreName, "type", value3
+        )
     }
 
     /**
@@ -104,7 +113,7 @@ object DataStoreUse {
         /**
          * 监听 [TAG] DataStore key "int" 值变化
          */
-        DataStoreUtils.get(activity, TAG).getInt("int")?.let {
+        DataStoreUtils.get(TAG).getInt("int")?.let {
             it.asLiveData().observe(activity) { value ->
                 DevLogger.dTag(
                     TAG, "listener %s DataStore, key : %s, value : %s",
@@ -115,7 +124,7 @@ object DataStoreUse {
         /**
          * 监听 [spStoreName] DataStore key "userName" 值变化
          */
-        DataStoreUtils.get(activity, spStoreName).getString("type")?.let {
+        DataStoreUtils.get(spStoreName).getString("type")?.let {
             it.asLiveData().observe(activity) { value ->
                 DevLogger.dTag(
                     TAG, "listener %s DataStore, key : %s, value : %s",
