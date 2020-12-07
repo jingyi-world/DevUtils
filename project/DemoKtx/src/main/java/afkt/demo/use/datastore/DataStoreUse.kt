@@ -86,19 +86,19 @@ object DataStoreUse {
      * @param activity [Activity]
      */
     private suspend fun read(activity: AppCompatActivity) {
-        var value = DataStoreUtils.get(TAG).getString("aaaaa", "不存在该 key 返回指定值")?.first()
+        var value = DataStoreUtils.get(TAG).getStringFlow("aaaaa", "不存在该 key 返回指定值")?.first()
         DevLogger.dTag(
             TAG, "get %s DataStore, key : %s, value : %s",
             TAG, "aaaaa", value
         )
 
-        var value2 = DataStoreUtils.get(TAG).getDouble("double")?.first()
+        var value2 = DataStoreUtils.get(TAG).getDoubleFlow("double")?.first()
         DevLogger.dTag(
             TAG, "get %s DataStore, key : %s, value : %s",
             TAG, "double", value2
         )
 
-        var value3 = DataStoreUtils.get(spStoreName).getString("type")?.first()
+        var value3 = DataStoreUtils.get(spStoreName).getStringFlow("type")?.first()
         DevLogger.dTag(
             TAG, "get %s DataStore, key : %s, value : %s",
             spStoreName, "type", value3
@@ -113,7 +113,7 @@ object DataStoreUse {
         /**
          * 监听 [TAG] DataStore key "int" 值变化
          */
-        DataStoreUtils.get(TAG).getInt("int")?.let {
+        DataStoreUtils.get(TAG).getIntFlow("int")?.let {
             it.asLiveData().observe(activity) { value ->
                 DevLogger.dTag(
                     TAG, "listener %s DataStore, key : %s, value : %s",
@@ -124,7 +124,7 @@ object DataStoreUse {
         /**
          * 监听 [spStoreName] DataStore key "userName" 值变化
          */
-        DataStoreUtils.get(spStoreName).getString("type")?.let {
+        DataStoreUtils.get(spStoreName).getStringFlow("type")?.let {
             it.asLiveData().observe(activity) { value ->
                 DevLogger.dTag(
                     TAG, "listener %s DataStore, key : %s, value : %s",
