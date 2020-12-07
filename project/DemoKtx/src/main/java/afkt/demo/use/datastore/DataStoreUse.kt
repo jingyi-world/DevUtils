@@ -103,6 +103,13 @@ object DataStoreUse {
             TAG, "get %s DataStore, key : %s, value : %s",
             spStoreName, "type", value3
         )
+
+        // 测试类似不匹配, 转换失败数据
+        var value4 = DataStoreUtils.get(TAG).getBoolean("double")
+        DevLogger.dTag(
+            TAG, "get %s DataStore, key : %s, value : %s",
+            TAG, "double", value4
+        )
     }
 
     /**
