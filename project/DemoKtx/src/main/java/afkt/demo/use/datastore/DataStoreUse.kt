@@ -7,7 +7,6 @@ import androidx.lifecycle.asLiveData
 import dev.other.DataStoreUtils
 import dev.utils.app.logger.DevLogger
 import dev.utils.app.share.SPUtils
-import dev.utils.app.share.SharedUtils
 import kotlinx.coroutines.flow.first
 
 object DataStoreUse {
@@ -30,55 +29,46 @@ object DataStoreUse {
      * @param context [Context]
      */
     private suspend fun write(context: Context) {
+
         // 首先进行 SP 数据存储存储
         // 会在 /data/data/afkt.demo/shared_prefs/ 创建 **.xml
         // 接着运行 migrationSPToDataStore 则会把 shared_prefs 文件夹内的 xml
         // 存储到 /data/data/afkt.demo/files/datastore/ 中指定的 **.preferences_pb
         // 并且会把 shared_prefs 下迁移成功的文件进行删除
 
-        // name: SPConfig
-        SharedUtils.put("userName", "u123456")
-
-        SharedUtils.put("tips", "没有密码")
-
         SPUtils.getPreference(context, "AA").put("type", "AA")
 
-        SPUtils.getPreference(context, "BB").put("typeB", "BB")
+        SPUtils.getPreference(context, "AA").put("errorType", "AA")
 
-        SPUtils.getPreference(context, "CC").put("typeC", "CC")
+        SPUtils.getPreference(context, "BB").put("type", "BB")
 
-        SPUtils.getPreference(context, "DD").put("type", "DD")
+        SPUtils.getPreference(context, "BB").put("errorType", 1)
 
-        SPUtils.getPreference(context, "DD").put("abc", "abc")
-
-        // 打印数据
-        printSPData(context)
+        SPUtils.getPreference(context, "BB").put("abc", "def")
 
         var dataStore = DataStoreUtils.migrationSPToDataStore(
-            spStoreName, "AA", "BB", "CC", "DD"
+            spStoreName, "AA", "BB"
         )
 
-        dataStore.put("value", 1)
+        dataStore.put("one", 1)
 
-        DataStoreUtils.get(spStoreName).put("key", "key Value")
+        DataStoreUtils.get(spStoreName).put("two", "二")
 
-        // =============
-        // = storeName =
-        // =============
+        // =======
+        // = TAG =
+        // =======
 
-        val storeName = TAG
+        DataStoreUtils.get(TAG).put("int", 9)
 
-        DataStoreUtils.get(storeName).put("int", 9)
+        DataStoreUtils.get(TAG).put("String", "xx")
 
-        DataStoreUtils.get(storeName).put("String", "xx")
+        DataStoreUtils.get(TAG).put("boolean", true)
 
-        DataStoreUtils.get(storeName).put("boolean", true)
+        DataStoreUtils.get(TAG).put("float", 0.48791F)
 
-        DataStoreUtils.get(storeName).put("float", 0.48791F)
+        DataStoreUtils.get(TAG).put("long", 555L)
 
-        DataStoreUtils.get(storeName).put("long", 555L)
-
-        DataStoreUtils.get(storeName).put("double", 1.2312)
+        DataStoreUtils.get(TAG).put("double", 1.2312)
     }
 
     /**
@@ -86,29 +76,54 @@ object DataStoreUse {
      * @param activity [Activity]
      */
     private suspend fun read(activity: AppCompatActivity) {
-        var value = DataStoreUtils.get(TAG).getStringFlow("aaaaa", "不存在该 key 返回指定值")?.first()
         DevLogger.dTag(
-            TAG, "get %s DataStore, key : %s, value : %s",
-            TAG, "aaaaa", value
+            TAG, "getFlow %s, key : %s, value : %s",
+            TAG, "aaaaa", DataStoreUtils.get(TAG).getStringFlow("aaaaa", "不存在该 key 返回指定值")?.first()
         )
 
-        var value2 = DataStoreUtils.get(TAG).getDoubleFlow("double")?.first()
         DevLogger.dTag(
-            TAG, "get %s DataStore, key : %s, value : %s",
-            TAG, "double", value2
+            TAG, "getFlow %s, key : %s, value : %s",
+            TAG, "double", DataStoreUtils.get(TAG).getDoubleFlow("double")?.first()
         )
 
-        var value3 = DataStoreUtils.get(spStoreName).getStringFlow("type")?.first()
         DevLogger.dTag(
-            TAG, "get %s DataStore, key : %s, value : %s",
-            spStoreName, "type", value3
+            TAG, "getFlow %s, key : %s, value : %s",
+            spStoreName, "type", DataStoreUtils.get(spStoreName).getStringFlow("type")?.first()
         )
 
-        // 测试类似不匹配, 转换失败数据
-        var value4 = DataStoreUtils.get(TAG).getBoolean("double")
         DevLogger.dTag(
-            TAG, "get %s DataStore, key : %s, value : %s",
-            TAG, "double", value4
+            TAG, "getValue %s, key : %s, value : %s",
+            spStoreName, "errorType", DataStoreUtils.get(spStoreName).getString("errorType")
+        )
+
+        DevLogger.dTag(
+            TAG, "getValue %s, key : %s, value : %s",
+            spStoreName, "errorType", DataStoreUtils.get(spStoreName).getInt("errorType")
+        )
+
+        DevLogger.dTag(
+            TAG, "getValue %s, key : %s, value : %s",
+            spStoreName, "one", DataStoreUtils.get(spStoreName).getInt("one")
+        )
+
+        DevLogger.dTag(
+            TAG, "getValue %s, key : %s, value : %s",
+            spStoreName, "two", DataStoreUtils.get(spStoreName).getString("two")
+        )
+
+        DevLogger.dTag(
+            TAG, "getValue %s, key : %s, value : %s",
+            spStoreName, "abc", DataStoreUtils.get(spStoreName).getString("abc")
+        )
+
+        DevLogger.dTag(
+            TAG, "getValue %s, key : %s, value : %s",
+            TAG, "double", DataStoreUtils.get(TAG).getDouble("double")
+        )
+
+        DevLogger.dTag(
+            TAG, "getValue %s, key : %s, value : %s",
+            TAG, "double", DataStoreUtils.get(TAG).getBoolean("double")
         )
     }
 
@@ -123,7 +138,7 @@ object DataStoreUse {
         DataStoreUtils.get(TAG).getIntFlow("int")?.let {
             it.asLiveData().observe(activity) { value ->
                 DevLogger.dTag(
-                    TAG, "listener %s DataStore, key : %s, value : %s",
+                    TAG, "listener %s, key : %s, value : %s",
                     TAG, "int", value
                 )
             }
@@ -134,39 +149,10 @@ object DataStoreUse {
         DataStoreUtils.get(spStoreName).getStringFlow("type")?.let {
             it.asLiveData().observe(activity) { value ->
                 DevLogger.dTag(
-                    TAG, "listener %s DataStore, key : %s, value : %s",
+                    TAG, "listener %s, key : %s, value : %s",
                     spStoreName, "type", value
                 )
             }
         }
-    }
-
-    /**
-     * 打印 SharedPreferences 存储数据
-     * @param context [Context]
-     */
-    private fun printSPData(context: Context) {
-        var builder = StringBuilder()
-            .append("SharedPreferences")
-            .append("\n\nSPConfig.xml Data")
-            .append("\nuserName:")
-            .append(SharedUtils.getString("userName"))
-            .append("\ntips:")
-            .append(SharedUtils.getString("tips"))
-            .append("\n\nAA.xml Data")
-            .append("\ntype:")
-            .append(SPUtils.getPreference(context, "AA").getString("type"))
-            .append("\n\nBB.xml Data")
-            .append("\ntypeB:")
-            .append(SPUtils.getPreference(context, "BB").getString("typeB"))
-            .append("\n\nCC.xml Data")
-            .append("\ntypeC:")
-            .append(SPUtils.getPreference(context, "CC").getString("typeC"))
-            .append("\n\nDD.xml Data")
-            .append("\ntype:")
-            .append(SPUtils.getPreference(context, "DD").getString("type"))
-            .append("\nabc:")
-            .append(SPUtils.getPreference(context, "DD").getString("abc"))
-        DevLogger.dTag(TAG, builder.toString())
     }
 }
