@@ -13,14 +13,18 @@ import org.greenrobot.greendao.annotation.NotNull;
 public class NotePicture {
 
     @Id
-    private Long   id;
+    private Long id;
     @NotNull
     private String picture;
     // 对应的 note id ( 外键 )
-    private Long   noteId;
+    private Long noteId;
 
     @Generated(hash = 1669203543)
-    public NotePicture(Long id, @NotNull String picture, Long noteId) {
+    public NotePicture(
+            Long id,
+            @NotNull String picture,
+            Long noteId
+    ) {
         this.id = id;
         this.picture = picture;
         this.noteId = noteId;
