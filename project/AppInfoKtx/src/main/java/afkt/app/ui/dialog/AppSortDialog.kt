@@ -3,7 +3,7 @@ package afkt.app.ui.dialog
 import afkt.app.R
 import afkt.app.base.Constants
 import afkt.app.databinding.DialogAppSortBinding
-import afkt.app.module.event.SortEvent
+import afkt.app.module.SortEvent
 import afkt.app.utils.EventBusUtils
 import afkt.app.utils.ProjectUtils
 import android.app.Dialog

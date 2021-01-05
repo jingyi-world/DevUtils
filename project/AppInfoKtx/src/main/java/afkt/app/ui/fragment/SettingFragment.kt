@@ -4,7 +4,7 @@ import afkt.app.R
 import afkt.app.base.BaseFragment
 import afkt.app.base.Constants
 import afkt.app.databinding.FragmentSettingBinding
-import afkt.app.module.event.SortEvent
+import afkt.app.module.SortEvent
 import afkt.app.ui.dialog.AppSortDialog
 import afkt.app.ui.dialog.QuerySuffixDialog
 import afkt.app.utils.AppListUtils

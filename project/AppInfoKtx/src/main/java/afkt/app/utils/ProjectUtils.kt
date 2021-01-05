@@ -2,9 +2,9 @@ package afkt.app.utils
 
 import afkt.app.R
 import afkt.app.base.Constants
-import afkt.app.module.TypeEnum
-import afkt.app.module.event.InfoEvent
 import afkt.app.module.DeviceInfoItem
+import afkt.app.module.InfoEvent
+import afkt.app.module.TypeEnum
 import android.os.Build
 import com.google.gson.GsonBuilder
 import dev.utils.app.*

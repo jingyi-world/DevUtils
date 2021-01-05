@@ -5,11 +5,7 @@ import afkt.app.base.BaseFragment
 import afkt.app.base.Constants
 import afkt.app.base.config.PathConfig
 import afkt.app.databinding.FragmentInfoBinding
-import afkt.app.module.DeviceInfoBean
-import afkt.app.module.TypeEnum
-import afkt.app.module.event.ExportEvent
-import afkt.app.module.event.FragmentEvent
-import afkt.app.module.event.InfoEvent
+import afkt.app.module.*
 import afkt.app.ui.adapter.InfoAdapter
 import afkt.app.utils.EventBusUtils
 import afkt.app.utils.ProjectUtils

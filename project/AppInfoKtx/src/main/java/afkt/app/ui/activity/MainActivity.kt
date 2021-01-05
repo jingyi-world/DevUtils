@@ -2,9 +2,7 @@ package afkt.app.ui.activity
 
 import afkt.app.R
 import afkt.app.databinding.ActivityMainBinding
-import afkt.app.module.ActionEnum
-import afkt.app.module.TypeEnum
-import afkt.app.module.event.*
+import afkt.app.module.*
 import afkt.app.ui.fragment.AppListFragment
 import afkt.app.ui.fragment.InfoFragment
 import afkt.app.ui.fragment.ScanSDCardFragment
