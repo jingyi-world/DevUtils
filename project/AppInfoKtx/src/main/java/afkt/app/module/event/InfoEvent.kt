@@ -1,7 +1,7 @@
 package afkt.app.module.event
 
 import afkt.app.module.TypeEnum
-import afkt.app.module.item.DeviceInfoItem
+import afkt.app.module.DeviceInfoItem
 
 /**
  * detail: 信息 ( 设备、屏幕 ) 通知事件

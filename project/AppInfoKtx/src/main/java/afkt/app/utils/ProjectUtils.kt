@@ -4,7 +4,7 @@ import afkt.app.R
 import afkt.app.base.Constants
 import afkt.app.module.TypeEnum
 import afkt.app.module.event.InfoEvent
-import afkt.app.module.item.DeviceInfoItem
+import afkt.app.module.DeviceInfoItem
 import android.os.Build
 import com.google.gson.GsonBuilder
 import dev.utils.app.*

@@ -1,6 +1,6 @@
 package afkt.app.module.event
 
-import afkt.app.module.item.FileApkItem
+import afkt.app.module.FileApkItem
 
 /**
  * detail: 扫描 SDCard 事件

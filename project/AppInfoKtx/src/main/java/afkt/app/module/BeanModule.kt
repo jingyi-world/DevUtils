@@ -1,6 +1,5 @@
-package afkt.app.module.bean
+package afkt.app.module
 
-import afkt.app.module.item.DeviceInfoItem
 import afkt.app.utils.ProjectUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.info.KeyValueBean
