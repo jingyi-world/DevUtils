@@ -3,7 +3,6 @@ package afkt.app.ui.fragment
 import afkt.app.R
 import afkt.app.base.BaseFragment
 import afkt.app.base.Constants
-import afkt.app.base.config.PathConfig
 import afkt.app.databinding.FragmentInfoBinding
 import afkt.app.module.*
 import afkt.app.ui.adapter.InfoAdapter
