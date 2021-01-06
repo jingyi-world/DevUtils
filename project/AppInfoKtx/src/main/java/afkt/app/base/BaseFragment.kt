@@ -5,10 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.viewbinding.ViewBinding
 import dev.base.expand.viewbinding.DevBaseViewBindingFragment
 
 abstract class BaseFragment<VB : ViewBinding> : DevBaseViewBindingFragment<VB>() {
+
+    val viewModel by activityViewModels<AppViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,

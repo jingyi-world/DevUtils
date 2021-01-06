@@ -3,12 +3,6 @@ package afkt.app.module
 import dev.utils.app.info.AppInfoBean
 
 /**
- * detail: 排序通知事件
- * @author Ttt
- */
-class SortEvent
-
-/**
  * detail: 文件删除事件
  * @author Ttt
  */
