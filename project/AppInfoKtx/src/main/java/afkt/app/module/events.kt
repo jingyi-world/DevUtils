@@ -21,12 +21,6 @@ class StartSearchEvent
 class TopEvent(val type: TypeEnum)
 
 /**
- * detail: 导出事件
- * @author Ttt
- */
-class ExportEvent(val type: TypeEnum)
-
-/**
  * detail: Fragment 切换事件
  * @author Ttt
  */
@@ -53,15 +47,6 @@ class SearchEvent(
  * @author Ttt
  */
 class ScanSDCardEvent(val lists: ArrayList<FileApkItem>)
-
-/**
- * detail: 信息 ( 设备、屏幕 ) 通知事件
- * @author Ttt
- */
-class InfoEvent(
-    val type: TypeEnum,
-    val lists: ArrayList<DeviceInfoItem>
-)
 
 /**
  * detail: 应用列表搜索事件

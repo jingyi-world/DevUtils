@@ -6,7 +6,7 @@ import dev.utils.app.info.KeyValueBean
 import java.util.*
 
 /**
- * detail: 设备参数实体类
+ * detail: 设备参数导出实体类
  * @author Ttt
  */
 class DeviceInfoBean(
@@ -33,3 +33,12 @@ class DeviceInfoBean(
         }
     }
 }
+
+/**
+ * detail: 设备、屏幕信息
+ * @author Ttt
+ */
+class DeviceInfo(
+    val type: TypeEnum,
+    val lists: ArrayList<DeviceInfoItem>
+)

@@ -18,9 +18,7 @@ import dev.utils.app.toast.ToastTintUtils
 
 class SettingFragment : BaseFragment<FragmentSettingBinding>() {
 
-    override fun baseContentId(): Int {
-        return R.layout.fragment_setting
-    }
+    override fun baseContentId() = R.layout.fragment_setting
 
     override fun onViewCreated(
         view: View,
@@ -36,7 +34,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
             selectAppSort() // 重置排序文案
             ToastTintUtils.success(ResourceUtils.getString(R.string.str_reset_desetting_suc))
         }
-        viewModel.sort.observe(this, Observer {
+        viewModel.appSort.observe(viewLifecycleOwner, Observer {
             selectAppSort()
         })
         selectAppSort()
@@ -48,9 +46,5 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
     private fun selectAppSort() {
         binding.vidFsAppsortTv.text =
             ResourceUtils.getStringArray(R.array.array_app_sort)!![ProjectUtils.getAppSortType()]
-    }
-
-    override fun isRegister(): Boolean {
-        return false;
     }
 }
