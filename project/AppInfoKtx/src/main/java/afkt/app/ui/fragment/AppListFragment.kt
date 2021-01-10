@@ -11,8 +11,6 @@ import afkt.app.utils.AppListUtils
 import afkt.app.utils.AppSearchUtils
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
-import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import com.tt.whorlviewlibrary.WhorlView
 import dev.utils.app.ListViewUtils
 import dev.utils.app.ResourceUtils
@@ -42,7 +40,6 @@ class AppListFragment : BaseFragment<FragmentAppBinding>() {
     ) {
         super.onViewCreated(view, savedInstanceState)
         binding.vidFaRefresh.setEnableLoadMore(false)
-
         whorlView = ViewUtils.findViewById(
             binding.vidFaState.getView(ViewAssist.TYPE_ING),
             R.id.vid_sli_load_view
@@ -82,7 +79,7 @@ class AppListFragment : BaseFragment<FragmentAppBinding>() {
                     binding.vidFaRefresh.finishRefresh()
                 } else {
                     if (type == ViewAssist.TYPE_ING) {
-                        if (whorlView != null && !whorlView!!.isCircling()) {
+                        if (whorlView != null && !whorlView!!.isCircling) {
                             whorlView?.start()
                         }
                     } else {
@@ -90,7 +87,7 @@ class AppListFragment : BaseFragment<FragmentAppBinding>() {
                         // 无数据处理
                         if (type == ViewAssist.TYPE_EMPTY_DATA) {
                             binding.vidFaRefresh.finishRefresh()
-                            var tips = if (dataStore.searchContent.isEmpty()) {
+                            val tips = if (dataStore.searchContent.isEmpty()) {
                                 ResourceUtils.getString(R.string.str_search_noresult_tips_1)
                             } else {
                                 ResourceUtils.getString(
@@ -99,7 +96,7 @@ class AppListFragment : BaseFragment<FragmentAppBinding>() {
                                 )
                             }
                             TextViewUtils.setHtmlText(
-                                view.findViewById<TextView>(R.id.vid_slnd_tips_tv), tips
+                                view.findViewById(R.id.vid_slnd_tips_tv), tips
                             )
                         }
                     }
@@ -107,11 +104,10 @@ class AppListFragment : BaseFragment<FragmentAppBinding>() {
             }
         })
         binding.vidFaState.showIng()
-
         // 设置刷新事件
-        binding.vidFaRefresh.setOnRefreshListener(OnRefreshListener {
+        binding.vidFaRefresh.setOnRefreshListener {
             AppListUtils.getAppLists(dataStore.typeEnum, true)
-        })
+        }
     }
 
     override fun initObserve() {
@@ -140,7 +136,7 @@ class AppListFragment : BaseFragment<FragmentAppBinding>() {
         // APP 列表监听
         viewModel.appObserve(this) {
             if (it.type == dataStore.typeEnum) {
-                var lists = if (dataStore.searchContent.isEmpty()) {
+                val lists = if (dataStore.searchContent.isEmpty()) {
                     it.lists
                 } else {
                     AppSearchUtils.filterAppList(it.lists, dataStore.searchContent)

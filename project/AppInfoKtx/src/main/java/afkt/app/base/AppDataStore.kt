@@ -7,6 +7,7 @@ import dev.utils.DevFinal
 
 class AppDataStore {
 
+    // Fragment 类型
     var typeEnum: TypeEnum = TypeEnum.NONE
 
     fun initDataStore(arguments: Bundle?) {

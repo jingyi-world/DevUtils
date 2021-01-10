@@ -12,10 +12,8 @@ import afkt.app.utils.ScanSDCardUtils
 import android.Manifest
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import com.tt.whorlviewlibrary.WhorlView
 import dev.callback.common.DevCallback
 import dev.utils.DevFinal
@@ -34,31 +32,23 @@ import java.util.*
 
 class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
 
-    // = View =
-
     private var whorlView: WhorlView? = null
 
-    // = Object =
-
     private var type = TypeEnum.QUERY_APK
-    private var searchContent: String = ""
 
-    override fun baseContentId(): Int {
-        return R.layout.fragment_app
-    }
+    override fun baseContentId(): Int = R.layout.fragment_app
 
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
-
+        // 设置扫描回调
         ScanSDCardUtils.instance.setCallback(object : DevCallback<ArrayList<FileApkItem>>() {
             override fun callback(value: ArrayList<FileApkItem>?) {
                 viewModel.sdcardScan.postValue(value!!)
             }
         })
-
         binding.vidFaRefresh.setEnableLoadMore(false)
 
         whorlView = ViewUtils.findViewById(
@@ -100,7 +90,7 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
                     binding.vidFaRefresh.finishRefresh()
                 } else {
                     if (type == ViewAssist.TYPE_ING) {
-                        if (whorlView != null && !whorlView!!.isCircling()) {
+                        if (whorlView != null && !whorlView!!.isCircling) {
                             whorlView?.start()
                         }
                     } else {
@@ -108,16 +98,16 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
                         // 无数据处理
                         if (type == ViewAssist.TYPE_EMPTY_DATA) {
                             binding.vidFaRefresh.finishRefresh()
-                            var tips = if (searchContent.isEmpty()) {
+                            val tips = if (dataStore.searchContent.isEmpty()) {
                                 ResourceUtils.getString(R.string.str_search_noresult_tips_1)
                             } else {
                                 ResourceUtils.getString(
                                     R.string.str_search_noresult_tips,
-                                    HtmlUtils.addHtmlColor(searchContent, "#359AFF")
+                                    HtmlUtils.addHtmlColor(dataStore.searchContent, "#359AFF")
                                 )
                             }
                             TextViewUtils.setHtmlText(
-                                view.findViewById<TextView>(R.id.vid_slnd_tips_tv), tips
+                                view.findViewById(R.id.vid_slnd_tips_tv), tips
                             )
                         }
                     }
@@ -125,13 +115,11 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
             }
         })
         binding.vidFaState.showIng()
-
         // 设置刷新事件
-        binding.vidFaRefresh.setOnRefreshListener(OnRefreshListener {
-            type?.let { requestReadWrite(true) }
-        })
-
-        var itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.Callback() {
+        binding.vidFaRefresh.setOnRefreshListener {
+            requestReadWrite(true)
+        }
+        val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.Callback() {
             override fun getMovementFlags(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder
@@ -152,7 +140,7 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
                 direction: Int
             ) {
                 if (direction == ItemTouchHelper.LEFT || direction == ItemTouchHelper.RIGHT) {
-                    var adapter: ApkListAdapter? = binding.vidFaRefresh.getAdapter()
+                    val adapter: ApkListAdapter? = binding.vidFaRefresh.getAdapter()
                     try {
                         val position = viewHolder.adapterPosition
                         FileUtils.deleteFile(adapter?.getItem(position)?.uri)
@@ -179,8 +167,8 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
             when (it.action) {
                 ActionEnum.COLLAPSE -> { // 搜索合并
                     if (it.type == type) {
-                        if (searchContent.isNotEmpty()) { // 输入内容才刷新列表
-                            searchContent = ""
+                        if (dataStore.searchContent.isNotEmpty()) { // 输入内容才刷新列表
+                            dataStore.searchContent = ""
                             requestReadWrite()
                         }
                     }
@@ -189,7 +177,7 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
                 }
                 ActionEnum.CONTENT -> { // 搜索输入内容
                     if (it.type == type) {
-                        searchContent = it.content
+                        dataStore.searchContent = it.content
                         requestReadWrite()
                     }
                 }
@@ -198,7 +186,7 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
         // Fragment 切换监听
         viewModel.fragmentChange.observe(this) {
             if (it == type) {
-                searchContent = "" // 切换 Fragment 重置搜索内容
+                dataStore.searchContent = "" // 切换 Fragment 重置搜索内容
                 requestReadWrite()
             }
         }
@@ -220,10 +208,10 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
         }
         // 文件扫描
         viewModel.sdcardScan.observe(this) {
-            var lists = if (searchContent.isEmpty()) {
+            val lists = if (dataStore.searchContent.isEmpty()) {
                 it
             } else {
-                AppSearchUtils.filterApkList(it, searchContent)
+                AppSearchUtils.filterApkList(it, dataStore.searchContent)
             }
             if (lists.isEmpty()) {
                 binding.vidFaState.showEmptyData()
@@ -260,8 +248,8 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
                 deniedList: List<String>,
                 notFoundList: List<String>
             ) {
-                var builder = StringBuilder()
-                    .append("申请通过的权限").append(Arrays.toString(grantedList.toTypedArray()))
+                val builder = StringBuilder()
+                    .append("申请通过的权限").append(grantedList.toTypedArray().contentToString())
                     .append(DevFinal.NEW_LINE_STR)
                     .append("拒绝的权限").append(deniedList.toString())
                     .append(DevFinal.NEW_LINE_STR)

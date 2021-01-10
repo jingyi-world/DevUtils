@@ -34,23 +34,21 @@ class InfoFragment : BaseFragment<FragmentInfoBinding>() {
         super.onViewCreated(view, savedInstanceState)
         binding.root.setEnableRefresh(false)
             .setEnableLoadMore(false)
-
         viewModel.infoObserve(viewLifecycleOwner, {
             if (it.type == dataStore.typeEnum) {
                 binding.root.setAdapter(InfoAdapter(it.lists))
             }
         })
-
         viewModel.exportInfo.observe(viewLifecycleOwner, {
             if (it == dataStore.typeEnum) {
                 if (binding.root.getAdapter<InfoAdapter>() != null) {
-                    var adapter: InfoAdapter? = binding.root.getAdapter()
+                    val adapter: InfoAdapter? = binding.root.getAdapter()
                     if (adapter?.data != null) {
-                        val content: String? = DeviceInfoBean.jsonString(adapter?.data)
-                        var fileName =
+                        val content: String? = DeviceInfoBean.jsonString(adapter.data)
+                        val fileName =
                             if (TypeEnum.DEVICE_INFO == it) "device_info.txt" else "screen_info.txt"
                         // 导出数据
-                        var result = FileUtils.saveFile(
+                        val result = FileUtils.saveFile(
                             FileUtils.getFile(PathConfig.AEP_PATH, fileName),
                             content?.toByteArray()
                         )
@@ -63,7 +61,6 @@ class InfoFragment : BaseFragment<FragmentInfoBinding>() {
                 }
             }
         })
-
         when (dataStore.typeEnum) {
             TypeEnum.DEVICE_INFO -> ProjectUtils.getDeviceInfo(viewModel)
             TypeEnum.SCREEN_INFO -> ProjectUtils.getScreenInfo(viewModel)
