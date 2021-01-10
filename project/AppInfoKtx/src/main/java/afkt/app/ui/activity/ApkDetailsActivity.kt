@@ -1,19 +1,16 @@
 package afkt.app.ui.activity
 
 import afkt.app.R
+import afkt.app.base.BaseActivity
 import afkt.app.databinding.ActivityApkDetailsBinding
-import afkt.app.module.FileDeleteEvent
 import afkt.app.ui.adapter.KeyValueAdapter
-import afkt.app.utils.EventBusUtils
 import afkt.app.utils.ExportUtils
 import android.Manifest
 import android.os.Build
-import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBar
-import androidx.appcompat.app.AppCompatActivity
 import dev.utils.DevFinal
 import dev.utils.app.AppUtils
 import dev.utils.app.IntentUtils
@@ -27,22 +24,11 @@ import dev.utils.app.toast.ToastTintUtils
 import dev.utils.common.FileUtils
 import java.util.*
 
-class ApkDetailsActivity : AppCompatActivity(),
-    View.OnClickListener {
-
-    private lateinit var binding: ActivityApkDetailsBinding
-
-    // = Object =
+class ApkDetailsActivity : BaseActivity<ActivityApkDetailsBinding>() {
 
     private var apkInfoItem: ApkInfoItem? = null // APK 信息 Item
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityApkDetailsBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        init()
-    }
+    override fun baseContentId(): Int = R.layout.activity_apk_details
 
     fun init() {
         try {
@@ -136,7 +122,7 @@ class ApkDetailsActivity : AppCompatActivity(),
                 var sourceDir = apkInfoItem!!.appInfoBean.sourceDir
                 if (FileUtils.isFileExists(sourceDir)) {
                     FileUtils.deleteFile(sourceDir)
-                    EventBusUtils.post(FileDeleteEvent())
+                    viewModel.fileDelete.postValue(true)
                     ToastTintUtils.success(ResourceUtils.getString(R.string.str_delete_suc))
                 } else {
                     ToastTintUtils.warning(ResourceUtils.getString(R.string.str_file_not_exist))

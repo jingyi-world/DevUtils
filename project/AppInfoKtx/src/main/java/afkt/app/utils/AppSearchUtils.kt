@@ -20,7 +20,7 @@ object AppSearchUtils {
         lists: List<AppInfoBean>,
         searchContent: String
     ): ArrayList<AppInfoBean> {
-        var filter = ArrayList<AppInfoBean>()
+        val filter = ArrayList<AppInfoBean>()
         for (item in lists) {
             if (StringUtils.isContains(
                     true,
@@ -42,7 +42,7 @@ object AppSearchUtils {
         lists: List<FileApkItem>,
         searchContent: String
     ): ArrayList<FileApkItem> {
-        var filter = ArrayList<FileApkItem>()
+        val filter = ArrayList<FileApkItem>()
         for (item in lists) {
             if (StringUtils.isContains(
                     true,

@@ -5,7 +5,6 @@ import afkt.app.base.BaseFragment
 import afkt.app.base.setDataStore
 import afkt.app.databinding.FragmentAppBinding
 import afkt.app.module.ActionEnum
-import afkt.app.module.RefreshEvent
 import afkt.app.module.TypeEnum
 import afkt.app.ui.adapter.AppListAdapter
 import afkt.app.utils.AppListUtils
@@ -22,8 +21,6 @@ import dev.utils.app.ViewUtils
 import dev.utils.common.HtmlUtils
 import dev.widget.assist.ViewAssist
 import dev.widget.function.StateLayout
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 
 class AppListFragment : BaseFragment<FragmentAppBinding>() {
 
@@ -163,23 +160,17 @@ class AppListFragment : BaseFragment<FragmentAppBinding>() {
                 AppListUtils.getAppLists(it) // 加载列表
             }
         }
-
         // 回到顶部
         viewModel.backTop.observe(this) {
             if (it == dataStore.typeEnum) {
                 ListViewUtils.smoothScrollToTop(binding.vidFaRefresh.getRecyclerView())
             }
         }
-    }
-
-    // ===========
-    // = 事件相关 =
-    // ===========
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onEvent(event: RefreshEvent) {
-        event.type?.let {
-            if (it == dataStore.typeEnum) binding.vidFaRefresh.getRefreshLayout()?.autoRefresh()
+        // 刷新操作
+        viewModel.refresh.observe(this) {
+            if (it == dataStore.typeEnum) {
+                binding.vidFaRefresh.getRefreshLayout()?.autoRefresh()
+            }
         }
     }
 }

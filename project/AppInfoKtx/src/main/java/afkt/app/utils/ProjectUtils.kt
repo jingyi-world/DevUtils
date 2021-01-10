@@ -12,6 +12,7 @@ import dev.utils.app.*
 import dev.utils.app.logger.DevLogger
 import dev.utils.app.share.SharedUtils
 import dev.utils.common.thread.DevThreadManager
+import kotlin.math.max
 
 /**
  * detail: 项目工具类
@@ -42,8 +43,8 @@ object ProjectUtils {
      * 获取排序类型索引
      */
     fun getAppSortType(): Int {
-        var sortPos = SharedUtils.getInt(DevFinal.SORT)
-        return Math.max(sortPos, 0)
+        val sortPos = SharedUtils.getInt(DevFinal.SORT)
+        return max(sortPos, 0)
     }
 
     /**
@@ -51,7 +52,7 @@ object ProjectUtils {
      * @param viewModel [AppViewModel]
      */
     fun getDeviceInfo(viewModel: AppViewModel) {
-        DevThreadManager.getInstance(2).execute(Runnable {
+        DevThreadManager.getInstance(2).execute {
             var lists: ArrayList<DeviceInfoItem> = ArrayList()
             try {
                 lists = _getDeviceInfo()
@@ -59,7 +60,7 @@ object ProjectUtils {
                 DevLogger.e(e)
             }
             viewModel.deviceInfo.postValue(DeviceInfo(TypeEnum.DEVICE_INFO, lists))
-        })
+        }
     }
 
     private fun _getDeviceInfo(): ArrayList<DeviceInfoItem> {
@@ -168,7 +169,7 @@ object ProjectUtils {
      * @param viewModel [AppViewModel]
      */
     fun getScreenInfo(viewModel: AppViewModel) {
-        DevThreadManager.getInstance(2).execute(Runnable {
+        DevThreadManager.getInstance(2).execute {
             var lists: ArrayList<DeviceInfoItem> = ArrayList()
             try {
                 lists = _getScreenInfo()
@@ -176,13 +177,11 @@ object ProjectUtils {
                 DevLogger.e(e)
             }
             viewModel.screenInfo.postValue(DeviceInfo(TypeEnum.SCREEN_INFO, lists))
-        })
+        }
     }
 
     private fun _getScreenInfo(): ArrayList<DeviceInfoItem> {
         val lists = ArrayList<DeviceInfoItem>()
-        // 设备信息
-        val map = DeviceUtils.getDeviceInfo()
         // 屏幕尺寸 ( 英寸 )
         lists.add(DeviceInfoItem(R.string.str_info_screen, ScreenUtils.getScreenSizeOfDevice()))
         // 屏幕分辨率

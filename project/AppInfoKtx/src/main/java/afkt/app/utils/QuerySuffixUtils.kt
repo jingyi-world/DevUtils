@@ -15,7 +15,7 @@ object QuerySuffixUtils {
      * 默认配置
      */
     private val dfConfig: String?
-        private get() {
+        get() {
             val maps = LinkedHashMap<String, String>()
             maps["apk"] = "apk"
             maps["apk.1"] = "apk.1"
@@ -41,7 +41,7 @@ object QuerySuffixUtils {
     /**
      * 获取搜索后缀
      */
-    val querySuffixStr: String?
+    private val querySuffixStr: String?
         get() = SharedUtils.getString(DevFinal.SUFFIX) ?: dfConfig
 
     /**

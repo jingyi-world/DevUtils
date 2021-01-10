@@ -76,7 +76,7 @@ class QuerySuffixEditDialog(
         binding.vidDqseCancelTv.setOnClickListener { cancelDialog() }
     }
 
-    fun cancelDialog() {
+    private fun cancelDialog() {
         KeyBoardUtils.closeKeyboard(binding.vidDqseEditText)
         if (this.isShowing) cancel()
     }

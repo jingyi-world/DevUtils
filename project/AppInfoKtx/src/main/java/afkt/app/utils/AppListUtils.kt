@@ -94,12 +94,12 @@ object AppListUtils {
         appType: AppType,
         refresh: Boolean
     ) {
-        var state: Boolean? = sMapStates[appType]
+        val state: Boolean? = sMapStates[appType]
         // 加载中则不处理
         if (state != null && state) {
             return
         }
-        var data = sMapAppInfos[appType]
+        val data = sMapAppInfos[appType]
         if (data != null && !refresh) {
             sCallback?.callback(AppListBean(appType, data))
             return
@@ -107,13 +107,13 @@ object AppListUtils {
         // 表示加载中
         sMapStates[appType] = true
         // 获取数据
-        DevThreadManager.getInstance(3).execute(Runnable {
-            val lists = ArrayList<AppInfoBean>(AppInfoUtils.getAppLists(appType))
+        DevThreadManager.getInstance(3).execute {
+            val lists = ArrayList(AppInfoUtils.getAppLists(appType))
             sMapStates[appType] = false
             sMapAppInfos[appType] = lists
             sortAppLists(lists)
             sCallback?.callback(AppListBean(appType, lists))
-        })
+        }
     }
 
     // =
@@ -128,7 +128,7 @@ object AppListUtils {
 
     private class AppListsComparator(val sortType: Int) : Comparator<AppInfoBean> {
 
-        val collator = Collator.getInstance()
+        val collator: Collator = Collator.getInstance()
 
         init {
             collator.strength = Collator.PRIMARY
@@ -138,34 +138,32 @@ object AppListUtils {
             a_app: AppInfoBean,
             b_app: AppInfoBean
         ): Int {
-            if (a_app != null && b_app != null) {
-                when (sortType) {
-                    0 -> { // 按应用名称
-                        return a_app.appName.compareTo(b_app.appName)
-                    }
-                    1 -> { // 文件大小
-                        return if (a_app.apkSize == b_app.apkSize) {
-                            0 // 大小相同
-                        } else {
-                            if (a_app.apkSize > b_app.apkSize) 1 else -1 // 小的前面, 大的后面
-                        }
-                    }
-                    2 -> { // 安装时间
-                        return if (a_app.firstInstallTime == b_app.firstInstallTime) {
-                            0 // 安装时间相等
-                        } else { // 近期安装的在最前面
-                            if (a_app.firstInstallTime > b_app.firstInstallTime) -1 else 1
-                        }
-                    }
-                    3 -> { // 更新时间
-                        return if (a_app.lastUpdateTime == b_app.lastUpdateTime) {
-                            0 // 最后更新时间相同
-                        } else { // 近期更新的在最前面
-                            if (a_app.lastUpdateTime > b_app.lastUpdateTime) -1 else 1
-                        }
-                    }
-                    else -> return 0
+            when (sortType) {
+                0 -> { // 按应用名称
+                    return a_app.appName.compareTo(b_app.appName)
                 }
+                1 -> { // 文件大小
+                    return if (a_app.apkSize == b_app.apkSize) {
+                        0 // 大小相同
+                    } else {
+                        if (a_app.apkSize > b_app.apkSize) 1 else -1 // 小的前面, 大的后面
+                    }
+                }
+                2 -> { // 安装时间
+                    return if (a_app.firstInstallTime == b_app.firstInstallTime) {
+                        0 // 安装时间相等
+                    } else { // 近期安装的在最前面
+                        if (a_app.firstInstallTime > b_app.firstInstallTime) -1 else 1
+                    }
+                }
+                3 -> { // 更新时间
+                    return if (a_app.lastUpdateTime == b_app.lastUpdateTime) {
+                        0 // 最后更新时间相同
+                    } else { // 近期更新的在最前面
+                        if (a_app.lastUpdateTime > b_app.lastUpdateTime) -1 else 1
+                    }
+                }
+                else -> return 0
             }
             return 0
         }

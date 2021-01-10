@@ -3,10 +3,11 @@ package afkt.app.ui.fragment
 import afkt.app.R
 import afkt.app.base.BaseFragment
 import afkt.app.databinding.FragmentAppBinding
-import afkt.app.module.*
+import afkt.app.module.ActionEnum
+import afkt.app.module.FileApkItem
+import afkt.app.module.TypeEnum
 import afkt.app.ui.adapter.ApkListAdapter
 import afkt.app.utils.AppSearchUtils
-import afkt.app.utils.EventBusUtils
 import afkt.app.utils.ScanSDCardUtils
 import android.Manifest
 import android.os.Bundle
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import com.tt.whorlviewlibrary.WhorlView
+import dev.callback.common.DevCallback
 import dev.utils.DevFinal
 import dev.utils.app.ListViewUtils
 import dev.utils.app.ResourceUtils
@@ -28,8 +30,6 @@ import dev.utils.common.FileUtils
 import dev.utils.common.HtmlUtils
 import dev.widget.assist.ViewAssist
 import dev.widget.function.StateLayout
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import java.util.*
 
 class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
@@ -52,6 +52,13 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
         savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
+
+        ScanSDCardUtils.instance.setCallback(object : DevCallback<ArrayList<FileApkItem>>() {
+            override fun callback(value: ArrayList<FileApkItem>?) {
+                viewModel.sdcardScan.postValue(value!!)
+            }
+        })
+
         binding.vidFaRefresh.setEnableLoadMore(false)
 
         whorlView = ViewUtils.findViewById(
@@ -188,63 +195,49 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
                 }
             }
         }
-
+        // Fragment 切换监听
+        viewModel.fragmentChange.observe(this) {
+            if (it == type) {
+                searchContent = "" // 切换 Fragment 重置搜索内容
+                requestReadWrite()
+            }
+        }
         // 回到顶部
         viewModel.backTop.observe(this) {
             if (it == dataStore.typeEnum) {
                 ListViewUtils.smoothScrollToTop(binding.vidFaRefresh.getRecyclerView())
             }
         }
-    }
-
-    // ===========
-    // = 事件相关 =
-    // ===========
-
-    @Subscribe(threadMode = ThreadMode.BACKGROUND, sticky = true)
-    fun onEvent(event: FragmentEvent) {
-        event.type?.let {
-            if (it == type) {
-                searchContent = "" // 切换 Fragment 重置搜索内容
-                requestReadWrite()
-                EventBusUtils.removeStickyEvent(FragmentEvent::class.java)
+        // 刷新操作
+        viewModel.refresh.observe(this) {
+            if (it == dataStore.typeEnum) {
+                binding.vidFaRefresh.getRefreshLayout()?.autoRefresh()
+            }
+        }
+        // 文件删除
+        viewModel.fileDelete.observe(this) {
+            binding.vidFaRefresh.getRecyclerView()?.adapter?.notifyDataSetChanged()
+        }
+        // 文件扫描
+        viewModel.sdcardScan.observe(this) {
+            var lists = if (searchContent.isEmpty()) {
+                it
+            } else {
+                AppSearchUtils.filterApkList(it, searchContent)
+            }
+            if (lists.isEmpty()) {
+                binding.vidFaState.showEmptyData()
+            } else {
+                binding.vidFaRefresh.setAdapter(ApkListAdapter(lists))
+                binding.vidFaState.showSuccess()
             }
         }
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onEvent(event: ScanSDCardEvent) {
-        var lists = if (searchContent.isEmpty()) {
-            event.lists
-        } else {
-            AppSearchUtils.filterApkList(event.lists, searchContent)
-        }
-        if (lists.isEmpty()) {
-            binding.vidFaState.showEmptyData()
-        } else {
-            binding.vidFaRefresh.setAdapter(ApkListAdapter(lists))
-            binding.vidFaState.showSuccess()
-        }
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onEvent(event: RefreshEvent) {
-        event.type?.let {
-            if (it == type) binding.vidFaRefresh.getRefreshLayout()?.autoRefresh()
-        }
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onEvent(event: FileDeleteEvent) {
-        binding.vidFaRefresh.getRecyclerView()?.adapter?.notifyDataSetChanged()
-    }
-
-    // =
-
     /**
      * 请求读写权限
      */
-    fun requestReadWrite() {
+    private fun requestReadWrite() {
         requestReadWrite(false)
     }
 
@@ -252,7 +245,7 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
      * 请求读写权限
      * @param refresh 是否刷新
      */
-    fun requestReadWrite(refresh: Boolean) {
+    private fun requestReadWrite(refresh: Boolean) {
         PermissionUtils.permission(
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE

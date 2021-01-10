@@ -1,9 +1,6 @@
 package afkt.app.base
 
-import afkt.app.module.AppListBean
-import afkt.app.module.DeviceInfo
-import afkt.app.module.SearchContent
-import afkt.app.module.TypeEnum
+import afkt.app.module.*
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -23,8 +20,19 @@ class AppViewModel : ViewModel() {
     // 回到顶部
     val backTop = MutableLiveData<TypeEnum>()
 
+    // 刷新操作
+    val refresh = MutableLiveData<TypeEnum>()
+
     // Fragment 切换
     val fragmentChange = MutableLiveData<TypeEnum>()
+
+    // 文件删除
+    val fileDelete = MutableLiveData<Boolean>()
+
+    // 文件扫描
+    val sdcardScan = MutableLiveData<ArrayList<FileApkItem>>()
+
+    // =
 
     // 设备信息
     val deviceInfo = MutableLiveData<DeviceInfo>()

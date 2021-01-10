@@ -3,13 +3,15 @@ package afkt.app.ui.activity
 import afkt.app.R
 import afkt.app.base.BaseActivity
 import afkt.app.databinding.ActivityMainBinding
-import afkt.app.module.*
+import afkt.app.module.ActionEnum
+import afkt.app.module.AppListBean
+import afkt.app.module.SearchContent
+import afkt.app.module.TypeEnum
 import afkt.app.ui.fragment.AppListFragment
 import afkt.app.ui.fragment.InfoFragment
 import afkt.app.ui.fragment.ScanSDCardFragment
 import afkt.app.ui.fragment.SettingFragment
 import afkt.app.utils.AppListUtils
-import afkt.app.utils.EventBusUtils
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -41,7 +43,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
     // 延迟触发辅助类
     private val searchAssist = DelayAssist(350) {
         searchView?.let {
-            var search = SearchContent(mFragmentType, ActionEnum.CONTENT)
+            val search = SearchContent(mFragmentType, ActionEnum.CONTENT)
             search.content = it.query.toString()
             viewModel.search.postValue(search)
         }
@@ -62,6 +64,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
                         TypeEnum.APP_SYSTEM -> {
                             viewModel.systemApp.postValue(value)
                         }
+                        else -> {
+
+                        }
                     }
                 }
             }
@@ -77,7 +82,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
         setSupportActionBar(binding.vidAmToolbar)
         // 设置切换动画事件等
         val toggle = ActionBarDrawerToggle(
-            MainActivity@ this, binding.vidAmDrawerLayout, binding.vidAmToolbar,
+            this, binding.vidAmDrawerLayout, binding.vidAmToolbar,
             R.string.str_navigation_drawer_open,
             R.string.str_navigation_drawer_close
         )
@@ -124,8 +129,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
 
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         for (item in mFragments.values) {
-            transaction.add(R.id.vid_am_linear, item, item.toString())
-                .hide(item)
+            transaction.add(R.id.vid_am_linear, item, item.toString()).hide(item)
         }
         transaction.commit()
     }
@@ -141,8 +145,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
             mFragments[mFragmentType]?.let { transaction.hide(it) }
             // 准备显示的 Fragment
             mFragments[type]?.let { transaction.show(it).commit() }
-            // 是否 NONE 类型
-            val noneType = mFragmentType == TypeEnum.NONE
             // 保存 type
             mFragmentType = type
 
@@ -161,22 +163,20 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
             binding.vidAmToolbar.setTitle(type.titleId)
             binding.vidAmNavView.setCheckedItem(getNavItemId())
             // 失去焦点 ( 解决存在键盘, 点击侧边导航栏切换, 软键盘还存在 )
-            searchView?.let { it.clearFocus() }
-            // 发送粘性事件 - 只会发送一次, 刚进入为 NONE, 解决 Fragment show 之前消息已经发送无法接收
-            if (noneType) EventBusUtils.postSticky(FragmentEvent(type))
+            searchView?.clearFocus()
         }
     }
 
-    fun getNavItemId(): Int {
-        when (DISPLAY_FRAGMENT_TYPE) {
-            TypeEnum.APP_USER -> return R.id.nav_user_apps
-            TypeEnum.APP_SYSTEM -> return R.id.nav_system_apps
-            TypeEnum.DEVICE_INFO -> return R.id.nav_phone_info
-            TypeEnum.SCREEN_INFO -> return R.id.nav_screen_info
-            TypeEnum.QUERY_APK -> return R.id.nav_query_apk
+    private fun getNavItemId(): Int {
+        return when (DISPLAY_FRAGMENT_TYPE) {
+            TypeEnum.APP_USER -> R.id.nav_user_apps
+            TypeEnum.APP_SYSTEM -> R.id.nav_system_apps
+            TypeEnum.DEVICE_INFO -> R.id.nav_phone_info
+            TypeEnum.SCREEN_INFO -> R.id.nav_screen_info
+            TypeEnum.QUERY_APK -> R.id.nav_query_apk
             TypeEnum.SETTING -> R.id.nav_setting
+            else -> R.id.nav_user_apps
         }
-        return R.id.nav_user_apps
     }
 
     // ========
@@ -190,7 +190,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
         } else {
             searchView?.let {
                 if (!it.isIconified) {
-                    if (!it.query.toString().isEmpty()) {
+                    if (it.query.toString().isNotEmpty()) {
                         it.setQuery("", false)
                     }
                     it.isIconified = true
@@ -220,7 +220,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
         return super.onCreateOptionsMenu(menu)
     }
 
-    // 准备显示Menu
+    // 准备显示 Menu
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
         menu.clear()
         when (mFragmentType) {
@@ -232,22 +232,21 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
                 // 初始化搜索操作
                 initSearchOperate(menu)
             }
+            else -> {
+            }
         }
         return super.onPrepareOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.bma_refresh -> EventBusUtils.post(RefreshEvent(mFragmentType))
+            R.id.bma_refresh -> viewModel.refresh.postValue(mFragmentType)
             R.id.bmd_export_item -> viewModel.exportInfo.postValue(mFragmentType)
         }
         return true
     }
 
-    /**
-     * 初始化搜索操作
-     * @param menu
-     */
+    // 初始化搜索操作
     private fun initSearchOperate(menu: Menu) {
         val searchItem = menu.findItem(R.id.bma_search)
         // 初始化搜索 View
@@ -256,14 +255,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
             // 默认提示
             it.queryHint = getString(R.string.str_input_packname_aname_query)
             // 搜索框展开时后面 X 按钮点击事件
-            it.setOnCloseListener(object : SearchView.OnCloseListener {
-                override fun onClose(): Boolean {
-                    searchAssist.remove()
-                    // 发送搜索合并通知事件
-                    viewModel.search.postValue(SearchContent(mFragmentType, ActionEnum.COLLAPSE))
-                    return false
-                }
-            })
+            it.setOnCloseListener {
+                searchAssist.remove()
+                // 发送搜索合并通知事件
+                viewModel.search.postValue(SearchContent(mFragmentType, ActionEnum.COLLAPSE))
+                false
+            }
             // 搜索图标按钮 ( 打开搜索框的按钮 ) 点击事件
             it.setOnSearchClickListener {
                 searchAssist.remove()
