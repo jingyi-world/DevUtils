@@ -116,6 +116,31 @@ class AppListFragment : BaseFragment<FragmentAppBinding>() {
         })
     }
 
+    override fun initObserve() {
+        super.initObserve()
+
+        viewModel.search.observe(this) {
+            when (it.action) {
+                ActionEnum.COLLAPSE -> { // 搜索合并
+                    if (it.type == dataStore.typeEnum) {
+                        if (dataStore.searchContent.isNotEmpty()) { // 输入内容才刷新列表
+                            dataStore.searchContent = ""
+                            AppListUtils.getAppLists(it.type) // 加载列表
+                        }
+                    }
+                }
+                ActionEnum.EXPAND -> { // 搜索展开
+                }
+                ActionEnum.CONTENT -> { // 搜索输入内容
+                    if (it.type == dataStore.typeEnum) {
+                        dataStore.searchContent = it.content
+                        AppListUtils.getAppLists(it.type) // 加载列表
+                    }
+                }
+            }
+        }
+    }
+
     // ===========
     // = 事件相关 =
     // ===========
@@ -145,30 +170,6 @@ class AppListFragment : BaseFragment<FragmentAppBinding>() {
                 } else {
                     binding.vidFaRefresh.setAdapter(AppListAdapter(lists))
                     binding.vidFaState.showSuccess()
-                }
-            }
-        }
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onEvent(event: SearchEvent) {
-        event.type?.let {
-            when (event.action) {
-                ActionEnum.COLLAPSE -> { // 搜索合并
-                    if (it == dataStore.typeEnum) {
-                        if (dataStore.searchContent.isNotEmpty()) { // 输入内容才刷新列表
-                            dataStore.searchContent = ""
-                            AppListUtils.getAppLists(it) // 加载列表
-                        }
-                    }
-                }
-                ActionEnum.EXPAND -> { // 搜索展开
-                }
-                ActionEnum.CONTENT -> { // 搜索输入内容
-                    if (it == dataStore.typeEnum) {
-                        dataStore.searchContent = event.content
-                        AppListUtils.getAppLists(it) // 加载列表
-                    }
                 }
             }
         }

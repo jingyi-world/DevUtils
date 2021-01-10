@@ -164,6 +164,31 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
         itemTouchHelper.attachToRecyclerView(binding.vidFaRefresh.getRecyclerView())
     }
 
+    override fun initObserve() {
+        super.initObserve()
+
+        viewModel.search.observe(this) {
+            when (it.action) {
+                ActionEnum.COLLAPSE -> { // 搜索合并
+                    if (it.type == type) {
+                        if (searchContent.isNotEmpty()) { // 输入内容才刷新列表
+                            searchContent = ""
+                            requestReadWrite()
+                        }
+                    }
+                }
+                ActionEnum.EXPAND -> { // 搜索展开
+                }
+                ActionEnum.CONTENT -> { // 搜索输入内容
+                    if (it.type == type) {
+                        searchContent = it.content
+                        requestReadWrite()
+                    }
+                }
+            }
+        }
+    }
+
     // ===========
     // = 事件相关 =
     // ===========
@@ -191,30 +216,6 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
         } else {
             binding.vidFaRefresh.setAdapter(ApkListAdapter(lists))
             binding.vidFaState.showSuccess()
-        }
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onEvent(event: SearchEvent) {
-        event.type?.let {
-            when (event.action) {
-                ActionEnum.COLLAPSE -> { // 搜索合并
-                    if (it == type) {
-                        if (searchContent.isNotEmpty()) { // 输入内容才刷新列表
-                            searchContent = ""
-                            requestReadWrite()
-                        }
-                    }
-                }
-                ActionEnum.EXPAND -> { // 搜索展开
-                }
-                ActionEnum.CONTENT -> { // 搜索输入内容
-                    if (it == type) {
-                        searchContent = event.content
-                        requestReadWrite()
-                    }
-                }
-            }
         }
     }
 

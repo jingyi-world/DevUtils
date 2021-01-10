@@ -20,6 +20,7 @@ abstract class BaseFragment<VB : ViewBinding> : DevBaseViewBindingFragment<VB>()
         savedInstanceState: Bundle?
     ): View? {
         dataStore.initDataStore(arguments = arguments)
+        initOrder()
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 

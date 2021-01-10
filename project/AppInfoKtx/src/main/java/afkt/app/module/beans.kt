@@ -42,3 +42,13 @@ class DeviceInfo(
     val type: TypeEnum,
     val lists: ArrayList<DeviceInfoItem>
 )
+
+/**
+ * detail: 搜索实体类
+ * @author Ttt
+ */
+class SearchContent(
+    val type: TypeEnum,
+    val action: ActionEnum,
+    var content: String = ""
+)

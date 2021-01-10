@@ -1,6 +1,7 @@
 package afkt.app.base
 
 import afkt.app.module.DeviceInfo
+import afkt.app.module.SearchContent
 import afkt.app.module.TypeEnum
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
@@ -23,6 +24,9 @@ class AppViewModel : ViewModel() {
 
     // 导出设备、屏幕信息
     val exportInfo = MutableLiveData<TypeEnum>()
+
+    // 搜索触发
+    var search = MutableLiveData<SearchContent>()
 
     fun infoObserve(
         owner: LifecycleOwner,

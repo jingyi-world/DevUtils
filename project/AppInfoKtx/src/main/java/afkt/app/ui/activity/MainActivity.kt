@@ -9,7 +9,6 @@ import afkt.app.ui.fragment.InfoFragment
 import afkt.app.ui.fragment.ScanSDCardFragment
 import afkt.app.ui.fragment.SettingFragment
 import afkt.app.utils.EventBusUtils
-import afkt.app.utils.SearchUtils
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -24,18 +23,17 @@ import androidx.fragment.app.FragmentTransaction
 import dev.utils.app.ClickUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ViewUtils
+import dev.utils.app.assist.DelayAssist
 import dev.utils.app.toast.ToastTintUtils
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 
 class MainActivity : AppCompatActivity(),
     View.OnClickListener {
 
-    // = View =
-
     private lateinit var binding: ActivityMainBinding
 
     private val viewModel by viewModels<AppViewModel>()
+
+    // = View =
 
     private var searchView: SearchView? = null
 
@@ -45,18 +43,21 @@ class MainActivity : AppCompatActivity(),
     private var mFragmentType = TypeEnum.NONE // 判断当前 Fragment 类型
     private val DISPLAY_FRAGMENT_TYPE = TypeEnum.APP_USER // 默认显示 Fragment Type
 
+    // 延迟触发辅助类
+    private val assist = DelayAssist(350) {
+        searchView?.let {
+            var search = SearchContent(mFragmentType, ActionEnum.CONTENT)
+            search.content = it.query.toString()
+            viewModel.search.postValue(search)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        EventBusUtils.register(this)
 
         init()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        EventBusUtils.unregister(this)
     }
 
     fun init() {
@@ -262,17 +263,17 @@ class MainActivity : AppCompatActivity(),
             // 搜索框展开时后面 X 按钮点击事件
             it.setOnCloseListener(object : SearchView.OnCloseListener {
                 override fun onClose(): Boolean {
-                    SearchUtils.removeSearchTask()
+                    assist.remove()
                     // 发送搜索合并通知事件
-                    EventBusUtils.post(SearchEvent(mFragmentType, ActionEnum.COLLAPSE))
+                    viewModel.search.postValue(SearchContent(mFragmentType, ActionEnum.COLLAPSE))
                     return false
                 }
             })
             // 搜索图标按钮 ( 打开搜索框的按钮 ) 点击事件
             it.setOnSearchClickListener {
-                SearchUtils.removeSearchTask()
+                assist.remove()
                 // 发送搜索展开通知事件
-                EventBusUtils.post(SearchEvent(mFragmentType, ActionEnum.EXPAND))
+                viewModel.search.postValue(SearchContent(mFragmentType, ActionEnum.EXPAND))
             }
             // 搜索文本监听
             it.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -283,23 +284,10 @@ class MainActivity : AppCompatActivity(),
 
                 // 当搜索内容改变时触发该方法
                 override fun onQueryTextChange(newText: String): Boolean {
-                    SearchUtils.startSearchTask()
+                    assist.post()
                     return false
                 }
             })
-        }
-    }
-
-    // ===========
-    // = 事件相关 =
-    // ===========
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onEvent(event: StartSearchEvent) {
-        searchView?.let {
-            var search = SearchEvent(mFragmentType, ActionEnum.CONTENT)
-            search.content = it.query.toString()
-            EventBusUtils.post(search)
         }
     }
 }

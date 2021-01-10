@@ -9,12 +9,6 @@ import dev.utils.app.info.AppInfoBean
 class FileDeleteEvent
 
 /**
- * detail: 开始搜索事件
- * @author Ttt
- */
-class StartSearchEvent
-
-/**
  * detail: 回到顶部事件
  * @author Ttt
  */
@@ -31,16 +25,6 @@ class FragmentEvent(val type: TypeEnum)
  * @author Ttt
  */
 class RefreshEvent(val type: TypeEnum)
-
-/**
- * detail: 搜索事件
- * @author Ttt
- */
-class SearchEvent(
-    val type: TypeEnum,
-    val action: ActionEnum,
-    var content: String = ""
-)
 
 /**
  * detail: 扫描 SDCard 事件

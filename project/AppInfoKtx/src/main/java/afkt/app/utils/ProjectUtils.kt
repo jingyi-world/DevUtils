@@ -32,6 +32,13 @@ object ProjectUtils {
     }
 
     /**
+     * 重置排序类型索引
+     */
+    fun resetAppSortType() {
+        SharedUtils.put(Constants.Key.KEY_APP_SORT, 0)
+    }
+
+    /**
      * 获取排序类型索引
      */
     fun getAppSortType(): Int {
