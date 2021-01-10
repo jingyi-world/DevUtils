@@ -114,7 +114,7 @@ class ApkDetailsActivity : BaseActivity<ActivityApkDetailsBinding>() {
             val sourceDir = apkInfoItem!!.appInfoBean.sourceDir
             if (FileUtils.isFileExists(sourceDir)) {
                 FileUtils.deleteFile(sourceDir)
-                viewModel.fileDelete.postValue(true)
+                globalViewModel?.let { it.postFileDelete() }
                 ToastTintUtils.success(ResourceUtils.getString(R.string.str_delete_suc))
             } else {
                 ToastTintUtils.warning(ResourceUtils.getString(R.string.str_file_not_exist))

@@ -2,11 +2,11 @@ package afkt.app.ui.fragment
 
 import afkt.app.R
 import afkt.app.base.BaseFragment
+import afkt.app.base.module.DeviceInfoBean
+import afkt.app.base.module.PathConfig
+import afkt.app.base.module.TypeEnum
 import afkt.app.base.setDataStore
 import afkt.app.databinding.FragmentInfoBinding
-import afkt.app.module.DeviceInfoBean
-import afkt.app.module.PathConfig
-import afkt.app.module.TypeEnum
 import afkt.app.ui.adapter.InfoAdapter
 import afkt.app.utils.ProjectUtils
 import android.os.Bundle

@@ -1,4 +1,4 @@
-package afkt.app.module
+package afkt.app.base.module
 
 import afkt.app.utils.ProjectUtils
 import androidx.annotation.StringRes

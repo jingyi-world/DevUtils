@@ -1,6 +1,6 @@
 package afkt.app.base
 
-import afkt.app.module.*
+import afkt.app.base.module.*
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -26,11 +26,8 @@ class AppViewModel : ViewModel() {
     // Fragment 切换
     val fragmentChange = MutableLiveData<TypeEnum>()
 
-    // 文件删除
-    val fileDelete = MutableLiveData<Boolean>()
-
     // 文件扫描
-    val sdcardScan = MutableLiveData<ArrayList<FileApkItem>>()
+    val sdCardScan = MutableLiveData<ArrayList<FileApkItem>>()
 
     // =
 
@@ -60,5 +57,67 @@ class AppViewModel : ViewModel() {
         userApp.observe(owner, observer)
         systemApp.observe(owner, observer)
         allApp.observe(owner, observer)
+    }
+
+    fun postAppSort() {
+        appSort.postValue(true)
+    }
+
+    fun postExportInfo(value: TypeEnum) {
+        exportInfo.postValue(value)
+    }
+
+    fun postSearch(value: SearchContent) {
+        search.postValue(value)
+    }
+
+    fun postBackTop(value: TypeEnum) {
+        backTop.postValue(value)
+    }
+
+    fun postRefresh(value: TypeEnum) {
+        refresh.postValue(value)
+    }
+
+    fun postFragmentChange(value: TypeEnum) {
+        fragmentChange.postValue(value)
+    }
+
+    fun postSDCardScan(value: ArrayList<FileApkItem>) {
+        sdCardScan.postValue(value)
+    }
+
+    fun postDeviceInfo(value: DeviceInfo) {
+        deviceInfo.postValue(value)
+    }
+
+    fun postScreenInfo(value: DeviceInfo) {
+        screenInfo.postValue(value)
+    }
+
+    fun postUserApp(value: AppListBean) {
+        userApp.postValue(value)
+    }
+
+    fun postSystemApp(value: AppListBean) {
+        systemApp.postValue(value)
+    }
+
+    fun postAllApp(value: AppListBean) {
+        allApp.postValue(value)
+    }
+}
+
+// =================
+// = 全局 ViewModel =
+// =================
+
+class GlobalViewModel : ViewModel() {
+
+    // 文件删除
+    val fileDelete = MutableLiveData<Boolean>()
+
+    fun postFileDelete() {
+        fileDelete.postValue(true)
     }
 }

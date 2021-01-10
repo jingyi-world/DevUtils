@@ -1,6 +1,6 @@
 package afkt.app.utils
 
-import afkt.app.module.FileApkItem
+import afkt.app.base.module.FileApkItem
 import dev.utils.app.info.AppInfoBean
 import dev.utils.common.StringUtils
 import java.util.*

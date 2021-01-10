@@ -6,13 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.viewbinding.ViewBinding
+import dev.DevUtils
 import dev.base.expand.viewbinding.DevBaseViewBindingFragment
+import dev.base.utils.ViewModelUtils
 
 abstract class BaseFragment<VB : ViewBinding> : DevBaseViewBindingFragment<VB>() {
 
+    val dataStore = AppDataStore()
+
     val viewModel by activityViewModels<AppViewModel>()
 
-    val dataStore = AppDataStore()
+    var globalViewModel: GlobalViewModel? = ViewModelUtils.getAppViewModel(
+        DevUtils.getApplication(), GlobalViewModel::class.java
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,

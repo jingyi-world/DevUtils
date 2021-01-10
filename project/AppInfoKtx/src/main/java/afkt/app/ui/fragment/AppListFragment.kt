@@ -2,10 +2,10 @@ package afkt.app.ui.fragment
 
 import afkt.app.R
 import afkt.app.base.BaseFragment
+import afkt.app.base.module.ActionEnum
+import afkt.app.base.module.TypeEnum
 import afkt.app.base.setDataStore
 import afkt.app.databinding.FragmentAppBinding
-import afkt.app.module.ActionEnum
-import afkt.app.module.TypeEnum
 import afkt.app.ui.adapter.AppListAdapter
 import afkt.app.utils.AppListUtils
 import afkt.app.utils.AppSearchUtils

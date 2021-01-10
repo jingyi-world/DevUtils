@@ -1,6 +1,6 @@
 package afkt.app.base
 
-import afkt.app.module.TypeEnum
+import afkt.app.base.module.TypeEnum
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import dev.utils.DevFinal

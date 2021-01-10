@@ -2,10 +2,10 @@ package afkt.app.ui.fragment
 
 import afkt.app.R
 import afkt.app.base.BaseFragment
+import afkt.app.base.module.ActionEnum
+import afkt.app.base.module.FileApkItem
+import afkt.app.base.module.TypeEnum
 import afkt.app.databinding.FragmentAppBinding
-import afkt.app.module.ActionEnum
-import afkt.app.module.FileApkItem
-import afkt.app.module.TypeEnum
 import afkt.app.ui.adapter.ApkListAdapter
 import afkt.app.utils.AppSearchUtils
 import afkt.app.utils.ScanSDCardUtils
@@ -46,7 +46,7 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
         // 设置扫描回调
         ScanSDCardUtils.instance.setCallback(object : DevCallback<ArrayList<FileApkItem>>() {
             override fun callback(value: ArrayList<FileApkItem>?) {
-                viewModel.sdcardScan.postValue(value!!)
+                viewModel.postSDCardScan(value!!)
             }
         })
         binding.vidFaRefresh.setEnableLoadMore(false)
@@ -202,12 +202,8 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
                 binding.vidFaRefresh.getRefreshLayout()?.autoRefresh()
             }
         }
-        // 文件删除
-        viewModel.fileDelete.observe(this) {
-            binding.vidFaRefresh.getRecyclerView()?.adapter?.notifyDataSetChanged()
-        }
         // 文件扫描
-        viewModel.sdcardScan.observe(this) {
+        viewModel.sdCardScan.observe(this) {
             val lists = if (dataStore.searchContent.isEmpty()) {
                 it
             } else {
@@ -218,6 +214,12 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
             } else {
                 binding.vidFaRefresh.setAdapter(ApkListAdapter(lists))
                 binding.vidFaState.showSuccess()
+            }
+        }
+        // 文件删除
+        globalViewModel?.let {
+            it.fileDelete.observe(this) {
+                binding.vidFaRefresh.getRecyclerView()?.adapter?.notifyDataSetChanged()
             }
         }
     }

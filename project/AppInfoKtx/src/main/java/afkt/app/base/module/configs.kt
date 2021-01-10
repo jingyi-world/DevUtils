@@ -1,4 +1,4 @@
-package afkt.app.module
+package afkt.app.base.module
 
 import dev.utils.app.PathUtils
 import dev.utils.common.FileUtils

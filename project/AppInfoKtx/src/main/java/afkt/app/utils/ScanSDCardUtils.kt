@@ -1,6 +1,6 @@
 package afkt.app.utils
 
-import afkt.app.module.FileApkItem
+import afkt.app.base.module.FileApkItem
 import dev.callback.common.DevCallback
 import dev.utils.app.PathUtils
 import dev.utils.app.info.AppInfoUtils

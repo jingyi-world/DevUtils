@@ -2,13 +2,15 @@ package afkt.app.base
 
 import afkt.app.BuildConfig
 import afkt.app.R
-import afkt.app.module.AppConfig
-import afkt.app.module.PathConfig
+import afkt.app.base.module.AppConfig
+import afkt.app.base.module.PathConfig
 import android.content.Context
 import android.os.Build
 import android.os.StrictMode
 import android.os.StrictMode.VmPolicy
 import android.view.View
+import androidx.lifecycle.ViewModelStore
+import androidx.lifecycle.ViewModelStoreOwner
 import androidx.multidex.MultiDexApplication
 import dev.DevUtils
 import dev.utils.app.ActivityUtils
@@ -22,10 +24,20 @@ import dev.widget.assist.ViewAssist
 import dev.widget.function.StateLayout
 import me.jessyan.autosize.AutoSizeConfig
 
-class BaseApplication : MultiDexApplication() {
+class BaseApplication : MultiDexApplication(),
+    ViewModelStoreOwner {
+
+    // ViewModelStore
+    private lateinit var mAppViewModelStore: ViewModelStore
+
+    override fun getViewModelStore(): ViewModelStore {
+        return mAppViewModelStore
+    }
 
     override fun onCreate() {
         super.onCreate()
+
+        mAppViewModelStore = ViewModelStore()
 
         if (BuildConfig.DEBUG) {
             // 初始化 Logger 配置

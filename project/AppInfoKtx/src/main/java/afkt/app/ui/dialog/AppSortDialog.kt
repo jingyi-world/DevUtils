@@ -53,7 +53,7 @@ class AppSortDialog(
                 if (i != sortPos) {
                     SharedUtils.put(DevFinal.SORT, i)
                     // 发送应用排序变更通知事件
-                    viewModel.appSort.postValue(true)
+                    viewModel.postAppSort()
                 }
                 cancel()
             }

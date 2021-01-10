@@ -2,9 +2,9 @@ package afkt.app.utils
 
 import afkt.app.R
 import afkt.app.base.AppViewModel
-import afkt.app.module.DeviceInfo
-import afkt.app.module.DeviceInfoItem
-import afkt.app.module.TypeEnum
+import afkt.app.base.module.DeviceInfo
+import afkt.app.base.module.DeviceInfoItem
+import afkt.app.base.module.TypeEnum
 import android.os.Build
 import com.google.gson.GsonBuilder
 import dev.utils.DevFinal
@@ -59,7 +59,7 @@ object ProjectUtils {
             } catch (e: Exception) {
                 DevLogger.e(e)
             }
-            viewModel.deviceInfo.postValue(DeviceInfo(TypeEnum.DEVICE_INFO, lists))
+            viewModel.postDeviceInfo(DeviceInfo(TypeEnum.DEVICE_INFO, lists))
         }
     }
 
@@ -176,7 +176,7 @@ object ProjectUtils {
             } catch (e: Exception) {
                 DevLogger.e(e)
             }
-            viewModel.screenInfo.postValue(DeviceInfo(TypeEnum.SCREEN_INFO, lists))
+            viewModel.postScreenInfo(DeviceInfo(TypeEnum.SCREEN_INFO, lists))
         }
     }
 

@@ -1,7 +1,7 @@
 package afkt.app.ui.adapter
 
 import afkt.app.R
-import afkt.app.module.FileApkItem
+import afkt.app.base.module.FileApkItem
 import afkt.app.ui.activity.ApkDetailsActivity
 import android.content.Intent
 import android.widget.TextView

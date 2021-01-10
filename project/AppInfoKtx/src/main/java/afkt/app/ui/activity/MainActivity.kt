@@ -2,11 +2,11 @@ package afkt.app.ui.activity
 
 import afkt.app.R
 import afkt.app.base.BaseActivity
+import afkt.app.base.module.ActionEnum
+import afkt.app.base.module.AppListBean
+import afkt.app.base.module.SearchContent
+import afkt.app.base.module.TypeEnum
 import afkt.app.databinding.ActivityMainBinding
-import afkt.app.module.ActionEnum
-import afkt.app.module.AppListBean
-import afkt.app.module.SearchContent
-import afkt.app.module.TypeEnum
 import afkt.app.ui.fragment.AppListFragment
 import afkt.app.ui.fragment.InfoFragment
 import afkt.app.ui.fragment.ScanSDCardFragment
@@ -45,7 +45,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
         searchView?.let {
             val search = SearchContent(mFragmentType, ActionEnum.CONTENT)
             search.content = it.query.toString()
-            viewModel.search.postValue(search)
+            viewModel.postSearch(search)
         }
     }
 
@@ -59,10 +59,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
                 value?.let {
                     when (it.type) {
                         TypeEnum.APP_USER -> {
-                            viewModel.userApp.postValue(value)
+                            viewModel.postUserApp(value)
                         }
                         TypeEnum.APP_SYSTEM -> {
-                            viewModel.systemApp.postValue(value)
+                            viewModel.postSystemApp(value)
                         }
                         else -> {
 
@@ -76,7 +76,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
         binding.vidAmNavView.setCheckedItem(getNavItemId())
         binding.vidAmToolbar.setTitle(DISPLAY_FRAGMENT_TYPE.titleId)
         binding.vidAmTopBtn.setOnClickListener {
-            viewModel.backTop.postValue(mFragmentType)
+            viewModel.postBackTop(mFragmentType)
         }
         // 设置侧边栏
         setSupportActionBar(binding.vidAmToolbar)
@@ -158,7 +158,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
             // 通知系统更新菜单
             invalidateOptionsMenu()
             // 发送 Fragment 切换通知事件
-            viewModel.fragmentChange.postValue(type)
+            viewModel.postFragmentChange(type)
             // 设置标题
             binding.vidAmToolbar.setTitle(type.titleId)
             binding.vidAmNavView.setCheckedItem(getNavItemId())
@@ -240,8 +240,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.bma_refresh -> viewModel.refresh.postValue(mFragmentType)
-            R.id.bmd_export_item -> viewModel.exportInfo.postValue(mFragmentType)
+            R.id.bma_refresh -> viewModel.postRefresh(mFragmentType)
+            R.id.bmd_export_item -> viewModel.postExportInfo(mFragmentType)
         }
         return true
     }
@@ -258,14 +258,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
             it.setOnCloseListener {
                 searchAssist.remove()
                 // 发送搜索合并通知事件
-                viewModel.search.postValue(SearchContent(mFragmentType, ActionEnum.COLLAPSE))
+                viewModel.postSearch(SearchContent(mFragmentType, ActionEnum.COLLAPSE))
                 false
             }
             // 搜索图标按钮 ( 打开搜索框的按钮 ) 点击事件
             it.setOnSearchClickListener {
                 searchAssist.remove()
                 // 发送搜索展开通知事件
-                viewModel.search.postValue(SearchContent(mFragmentType, ActionEnum.EXPAND))
+                viewModel.postSearch(SearchContent(mFragmentType, ActionEnum.EXPAND))
             }
             // 搜索文本监听
             it.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
