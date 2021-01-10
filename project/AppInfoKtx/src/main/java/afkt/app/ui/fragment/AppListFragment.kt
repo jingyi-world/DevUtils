@@ -4,11 +4,12 @@ import afkt.app.R
 import afkt.app.base.BaseFragment
 import afkt.app.base.setDataStore
 import afkt.app.databinding.FragmentAppBinding
-import afkt.app.module.*
+import afkt.app.module.ActionEnum
+import afkt.app.module.RefreshEvent
+import afkt.app.module.TypeEnum
 import afkt.app.ui.adapter.AppListAdapter
 import afkt.app.utils.AppListUtils
 import afkt.app.utils.AppSearchUtils
-import afkt.app.utils.EventBusUtils
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
@@ -118,7 +119,7 @@ class AppListFragment : BaseFragment<FragmentAppBinding>() {
 
     override fun initObserve() {
         super.initObserve()
-
+        // 搜索监听
         viewModel.search.observe(this) {
             when (it.action) {
                 ActionEnum.COLLAPSE -> { // 搜索合并
@@ -139,31 +140,13 @@ class AppListFragment : BaseFragment<FragmentAppBinding>() {
                 }
             }
         }
-    }
-
-    // ===========
-    // = 事件相关 =
-    // ===========
-
-    @Subscribe(threadMode = ThreadMode.BACKGROUND, sticky = true)
-    fun onEvent(event: FragmentEvent) {
-        event.type?.let {
-            if (it == dataStore.typeEnum) {
-                dataStore.searchContent = "" // 切换 Fragment 重置搜索内容
-                AppListUtils.getAppLists(it) // 加载列表
-                EventBusUtils.removeStickyEvent(FragmentEvent::class.java)
-            }
-        }
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onEvent(event: AppListEvent) {
-        event.type?.let {
-            if (it == dataStore.typeEnum) {
+        // APP 列表监听
+        viewModel.appObserve(this) {
+            if (it.type == dataStore.typeEnum) {
                 var lists = if (dataStore.searchContent.isEmpty()) {
-                    event.lists
+                    it.lists
                 } else {
-                    AppSearchUtils.filterAppList(event.lists, dataStore.searchContent)
+                    AppSearchUtils.filterAppList(it.lists, dataStore.searchContent)
                 }
                 if (lists.isEmpty()) {
                     binding.vidFaState.showEmptyData()
@@ -173,21 +156,30 @@ class AppListFragment : BaseFragment<FragmentAppBinding>() {
                 }
             }
         }
+        // Fragment 切换监听
+        viewModel.fragmentChange.observe(this) {
+            if (it == dataStore.typeEnum) {
+                dataStore.searchContent = "" // 切换 Fragment 重置搜索内容
+                AppListUtils.getAppLists(it) // 加载列表
+            }
+        }
+
+        // 回到顶部
+        viewModel.backTop.observe(this) {
+            if (it == dataStore.typeEnum) {
+                ListViewUtils.smoothScrollToTop(binding.vidFaRefresh.getRecyclerView())
+            }
+        }
     }
+
+    // ===========
+    // = 事件相关 =
+    // ===========
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onEvent(event: RefreshEvent) {
         event.type?.let {
             if (it == dataStore.typeEnum) binding.vidFaRefresh.getRefreshLayout()?.autoRefresh()
-        }
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onEvent(event: TopEvent) {
-        event.type?.let {
-            if (it == dataStore.typeEnum) {
-                ListViewUtils.smoothScrollToTop(binding.vidFaRefresh.getRecyclerView())
-            }
         }
     }
 }

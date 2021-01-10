@@ -2,6 +2,7 @@ package afkt.app.module
 
 import afkt.app.utils.ProjectUtils
 import dev.utils.app.ResourceUtils
+import dev.utils.app.info.AppInfoBean
 import dev.utils.app.info.KeyValueBean
 import java.util.*
 
@@ -44,7 +45,7 @@ class DeviceInfo(
 )
 
 /**
- * detail: 搜索实体类
+ * detail: 搜索内容
  * @author Ttt
  */
 class SearchContent(
@@ -52,3 +53,25 @@ class SearchContent(
     val action: ActionEnum,
     var content: String = ""
 )
+
+/**
+ * detail: 应用列表搜索实体类
+ * @author Ttt
+ */
+class AppListBean(
+    appType: AppInfoBean.AppType,
+    val lists: ArrayList<AppInfoBean>
+) {
+
+    val type: TypeEnum = when (appType) {
+        AppInfoBean.AppType.USER -> {
+            TypeEnum.APP_USER
+        }
+        AppInfoBean.AppType.SYSTEM -> {
+            TypeEnum.APP_SYSTEM
+        }
+        AppInfoBean.AppType.ALL -> {
+            TypeEnum.NONE
+        }
+    }
+}

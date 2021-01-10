@@ -1,7 +1,8 @@
 package afkt.app.utils
 
-import afkt.app.module.AppListEvent
+import afkt.app.module.AppListBean
 import afkt.app.module.TypeEnum
+import dev.callback.common.DevCallback
 import dev.utils.app.info.AppInfoBean
 import dev.utils.app.info.AppInfoBean.AppType
 import dev.utils.app.info.AppInfoUtils
@@ -20,6 +21,17 @@ object AppListUtils {
 
     // 应用列表数据
     private val sMapAppInfos = HashMap<AppType, ArrayList<AppInfoBean>>()
+
+    // 搜索回调
+    private var sCallback: DevCallback<AppListBean>? = null
+
+    /**
+     * 设置搜索回调
+     * @param callback [DevCallback]
+     */
+    fun setCallback(callback: DevCallback<AppListBean>) {
+        sCallback = callback
+    }
 
     /**
      * 重置
@@ -89,7 +101,7 @@ object AppListUtils {
         }
         var data = sMapAppInfos[appType]
         if (data != null && !refresh) {
-            EventBusUtils.post(AppListEvent(appType, data))
+            sCallback?.callback(AppListBean(appType, data))
             return
         }
         // 表示加载中
@@ -100,7 +112,7 @@ object AppListUtils {
             sMapStates[appType] = false
             sMapAppInfos[appType] = lists
             sortAppLists(lists)
-            EventBusUtils.post(AppListEvent(appType, lists))
+            sCallback?.callback(AppListBean(appType, lists))
         })
     }
 

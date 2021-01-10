@@ -167,6 +167,7 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
     override fun initObserve() {
         super.initObserve()
 
+        // 搜索监听
         viewModel.search.observe(this) {
             when (it.action) {
                 ActionEnum.COLLAPSE -> { // 搜索合并
@@ -185,6 +186,13 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
                         requestReadWrite()
                     }
                 }
+            }
+        }
+
+        // 回到顶部
+        viewModel.backTop.observe(this) {
+            if (it == dataStore.typeEnum) {
+                ListViewUtils.smoothScrollToTop(binding.vidFaRefresh.getRecyclerView())
             }
         }
     }
@@ -223,14 +231,6 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
     fun onEvent(event: RefreshEvent) {
         event.type?.let {
             if (it == type) binding.vidFaRefresh.getRefreshLayout()?.autoRefresh()
-        }
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onEvent(event: TopEvent) {
-        event.type?.let {
-            if (it == type) ListViewUtils.smoothScrollToTop(binding.vidFaRefresh.getRecyclerView())
-            //ListViewUtils.scrollToTop(binding.vidFaRefresh.recyclerView)
         }
     }
 

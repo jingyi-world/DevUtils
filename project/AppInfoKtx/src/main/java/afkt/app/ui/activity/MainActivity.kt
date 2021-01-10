@@ -1,50 +1,45 @@
 package afkt.app.ui.activity
 
 import afkt.app.R
-import afkt.app.base.AppViewModel
+import afkt.app.base.BaseActivity
 import afkt.app.databinding.ActivityMainBinding
 import afkt.app.module.*
 import afkt.app.ui.fragment.AppListFragment
 import afkt.app.ui.fragment.InfoFragment
 import afkt.app.ui.fragment.ScanSDCardFragment
 import afkt.app.ui.fragment.SettingFragment
+import afkt.app.utils.AppListUtils
 import afkt.app.utils.EventBusUtils
-import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import dev.callback.common.DevCallback
 import dev.utils.app.ClickUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.assist.DelayAssist
 import dev.utils.app.toast.ToastTintUtils
 
-class MainActivity : AppCompatActivity(),
+class MainActivity : BaseActivity<ActivityMainBinding>(),
     View.OnClickListener {
-
-    private lateinit var binding: ActivityMainBinding
-
-    private val viewModel by viewModels<AppViewModel>()
-
-    // = View =
 
     private var searchView: SearchView? = null
 
-    // = Object =
-
     private var mFragments: HashMap<TypeEnum, Fragment> = HashMap()
-    private var mFragmentType = TypeEnum.NONE // 判断当前 Fragment 类型
-    private val DISPLAY_FRAGMENT_TYPE = TypeEnum.APP_USER // 默认显示 Fragment Type
+
+    // 当前 Fragment 类型
+    private var mFragmentType = TypeEnum.NONE
+
+    // 默认 Fragment Type
+    private val DISPLAY_FRAGMENT_TYPE = TypeEnum.APP_USER
 
     // 延迟触发辅助类
-    private val assist = DelayAssist(350) {
+    private val searchAssist = DelayAssist(350) {
         searchView?.let {
             var search = SearchContent(mFragmentType, ActionEnum.CONTENT)
             search.content = it.query.toString()
@@ -52,21 +47,32 @@ class MainActivity : AppCompatActivity(),
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun baseContentId(): Int = R.layout.activity_main
 
-        init()
-    }
-
-    fun init() {
-        initFragments()
-        initListener()
+    override fun initValue() {
+        super.initValue()
+        // APP 搜索回调
+        AppListUtils.setCallback(object : DevCallback<AppListBean>() {
+            override fun callback(value: AppListBean?) {
+                value?.let {
+                    when (it.type) {
+                        TypeEnum.APP_USER -> {
+                            viewModel.userApp.postValue(value)
+                        }
+                        TypeEnum.APP_SYSTEM -> {
+                            viewModel.systemApp.postValue(value)
+                        }
+                    }
+                }
+            }
+        })
+        initFragment()
         // 设置标题
         binding.vidAmNavView.setCheckedItem(getNavItemId())
         binding.vidAmToolbar.setTitle(DISPLAY_FRAGMENT_TYPE.titleId)
-        binding.vidAmTopBtn.setOnClickListener(this)
+        binding.vidAmTopBtn.setOnClickListener {
+            viewModel.backTop.postValue(mFragmentType)
+        }
         // 设置侧边栏
         setSupportActionBar(binding.vidAmToolbar)
         // 设置切换动画事件等
@@ -77,11 +83,28 @@ class MainActivity : AppCompatActivity(),
         )
         binding.vidAmDrawerLayout.addDrawerListener(toggle)
         toggle.syncState()
-        // 显示指定 Fragment Type
+        // 显示 Fragment Type
         toggleFragment(DISPLAY_FRAGMENT_TYPE)
     }
 
-    fun initFragments() {
+    override fun initListener() {
+        super.initListener()
+        // 设置 NavigationView Item 点击事件
+        binding.vidAmNavView.setNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_user_apps -> toggleFragment(TypeEnum.APP_USER)
+                R.id.nav_system_apps -> toggleFragment(TypeEnum.APP_SYSTEM)
+                R.id.nav_phone_info -> toggleFragment(TypeEnum.DEVICE_INFO)
+                R.id.nav_screen_info -> toggleFragment(TypeEnum.SCREEN_INFO)
+                R.id.nav_query_apk -> toggleFragment(TypeEnum.QUERY_APK)
+                R.id.nav_setting -> toggleFragment(TypeEnum.SETTING)
+            }
+            binding.vidAmDrawerLayout.closeDrawer(GravityCompat.START)
+            true
+        }
+    }
+
+    private fun initFragment() {
         mFragments.putAll(
             mapOf(
                 // 用户应用信息
@@ -133,7 +156,7 @@ class MainActivity : AppCompatActivity(),
             // 通知系统更新菜单
             invalidateOptionsMenu()
             // 发送 Fragment 切换通知事件
-            EventBusUtils.post(FragmentEvent(type))
+            viewModel.fragmentChange.postValue(type)
             // 设置标题
             binding.vidAmToolbar.setTitle(type.titleId)
             binding.vidAmNavView.setCheckedItem(getNavItemId())
@@ -141,22 +164,6 @@ class MainActivity : AppCompatActivity(),
             searchView?.let { it.clearFocus() }
             // 发送粘性事件 - 只会发送一次, 刚进入为 NONE, 解决 Fragment show 之前消息已经发送无法接收
             if (noneType) EventBusUtils.postSticky(FragmentEvent(type))
-        }
-    }
-
-    fun initListener() {
-        // 设置 NavigationView Item 点击事件
-        binding.vidAmNavView.setNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_user_apps -> toggleFragment(TypeEnum.APP_USER)
-                R.id.nav_system_apps -> toggleFragment(TypeEnum.APP_SYSTEM)
-                R.id.nav_phone_info -> toggleFragment(TypeEnum.DEVICE_INFO)
-                R.id.nav_screen_info -> toggleFragment(TypeEnum.SCREEN_INFO)
-                R.id.nav_query_apk -> toggleFragment(TypeEnum.QUERY_APK)
-                R.id.nav_setting -> toggleFragment(TypeEnum.SETTING)
-            }
-            binding.vidAmDrawerLayout.closeDrawer(GravityCompat.START)
-            true
         }
     }
 
@@ -170,18 +177,6 @@ class MainActivity : AppCompatActivity(),
             TypeEnum.SETTING -> R.id.nav_setting
         }
         return R.id.nav_user_apps
-    }
-
-    // ===========
-    // = OnClick =
-    // ===========
-
-    override fun onClick(v: View) {
-        when (v.id) {
-            R.id.vid_am_top_btn -> {
-                EventBusUtils.post(TopEvent(mFragmentType))
-            }
-        }
     }
 
     // ========
@@ -263,7 +258,7 @@ class MainActivity : AppCompatActivity(),
             // 搜索框展开时后面 X 按钮点击事件
             it.setOnCloseListener(object : SearchView.OnCloseListener {
                 override fun onClose(): Boolean {
-                    assist.remove()
+                    searchAssist.remove()
                     // 发送搜索合并通知事件
                     viewModel.search.postValue(SearchContent(mFragmentType, ActionEnum.COLLAPSE))
                     return false
@@ -271,7 +266,7 @@ class MainActivity : AppCompatActivity(),
             })
             // 搜索图标按钮 ( 打开搜索框的按钮 ) 点击事件
             it.setOnSearchClickListener {
-                assist.remove()
+                searchAssist.remove()
                 // 发送搜索展开通知事件
                 viewModel.search.postValue(SearchContent(mFragmentType, ActionEnum.EXPAND))
             }
@@ -284,7 +279,7 @@ class MainActivity : AppCompatActivity(),
 
                 // 当搜索内容改变时触发该方法
                 override fun onQueryTextChange(newText: String): Boolean {
-                    assist.post()
+                    searchAssist.post()
                     return false
                 }
             })
