@@ -1,7 +1,6 @@
 package afkt.app.ui.activity
 
 import afkt.app.R
-import afkt.app.base.Constants
 import afkt.app.databinding.ActivityApkDetailsBinding
 import afkt.app.module.FileDeleteEvent
 import afkt.app.ui.adapter.KeyValueAdapter
@@ -48,7 +47,7 @@ class ApkDetailsActivity : AppCompatActivity(),
     fun init() {
         try {
             apkInfoItem =
-                AppInfoUtils.getApkInfoItem(intent.getStringExtra(Constants.Key.KEY_APK_URI))
+                AppInfoUtils.getApkInfoItem(intent.getStringExtra(DevFinal.URI))
         } catch (e: Exception) {
             DevLogger.e(e)
         }

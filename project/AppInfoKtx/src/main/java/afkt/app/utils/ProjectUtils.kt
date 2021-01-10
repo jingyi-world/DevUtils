@@ -2,12 +2,12 @@ package afkt.app.utils
 
 import afkt.app.R
 import afkt.app.base.AppViewModel
-import afkt.app.base.Constants
 import afkt.app.module.DeviceInfo
 import afkt.app.module.DeviceInfoItem
 import afkt.app.module.TypeEnum
 import android.os.Build
 import com.google.gson.GsonBuilder
+import dev.utils.DevFinal
 import dev.utils.app.*
 import dev.utils.app.logger.DevLogger
 import dev.utils.app.share.SharedUtils
@@ -35,14 +35,14 @@ object ProjectUtils {
      * 重置排序类型索引
      */
     fun resetAppSortType() {
-        SharedUtils.put(Constants.Key.KEY_APP_SORT, 0)
+        SharedUtils.put(DevFinal.SORT, 0)
     }
 
     /**
      * 获取排序类型索引
      */
     fun getAppSortType(): Int {
-        var sortPos = SharedUtils.getInt(Constants.Key.KEY_APP_SORT)
+        var sortPos = SharedUtils.getInt(DevFinal.SORT)
         return Math.max(sortPos, 0)
     }
 

@@ -1,7 +1,6 @@
 package afkt.app.ui.activity
 
 import afkt.app.R
-import afkt.app.base.Constants
 import afkt.app.databinding.ActivityAppDetailsBinding
 import afkt.app.ui.adapter.KeyValueAdapter
 import afkt.app.utils.ExportUtils
@@ -11,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import dev.utils.DevFinal
 import dev.utils.app.AppUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.ViewHelper
@@ -40,7 +40,7 @@ class AppDetailsActivity : AppCompatActivity(),
     fun init() {
         try {
             appInfoItem =
-                AppInfoUtils.getAppInfoItem(getIntent().getStringExtra(Constants.Key.KEY_PACKNAME))
+                AppInfoUtils.getAppInfoItem(getIntent().getStringExtra(DevFinal.PACKNAME))
         } catch (e: Exception) {
             DevLogger.e(e)
         }

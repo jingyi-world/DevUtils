@@ -1,7 +1,6 @@
 package afkt.app.ui.adapter
 
 import afkt.app.R
-import afkt.app.base.Constants
 import afkt.app.module.FileApkItem
 import afkt.app.ui.activity.ApkDetailsActivity
 import android.content.Intent
@@ -10,6 +9,7 @@ import android.widget.TextView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.listener.OnItemClickListener
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import dev.utils.DevFinal
 import dev.utils.app.AppUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.ViewHelper
@@ -33,7 +33,7 @@ class ApkListAdapter(data: MutableList<FileApkItem>?) :
                 (data?.get(position) as FileApkItem)?.let {
                     if (FileUtils.isFileExists(it.uri)) {
                         var intent = Intent(context, ApkDetailsActivity::class.java)
-                        intent.putExtra(Constants.Key.KEY_APK_URI, it.uri)
+                        intent.putExtra(DevFinal.URI, it.uri)
                         AppUtils.startActivity(intent)
                     } else {
                         ToastTintUtils.warning(ResourceUtils.getString(R.string.str_file_not_exist))

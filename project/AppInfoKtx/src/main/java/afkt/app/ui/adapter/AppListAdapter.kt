@@ -1,13 +1,13 @@
 package afkt.app.ui.adapter
 
 import afkt.app.R
-import afkt.app.base.Constants
 import afkt.app.ui.activity.AppDetailsActivity
 import android.content.Intent
 import android.view.View
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.listener.OnItemClickListener
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import dev.utils.DevFinal
 import dev.utils.app.AppUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.info.AppInfoBean
@@ -30,7 +30,7 @@ class AppListAdapter(data: MutableList<AppInfoBean>?) :
                 (data?.get(position) as AppInfoBean)?.let {
                     if (AppUtils.isInstalledApp(it.appPackName)) {
                         var intent = Intent(context, AppDetailsActivity::class.java)
-                        intent.putExtra(Constants.Key.KEY_PACKNAME, it.appPackName)
+                        intent.putExtra(DevFinal.PACKNAME, it.appPackName)
                         AppUtils.startActivity(intent)
                     } else {
                         ToastTintUtils.warning(ResourceUtils.getString(R.string.str_app_not_exist))
