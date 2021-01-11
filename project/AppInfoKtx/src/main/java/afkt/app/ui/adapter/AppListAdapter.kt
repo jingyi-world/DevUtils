@@ -19,7 +19,7 @@ class AppListAdapter(data: MutableList<AppInfoBean>?) :
     BaseQuickAdapter<AppInfoBean, BaseViewHolder>(R.layout.adapter_item_app, data) {
 
     init {
-        setOnItemClickListener { adapter, view, position ->
+        setOnItemClickListener { _, _, position ->
             (data?.get(position) as AppInfoBean).run {
                 if (AppUtils.isInstalledApp(appPackName)) {
                     val intent = Intent(context, AppDetailsActivity::class.java)

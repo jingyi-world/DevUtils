@@ -1,4 +1,4 @@
-package afkt.app.base.module
+package afkt.app.base.model
 
 import afkt.app.utils.ProjectUtils
 import androidx.annotation.StringRes
@@ -47,10 +47,10 @@ class DeviceInfo(
 )
 
 /**
- * detail: 搜索内容
+ * detail: 搜索事件
  * @author Ttt
  */
-class SearchContent(
+class SearchEvent(
     val type: TypeEnum,
     val action: ActionEnum,
     var content: String = ""

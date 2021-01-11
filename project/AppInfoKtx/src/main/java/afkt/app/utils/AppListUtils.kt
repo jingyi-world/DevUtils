@@ -1,7 +1,7 @@
 package afkt.app.utils
 
-import afkt.app.base.module.AppListBean
-import afkt.app.base.module.TypeEnum
+import afkt.app.base.model.AppListBean
+import afkt.app.base.model.TypeEnum
 import dev.callback.common.DevCallback
 import dev.utils.app.info.AppInfoBean
 import dev.utils.app.info.AppInfoBean.AppType

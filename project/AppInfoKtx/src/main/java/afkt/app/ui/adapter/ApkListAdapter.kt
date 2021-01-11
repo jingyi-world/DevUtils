@@ -1,7 +1,7 @@
 package afkt.app.ui.adapter
 
 import afkt.app.R
-import afkt.app.base.module.FileApkItem
+import afkt.app.base.model.FileApkItem
 import afkt.app.ui.activity.ApkDetailsActivity
 import android.content.Intent
 import android.widget.TextView
@@ -22,7 +22,7 @@ class ApkListAdapter(data: MutableList<FileApkItem>?) :
     BaseQuickAdapter<FileApkItem, BaseViewHolder>(R.layout.adapter_item_app, data) {
 
     init {
-        setOnItemClickListener { adapter, view, position ->
+        setOnItemClickListener { _, _, position ->
             (data?.get(position) as FileApkItem).run {
                 if (FileUtils.isFileExists(uri)) {
                     val intent = Intent(context, ApkDetailsActivity::class.java)

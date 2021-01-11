@@ -1,7 +1,7 @@
 package afkt.app.utils
 
 import afkt.app.R
-import afkt.app.base.module.PathConfig
+import afkt.app.base.model.PathConfig
 import android.content.Intent
 import android.net.Uri
 import dev.utils.app.AppUtils

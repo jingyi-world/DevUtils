@@ -1,4 +1,4 @@
-package afkt.app.base.module
+package afkt.app.base.model
 
 import afkt.app.R
 import androidx.annotation.StringRes
@@ -16,7 +16,7 @@ enum class ActionEnum {
     EXPAND,
 
     // 搜索输入内容
-    CONTENT,
+    CONTENT
 }
 
 /**

@@ -17,7 +17,7 @@ class KeyValueAdapter(data: MutableList<KeyValueBean>) :
     BaseQuickAdapter<KeyValueBean, BaseViewHolder>(R.layout.adapter_item_key_value, data) {
 
     init {
-        setOnItemClickListener(OnItemClickListener { adapter, view, position ->
+        setOnItemClickListener(OnItemClickListener { _, _, position ->
             data[position].run {
                 if (listener != null && listener!!.onItemClick(this, position)) {
                     return@OnItemClickListener

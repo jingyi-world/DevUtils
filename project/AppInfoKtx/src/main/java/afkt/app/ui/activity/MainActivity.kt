@@ -2,10 +2,10 @@ package afkt.app.ui.activity
 
 import afkt.app.R
 import afkt.app.base.BaseActivity
-import afkt.app.base.module.ActionEnum
-import afkt.app.base.module.AppListBean
-import afkt.app.base.module.SearchContent
-import afkt.app.base.module.TypeEnum
+import afkt.app.base.model.ActionEnum
+import afkt.app.base.model.AppListBean
+import afkt.app.base.model.SearchEvent
+import afkt.app.base.model.TypeEnum
 import afkt.app.databinding.ActivityMainBinding
 import afkt.app.ui.fragment.AppListFragment
 import afkt.app.ui.fragment.InfoFragment
@@ -43,7 +43,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
     // 延迟触发辅助类
     private val searchAssist = DelayAssist(350) {
         searchView?.let {
-            val search = SearchContent(mFragmentType, ActionEnum.CONTENT)
+            val search = SearchEvent(mFragmentType, ActionEnum.CONTENT)
             search.content = it.query.toString()
             viewModel.postSearch(search)
         }
@@ -241,7 +241,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.bma_refresh -> viewModel.postRefresh(mFragmentType)
-            R.id.bmd_export_item -> viewModel.postExportInfo(mFragmentType)
+            R.id.bmd_export_item -> viewModel.postExportEvent(mFragmentType)
         }
         return true
     }
@@ -258,14 +258,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
             it.setOnCloseListener {
                 searchAssist.remove()
                 // 发送搜索合并通知事件
-                viewModel.postSearch(SearchContent(mFragmentType, ActionEnum.COLLAPSE))
+                viewModel.postSearch(SearchEvent(mFragmentType, ActionEnum.COLLAPSE))
                 false
             }
             // 搜索图标按钮 ( 打开搜索框的按钮 ) 点击事件
             it.setOnSearchClickListener {
                 searchAssist.remove()
                 // 发送搜索展开通知事件
-                viewModel.postSearch(SearchContent(mFragmentType, ActionEnum.EXPAND))
+                viewModel.postSearch(SearchEvent(mFragmentType, ActionEnum.EXPAND))
             }
             // 搜索文本监听
             it.setOnQueryTextListener(object : SearchView.OnQueryTextListener {

@@ -1,6 +1,6 @@
 package afkt.app.base
 
-import afkt.app.base.module.*
+import afkt.app.base.model.*
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -11,14 +11,14 @@ class AppViewModel : ViewModel() {
     // 应用排序
     val appSort = MutableLiveData<Boolean>()
 
-    // 导出设备、屏幕信息
-    val exportInfo = MutableLiveData<TypeEnum>()
+    // 导出设备、屏幕信息事件
+    val exportEvent = MutableLiveData<TypeEnum>()
 
-    // 搜索触发
-    var search = MutableLiveData<SearchContent>()
+    // 搜索事件
+    var searchEvent = MutableLiveData<SearchEvent>()
 
-    // 回到顶部
-    val backTop = MutableLiveData<TypeEnum>()
+    // 回到顶部事件
+    val backTopEvent = MutableLiveData<TypeEnum>()
 
     // 刷新操作
     val refresh = MutableLiveData<TypeEnum>()
@@ -63,16 +63,16 @@ class AppViewModel : ViewModel() {
         appSort.postValue(true)
     }
 
-    fun postExportInfo(value: TypeEnum) {
-        exportInfo.postValue(value)
+    fun postExportEvent(value: TypeEnum) {
+        exportEvent.postValue(value)
     }
 
-    fun postSearch(value: SearchContent) {
-        search.postValue(value)
+    fun postSearch(value: SearchEvent) {
+        searchEvent.postValue(value)
     }
 
     fun postBackTop(value: TypeEnum) {
-        backTop.postValue(value)
+        backTopEvent.postValue(value)
     }
 
     fun postRefresh(value: TypeEnum) {

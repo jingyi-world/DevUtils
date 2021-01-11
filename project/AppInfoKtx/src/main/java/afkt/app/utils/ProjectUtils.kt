@@ -2,9 +2,9 @@ package afkt.app.utils
 
 import afkt.app.R
 import afkt.app.base.AppViewModel
-import afkt.app.base.module.DeviceInfo
-import afkt.app.base.module.DeviceInfoItem
-import afkt.app.base.module.TypeEnum
+import afkt.app.base.model.DeviceInfo
+import afkt.app.base.model.DeviceInfoItem
+import afkt.app.base.model.TypeEnum
 import android.os.Build
 import com.google.gson.GsonBuilder
 import dev.utils.DevFinal

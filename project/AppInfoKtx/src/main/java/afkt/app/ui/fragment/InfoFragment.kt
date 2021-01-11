@@ -2,9 +2,9 @@ package afkt.app.ui.fragment
 
 import afkt.app.R
 import afkt.app.base.BaseFragment
-import afkt.app.base.module.DeviceInfoBean
-import afkt.app.base.module.PathConfig
-import afkt.app.base.module.TypeEnum
+import afkt.app.base.model.DeviceInfoBean
+import afkt.app.base.model.PathConfig
+import afkt.app.base.model.TypeEnum
 import afkt.app.base.setDataStore
 import afkt.app.databinding.FragmentInfoBinding
 import afkt.app.ui.adapter.InfoAdapter
@@ -39,7 +39,7 @@ class InfoFragment : BaseFragment<FragmentInfoBinding>() {
                 binding.root.setAdapter(InfoAdapter(it.lists))
             }
         })
-        viewModel.exportInfo.observe(viewLifecycleOwner, {
+        viewModel.exportEvent.observe(viewLifecycleOwner, {
             if (it == dataStore.typeEnum) {
                 if (binding.root.getAdapter<InfoAdapter>() != null) {
                     val adapter: InfoAdapter? = binding.root.getAdapter()

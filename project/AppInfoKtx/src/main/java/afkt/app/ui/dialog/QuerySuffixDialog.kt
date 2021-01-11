@@ -65,7 +65,7 @@ class QuerySuffixDialog(context: Context?) :
 
         init {
             addChildClickViewIds(R.id.vid_aiqs_framelayout)
-            setOnItemChildClickListener { adapter, view, position ->
+            setOnItemChildClickListener { _, _, position ->
                 val item: String = data[position]
                 if (item.isEmpty()) {
                     QuerySuffixEditDialog(context) {

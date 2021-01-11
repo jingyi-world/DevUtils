@@ -24,7 +24,7 @@ class QuerySuffixEditDialog(
     private var binding: DialogQuerySuffixEditBinding
 
     // 点击通知事件
-    val notifyListener: View.OnClickListener
+    private val notifyListener: View.OnClickListener
 
     init {
         window!!.setFlags(

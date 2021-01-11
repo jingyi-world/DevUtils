@@ -2,8 +2,8 @@ package afkt.app.ui.fragment
 
 import afkt.app.R
 import afkt.app.base.BaseFragment
-import afkt.app.base.module.ActionEnum
-import afkt.app.base.module.TypeEnum
+import afkt.app.base.model.ActionEnum
+import afkt.app.base.model.TypeEnum
 import afkt.app.base.setDataStore
 import afkt.app.databinding.FragmentAppBinding
 import afkt.app.ui.adapter.AppListAdapter
@@ -113,7 +113,7 @@ class AppListFragment : BaseFragment<FragmentAppBinding>() {
     override fun initObserve() {
         super.initObserve()
         // 搜索监听
-        viewModel.search.observe(this) {
+        viewModel.searchEvent.observe(this) {
             when (it.action) {
                 ActionEnum.COLLAPSE -> { // 搜索合并
                     if (it.type == dataStore.typeEnum) {
@@ -157,7 +157,7 @@ class AppListFragment : BaseFragment<FragmentAppBinding>() {
             }
         }
         // 回到顶部
-        viewModel.backTop.observe(this) {
+        viewModel.backTopEvent.observe(this) {
             if (it == dataStore.typeEnum) {
                 ListViewUtils.smoothScrollToTop(binding.vidFaRefresh.getRecyclerView())
             }

@@ -1,8 +1,8 @@
 package afkt.app.ui.adapter
 
 import afkt.app.R
-import afkt.app.base.module.DeviceInfoBean
-import afkt.app.base.module.DeviceInfoItem
+import afkt.app.base.model.DeviceInfoBean
+import afkt.app.base.model.DeviceInfoItem
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import dev.utils.app.ClipboardUtils
@@ -17,7 +17,7 @@ class InfoAdapter(data: MutableList<DeviceInfoItem>?) :
     BaseQuickAdapter<DeviceInfoItem, BaseViewHolder>(R.layout.adapter_item_device_info, data) {
 
     init {
-        setOnItemClickListener { adapter, view, position ->
+        setOnItemClickListener { _, _, position ->
             (data?.get(position) as DeviceInfoItem).run {
                 val txt: String = DeviceInfoBean.copyString(this)
                 // 复制到剪切板
