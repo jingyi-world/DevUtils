@@ -1,13 +1,13 @@
 package dev.screen.dp;
 
-import dev.screen.dp.utils.DimenItem;
-import dev.screen.dp.utils.Tools;
-import dev.screen.dp.utils.XmlIO;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+
+import dev.screen.dp.utils.DimenItem;
+import dev.screen.dp.utils.Tools;
+import dev.screen.dp.utils.XmlIO;
 
 /**
  * @Author: duke
@@ -86,12 +86,16 @@ final class GenerateDPValueFiles {
 
     /**
      * 适配文件调用入口
-     * @param isFontMatch 字体是否也适配(是否与dp尺寸一样等比缩放)
-     * @param resFolderPath base dimens.xml 文件的res目录
+     * @param isFontMatch    字体是否也适配(是否与dp尺寸一样等比缩放)
+     * @param resFolderPath  base dimens.xml 文件的res目录
      * @param isUseNewFolder 是否创建 values-swXXXdp 新格式的目录
      * @return 返回消息
      */
-    public void start(boolean isFontMatch, String resFolderPath, boolean isUseNewFolder) {
+    public void start(
+            boolean isFontMatch,
+            String resFolderPath,
+            boolean isUseNewFolder
+    ) {
         // 添加默认的数据
         for (String aDefaultDPArr : listDPs) {
             if (aDefaultDPArr == null || "".equals(aDefaultDPArr.trim())) {
@@ -108,7 +112,7 @@ final class GenerateDPValueFiles {
         System.out.println("本次待适配的宽度dp值: [ " + Tools.getOrderedString(dataSet) + " ]");
         // 获取基准的dimens.xml文件
         String baseDimenFilePath = resFolderPath + File.separator + "values" + File.separator + "dimens.xml";
-        File testBaseDimenFile = new File(baseDimenFilePath);
+        File   testBaseDimenFile = new File(baseDimenFilePath);
         // 判断基准文件是否存在
         if (!testBaseDimenFile.exists()) {
             System.out.println("DK WARNING:  \"./res/values/dimens.xml\" 路径下的文件找不到!");

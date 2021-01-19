@@ -18,10 +18,14 @@ public class Tools {
      * 乘以系数
      * @param isFontMatch 字体是否也适配(是否与dp尺寸一样等比缩放)
      * @param sourceValue 原字符串 @dimen/dp_xxx 或 xxxdp
-     * @param multiple 屏幕宽度dp基于360dp宽度的系数比值
+     * @param multiple    屏幕宽度dp基于360dp宽度的系数比值
      * @return 乘以系数后的缩放值字符串，且带单位
      */
-    public static String countValue(boolean isFontMatch, String sourceValue, double multiple) {
+    public static String countValue(
+            boolean isFontMatch,
+            String sourceValue,
+            double multiple
+    ) {
         if (sourceValue == null || "".equals(sourceValue.trim())) {
             //无效值，不执行计算
             return "errorValue";
@@ -56,8 +60,8 @@ public class Tools {
             // 只剩下单位dp或sp，不执行计算
             return sourceValue;
         }
-        int length = sourceValue.length();
-        String endValue = sourceValue.substring(length - 2, length);//单位dp或sp
+        int    length     = sourceValue.length();
+        String endValue   = sourceValue.substring(length - 2, length);//单位dp或sp
         String startValue = sourceValue.substring(0, length - 2);//数值
         endValue = endValue.trim();
         startValue = startValue.trim();
@@ -110,7 +114,7 @@ public class Tools {
             return "0";
         }
         String sourceValue = String.valueOf(value);
-        String result = "";
+        String result      = "";
         if (sourceValue.contains(".")) {//带小数
             // 去除后面的0
             while (sourceValue.charAt(sourceValue.length() - 1) == '0') {
@@ -160,11 +164,14 @@ public class Tools {
 
     /**
      * 判断当前文件目录名是否为 values-wXXXdp 格式，即以前的旧文件目录
-     * @param path ..../res/values-wXXXdp
+     * @param path           ..../res/values-wXXXdp
      * @param isUseNewFolder 是否使用新的目录格式 values-swXXXdp
      * @return 是否是指定格式的目录
      */
-    public static boolean isOldFolder(String path, boolean isUseNewFolder) {
+    public static boolean isOldFolder(
+            String path,
+            boolean isUseNewFolder
+    ) {
         if (path == null || path.trim().length() == 0) {
             return false;
         }

@@ -80,9 +80,9 @@ final class Config {
     // DevUtils Lib 忽略目录
     public static final List<String>        sDevUtilsIgnoreCatalogs = new ArrayList<>();
     // DevUtils Project 文件目录注释
-    public static final Map<String, String> sProjectCatalogMap     = new HashMap<>();
+    public static final Map<String, String> sProjectCatalogMap      = new HashMap<>();
     // DevUtils Interesting 文件目录注释
-    public static final Map<String, String> sInterestingCatalogMap     = new HashMap<>();
+    public static final Map<String, String> sInterestingCatalogMap  = new HashMap<>();
 
     static {
 

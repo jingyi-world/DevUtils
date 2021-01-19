@@ -107,7 +107,10 @@ final class GeneratePxValueFiles {
      * @param width
      * @param height
      */
-    private void generateXmlFile(int width, int height) {
+    private void generateXmlFile(
+            int width,
+            int height
+    ) {
         // == 宽度基准值 ==
         StringBuffer widthBuffer = new StringBuffer();
         // == 生成 lay_x.xml ==

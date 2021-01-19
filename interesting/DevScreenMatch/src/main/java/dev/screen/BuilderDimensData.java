@@ -33,7 +33,7 @@ public class BuilderDimensData {
         // 生成正数的
         for (float i = 10f; i <= 50f; i += 0.5f) {
             // 判断是否整数
-            if ((i / 0.5f) %2 == 0){ // 1, 2, 3
+            if ((i / 0.5f) % 2 == 0) { // 1, 2, 3
                 stringBuilder.append(String.format(spFormat, "sp_" + String.valueOf((int) i), String.valueOf((int) i)));
             } else { // 0.5, 1.5, 2.5
                 stringBuilder.append(String.format(spFormat, "sp_" + String.valueOf((int) i) + "_5", String.valueOf(i)));

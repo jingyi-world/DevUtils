@@ -29,9 +29,9 @@ public class XmlIO {
         ArrayList<DimenItem> list = null;
         try {
             SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
-            SAXParser saxparser = saxParserFactory.newSAXParser();
-            InputStream inputStream = new FileInputStream(baseDimenFilePath);
-            SAXReadHandler saxReadHandler = new SAXReadHandler();
+            SAXParser        saxparser        = saxParserFactory.newSAXParser();
+            InputStream      inputStream      = new FileInputStream(baseDimenFilePath);
+            SAXReadHandler   saxReadHandler   = new SAXReadHandler();
             saxparser.parse(inputStream, saxReadHandler);
             list = saxReadHandler.getData();
         } catch (Exception e) {
@@ -43,11 +43,16 @@ public class XmlIO {
     /**
      * 生成dimens文件
      * @param isFontMatch 字体是否也适配(是否与dp尺寸一样等比缩放)
-     * @param list 源dimens数据
-     * @param multiple 对应新文件需要乘以的系数
-     * @param outPutFile 目标文件输出目录
+     * @param list        源dimens数据
+     * @param multiple    对应新文件需要乘以的系数
+     * @param outPutFile  目标文件输出目录
      */
-    public static void createDestinationDimens(boolean isFontMatch, ArrayList<DimenItem> list, double multiple, String outPutFile) {
+    public static void createDestinationDimens(
+            boolean isFontMatch,
+            ArrayList<DimenItem> list,
+            double multiple,
+            String outPutFile
+    ) {
         try {
             File targetFile = new File(outPutFile);
             if (targetFile.exists()) {

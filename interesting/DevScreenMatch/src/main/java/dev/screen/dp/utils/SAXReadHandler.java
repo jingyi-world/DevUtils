@@ -12,21 +12,28 @@ import java.util.ArrayList;
  * @UpdateTime: 2017-09-29 09:55
  * @Description: 解析xml工具类
  */
-public class SAXReadHandler extends DefaultHandler {
+public class SAXReadHandler
+        extends DefaultHandler {
 
-    private ArrayList<DimenItem> list = null;
-    private DimenItem dimenBean;
-    private String tempElement;
-    static final String ELEMENT_RESOURCE = "resources";
-    static final String ELEMENT_DIMEN = "dimen";
-    static final String PROPERTY_NAME = "name";
+    private      ArrayList<DimenItem> list             = null;
+    private      DimenItem            dimenBean;
+    private      String               tempElement;
+    static final String               ELEMENT_RESOURCE = "resources";
+    static final String               ELEMENT_DIMEN    = "dimen";
+    static final String               PROPERTY_NAME    = "name";
 
     public ArrayList<DimenItem> getData() {
         return list;
     }
 
     @Override
-    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+    public void startElement(
+            String uri,
+            String localName,
+            String qName,
+            Attributes attributes
+    )
+            throws SAXException {
         tempElement = qName;
         if (qName != null && qName.trim().length() > 0) {
             if (qName.equals(ELEMENT_RESOURCE)) {
@@ -43,7 +50,12 @@ public class SAXReadHandler extends DefaultHandler {
     }
 
     @Override
-    public void endElement(String uri, String localName, String qName) throws SAXException {
+    public void endElement(
+            String uri,
+            String localName,
+            String qName
+    )
+            throws SAXException {
         if (qName != null && qName.trim().length() > 0) {
             if (qName.equals(ELEMENT_DIMEN)) {
                 //dimen结束标签，添加对象到集合
@@ -56,7 +68,12 @@ public class SAXReadHandler extends DefaultHandler {
     }
 
     @Override
-    public void characters(char[] ch, int start, int length) throws SAXException {
+    public void characters(
+            char[] ch,
+            int start,
+            int length
+    )
+            throws SAXException {
         if (tempElement != null && tempElement.trim().equals(ELEMENT_DIMEN)) {
             if (dimenBean != null) {
                 String temp = new String(ch, start, length);
