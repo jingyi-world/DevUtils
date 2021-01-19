@@ -49,10 +49,10 @@ final class GeneratePxValueFiles {
     private final static String VALUE_TEMPLATE = "values-{0}x{1}";
 
     // 生成的格式 如: <dimen name="x1">1px</dimen>
-    private final static String WTemplate = "\t<dimen name=\"x{0}\">{1}dev.screen.px</dimen>\n";
+    private final static String WTemplate = "\t<dimen name=\"x{0}\">{1}px</dimen>\n";
 
     // 生成的格式 如: <dimen name="y1">1px</dimen>
-    private final static String HTemplate = "\t<dimen name=\"y{0}\">{1}dev.screen.px</dimen>\n";
+    private final static String HTemplate = "\t<dimen name=\"y{0}\">{1}px</dimen>\n";
 
     // 保存需要生成处理的尺寸
     private static final ArrayList<String> listDimesions = new ArrayList<>();

@@ -19,12 +19,11 @@ class GradleMain {
         System.out.println(data); // bzyivzo6n839fup2jbap0tjew
     }
 
-    public static String getFileName(String distributionUrl) {
+    public static String getFileName(final String distributionUrl) {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("MD5");
             messageDigest.update(distributionUrl.getBytes());
-            String str = new BigInteger(1, messageDigest.digest()).toString(36);
-            return str;
+            return new BigInteger(1, messageDigest.digest()).toString(36);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }

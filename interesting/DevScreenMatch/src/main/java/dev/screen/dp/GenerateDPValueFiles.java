@@ -108,7 +108,7 @@ final class GenerateDPValueFiles {
             }
         }
 
-        System.out.println("基准宽度dp值：[ " + Tools.cutLastZero(baseDP) + " dev.screen.dp ]");
+        System.out.println("基准宽度dp值：[ " + Tools.cutLastZero(baseDP) + " dp ]");
         System.out.println("本次待适配的宽度dp值: [ " + Tools.getOrderedString(dataSet) + " ]");
         // 获取基准的dimens.xml文件
         String baseDimenFilePath = resFolderPath + File.separator + "values" + File.separator + "dimens.xml";
