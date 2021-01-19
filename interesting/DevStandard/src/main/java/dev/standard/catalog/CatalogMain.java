@@ -24,6 +24,9 @@ final class CatalogMain {
 
         // 生成 DevUtils Project 汇总项目目录结构 - https://github.com/afkT/DevUtils/blob/master/project
         print(Config.PROJECT_LOCAL_PATH, Config.PROJECT_DIR_NAME, Config.sProjectCatalogMap, null, 0);
+
+        // 生成 DevUtils Interesting 汇总项目目录结构 - https://github.com/afkT/DevUtils/blob/master/interesting
+        print(Config.INTERESTING_LOCAL_PATH, Config.INTERESTING_DIR_NAME, Config.sInterestingCatalogMap, null, 0);
     }
 
     private static final String FORMAT = "\"%s\" not found";

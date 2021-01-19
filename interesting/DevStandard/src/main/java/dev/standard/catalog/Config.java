@@ -58,6 +58,15 @@ final class Config {
     // DevUtils Project 项目本地路径
     public static final String PROJECT_LOCAL_PATH = USER_DIR + File.separator + PROJECT_DIR_NAME;
 
+    // ========================
+    // = DevUtils Interesting =
+    // ========================
+
+    // DevUtils Interesting 文件名
+    public static final String INTERESTING_DIR_NAME   = "interesting";
+    // DevUtils Interesting 项目本地路径
+    public static final String INTERESTING_LOCAL_PATH = USER_DIR + File.separator + INTERESTING_DIR_NAME;
+
     // =======
     // = Map =
     // =======
@@ -72,6 +81,8 @@ final class Config {
     public static final List<String>        sDevUtilsIgnoreCatalogs = new ArrayList<>();
     // DevUtils Project 文件目录注释
     public static final Map<String, String> sProjectCatalogMap     = new HashMap<>();
+    // DevUtils Interesting 文件目录注释
+    public static final Map<String, String> sInterestingCatalogMap     = new HashMap<>();
 
     static {
 
@@ -81,7 +92,6 @@ final class Config {
 
         sAndroidCatalogMap.put("Android", "根目录");
         sAndroidCatalogMap.put(".360RePlugin", "Android 插件化开发 - 360 RePlugin 框架");
-        sAndroidCatalogMap.put(".AndroidScreenMatch", "Android 屏幕适配生成对应的尺寸文件");
         sAndroidCatalogMap.put(".AndroidVideoClip", "Android 视频裁剪 (含裁剪 View)");
         sAndroidCatalogMap.put(".AutoLockScreenPro", "AutoLockScreenPro - 推送自动锁屏");
         sAndroidCatalogMap.put(".BuglyHotfix", "Android 热修复 - Bugly");
@@ -138,5 +148,13 @@ final class Config {
         sProjectCatalogMap.put(".AccessibilityKtx", "Android 无障碍使用 ( Activity 栈 )");
         sProjectCatalogMap.put(".AppInfoKtx", "APP 信息提取器");
         sProjectCatalogMap.put(".DemoKtx", "临时测试代码、库调用调试 Demo");
+
+        // ========================
+        // = DevUtils Interesting =
+        // ========================
+
+        sInterestingCatalogMap.put("interesting", "根目录");
+        sInterestingCatalogMap.put(".DevScreenMatch", "Android 屏幕适配生成对应的尺寸文件");
+        sInterestingCatalogMap.put(".DevStandard", "项目规范统一检测、生成替换等");
     }
 }
