@@ -1,16 +1,13 @@
 package dev.screen.dp.utils;
 
 import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.util.ArrayList;
 
 /**
- * @Author: duke
- * @DateTime: 2016-08-24 17:27
- * @UpdateTime: 2017-09-29 09:55
- * @Description: 解析xml工具类
+ * detail: 解析 xml 工具类
+ * @author duke
  */
 public class SAXReadHandler
         extends DefaultHandler {
@@ -32,15 +29,12 @@ public class SAXReadHandler
             String localName,
             String qName,
             Attributes attributes
-    )
-            throws SAXException {
+    ) {
         tempElement = qName;
         if (qName != null && qName.trim().length() > 0) {
             if (qName.equals(ELEMENT_RESOURCE)) {
-                //创建集合
                 list = new ArrayList<>();
             } else if (qName.equals(ELEMENT_DIMEN)) {
-                //创建对象
                 dimenBean = new DimenItem();
                 if (attributes != null && attributes.getLength() > 0) {
                     dimenBean.name = attributes.getValue(PROPERTY_NAME);
@@ -54,11 +48,10 @@ public class SAXReadHandler
             String uri,
             String localName,
             String qName
-    )
-            throws SAXException {
+    ) {
         if (qName != null && qName.trim().length() > 0) {
             if (qName.equals(ELEMENT_DIMEN)) {
-                //dimen结束标签，添加对象到集合
+                // dimen 结束标签, 添加对象到集合
                 if (list != null) {
                     list.add(dimenBean);
                     dimenBean = null;
@@ -72,18 +65,15 @@ public class SAXReadHandler
             char[] ch,
             int start,
             int length
-    )
-            throws SAXException {
+    ) {
         if (tempElement != null && tempElement.trim().equals(ELEMENT_DIMEN)) {
             if (dimenBean != null) {
                 String temp = new String(ch, start, length);
                 if (temp.trim().length() > 0) {
                     temp = temp.trim();
-                    /** 感谢网友提醒，发现偶现的bug，同一处的文本会回调多次 */
                     if (dimenBean.value == null || dimenBean.value.trim().length() == 0) {
                         dimenBean.value = temp;
                     } else {
-                        //内容累加
                         dimenBean.value += temp;
                     }
                 }

@@ -1,10 +1,8 @@
 package dev.screen.dp.utils;
 
 /**
- * @Author: duke
- * @DateTime: 2016-08-24 17:32
- * @UpdateTime: 2017-09-29 09:55
- * @Description: dimens文件中的dimen数据项
+ * detail: dimens 文件中的 dimen 数据项
+ * @author duke
  */
 public class DimenItem {
 

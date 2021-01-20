@@ -16,42 +16,42 @@ import javax.xml.transform.sax.TransformerHandler;
 import javax.xml.transform.stream.StreamResult;
 
 /**
- * dimens处理
- * @UpdateTime: 2017-09-29 09:55
+ * detail: dimens 处理
+ * @author duke
  */
 public class XmlIO {
 
     /**
-     * 解析dimens文件
-     * @param baseDimenFilePath 源dimens文件路径
+     * 解析 dimens 文件
+     * @param baseDimenFilePath 源 dimens 文件路径
      */
-    public static ArrayList<DimenItem> readDimenFile(String baseDimenFilePath) {
-        ArrayList<DimenItem> list = null;
+    public static ArrayList<DimenItem> readDimenFile(final String baseDimenFilePath) {
         try {
             SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
             SAXParser        saxparser        = saxParserFactory.newSAXParser();
             InputStream      inputStream      = new FileInputStream(baseDimenFilePath);
             SAXReadHandler   saxReadHandler   = new SAXReadHandler();
             saxparser.parse(inputStream, saxReadHandler);
-            list = saxReadHandler.getData();
+            return saxReadHandler.getData();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return list;
+        return null;
     }
 
     /**
-     * 生成dimens文件
-     * @param isFontMatch 字体是否也适配(是否与dp尺寸一样等比缩放)
-     * @param list        源dimens数据
+     * 生成 dimens 文件
+     * @param isFontMatch 字体是否也适配 ( 是否与 dp 尺寸一样等比缩放 )
+     * @param list        源 dimens 数据
      * @param multiple    对应新文件需要乘以的系数
      * @param outPutFile  目标文件输出目录
+     * @return {@code true} success, {@code false} fail
      */
-    public static void createDestinationDimens(
-            boolean isFontMatch,
-            ArrayList<DimenItem> list,
-            double multiple,
-            String outPutFile
+    public static boolean createDestinationDimens(
+            final boolean isFontMatch,
+            final ArrayList<DimenItem> list,
+            final double multiple,
+            final String outPutFile
     ) {
         try {
             File targetFile = new File(outPutFile);
@@ -62,55 +62,54 @@ public class XmlIO {
                     e.printStackTrace();
                 }
             }
-            // 创建SAXTransformerFactory实例
+            // 创建 SAXTransformerFactory 实例
             SAXTransformerFactory saxTransformerFactory = (SAXTransformerFactory) SAXTransformerFactory.newInstance();
-            // 创建TransformerHandler实例
+            // 创建 TransformerHandler 实例
             TransformerHandler handler = saxTransformerFactory.newTransformerHandler();
-            // 创建Transformer实例
+            // 创建 Transformer 实例
             Transformer transformer = handler.getTransformer();
             // 是否自动添加额外的空白
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
             // 设置字符编码
             transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-            // 添加xml版本，默认也是1.0
+            // 添加 xml 版本, 默认也是 1.0
             transformer.setOutputProperty(OutputKeys.VERSION, "1.0");
-            // 保存xml路径
+            // 保存 xml 路径
             StreamResult result = new StreamResult(targetFile);
             handler.setResult(result);
-            // 创建属性Attribute对象
+            // 创建属性 Attribute 对象
             AttributesImpl attributes = new AttributesImpl();
             attributes.clear();
-            // 开始xml
+            // 开始 xml
             handler.startDocument();
             // 换行
             handler.characters("\n".toCharArray(), 0, "\n".length());
-            // 写入根节点resources
+            // 写入根节点 resources
             handler.startElement("", "", SAXReadHandler.ELEMENT_RESOURCE, attributes);
             // 集合大小
             int size = list.size();
             for (int i = 0; i < size; i++) {
                 DimenItem dimenBean = list.get(i);
-                // 乘以系数，加上后缀
+                // 乘以系数加上后缀
                 String targetValue = Tools.countValue(isFontMatch, dimenBean.value, multiple);
                 attributes.clear();
                 attributes.addAttribute("", "", SAXReadHandler.PROPERTY_NAME, "", dimenBean.name);
 
-                // 新dimen之前，换行、缩进
+                // 新 dimen 之前换行、缩进
                 handler.characters("\n".toCharArray(), 0, "\n".length());
                 handler.characters("\t".toCharArray(), 0, "\t".length());
 
-                //开始标签对输出
+                // 开始标签对输出
                 handler.startElement("", "", SAXReadHandler.ELEMENT_DIMEN, attributes);
                 handler.characters(targetValue.toCharArray(), 0, targetValue.length());
                 handler.endElement("", "", SAXReadHandler.ELEMENT_DIMEN);
             }
             handler.endElement("", "", SAXReadHandler.ELEMENT_RESOURCE);
             handler.endDocument();
-
-            System.out.println(">>>>> " + outPutFile + " 文件生成完成!");
+            return true;
         } catch (Exception e) {
-            System.out.println("DK WARNING: " + outPutFile + " 文件生成失败!");
             e.printStackTrace();
         }
+        return false;
     }
 }
