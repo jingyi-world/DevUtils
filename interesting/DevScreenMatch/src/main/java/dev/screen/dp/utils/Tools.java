@@ -40,11 +40,11 @@ public class Tools {
         }
         // 替换非引用值的单位 dip 为 dp
         if (sourceValue.endsWith("dip")) {
-            sourceValue = sourceValue.replaceAll("dip", "dev/screen/dp");
+            sourceValue = sourceValue.replaceAll("dip", "dp");
         }
         // xxpx
         // xxpt
-        if (!sourceValue.endsWith("dev/screen/dp") && !sourceValue.endsWith("sp")) {
+        if (!sourceValue.endsWith("dp") && !sourceValue.endsWith("sp")) {
             // 非 dp 或 sp 数据, 不执行计算
             return sourceValue;
         }
