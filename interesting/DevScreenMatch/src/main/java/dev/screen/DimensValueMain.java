@@ -1,6 +1,7 @@
 package dev.screen;
 
 import dev.utils.DevFinal;
+import dev.utils.common.BigDecimalUtils;
 
 /**
  * detail: dimen 值生成
@@ -47,8 +48,9 @@ public class DimensValueMain {
         for (float value = start; value <= end; value += interval) {
             int    intValue = (int) value;
             String strValue = String.valueOf(value);
+            strValue = BigDecimalUtils.round(strValue, 1).toPlainString();
             // 属于整数
-            if (isIntegerForDouble(value)) {
+            if (strValue.endsWith(".0")) {
                 strValue = String.valueOf(intValue);
             } else {
                 strValue = strValue.replaceAll("\\.", "_");
@@ -61,10 +63,5 @@ public class DimensValueMain {
             ).append(DevFinal.NEW_LINE_STR);
         }
         return builder.toString();
-    }
-
-    public static boolean isIntegerForDouble(double obj) {
-        double eps = 1e-10;  // 精度范围
-        return obj - Math.floor(obj) < eps;
     }
 }
