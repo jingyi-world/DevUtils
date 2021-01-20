@@ -21,9 +21,10 @@ final class GeneratePxValueFiles {
     }
 
     // 项目路径
-    private final        String            PROJECT_PATH    = "/interesting/DevScreenMatch/res/";
+    private final String PROJECT_PATH = "/interesting/DevScreenMatch/res/";
     // 保存地址
-    private final        String            DIR             = new File(System.getProperty("user.dir"), PROJECT_PATH).getAbsolutePath();
+    private final String DIR          = new File(System.getProperty("user.dir"), PROJECT_PATH).getAbsolutePath();
+
     // 基准宽度
     private final        int               BASE_WIDTH      = 750;
     // 基准高度
