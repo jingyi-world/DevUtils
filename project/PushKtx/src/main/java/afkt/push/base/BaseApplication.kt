@@ -1,8 +1,9 @@
 package afkt.push.base
 
+import afkt.push.BuildConfig
 import androidx.multidex.MultiDexApplication
+import cn.jpush.android.api.JPushInterface
 import dev.DevUtils
-import dev.base.BuildConfig
 import dev.utils.app.logger.DevLogger
 import dev.utils.app.logger.LogConfig
 import dev.utils.app.logger.LogLevel
@@ -27,5 +28,8 @@ class BaseApplication : MultiDexApplication() {
             DevUtils.openLog()
             DevUtils.openDebug()
         }
+        // 推送初始化
+        JPushInterface.setDebugMode(BuildConfig.DEBUG);
+        JPushInterface.init(this);
     }
 }

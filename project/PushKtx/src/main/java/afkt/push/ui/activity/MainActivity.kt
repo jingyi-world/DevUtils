@@ -1,20 +1,20 @@
 package afkt.push.ui.activity
 
+import afkt.push.R
+import afkt.push.base.BaseActivity
 import afkt.push.databinding.ActivityMainBinding
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
+import dev.utils.app.AppUtils
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding>() {
 
-    private lateinit var binding: ActivityMainBinding
+    override fun baseLayoutId(): Int = R.layout.activity_main
 
-    // = Object =
+    override fun initListener() {
+        super.initListener()
 
-    private val REQUEST_CODE = 1
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        binding.vidAmOtherBtn.setOnClickListener {
+            AppUtils.startActivity(Intent(this, OtherActivity::class.java))
+        }
     }
 }
