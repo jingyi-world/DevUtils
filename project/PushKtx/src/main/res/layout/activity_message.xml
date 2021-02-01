@@ -10,9 +10,9 @@
         android:id="@+id/vid_am_message_tv"
         style="@style/AppTheme.Base_TextView"
         android:layout_gravity="center"
-        android:gravity="center"
+        android:padding="@dimen/un_dp_10"
         android:textColor="@color/white"
-        android:textSize="@dimen/un_sp_28"
+        android:textSize="@dimen/un_sp_18"
         android:textStyle="bold"
         tools:text="MessageActivity" />
 </FrameLayout>

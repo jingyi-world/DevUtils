@@ -19,7 +19,6 @@ import dev.utils.app.logger.DevLogger
 import dev.utils.app.logger.LogConfig
 import dev.utils.app.logger.LogLevel
 
-
 class BaseApplication : MultiDexApplication() {
 
     private val TAG = "PushKtx_TAG"

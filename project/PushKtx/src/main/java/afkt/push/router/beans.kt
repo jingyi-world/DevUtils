@@ -3,6 +3,7 @@ package afkt.push.jpush
 import android.os.Parcelable
 import cn.jpush.android.api.NotificationMessage
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import dev.utils.app.logger.DevLogger
 import kotlinx.android.parcel.Parcelize
 
@@ -54,6 +55,18 @@ fun toPushMessage(message: NotificationMessage): PushMessage {
     )
 }
 
+fun <T> fromJson(
+    json: String?,
+    classOfT: Class<T>?
+): T? {
+    try {
+        return Gson().fromJson(json, classOfT)
+    } catch (e: Exception) {
+        DevLogger.e(e)
+    }
+    return null
+}
+
 fun toJson(obj: Any?): String? {
     try {
         return Gson().toJson(obj)
@@ -63,12 +76,9 @@ fun toJson(obj: Any?): String? {
     return null
 }
 
-fun <T> fromJson(
-    json: String?,
-    classOfT: Class<T>?
-): T? {
+fun toJsonFormat(obj: Any?): String? {
     try {
-        return Gson().fromJson(json, classOfT)
+        return GsonBuilder().setPrettyPrinting().create().toJson(obj)
     } catch (e: Exception) {
         DevLogger.e(e)
     }

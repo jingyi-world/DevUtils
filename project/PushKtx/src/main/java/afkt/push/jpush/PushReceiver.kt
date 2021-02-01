@@ -9,7 +9,6 @@ import cn.jpush.android.api.NotificationMessage
 import cn.jpush.android.service.JPushMessageReceiver
 import dev.utils.app.logger.DevLogger
 
-
 /**
  * detail: 极光推送广播
  * @author Ttt

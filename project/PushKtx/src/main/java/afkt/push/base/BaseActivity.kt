@@ -1,6 +1,7 @@
 package afkt.push.base
 
 import afkt.push.R
+import afkt.push.router.PushRouterChecker
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.Toolbar
@@ -22,6 +23,13 @@ abstract class BaseActivity<VB : ViewBinding> : DevBaseContentViewBindingActivit
         if (isToolBar()) initToolBar()
 
         initOrder()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        // 检查推送路由
+        PushRouterChecker.checker(this, this.javaClass.simpleName)
     }
 
     // ===========

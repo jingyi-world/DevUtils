@@ -4,6 +4,7 @@ import afkt.push.R
 import afkt.push.base.BaseActivity
 import afkt.push.databinding.ActivityMessageBinding
 import afkt.push.jpush.PushMessage
+import afkt.push.jpush.toJsonFormat
 import dev.utils.DevFinal
 
 /**
@@ -15,8 +16,6 @@ class MessageActivity : BaseActivity<ActivityMessageBinding>() {
 
     override fun isToolBar(): Boolean = true
 
-    override fun isViewBinding(): Boolean = false
-
     override fun baseLayoutId(): Int = R.layout.activity_message
 
     override fun initValue() {
@@ -24,20 +23,7 @@ class MessageActivity : BaseActivity<ActivityMessageBinding>() {
         setTitle(TAG) // MessageActivity
 
         intent?.getParcelableExtra<PushMessage>(DevFinal.DATA)?.run {
-            var builder = StringBuilder()
-                .append("msgId: ${msgId}")
-                .append("${DevFinal.NEW_LINE_STR}")
-                .append("notificationId: ${notificationId}")
-                .append("${DevFinal.NEW_LINE_STR}")
-                .append("notificationTitle: ${notificationTitle}")
-                .append("${DevFinal.NEW_LINE_STR}")
-                .append("notificationContent: ${notificationContent}")
-                .append("${DevFinal.NEW_LINE_STR}")
-                .append("notificationExtras: ${notificationExtras}")
-                .append("${DevFinal.NEW_LINE_STR}")
-                .append("pushExtras routerUri: ${pushExtras?.routerUri}")
-
-            binding.vidAmMessageTv.text = builder.toString()
+            binding.vidAmMessageTv.text = toJsonFormat(this)
         }
     }
 }
