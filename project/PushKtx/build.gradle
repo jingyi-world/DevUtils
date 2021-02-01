@@ -13,7 +13,7 @@ android {
         manifestPlaceholders = [
                 JPUSH_PKGNAME: applicationId,
                 JPUSH_APPKEY : "366bc1229fa4a6c47817a8f4",
-                JPUSH_CHANNEL: "install-debug",
+                JPUSH_CHANNEL: "dev-install-debug",
         ]
     }
 }

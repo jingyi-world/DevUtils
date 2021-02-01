@@ -39,6 +39,15 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <!-- =============== -->
+        <!-- 推送消息路由处理 -->
+        <!-- =============== -->
+
+        <activity
+            android:name=".router.PushRouterActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
         <!-- =========== -->
         <!-- 极光推送配置 -->
         <!-- =========== -->
