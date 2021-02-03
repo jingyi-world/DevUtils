@@ -1,6 +1,5 @@
 package afkt.lock.jpush
 
-import afkt.lock.router.PushRouterActivity
 import android.content.Context
 import android.content.Intent
 import cn.jpush.android.api.CmdMessage
@@ -34,12 +33,6 @@ class PushReceiver : JPushMessageReceiver() {
         message: NotificationMessage?
     ) {
         DevLogger.dTag(TAG, "[onNotifyMessageOpened] ${message}")
-        // 点击通知消息
-        message?.let {
-            var pushMessage = toPushMessage(message)
-            // 跳转进行推送消息解析分发
-            PushRouterActivity.start(context, pushMessage)
-        }
     }
 
     override fun onNotifyMessageArrived(

@@ -12,7 +12,7 @@ android {
 
         manifestPlaceholders = [
                 JPUSH_PKGNAME: applicationId,
-                JPUSH_APPKEY : "366bc1229fa4a6c47817a8f4",
+                JPUSH_APPKEY : "88fc986aa504bd99f3e40092",
                 JPUSH_CHANNEL: "dev-install-debug",
         ]
     }
@@ -21,13 +21,6 @@ android {
 dependencies {
     implementation project(':DevApp')
     implementation project(':DevBaseMVVM')
-
-    // =============
-    // = 快捷开发库 =
-    // =============
-
-    // Gson https://github.com/google/gson
-    implementation deps.lib.gson
 
     // ===========
     // = 极光推送 =

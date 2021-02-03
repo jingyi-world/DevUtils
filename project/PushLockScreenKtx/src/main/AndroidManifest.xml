@@ -12,41 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity
-            android:name=".ui.activity.SplashActivity"
-            android:theme="@style/SplashTheme">
+        <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".ui.activity.MainActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".ui.activity.OtherActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity
-            android:name=".ui.activity.MessageActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- =============== -->
-        <!-- 推送消息路由处理 -->
-        <!-- =============== -->
-
-        <activity
-            android:name=".router.PushRouterActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
 
         <!-- =========== -->
         <!-- 极光推送配置 -->
