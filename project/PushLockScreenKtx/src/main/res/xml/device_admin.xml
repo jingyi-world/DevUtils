@@ -11,5 +11,9 @@
         <force-lock />
         <!-- 清除所有数据 ( 恢复出厂设置 ) -->
         <wipe-data />
+        <!-- 设置存储设备加密 -->
+        <encrypted-storage />
+        <!-- 停用相机 -->
+        <disable-camera />
     </uses-policies>
 </device-admin>
