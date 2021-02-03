@@ -11,7 +11,7 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/vid_am_apply_btn"
+            android:id="@+id/vid_am_active_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -21,7 +21,21 @@
             android:paddingTop="@dimen/un_dp_10"
             android:paddingRight="@dimen/un_dp_20"
             android:paddingBottom="@dimen/un_dp_10"
-            android:text="激活组件"
+            android:text="激活组件 ( 申请权限 )"
+            android:textSize="@dimen/un_sp_20" />
+
+        <Button
+            android:id="@+id/vid_am_remove_active_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/un_dp_50"
+            android:background="@drawable/shape_bg_white_r10"
+            android:paddingLeft="@dimen/un_dp_20"
+            android:paddingTop="@dimen/un_dp_10"
+            android:paddingRight="@dimen/un_dp_20"
+            android:paddingBottom="@dimen/un_dp_10"
+            android:text="移除组件"
             android:textSize="@dimen/un_sp_20" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

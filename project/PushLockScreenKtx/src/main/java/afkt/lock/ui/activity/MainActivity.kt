@@ -16,12 +16,17 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         DevicePolicyUtils.getInstance()
             .setComponentName(DeviceReceiver::class.java)
 
-        // 申请权限
-        binding.vidAmApplyBtn.setOnClickListener {
+        // 激活组件 ( 申请权限 )
+        binding.vidAmActiveBtn.setOnClickListener {
             if (DevicePolicyUtils.getInstance().isAdminActive()) {
                 return@setOnClickListener
             }
             DevicePolicyUtils.getInstance().activeAdmin("需开启权限允许对设备进行操作!")
+        }
+
+        // 移除组件
+        binding.vidAmActiveBtn.setOnClickListener {
+            DevicePolicyUtils.getInstance().removeActiveAdmin()
         }
     }
 }
