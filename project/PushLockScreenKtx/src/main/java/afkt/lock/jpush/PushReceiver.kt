@@ -6,6 +6,7 @@ import cn.jpush.android.api.CmdMessage
 import cn.jpush.android.api.CustomMessage
 import cn.jpush.android.api.NotificationMessage
 import cn.jpush.android.service.JPushMessageReceiver
+import dev.utils.app.DevicePolicyUtils
 import dev.utils.app.logger.DevLogger
 
 /**
@@ -22,10 +23,24 @@ class PushReceiver : JPushMessageReceiver() {
         customMessage: CustomMessage?
     ) {
         DevLogger.dTag(TAG, "[onMessage] ${customMessage}")
-//        // 自定义消息 ( 透传 )
-//        customMessage?.let {
-//            var message = it.message
-//        }
+        // 自定义消息 ( 透传 )
+        customMessage?.let {
+            var message = it.message
+
+            message?.run {
+                when (this) {
+                    "1" -> {
+                        DevicePolicyUtils.getInstance().lockNow()
+                    }
+                    "2" -> {
+                        DevicePolicyUtils.getInstance().lockByTime(3000L)
+                    }
+                    else -> {
+                        // ...
+                    }
+                }
+            }
+        }
     }
 
     override fun onNotifyMessageOpened(
