@@ -522,7 +522,7 @@ public final class BigDecimalUtils {
          */
         public Operation add(final BigDecimal value) {
             if (mValue != null && value != null) {
-                mValue.add(value);
+                mValue = mValue.add(value);
             }
             return this;
         }
@@ -556,7 +556,7 @@ public final class BigDecimalUtils {
          */
         public Operation subtract(final BigDecimal value) {
             if (mValue != null && value != null) {
-                mValue.subtract(value);
+                mValue = mValue.subtract(value);
             }
             return this;
         }
@@ -590,7 +590,7 @@ public final class BigDecimalUtils {
          */
         public Operation multiply(final BigDecimal value) {
             if (mValue != null && value != null) {
-                mValue.multiply(value);
+                mValue = mValue.multiply(value);
             }
             return this;
         }
@@ -601,116 +601,132 @@ public final class BigDecimalUtils {
 
         /**
          * 提供精确的除法运算
-         * @param v1 被除数
-         * @param v2 除数
-         * @return 两个参数的商
+         * @param value 除数
+         * @return {@link Operation}
          */
-        public double divide(
-                final double v1,
-                final double v2
-        ) {
-            return divide(v1, v2, NEW_SCALE, ROUNDING_MODE);
+        public Operation divide(final double value) {
+            return divide(new BigDecimal(value), mConfig);
         }
 
         /**
          * 提供精确的除法运算
-         * @param v1    被除数
-         * @param v2    除数
-         * @param scale 保留 scale 位小数
-         * @return 两个参数的商
+         * @param value  除数
+         * @param config {@link Config}
+         * @return {@link Operation}
          */
-        public double divide(
-                final double v1,
-                final double v2,
-                final int scale
+        public Operation divide(
+                final double value,
+                final Config config
         ) {
-            return divide(v1, v2, scale, ROUNDING_MODE);
+            return divide(new BigDecimal(value), config);
         }
 
         /**
          * 提供精确的除法运算
-         * @param v1           被除数
-         * @param v2           除数
+         * @param value        除数
          * @param scale        保留 scale 位小数
          * @param roundingMode 舍入模式
-         * @return 两个参数的商
+         * @return {@link Operation}
          */
-        public double divide(
-                final double v1,
-                final double v2,
+        public Operation divide(
+                final double value,
                 final int scale,
                 final int roundingMode
         ) {
-            try {
-                BigDecimal b1 = new BigDecimal(Double.toString(v1));
-                BigDecimal b2 = new BigDecimal(Double.toString(v2));
-                if (scale <= 0) {
-                    return b1.divide(b2).intValue();
-                } else {
-                    return b1.divide(b2).setScale(scale, roundingMode).doubleValue();
-                }
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "divide");
-            }
-            return 0d;
+            return divide(new BigDecimal(value), scale, roundingMode);
         }
 
         // =
 
         /**
          * 提供精确的除法运算
-         * @param v1 被除数
-         * @param v2 除数
-         * @return 两个参数的商
+         * @param value 除数
+         * @return {@link Operation}
          */
-        public BigDecimal divide(
-                final String v1,
-                final String v2
-        ) {
-            return divide(v1, v2, NEW_SCALE, ROUNDING_MODE);
+        public Operation divide(final String value) {
+            return divide(new BigDecimal(value), mConfig);
         }
 
         /**
          * 提供精确的除法运算
-         * @param v1    被除数
-         * @param v2    除数
-         * @param scale 保留 scale 位小数
-         * @return 两个参数的商
+         * @param value  除数
+         * @param config {@link Config}
+         * @return {@link Operation}
          */
-        public BigDecimal divide(
-                final String v1,
-                final String v2,
-                final int scale
+        public Operation divide(
+                final String value,
+                final Config config
         ) {
-            return divide(v1, v2, scale, ROUNDING_MODE);
+            return divide(new BigDecimal(value), config);
         }
 
         /**
          * 提供精确的除法运算
-         * @param v1           被除数
-         * @param v2           除数
+         * @param value        除数
          * @param scale        保留 scale 位小数
          * @param roundingMode 舍入模式
-         * @return 两个参数的商
+         * @return {@link Operation}
          */
-        public BigDecimal divide(
-                final String v1,
-                final String v2,
+        public Operation divide(
+                final String value,
                 final int scale,
                 final int roundingMode
         ) {
-            try {
-                BigDecimal b1 = new BigDecimal(v1);
-                BigDecimal b2 = new BigDecimal(v2);
-                if (scale <= 0) {
-                    return new BigDecimal(b1.divide(b2).intValue());
-                } else {
-                    return b1.divide(b2).setScale(scale, roundingMode);
-                }
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "divide");
+            return divide(new BigDecimal(value), scale, roundingMode);
+        }
+
+        // =
+
+        /**
+         * 提供精确的除法运算
+         * @param value 除数
+         * @return {@link Operation}
+         */
+        public Operation divide(final BigDecimal value) {
+            return divide(value, mConfig);
+        }
+
+        /**
+         * 提供精确的除法运算
+         * @param value  除数
+         * @param config {@link Config}
+         * @return {@link Operation}
+         */
+        public Operation divide(
+                final BigDecimal value,
+                final Config config
+        ) {
+            if (config != null) {
+                return divide(value, config.getScale(), config.getRoundingMode());
+            } else {
+                return divide(value, NEW_SCALE, ROUNDING_MODE);
             }
-            return null;
+        }
+
+        /**
+         * 提供精确的除法运算
+         * @param value        除数
+         * @param scale        保留 scale 位小数
+         * @param roundingMode 舍入模式
+         * @return {@link Operation}
+         */
+        public Operation divide(
+                final BigDecimal value,
+                final int scale,
+                final int roundingMode
+        ) {
+            if (mValue != null) {
+                try {
+                    if (scale <= 0) {
+                        mValue = mValue.divide(value);
+                    } else {
+                        mValue = mValue.divide(value, scale, roundingMode);
+                    }
+                } catch (Exception e) {
+                    JCLogUtils.eTag(TAG, e, "divide");
+                }
+            }
+            return this;
         }
 
         // ========
