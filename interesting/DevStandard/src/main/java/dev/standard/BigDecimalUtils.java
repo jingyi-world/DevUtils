@@ -27,8 +27,8 @@ public final class BigDecimalUtils {
     private static int ROUNDING_MODE = BigDecimal.ROUND_DOWN;
 
     /**
-     * 设置全局小数点位数、舍入模式
-     * @param scale        小数点位数
+     * 设置全局小数点保留位数、舍入模式
+     * @param scale        小数点保留位数
      * @param roundingMode 舍入模式
      */
     public static void setScale(
@@ -42,31 +42,29 @@ public final class BigDecimalUtils {
     // =
 
     /**
-     * 获取 Operation
+     * 获取 BigDecimal
      * @param value Value
-     * @return {@link Operation}
+     * @return {@link BigDecimal}
      */
-    public static Operation getOperation(final int value) {
-        return new Operation(value);
+    public static BigDecimal getBigDecimal(final double value) {
+        return new BigDecimal(value);
     }
 
     /**
-     * 获取 Operation
+     * 获取 BigDecimal
      * @param value Value
-     * @return {@link Operation}
+     * @return {@link BigDecimal}
      */
-    public static Operation getOperation(final long value) {
-        return new Operation(value);
+    public static BigDecimal getBigDecimal(final String value) {
+        try {
+            return new BigDecimal(value);
+        } catch (Exception e) {
+            JCLogUtils.eTag(TAG, e, "getBigDecimal");
+        }
+        return null;
     }
 
-    /**
-     * 获取 Operation
-     * @param value Value
-     * @return {@link Operation}
-     */
-    public static Operation getOperation(final float value) {
-        return new Operation(value);
-    }
+    // =
 
     /**
      * 获取 Operation
@@ -83,6 +81,15 @@ public final class BigDecimalUtils {
      * @return {@link Operation}
      */
     public static Operation getOperation(final String value) {
+        return new Operation(value);
+    }
+
+    /**
+     * 获取 Operation
+     * @param value Value
+     * @return {@link Operation}
+     */
+    public static Operation getOperation(final BigDecimal value) {
         return new Operation(value);
     }
 
@@ -343,18 +350,6 @@ public final class BigDecimalUtils {
             this.mValue = value;
         }
 
-        public Operation(final int value) {
-            this.mValue = new BigDecimal(value);
-        }
-
-        public Operation(final long value) {
-            this.mValue = new BigDecimal(value);
-        }
-
-        public Operation(final float value) {
-            this.mValue = new BigDecimal(value);
-        }
-
         public Operation(final double value) {
             this.mValue = new BigDecimal(value);
         }
@@ -403,7 +398,21 @@ public final class BigDecimalUtils {
          * @return {@link Operation}
          */
         public Operation setConfig(final Config config) {
+            return setConfig(config, true);
+        }
+
+        /**
+         * 设置配置信息
+         * @param config {@link Config}
+         * @param set    是否进行设置
+         * @return {@link Operation}
+         */
+        public Operation setConfig(
+                final Config config,
+                final boolean set
+        ) {
             this.mConfig = config;
+            if (set) setScaleByConfig();
             return this;
         }
 
@@ -412,25 +421,48 @@ public final class BigDecimalUtils {
          * @return {@link Operation}
          */
         public Operation removeConfig() {
-            return setConfig(null);
+            return setConfig(null, false);
+        }
+
+        // =
+
+        /**
+         * 设置小数点保留位数、舍入模式
+         * @param scale        小数点保留位数
+         * @param roundingMode 舍入模式
+         */
+        public Operation setScale(
+                final int scale,
+                final int roundingMode
+        ) {
+            return setScale(new Config(scale, roundingMode));
+        }
+
+        /**
+         * 设置小数点保留位数、舍入模式
+         * @param config {@link Config}
+         * @return {@link Operation}
+         */
+        public Operation setScale(final Config config) {
+            if (config != null && mValue != null) {
+                try {
+                    mValue = mValue.setScale(
+                            config.getScale(),
+                            config.getRoundingMode()
+                    );
+                } catch (Exception e) {
+                    JCLogUtils.eTag(TAG, e, "setScale");
+                }
+            }
+            return this;
         }
 
         /**
          * 设置小数点保留位数、舍入模式
          * @return {@link Operation}
          */
-        public Operation setConfigScale() {
-            if (mConfig != null && mValue != null) {
-                try {
-                    mValue = mValue.setScale(
-                            mConfig.getScale(),
-                            mConfig.getRoundingMode()
-                    );
-                } catch (Exception e) {
-                    JCLogUtils.eTag(TAG, e, "setConfigScale");
-                }
-            }
-            return this;
+        public Operation setScaleByConfig() {
+            return setScale(mConfig);
         }
 
         // ===========
@@ -467,116 +499,32 @@ public final class BigDecimalUtils {
 
         /**
          * 提供精确的加法运算
-         * @param v1 被加数
-         * @param v2 加数
-         * @return 两个参数的和
+         * @param value 加数
+         * @return {@link Operation}
          */
-        public double add(
-                final double v1,
-                final double v2
-        ) {
-            return add(v1, v2, NEW_SCALE, ROUNDING_MODE);
+        public Operation add(final double value) {
+            return add(new BigDecimal(value));
         }
 
         /**
          * 提供精确的加法运算
-         * @param v1    被加数
-         * @param v2    加数
-         * @param scale 保留 scale 位小数
-         * @return 两个参数的和
+         * @param value 加数
+         * @return {@link Operation}
          */
-        public double add(
-                final double v1,
-                final double v2,
-                final int scale
-        ) {
-            return add(v1, v2, scale, ROUNDING_MODE);
+        public Operation add(final String value) {
+            return add(BigDecimalUtils.getBigDecimal(value));
         }
 
         /**
          * 提供精确的加法运算
-         * @param v1           被加数
-         * @param v2           加数
-         * @param scale        保留 scale 位小数
-         * @param roundingMode 舍入模式
-         * @return 两个参数的和
+         * @param value 加数
+         * @return {@link Operation}
          */
-        public double add(
-                final double v1,
-                final double v2,
-                final int scale,
-                final int roundingMode
-        ) {
-            try {
-                BigDecimal b1 = new BigDecimal(Double.toString(v1));
-                BigDecimal b2 = new BigDecimal(Double.toString(v2));
-                if (scale <= 0) {
-                    return b1.add(b2).intValue();
-                } else {
-                    return b1.add(b2).setScale(scale, roundingMode).doubleValue();
-                }
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "add");
+        public Operation add(final BigDecimal value) {
+            if (mValue != null && value != null) {
+                mValue.add(value);
             }
-            return 0d;
-        }
-
-        // =
-
-        /**
-         * 提供精确的加法运算
-         * @param v1 被加数
-         * @param v2 加数
-         * @return 两个参数的和
-         */
-        public BigDecimal add(
-                final String v1,
-                final String v2
-        ) {
-            return add(v1, v2, NEW_SCALE, ROUNDING_MODE);
-        }
-
-        /**
-         * 提供精确的加法运算
-         * @param v1    被加数
-         * @param v2    加数
-         * @param scale 保留 scale 位小数
-         * @return 两个参数的和
-         */
-        public BigDecimal add(
-                final String v1,
-                final String v2,
-                final int scale
-        ) {
-            return add(v1, v2, scale, ROUNDING_MODE);
-        }
-
-        /**
-         * 提供精确的加法运算
-         * @param v1           被加数
-         * @param v2           加数
-         * @param scale        保留 scale 位小数
-         * @param roundingMode 舍入模式
-         * @return 两个参数的和
-         */
-        public BigDecimal add(
-                final String v1,
-                final String v2,
-                final int scale,
-                final int roundingMode
-        ) {
-            try {
-                BigDecimal b1 = new BigDecimal(v1);
-                BigDecimal b2 = new BigDecimal(v2);
-                if (scale <= 0) {
-                    return new BigDecimal(b1.add(b2).intValue());
-                } else {
-                    return b1.add(b2).setScale(scale, roundingMode);
-                }
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "add");
-            }
-            return null;
+            return this;
         }
 
         // ======
@@ -585,116 +533,32 @@ public final class BigDecimalUtils {
 
         /**
          * 提供精确的减法运算
-         * @param v1 被减数
-         * @param v2 减数
-         * @return 两个参数的差
+         * @param value 减数
+         * @return {@link Operation}
          */
-        public double subtract(
-                final double v1,
-                final double v2
-        ) {
-            return subtract(v1, v2, NEW_SCALE, ROUNDING_MODE);
+        public Operation subtract(final double value) {
+            return subtract(new BigDecimal(value));
         }
 
         /**
          * 提供精确的减法运算
-         * @param v1    被减数
-         * @param v2    减数
-         * @param scale 保留 scale 位小数
-         * @return 两个参数的差
+         * @param value 减数
+         * @return {@link Operation}
          */
-        public double subtract(
-                final double v1,
-                final double v2,
-                final int scale
-        ) {
-            return subtract(v1, v2, scale, ROUNDING_MODE);
+        public Operation subtract(final String value) {
+            return subtract(BigDecimalUtils.getBigDecimal(value));
         }
 
         /**
          * 提供精确的减法运算
-         * @param v1           被减数
-         * @param v2           减数
-         * @param scale        保留 scale 位小数
-         * @param roundingMode 舍入模式
-         * @return 两个参数的差
+         * @param value 减数
+         * @return {@link Operation}
          */
-        public double subtract(
-                final double v1,
-                final double v2,
-                final int scale,
-                final int roundingMode
-        ) {
-            try {
-                BigDecimal b1 = new BigDecimal(Double.toString(v1));
-                BigDecimal b2 = new BigDecimal(Double.toString(v2));
-                if (scale <= 0) {
-                    return b1.subtract(b2).intValue();
-                } else {
-                    return b1.subtract(b2).setScale(scale, roundingMode).doubleValue();
-                }
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "subtract");
+        public Operation subtract(final BigDecimal value) {
+            if (mValue != null && value != null) {
+                mValue.subtract(value);
             }
-            return 0d;
-        }
-
-        // =
-
-        /**
-         * 提供精确的减法运算
-         * @param v1 被减数
-         * @param v2 减数
-         * @return 两个参数的差
-         */
-        public BigDecimal subtract(
-                final String v1,
-                final String v2
-        ) {
-            return subtract(v1, v2, NEW_SCALE, ROUNDING_MODE);
-        }
-
-        /**
-         * 提供精确的减法运算
-         * @param v1    被减数
-         * @param v2    减数
-         * @param scale 保留 scale 位小数
-         * @return 两个参数的差
-         */
-        public BigDecimal subtract(
-                final String v1,
-                final String v2,
-                final int scale
-        ) {
-            return subtract(v1, v2, scale, ROUNDING_MODE);
-        }
-
-        /**
-         * 提供精确的减法运算
-         * @param v1           被减数
-         * @param v2           减数
-         * @param scale        保留 scale 位小数
-         * @param roundingMode 舍入模式
-         * @return 两个参数的差
-         */
-        public BigDecimal subtract(
-                final String v1,
-                final String v2,
-                final int scale,
-                final int roundingMode
-        ) {
-            try {
-                BigDecimal b1 = new BigDecimal(v1);
-                BigDecimal b2 = new BigDecimal(v2);
-                if (scale <= 0) {
-                    return new BigDecimal(b1.subtract(b2).intValue());
-                } else {
-                    return b1.subtract(b2).setScale(scale, roundingMode);
-                }
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "subtract");
-            }
-            return null;
+            return this;
         }
 
         // ======
