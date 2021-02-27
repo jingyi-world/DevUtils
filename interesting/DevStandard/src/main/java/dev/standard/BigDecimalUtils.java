@@ -24,954 +24,66 @@ public final class BigDecimalUtils {
     // 小数点位数
     private static int NEW_SCALE     = 10;
     // 舍入模式
-    private static int ROUNDING_MODE = BigDecimal.ROUND_UNNECESSARY;
+    private static int ROUNDING_MODE = BigDecimal.ROUND_DOWN;
 
     /**
-     * 设置小数点位数
-     * @param scale 小数点位数
-     */
-    public static void setScale(final int scale) {
-        NEW_SCALE = scale;
-    }
-
-    /**
-     * 设置舍入模式
+     * 设置全局小数点位数、舍入模式
+     * @param scale        小数点位数
      * @param roundingMode 舍入模式
      */
-    public static void setRoundingMode(final int roundingMode) {
+    public static void setScale(
+            final int scale,
+            final int roundingMode
+    ) {
+        NEW_SCALE = scale;
         ROUNDING_MODE = roundingMode;
     }
 
     // =
 
     /**
-     * 获取 BigDecimal
+     * 获取 Operation
      * @param value Value
-     * @return {@link BigDecimal}
+     * @return {@link Operation}
      */
-    public static BigDecimal getBigDecimal(final int value) {
-        return new BigDecimal(value);
+    public static Operation getOperation(final int value) {
+        return new Operation(value);
     }
 
     /**
-     * 获取 BigDecimal
+     * 获取 Operation
      * @param value Value
-     * @return {@link BigDecimal}
+     * @return {@link Operation}
      */
-    public static BigDecimal getBigDecimal(final long value) {
-        return new BigDecimal(value);
+    public static Operation getOperation(final long value) {
+        return new Operation(value);
     }
 
     /**
-     * 获取 BigDecimal
+     * 获取 Operation
      * @param value Value
-     * @return {@link BigDecimal}
+     * @return {@link Operation}
      */
-    public static BigDecimal getBigDecimal(final float value) {
-        return new BigDecimal(Float.toString(value));
+    public static Operation getOperation(final float value) {
+        return new Operation(value);
     }
 
     /**
-     * 获取 BigDecimal
+     * 获取 Operation
      * @param value Value
-     * @return {@link BigDecimal}
+     * @return {@link Operation}
      */
-    public static BigDecimal getBigDecimal(final double value) {
-        return new BigDecimal(Double.toString(value));
+    public static Operation getOperation(final double value) {
+        return new Operation(value);
     }
 
     /**
-     * 获取 BigDecimal
+     * 获取 Operation
      * @param value Value
-     * @return {@link BigDecimal}
+     * @return {@link Operation}
      */
-    public static BigDecimal getBigDecimal(final String value) {
-        try {
-            return new BigDecimal(value);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "getBigDecimal");
-        }
-        return null;
-    }
-
-    // =
-
-    /**
-     * 获取此 BigDecimal 的字符串表示形式科学记数法
-     * @param value {@link BigDecimal}
-     * @return 此 BigDecimal 的字符串表示形式科学记数法
-     */
-    public static String toString(final BigDecimal value) {
-        return (value != null) ? value.toString() : null;
-    }
-
-    /**
-     * 获取此 BigDecimal 的字符串表示形式不带指数字段
-     * @param value {@link BigDecimal}
-     * @return 此 BigDecimal 的字符串表示形式不带指数字段
-     */
-    public static String toPlainString(final BigDecimal value) {
-        return (value != null) ? value.toPlainString() : null;
-    }
-
-    /**
-     * 获取此 BigDecimal 的字符串表示形式工程计数法
-     * @param value {@link BigDecimal}
-     * @return 此 BigDecimal 的字符串表示形式工程计数法
-     */
-    public static String toEngineeringString(final BigDecimal value) {
-        return (value != null) ? value.toEngineeringString() : null;
-    }
-
-    // ======
-    // = 加 =
-    // ======
-
-    /**
-     * 提供精确的加法运算
-     * @param v1 被加数
-     * @param v2 加数
-     * @return 两个参数的和
-     */
-    public static double add(
-            final double v1,
-            final double v2
-    ) {
-        return add(v1, v2, NEW_SCALE, ROUNDING_MODE);
-    }
-
-    /**
-     * 提供精确的加法运算
-     * @param v1    被加数
-     * @param v2    加数
-     * @param scale 保留 scale 位小数
-     * @return 两个参数的和
-     */
-    public static double add(
-            final double v1,
-            final double v2,
-            final int scale
-    ) {
-        return add(v1, v2, scale, ROUNDING_MODE);
-    }
-
-    /**
-     * 提供精确的加法运算
-     * @param v1           被加数
-     * @param v2           加数
-     * @param scale        保留 scale 位小数
-     * @param roundingMode 舍入模式
-     * @return 两个参数的和
-     */
-    public static double add(
-            final double v1,
-            final double v2,
-            final int scale,
-            final int roundingMode
-    ) {
-        try {
-            BigDecimal b1 = new BigDecimal(Double.toString(v1));
-            BigDecimal b2 = new BigDecimal(Double.toString(v2));
-            if (scale <= 0) {
-                return b1.add(b2).intValue();
-            } else {
-                return b1.add(b2).setScale(scale, roundingMode).doubleValue();
-            }
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "add");
-        }
-        return 0d;
-    }
-
-    // =
-
-    /**
-     * 提供精确的加法运算
-     * @param v1 被加数
-     * @param v2 加数
-     * @return 两个参数的和
-     */
-    public static BigDecimal add(
-            final String v1,
-            final String v2
-    ) {
-        return add(v1, v2, NEW_SCALE, ROUNDING_MODE);
-    }
-
-    /**
-     * 提供精确的加法运算
-     * @param v1    被加数
-     * @param v2    加数
-     * @param scale 保留 scale 位小数
-     * @return 两个参数的和
-     */
-    public static BigDecimal add(
-            final String v1,
-            final String v2,
-            final int scale
-    ) {
-        return add(v1, v2, scale, ROUNDING_MODE);
-    }
-
-    /**
-     * 提供精确的加法运算
-     * @param v1           被加数
-     * @param v2           加数
-     * @param scale        保留 scale 位小数
-     * @param roundingMode 舍入模式
-     * @return 两个参数的和
-     */
-    public static BigDecimal add(
-            final String v1,
-            final String v2,
-            final int scale,
-            final int roundingMode
-    ) {
-        try {
-            BigDecimal b1 = new BigDecimal(v1);
-            BigDecimal b2 = new BigDecimal(v2);
-            if (scale <= 0) {
-                return new BigDecimal(b1.add(b2).intValue());
-            } else {
-                return b1.add(b2).setScale(scale, roundingMode);
-            }
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "add");
-        }
-        return null;
-    }
-
-    // ======
-    // = 减 =
-    // ======
-
-    /**
-     * 提供精确的减法运算
-     * @param v1 被减数
-     * @param v2 减数
-     * @return 两个参数的差
-     */
-    public static double subtract(
-            final double v1,
-            final double v2
-    ) {
-        return subtract(v1, v2, NEW_SCALE, ROUNDING_MODE);
-    }
-
-    /**
-     * 提供精确的减法运算
-     * @param v1    被减数
-     * @param v2    减数
-     * @param scale 保留 scale 位小数
-     * @return 两个参数的差
-     */
-    public static double subtract(
-            final double v1,
-            final double v2,
-            final int scale
-    ) {
-        return subtract(v1, v2, scale, ROUNDING_MODE);
-    }
-
-    /**
-     * 提供精确的减法运算
-     * @param v1           被减数
-     * @param v2           减数
-     * @param scale        保留 scale 位小数
-     * @param roundingMode 舍入模式
-     * @return 两个参数的差
-     */
-    public static double subtract(
-            final double v1,
-            final double v2,
-            final int scale,
-            final int roundingMode
-    ) {
-        try {
-            BigDecimal b1 = new BigDecimal(Double.toString(v1));
-            BigDecimal b2 = new BigDecimal(Double.toString(v2));
-            if (scale <= 0) {
-                return b1.subtract(b2).intValue();
-            } else {
-                return b1.subtract(b2).setScale(scale, roundingMode).doubleValue();
-            }
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "subtract");
-        }
-        return 0d;
-    }
-
-    // =
-
-    /**
-     * 提供精确的减法运算
-     * @param v1 被减数
-     * @param v2 减数
-     * @return 两个参数的差
-     */
-    public static BigDecimal subtract(
-            final String v1,
-            final String v2
-    ) {
-        return subtract(v1, v2, NEW_SCALE, ROUNDING_MODE);
-    }
-
-    /**
-     * 提供精确的减法运算
-     * @param v1    被减数
-     * @param v2    减数
-     * @param scale 保留 scale 位小数
-     * @return 两个参数的差
-     */
-    public static BigDecimal subtract(
-            final String v1,
-            final String v2,
-            final int scale
-    ) {
-        return subtract(v1, v2, scale, ROUNDING_MODE);
-    }
-
-    /**
-     * 提供精确的减法运算
-     * @param v1           被减数
-     * @param v2           减数
-     * @param scale        保留 scale 位小数
-     * @param roundingMode 舍入模式
-     * @return 两个参数的差
-     */
-    public static BigDecimal subtract(
-            final String v1,
-            final String v2,
-            final int scale,
-            final int roundingMode
-    ) {
-        try {
-            BigDecimal b1 = new BigDecimal(v1);
-            BigDecimal b2 = new BigDecimal(v2);
-            if (scale <= 0) {
-                return new BigDecimal(b1.subtract(b2).intValue());
-            } else {
-                return b1.subtract(b2).setScale(scale, roundingMode);
-            }
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "subtract");
-        }
-        return null;
-    }
-
-    // ======
-    // = 乘 =
-    // ======
-
-    /**
-     * 提供精确的乘法运算
-     * @param v1 被乘数
-     * @param v2 乘数
-     * @return 两个参数的积
-     */
-    public static double multiply(
-            final double v1,
-            final double v2
-    ) {
-        return multiply(v1, v2, NEW_SCALE, ROUNDING_MODE);
-    }
-
-    /**
-     * 提供精确的乘法运算
-     * @param v1    被乘数
-     * @param v2    乘数
-     * @param scale 保留 scale 位小数
-     * @return 两个参数的积
-     */
-    public static double multiply(
-            final double v1,
-            final double v2,
-            final int scale
-    ) {
-        return multiply(v1, v2, scale, ROUNDING_MODE);
-    }
-
-    /**
-     * 提供精确的乘法运算
-     * @param v1           被乘数
-     * @param v2           乘数
-     * @param scale        保留 scale 位小数
-     * @param roundingMode 舍入模式
-     * @return 两个参数的积
-     */
-    public static double multiply(
-            final double v1,
-            final double v2,
-            final int scale,
-            final int roundingMode
-    ) {
-        try {
-            BigDecimal b1 = new BigDecimal(Double.toString(v1));
-            BigDecimal b2 = new BigDecimal(Double.toString(v2));
-            if (scale <= 0) {
-                return b1.multiply(b2).intValue();
-            } else {
-                return b1.multiply(b2).setScale(scale, roundingMode).doubleValue();
-            }
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "multiply");
-        }
-        return 0d;
-    }
-
-    // =
-
-    /**
-     * 提供精确的乘法运算
-     * @param v1 被乘数
-     * @param v2 乘数
-     * @return 两个参数的积
-     */
-    public static BigDecimal multiply(
-            final String v1,
-            final String v2
-    ) {
-        return multiply(v1, v2, NEW_SCALE, ROUNDING_MODE);
-    }
-
-    /**
-     * 提供精确的乘法运算
-     * @param v1    被乘数
-     * @param v2    乘数
-     * @param scale 保留 scale 位小数
-     * @return 两个参数的积
-     */
-    public static BigDecimal multiply(
-            final String v1,
-            final String v2,
-            final int scale
-    ) {
-        return multiply(v1, v2, scale, ROUNDING_MODE);
-    }
-
-    /**
-     * 提供精确的乘法运算
-     * @param v1           被乘数
-     * @param v2           乘数
-     * @param scale        保留 scale 位小数
-     * @param roundingMode 舍入模式
-     * @return 两个参数的积
-     */
-    public static BigDecimal multiply(
-            final String v1,
-            final String v2,
-            final int scale,
-            final int roundingMode
-    ) {
-        try {
-            BigDecimal b1 = new BigDecimal(v1);
-            BigDecimal b2 = new BigDecimal(v2);
-            if (scale <= 0) {
-                return new BigDecimal(b1.multiply(b2).intValue());
-            } else {
-                return b1.multiply(b2).setScale(scale, roundingMode);
-            }
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "multiply");
-        }
-        return null;
-    }
-
-    // ======
-    // = 除 =
-    // ======
-
-    /**
-     * 提供精确的除法运算
-     * @param v1 被除数
-     * @param v2 除数
-     * @return 两个参数的商
-     */
-    public static double divide(
-            final double v1,
-            final double v2
-    ) {
-        return divide(v1, v2, NEW_SCALE, ROUNDING_MODE);
-    }
-
-    /**
-     * 提供精确的除法运算
-     * @param v1    被除数
-     * @param v2    除数
-     * @param scale 保留 scale 位小数
-     * @return 两个参数的商
-     */
-    public static double divide(
-            final double v1,
-            final double v2,
-            final int scale
-    ) {
-        return divide(v1, v2, scale, ROUNDING_MODE);
-    }
-
-    /**
-     * 提供精确的除法运算
-     * @param v1           被除数
-     * @param v2           除数
-     * @param scale        保留 scale 位小数
-     * @param roundingMode 舍入模式
-     * @return 两个参数的商
-     */
-    public static double divide(
-            final double v1,
-            final double v2,
-            final int scale,
-            final int roundingMode
-    ) {
-        try {
-            BigDecimal b1 = new BigDecimal(Double.toString(v1));
-            BigDecimal b2 = new BigDecimal(Double.toString(v2));
-            if (scale <= 0) {
-                return b1.divide(b2).intValue();
-            } else {
-                return b1.divide(b2).setScale(scale, roundingMode).doubleValue();
-            }
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "divide");
-        }
-        return 0d;
-    }
-
-    // =
-
-    /**
-     * 提供精确的除法运算
-     * @param v1 被除数
-     * @param v2 除数
-     * @return 两个参数的商
-     */
-    public static BigDecimal divide(
-            final String v1,
-            final String v2
-    ) {
-        return divide(v1, v2, NEW_SCALE, ROUNDING_MODE);
-    }
-
-    /**
-     * 提供精确的除法运算
-     * @param v1    被除数
-     * @param v2    除数
-     * @param scale 保留 scale 位小数
-     * @return 两个参数的商
-     */
-    public static BigDecimal divide(
-            final String v1,
-            final String v2,
-            final int scale
-    ) {
-        return divide(v1, v2, scale, ROUNDING_MODE);
-    }
-
-    /**
-     * 提供精确的除法运算
-     * @param v1           被除数
-     * @param v2           除数
-     * @param scale        保留 scale 位小数
-     * @param roundingMode 舍入模式
-     * @return 两个参数的商
-     */
-    public static BigDecimal divide(
-            final String v1,
-            final String v2,
-            final int scale,
-            final int roundingMode
-    ) {
-        try {
-            BigDecimal b1 = new BigDecimal(v1);
-            BigDecimal b2 = new BigDecimal(v2);
-            if (scale <= 0) {
-                return new BigDecimal(b1.divide(b2).intValue());
-            } else {
-                return b1.divide(b2).setScale(scale, roundingMode);
-            }
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "divide");
-        }
-        return null;
-    }
-
-    // ========
-    // = 取余 =
-    // ========
-
-    /**
-     * 提供精确的取余运算
-     * @param v1 被除数
-     * @param v2 除数
-     * @return 两个参数的余数
-     */
-    public static double remainder(
-            final double v1,
-            final double v2
-    ) {
-        return remainder(v1, v2, NEW_SCALE, ROUNDING_MODE);
-    }
-
-    /**
-     * 提供精确的取余运算
-     * @param v1    被除数
-     * @param v2    除数
-     * @param scale 保留 scale 位小数
-     * @return 两个参数的余数
-     */
-    public static double remainder(
-            final double v1,
-            final double v2,
-            final int scale
-    ) {
-        return remainder(v1, v2, scale, ROUNDING_MODE);
-    }
-
-    /**
-     * 提供精确的取余运算
-     * @param v1           被除数
-     * @param v2           除数
-     * @param scale        保留 scale 位小数
-     * @param roundingMode 舍入模式
-     * @return 两个参数的余数
-     */
-    public static double remainder(
-            final double v1,
-            final double v2,
-            final int scale,
-            final int roundingMode
-    ) {
-        try {
-            BigDecimal b1 = new BigDecimal(Double.toString(v1));
-            BigDecimal b2 = new BigDecimal(Double.toString(v2));
-            if (scale <= 0) {
-                return b1.remainder(b2).intValue();
-            } else {
-                return b1.remainder(b2).setScale(scale, roundingMode).doubleValue();
-            }
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "remainder");
-        }
-        return 0d;
-    }
-
-    // =
-
-    /**
-     * 提供精确的取余运算
-     * @param v1 被除数
-     * @param v2 除数
-     * @return 两个参数的余数
-     */
-    public static BigDecimal remainder(
-            final String v1,
-            final String v2
-    ) {
-        return remainder(v1, v2, NEW_SCALE, ROUNDING_MODE);
-    }
-
-    /**
-     * 提供精确的取余运算
-     * @param v1    被除数
-     * @param v2    除数
-     * @param scale 保留 scale 位小数
-     * @return 两个参数的余数
-     */
-    public static BigDecimal remainder(
-            final String v1,
-            final String v2,
-            final int scale
-    ) {
-        return remainder(v1, v2, scale, ROUNDING_MODE);
-    }
-
-    /**
-     * 提供精确的取余运算
-     * @param v1           被除数
-     * @param v2           除数
-     * @param scale        保留 scale 位小数
-     * @param roundingMode 舍入模式
-     * @return 两个参数的余数
-     */
-    public static BigDecimal remainder(
-            final String v1,
-            final String v2,
-            final int scale,
-            final int roundingMode
-    ) {
-        try {
-            BigDecimal b1 = new BigDecimal(v1);
-            BigDecimal b2 = new BigDecimal(v2);
-            if (scale <= 0) {
-                return new BigDecimal(b1.remainder(b2).intValue());
-            } else {
-                return b1.remainder(b2).setScale(scale, roundingMode);
-            }
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "remainder");
-        }
-        return null;
-    }
-
-    // ===========
-    // = 四舍五入 =
-    // ===========
-
-    /**
-     * 提供精确的小数位四舍五入处理
-     * @param v1 需要四舍五入的数值
-     * @return 四舍五入后的结果
-     */
-    public static double round(final double v1) {
-        return round(v1, NEW_SCALE, BigDecimal.ROUND_HALF_UP);
-    }
-
-    /**
-     * 提供精确的小数位四舍五入处理
-     * @param v1    需要四舍五入的数值
-     * @param scale 保留 scale 位小数
-     * @return 四舍五入后的结果
-     */
-    public static double round(
-            final double v1,
-            final int scale
-    ) {
-        return round(v1, scale, BigDecimal.ROUND_HALF_UP);
-    }
-
-    /**
-     * 提供精确的小数位四舍五入处理
-     * @param v1           需要四舍五入的数值
-     * @param scale        保留 scale 位小数
-     * @param roundingMode 舍入模式
-     * @return 四舍五入后的结果
-     */
-    public static double round(
-            final double v1,
-            final int scale,
-            final int roundingMode
-    ) {
-        return divide(v1, 1d, scale, roundingMode);
-    }
-
-    // =
-
-    /**
-     * 提供精确的小数位四舍五入处理
-     * @param v1 需要四舍五入的数值
-     * @return 四舍五入后的结果
-     */
-    public static BigDecimal round(final String v1) {
-        return round(v1, NEW_SCALE, BigDecimal.ROUND_HALF_UP);
-    }
-
-    /**
-     * 提供精确的小数位四舍五入处理
-     * @param v1    需要四舍五入的数值
-     * @param scale 保留 scale 位小数
-     * @return 四舍五入后的结果
-     */
-    public static BigDecimal round(
-            final String v1,
-            final int scale
-    ) {
-        return round(v1, scale, BigDecimal.ROUND_HALF_UP);
-    }
-
-    /**
-     * 提供精确的小数位四舍五入处理
-     * @param v1           需要四舍五入的数值
-     * @param scale        保留 scale 位小数
-     * @param roundingMode 舍入模式
-     * @return 四舍五入后的结果
-     */
-    public static BigDecimal round(
-            final String v1,
-            final int scale,
-            final int roundingMode
-    ) {
-        return divide(v1, "1", scale, roundingMode);
-    }
-
-    // ===========
-    // = 比较大小 =
-    // ===========
-
-    /**
-     * 比较大小
-     * @param v1 输入的数值
-     * @param v2 被比较的数字
-     * @return [1 = v1 > v2]、[-1 = v1 < v2]、[0 = v1 = v2]、[-2 = error]
-     */
-    public static int compareTo(
-            final double v1,
-            final double v2
-    ) {
-        try {
-            return new BigDecimal(Double.valueOf(v1)).compareTo(new BigDecimal(Double.valueOf(v2)));
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "compareTo");
-        }
-        return -2;
-    }
-
-    /**
-     * 比较大小
-     * @param v1 输入的数值
-     * @param v2 被比较的数字
-     * @return [1 = v1 > v2]、[-1 = v1 < v2]、[0 = v1 = v2]、[-2 = error]
-     */
-    public static int compareTo(
-            final String v1,
-            final String v2
-    ) {
-        try {
-            return new BigDecimal(v1).compareTo(new BigDecimal(v2));
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "compareTo");
-        }
-        return -2;
-    }
-
-    /**
-     * 比较大小
-     * @param v1 输入的数值
-     * @param v2 被比较的数字
-     * @return [1 = v1 > v2]、[-1 = v1 < v2]、[0 = v1 = v2]、[-2 = error]
-     */
-    public static int compareTo(
-            final BigDecimal v1,
-            final BigDecimal v2
-    ) {
-        try {
-            return v1.compareTo(v2);
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "compareTo");
-        }
-        return -2;
-    }
-
-    // ===========
-    // = 金额分割 =
-    // ===========
-
-    /**
-     * 金额分割, 四舍五入金额
-     * @param value 金额数值
-     * @return 指定格式处理的字符串
-     */
-    public static String formatMoney(final BigDecimal value) {
-        return formatMoney(value, 2, BigDecimal.ROUND_HALF_UP, 3, ",");
-    }
-
-    /**
-     * 金额分割, 四舍五入金额
-     * @param value 金额数值
-     * @param scale 小数点后保留几位
-     * @return 指定格式处理的字符串
-     */
-    public static String formatMoney(
-            final BigDecimal value,
-            final int scale
-    ) {
-        return formatMoney(value, scale, BigDecimal.ROUND_HALF_UP, 3, ",");
-    }
-
-    /**
-     * 金额分割, 四舍五入金额
-     * @param value 金额数值
-     * @param scale 小数点后保留几位
-     * @param mode  处理模式
-     * @return 指定格式处理的字符串
-     */
-    public static String formatMoney(
-            final BigDecimal value,
-            final int scale,
-            final int mode
-    ) {
-        return formatMoney(value, scale, mode, 3, ",");
-    }
-
-    /**
-     * 金额分割, 四舍五入金额
-     * @param value       金额数值
-     * @param scale       小数点后保留几位
-     * @param mode        处理模式
-     * @param splitNumber 拆分位数
-     * @return 指定格式处理的字符串
-     */
-    public static String formatMoney(
-            final BigDecimal value,
-            final int scale,
-            final int mode,
-            final int splitNumber
-    ) {
-        return formatMoney(value, scale, mode, splitNumber, ",");
-    }
-
-    /**
-     * 金额分割, 四舍五入金额
-     * @param value       金额数值
-     * @param scale       小数点后保留几位
-     * @param mode        处理模式
-     * @param splitNumber 拆分位数
-     * @param splitSymbol 拆分符号
-     * @return 指定格式处理的字符串
-     */
-    public static String formatMoney(
-            final BigDecimal value,
-            final int scale,
-            final int mode,
-            final int splitNumber,
-            final String splitSymbol
-    ) {
-        if (value == null) return null;
-        try {
-            // 如果等于 0, 直接返回
-            if (value.doubleValue() == 0) {
-                return value.setScale(scale, mode).toPlainString();
-            }
-            // 获取原始值字符串 ( 非科学计数法 )
-            String valuePlain = value.toPlainString();
-            // 判断是否负数
-            boolean isNegative = valuePlain.startsWith("-");
-            // 处理后的数据
-            BigDecimal bigDecimal = new BigDecimal(isNegative ? valuePlain.substring(1) : valuePlain);
-            // 范围处理
-            valuePlain = bigDecimal.setScale(scale, mode).toPlainString();
-            // 进行拆分小数点处理
-            String[] values = valuePlain.split("\\.");
-            // 判断是否存在小数点
-            boolean isDecimal = (values.length == 2);
-
-            // 拼接符号
-            String symbol = (splitSymbol != null) ? splitSymbol : "";
-            // 防止出现负数
-            int number = Math.max(splitNumber, 0);
-            // 格式化数据 ( 拼接处理 )
-            StringBuilder builder = new StringBuilder();
-            // 进行处理小数点前的数值
-            for (int len = values[0].length() - 1, i = len, splitPos = 1; i >= 0; i--) {
-                char ch = values[0].charAt(i);
-                builder.append(ch);
-                // 判断是否需要追加符号
-                if (number > 0 && splitPos % number == 0 && i != 0) {
-                    builder.append(symbol);
-                }
-                splitPos++;
-            }
-            // 倒序处理
-            builder.reverse();
-            // 存在小数点, 则进行拼接
-            if (isDecimal) {
-                builder.append(".").append(values[1]);
-            }
-            // 判断是否负数
-            return isNegative ? "-" + builder.toString() : builder.toString();
-        } catch (Exception e) {
-            JCLogUtils.eTag(TAG, e, "formatMoney");
-        }
-        return null;
+    public static Operation getOperation(final String value) {
+        return new Operation(value);
     }
 
     // =
@@ -1182,7 +294,7 @@ public final class BigDecimalUtils {
         private final int mRoundingMode;
 
         public Config() {
-            this(10, BigDecimal.ROUND_DOWN);
+            this(NEW_SCALE, ROUNDING_MODE);
         }
 
         /**
@@ -1324,5 +436,880 @@ public final class BigDecimalUtils {
         // ===========
         // = 获取方法 =
         // ===========
+
+        /**
+         * 获取此 BigDecimal 的字符串表示形式科学记数法
+         * @return 此 BigDecimal 的字符串表示形式科学记数法
+         */
+        public String toString() {
+            return (mValue != null) ? mValue.toString() : null;
+        }
+
+        /**
+         * 获取此 BigDecimal 的字符串表示形式不带指数字段
+         * @return 此 BigDecimal 的字符串表示形式不带指数字段
+         */
+        public String toPlainString() {
+            return (mValue != null) ? mValue.toPlainString() : null;
+        }
+
+        /**
+         * 获取此 BigDecimal 的字符串表示形式工程计数法
+         * @return 此 BigDecimal 的字符串表示形式工程计数法
+         */
+        public String toEngineeringString() {
+            return (mValue != null) ? mValue.toEngineeringString() : null;
+        }
+
+        // ======
+        // = 加 =
+        // ======
+
+        /**
+         * 提供精确的加法运算
+         * @param v1 被加数
+         * @param v2 加数
+         * @return 两个参数的和
+         */
+        public double add(
+                final double v1,
+                final double v2
+        ) {
+            return add(v1, v2, NEW_SCALE, ROUNDING_MODE);
+        }
+
+        /**
+         * 提供精确的加法运算
+         * @param v1    被加数
+         * @param v2    加数
+         * @param scale 保留 scale 位小数
+         * @return 两个参数的和
+         */
+        public double add(
+                final double v1,
+                final double v2,
+                final int scale
+        ) {
+            return add(v1, v2, scale, ROUNDING_MODE);
+        }
+
+        /**
+         * 提供精确的加法运算
+         * @param v1           被加数
+         * @param v2           加数
+         * @param scale        保留 scale 位小数
+         * @param roundingMode 舍入模式
+         * @return 两个参数的和
+         */
+        public double add(
+                final double v1,
+                final double v2,
+                final int scale,
+                final int roundingMode
+        ) {
+            try {
+                BigDecimal b1 = new BigDecimal(Double.toString(v1));
+                BigDecimal b2 = new BigDecimal(Double.toString(v2));
+                if (scale <= 0) {
+                    return b1.add(b2).intValue();
+                } else {
+                    return b1.add(b2).setScale(scale, roundingMode).doubleValue();
+                }
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "add");
+            }
+            return 0d;
+        }
+
+        // =
+
+        /**
+         * 提供精确的加法运算
+         * @param v1 被加数
+         * @param v2 加数
+         * @return 两个参数的和
+         */
+        public BigDecimal add(
+                final String v1,
+                final String v2
+        ) {
+            return add(v1, v2, NEW_SCALE, ROUNDING_MODE);
+        }
+
+        /**
+         * 提供精确的加法运算
+         * @param v1    被加数
+         * @param v2    加数
+         * @param scale 保留 scale 位小数
+         * @return 两个参数的和
+         */
+        public BigDecimal add(
+                final String v1,
+                final String v2,
+                final int scale
+        ) {
+            return add(v1, v2, scale, ROUNDING_MODE);
+        }
+
+        /**
+         * 提供精确的加法运算
+         * @param v1           被加数
+         * @param v2           加数
+         * @param scale        保留 scale 位小数
+         * @param roundingMode 舍入模式
+         * @return 两个参数的和
+         */
+        public BigDecimal add(
+                final String v1,
+                final String v2,
+                final int scale,
+                final int roundingMode
+        ) {
+            try {
+                BigDecimal b1 = new BigDecimal(v1);
+                BigDecimal b2 = new BigDecimal(v2);
+                if (scale <= 0) {
+                    return new BigDecimal(b1.add(b2).intValue());
+                } else {
+                    return b1.add(b2).setScale(scale, roundingMode);
+                }
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "add");
+            }
+            return null;
+        }
+
+        // ======
+        // = 减 =
+        // ======
+
+        /**
+         * 提供精确的减法运算
+         * @param v1 被减数
+         * @param v2 减数
+         * @return 两个参数的差
+         */
+        public double subtract(
+                final double v1,
+                final double v2
+        ) {
+            return subtract(v1, v2, NEW_SCALE, ROUNDING_MODE);
+        }
+
+        /**
+         * 提供精确的减法运算
+         * @param v1    被减数
+         * @param v2    减数
+         * @param scale 保留 scale 位小数
+         * @return 两个参数的差
+         */
+        public double subtract(
+                final double v1,
+                final double v2,
+                final int scale
+        ) {
+            return subtract(v1, v2, scale, ROUNDING_MODE);
+        }
+
+        /**
+         * 提供精确的减法运算
+         * @param v1           被减数
+         * @param v2           减数
+         * @param scale        保留 scale 位小数
+         * @param roundingMode 舍入模式
+         * @return 两个参数的差
+         */
+        public double subtract(
+                final double v1,
+                final double v2,
+                final int scale,
+                final int roundingMode
+        ) {
+            try {
+                BigDecimal b1 = new BigDecimal(Double.toString(v1));
+                BigDecimal b2 = new BigDecimal(Double.toString(v2));
+                if (scale <= 0) {
+                    return b1.subtract(b2).intValue();
+                } else {
+                    return b1.subtract(b2).setScale(scale, roundingMode).doubleValue();
+                }
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "subtract");
+            }
+            return 0d;
+        }
+
+        // =
+
+        /**
+         * 提供精确的减法运算
+         * @param v1 被减数
+         * @param v2 减数
+         * @return 两个参数的差
+         */
+        public BigDecimal subtract(
+                final String v1,
+                final String v2
+        ) {
+            return subtract(v1, v2, NEW_SCALE, ROUNDING_MODE);
+        }
+
+        /**
+         * 提供精确的减法运算
+         * @param v1    被减数
+         * @param v2    减数
+         * @param scale 保留 scale 位小数
+         * @return 两个参数的差
+         */
+        public BigDecimal subtract(
+                final String v1,
+                final String v2,
+                final int scale
+        ) {
+            return subtract(v1, v2, scale, ROUNDING_MODE);
+        }
+
+        /**
+         * 提供精确的减法运算
+         * @param v1           被减数
+         * @param v2           减数
+         * @param scale        保留 scale 位小数
+         * @param roundingMode 舍入模式
+         * @return 两个参数的差
+         */
+        public BigDecimal subtract(
+                final String v1,
+                final String v2,
+                final int scale,
+                final int roundingMode
+        ) {
+            try {
+                BigDecimal b1 = new BigDecimal(v1);
+                BigDecimal b2 = new BigDecimal(v2);
+                if (scale <= 0) {
+                    return new BigDecimal(b1.subtract(b2).intValue());
+                } else {
+                    return b1.subtract(b2).setScale(scale, roundingMode);
+                }
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "subtract");
+            }
+            return null;
+        }
+
+        // ======
+        // = 乘 =
+        // ======
+
+        /**
+         * 提供精确的乘法运算
+         * @param v1 被乘数
+         * @param v2 乘数
+         * @return 两个参数的积
+         */
+        public double multiply(
+                final double v1,
+                final double v2
+        ) {
+            return multiply(v1, v2, NEW_SCALE, ROUNDING_MODE);
+        }
+
+        /**
+         * 提供精确的乘法运算
+         * @param v1    被乘数
+         * @param v2    乘数
+         * @param scale 保留 scale 位小数
+         * @return 两个参数的积
+         */
+        public double multiply(
+                final double v1,
+                final double v2,
+                final int scale
+        ) {
+            return multiply(v1, v2, scale, ROUNDING_MODE);
+        }
+
+        /**
+         * 提供精确的乘法运算
+         * @param v1           被乘数
+         * @param v2           乘数
+         * @param scale        保留 scale 位小数
+         * @param roundingMode 舍入模式
+         * @return 两个参数的积
+         */
+        public double multiply(
+                final double v1,
+                final double v2,
+                final int scale,
+                final int roundingMode
+        ) {
+            try {
+                BigDecimal b1 = new BigDecimal(Double.toString(v1));
+                BigDecimal b2 = new BigDecimal(Double.toString(v2));
+                if (scale <= 0) {
+                    return b1.multiply(b2).intValue();
+                } else {
+                    return b1.multiply(b2).setScale(scale, roundingMode).doubleValue();
+                }
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "multiply");
+            }
+            return 0d;
+        }
+
+        // =
+
+        /**
+         * 提供精确的乘法运算
+         * @param v1 被乘数
+         * @param v2 乘数
+         * @return 两个参数的积
+         */
+        public BigDecimal multiply(
+                final String v1,
+                final String v2
+        ) {
+            return multiply(v1, v2, NEW_SCALE, ROUNDING_MODE);
+        }
+
+        /**
+         * 提供精确的乘法运算
+         * @param v1    被乘数
+         * @param v2    乘数
+         * @param scale 保留 scale 位小数
+         * @return 两个参数的积
+         */
+        public BigDecimal multiply(
+                final String v1,
+                final String v2,
+                final int scale
+        ) {
+            return multiply(v1, v2, scale, ROUNDING_MODE);
+        }
+
+        /**
+         * 提供精确的乘法运算
+         * @param v1           被乘数
+         * @param v2           乘数
+         * @param scale        保留 scale 位小数
+         * @param roundingMode 舍入模式
+         * @return 两个参数的积
+         */
+        public BigDecimal multiply(
+                final String v1,
+                final String v2,
+                final int scale,
+                final int roundingMode
+        ) {
+            try {
+                BigDecimal b1 = new BigDecimal(v1);
+                BigDecimal b2 = new BigDecimal(v2);
+                if (scale <= 0) {
+                    return new BigDecimal(b1.multiply(b2).intValue());
+                } else {
+                    return b1.multiply(b2).setScale(scale, roundingMode);
+                }
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "multiply");
+            }
+            return null;
+        }
+
+        // ======
+        // = 除 =
+        // ======
+
+        /**
+         * 提供精确的除法运算
+         * @param v1 被除数
+         * @param v2 除数
+         * @return 两个参数的商
+         */
+        public double divide(
+                final double v1,
+                final double v2
+        ) {
+            return divide(v1, v2, NEW_SCALE, ROUNDING_MODE);
+        }
+
+        /**
+         * 提供精确的除法运算
+         * @param v1    被除数
+         * @param v2    除数
+         * @param scale 保留 scale 位小数
+         * @return 两个参数的商
+         */
+        public double divide(
+                final double v1,
+                final double v2,
+                final int scale
+        ) {
+            return divide(v1, v2, scale, ROUNDING_MODE);
+        }
+
+        /**
+         * 提供精确的除法运算
+         * @param v1           被除数
+         * @param v2           除数
+         * @param scale        保留 scale 位小数
+         * @param roundingMode 舍入模式
+         * @return 两个参数的商
+         */
+        public double divide(
+                final double v1,
+                final double v2,
+                final int scale,
+                final int roundingMode
+        ) {
+            try {
+                BigDecimal b1 = new BigDecimal(Double.toString(v1));
+                BigDecimal b2 = new BigDecimal(Double.toString(v2));
+                if (scale <= 0) {
+                    return b1.divide(b2).intValue();
+                } else {
+                    return b1.divide(b2).setScale(scale, roundingMode).doubleValue();
+                }
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "divide");
+            }
+            return 0d;
+        }
+
+        // =
+
+        /**
+         * 提供精确的除法运算
+         * @param v1 被除数
+         * @param v2 除数
+         * @return 两个参数的商
+         */
+        public BigDecimal divide(
+                final String v1,
+                final String v2
+        ) {
+            return divide(v1, v2, NEW_SCALE, ROUNDING_MODE);
+        }
+
+        /**
+         * 提供精确的除法运算
+         * @param v1    被除数
+         * @param v2    除数
+         * @param scale 保留 scale 位小数
+         * @return 两个参数的商
+         */
+        public BigDecimal divide(
+                final String v1,
+                final String v2,
+                final int scale
+        ) {
+            return divide(v1, v2, scale, ROUNDING_MODE);
+        }
+
+        /**
+         * 提供精确的除法运算
+         * @param v1           被除数
+         * @param v2           除数
+         * @param scale        保留 scale 位小数
+         * @param roundingMode 舍入模式
+         * @return 两个参数的商
+         */
+        public BigDecimal divide(
+                final String v1,
+                final String v2,
+                final int scale,
+                final int roundingMode
+        ) {
+            try {
+                BigDecimal b1 = new BigDecimal(v1);
+                BigDecimal b2 = new BigDecimal(v2);
+                if (scale <= 0) {
+                    return new BigDecimal(b1.divide(b2).intValue());
+                } else {
+                    return b1.divide(b2).setScale(scale, roundingMode);
+                }
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "divide");
+            }
+            return null;
+        }
+
+        // ========
+        // = 取余 =
+        // ========
+
+        /**
+         * 提供精确的取余运算
+         * @param v1 被除数
+         * @param v2 除数
+         * @return 两个参数的余数
+         */
+        public double remainder(
+                final double v1,
+                final double v2
+        ) {
+            return remainder(v1, v2, NEW_SCALE, ROUNDING_MODE);
+        }
+
+        /**
+         * 提供精确的取余运算
+         * @param v1    被除数
+         * @param v2    除数
+         * @param scale 保留 scale 位小数
+         * @return 两个参数的余数
+         */
+        public double remainder(
+                final double v1,
+                final double v2,
+                final int scale
+        ) {
+            return remainder(v1, v2, scale, ROUNDING_MODE);
+        }
+
+        /**
+         * 提供精确的取余运算
+         * @param v1           被除数
+         * @param v2           除数
+         * @param scale        保留 scale 位小数
+         * @param roundingMode 舍入模式
+         * @return 两个参数的余数
+         */
+        public double remainder(
+                final double v1,
+                final double v2,
+                final int scale,
+                final int roundingMode
+        ) {
+            try {
+                BigDecimal b1 = new BigDecimal(Double.toString(v1));
+                BigDecimal b2 = new BigDecimal(Double.toString(v2));
+                if (scale <= 0) {
+                    return b1.remainder(b2).intValue();
+                } else {
+                    return b1.remainder(b2).setScale(scale, roundingMode).doubleValue();
+                }
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "remainder");
+            }
+            return 0d;
+        }
+
+        // =
+
+        /**
+         * 提供精确的取余运算
+         * @param v1 被除数
+         * @param v2 除数
+         * @return 两个参数的余数
+         */
+        public BigDecimal remainder(
+                final String v1,
+                final String v2
+        ) {
+            return remainder(v1, v2, NEW_SCALE, ROUNDING_MODE);
+        }
+
+        /**
+         * 提供精确的取余运算
+         * @param v1    被除数
+         * @param v2    除数
+         * @param scale 保留 scale 位小数
+         * @return 两个参数的余数
+         */
+        public BigDecimal remainder(
+                final String v1,
+                final String v2,
+                final int scale
+        ) {
+            return remainder(v1, v2, scale, ROUNDING_MODE);
+        }
+
+        /**
+         * 提供精确的取余运算
+         * @param v1           被除数
+         * @param v2           除数
+         * @param scale        保留 scale 位小数
+         * @param roundingMode 舍入模式
+         * @return 两个参数的余数
+         */
+        public BigDecimal remainder(
+                final String v1,
+                final String v2,
+                final int scale,
+                final int roundingMode
+        ) {
+            try {
+                BigDecimal b1 = new BigDecimal(v1);
+                BigDecimal b2 = new BigDecimal(v2);
+                if (scale <= 0) {
+                    return new BigDecimal(b1.remainder(b2).intValue());
+                } else {
+                    return b1.remainder(b2).setScale(scale, roundingMode);
+                }
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "remainder");
+            }
+            return null;
+        }
+
+        // ===========
+        // = 四舍五入 =
+        // ===========
+
+        /**
+         * 提供精确的小数位四舍五入处理
+         * @param v1 需要四舍五入的数值
+         * @return 四舍五入后的结果
+         */
+        public double round(final double v1) {
+            return round(v1, NEW_SCALE, BigDecimal.ROUND_HALF_UP);
+        }
+
+        /**
+         * 提供精确的小数位四舍五入处理
+         * @param v1    需要四舍五入的数值
+         * @param scale 保留 scale 位小数
+         * @return 四舍五入后的结果
+         */
+        public double round(
+                final double v1,
+                final int scale
+        ) {
+            return round(v1, scale, BigDecimal.ROUND_HALF_UP);
+        }
+
+        /**
+         * 提供精确的小数位四舍五入处理
+         * @param v1           需要四舍五入的数值
+         * @param scale        保留 scale 位小数
+         * @param roundingMode 舍入模式
+         * @return 四舍五入后的结果
+         */
+        public double round(
+                final double v1,
+                final int scale,
+                final int roundingMode
+        ) {
+            return divide(v1, 1d, scale, roundingMode);
+        }
+
+        // =
+
+        /**
+         * 提供精确的小数位四舍五入处理
+         * @param v1 需要四舍五入的数值
+         * @return 四舍五入后的结果
+         */
+        public BigDecimal round(final String v1) {
+            return round(v1, NEW_SCALE, BigDecimal.ROUND_HALF_UP);
+        }
+
+        /**
+         * 提供精确的小数位四舍五入处理
+         * @param v1    需要四舍五入的数值
+         * @param scale 保留 scale 位小数
+         * @return 四舍五入后的结果
+         */
+        public BigDecimal round(
+                final String v1,
+                final int scale
+        ) {
+            return round(v1, scale, BigDecimal.ROUND_HALF_UP);
+        }
+
+        /**
+         * 提供精确的小数位四舍五入处理
+         * @param v1           需要四舍五入的数值
+         * @param scale        保留 scale 位小数
+         * @param roundingMode 舍入模式
+         * @return 四舍五入后的结果
+         */
+        public BigDecimal round(
+                final String v1,
+                final int scale,
+                final int roundingMode
+        ) {
+            return divide(v1, "1", scale, roundingMode);
+        }
+
+        // ===========
+        // = 比较大小 =
+        // ===========
+
+        /**
+         * 比较大小
+         * @param v1 输入的数值
+         * @param v2 被比较的数字
+         * @return [1 = v1 > v2]、[-1 = v1 < v2]、[0 = v1 = v2]、[-2 = error]
+         */
+        public int compareTo(
+                final double v1,
+                final double v2
+        ) {
+            try {
+                return new BigDecimal(Double.valueOf(v1)).compareTo(new BigDecimal(Double.valueOf(v2)));
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "compareTo");
+            }
+            return -2;
+        }
+
+        /**
+         * 比较大小
+         * @param v1 输入的数值
+         * @param v2 被比较的数字
+         * @return [1 = v1 > v2]、[-1 = v1 < v2]、[0 = v1 = v2]、[-2 = error]
+         */
+        public int compareTo(
+                final String v1,
+                final String v2
+        ) {
+            try {
+                return new BigDecimal(v1).compareTo(new BigDecimal(v2));
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "compareTo");
+            }
+            return -2;
+        }
+
+        /**
+         * 比较大小
+         * @param v1 输入的数值
+         * @param v2 被比较的数字
+         * @return [1 = v1 > v2]、[-1 = v1 < v2]、[0 = v1 = v2]、[-2 = error]
+         */
+        public int compareTo(
+                final BigDecimal v1,
+                final BigDecimal v2
+        ) {
+            try {
+                return v1.compareTo(v2);
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "compareTo");
+            }
+            return -2;
+        }
+
+        // ===========
+        // = 金额分割 =
+        // ===========
+
+        /**
+         * 金额分割, 四舍五入金额
+         * @param value 金额数值
+         * @return 指定格式处理的字符串
+         */
+        public String formatMoney(final BigDecimal value) {
+            return formatMoney(value, 2, BigDecimal.ROUND_HALF_UP, 3, ",");
+        }
+
+        /**
+         * 金额分割, 四舍五入金额
+         * @param value 金额数值
+         * @param scale 小数点后保留几位
+         * @return 指定格式处理的字符串
+         */
+        public String formatMoney(
+                final BigDecimal value,
+                final int scale
+        ) {
+            return formatMoney(value, scale, BigDecimal.ROUND_HALF_UP, 3, ",");
+        }
+
+        /**
+         * 金额分割, 四舍五入金额
+         * @param value 金额数值
+         * @param scale 小数点后保留几位
+         * @param mode  处理模式
+         * @return 指定格式处理的字符串
+         */
+        public String formatMoney(
+                final BigDecimal value,
+                final int scale,
+                final int mode
+        ) {
+            return formatMoney(value, scale, mode, 3, ",");
+        }
+
+        /**
+         * 金额分割, 四舍五入金额
+         * @param value       金额数值
+         * @param scale       小数点后保留几位
+         * @param mode        处理模式
+         * @param splitNumber 拆分位数
+         * @return 指定格式处理的字符串
+         */
+        public String formatMoney(
+                final BigDecimal value,
+                final int scale,
+                final int mode,
+                final int splitNumber
+        ) {
+            return formatMoney(value, scale, mode, splitNumber, ",");
+        }
+
+        /**
+         * 金额分割, 四舍五入金额
+         * @param value       金额数值
+         * @param scale       小数点后保留几位
+         * @param mode        处理模式
+         * @param splitNumber 拆分位数
+         * @param splitSymbol 拆分符号
+         * @return 指定格式处理的字符串
+         */
+        public String formatMoney(
+                final BigDecimal value,
+                final int scale,
+                final int mode,
+                final int splitNumber,
+                final String splitSymbol
+        ) {
+            if (value == null) return null;
+            try {
+                // 如果等于 0, 直接返回
+                if (value.doubleValue() == 0) {
+                    return value.setScale(scale, mode).toPlainString();
+                }
+                // 获取原始值字符串 ( 非科学计数法 )
+                String valuePlain = value.toPlainString();
+                // 判断是否负数
+                boolean isNegative = valuePlain.startsWith("-");
+                // 处理后的数据
+                BigDecimal bigDecimal = new BigDecimal(isNegative ? valuePlain.substring(1) : valuePlain);
+                // 范围处理
+                valuePlain = bigDecimal.setScale(scale, mode).toPlainString();
+                // 进行拆分小数点处理
+                String[] values = valuePlain.split("\\.");
+                // 判断是否存在小数点
+                boolean isDecimal = (values.length == 2);
+
+                // 拼接符号
+                String symbol = (splitSymbol != null) ? splitSymbol : "";
+                // 防止出现负数
+                int number = Math.max(splitNumber, 0);
+                // 格式化数据 ( 拼接处理 )
+                StringBuilder builder = new StringBuilder();
+                // 进行处理小数点前的数值
+                for (int len = values[0].length() - 1, i = len, splitPos = 1; i >= 0; i--) {
+                    char ch = values[0].charAt(i);
+                    builder.append(ch);
+                    // 判断是否需要追加符号
+                    if (number > 0 && splitPos % number == 0 && i != 0) {
+                        builder.append(symbol);
+                    }
+                    splitPos++;
+                }
+                // 倒序处理
+                builder.reverse();
+                // 存在小数点, 则进行拼接
+                if (isDecimal) {
+                    builder.append(".").append(values[1]);
+                }
+                // 判断是否负数
+                return isNegative ? "-" + builder.toString() : builder.toString();
+            } catch (Exception e) {
+                JCLogUtils.eTag(TAG, e, "formatMoney");
+            }
+            return null;
+        }
     }
 }
