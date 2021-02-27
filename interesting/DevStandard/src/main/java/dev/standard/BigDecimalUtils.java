@@ -452,7 +452,7 @@ public final class BigDecimalUtils {
          * @return {@link Operation}
          */
         public Operation setScale(final Config config) {
-            if (config != null && mValue != null) {
+            if (mValue != null && config != null) {
                 try {
                     mValue = mValue.setScale(
                             config.getScale(),
@@ -507,6 +507,38 @@ public final class BigDecimalUtils {
          */
         public String toEngineeringString() {
             return (mValue != null) ? mValue.toEngineeringString() : null;
+        }
+
+        /**
+         * 获取指定类型值
+         * @return 指定类型值
+         */
+        public int intValue() {
+            return (mValue != null) ? mValue.intValue() : 0;
+        }
+
+        /**
+         * 获取指定类型值
+         * @return 指定类型值
+         */
+        public float floatValue() {
+            return (mValue != null) ? mValue.floatValue() : 0F;
+        }
+
+        /**
+         * 获取指定类型值
+         * @return 指定类型值
+         */
+        public long longValue() {
+            return (mValue != null) ? mValue.longValue() : 0L;
+        }
+
+        /**
+         * 获取指定类型值
+         * @return 指定类型值
+         */
+        public double doubleValue() {
+            return (mValue != null) ? mValue.doubleValue() : 0D;
         }
 
         // ======
@@ -731,7 +763,7 @@ public final class BigDecimalUtils {
                 final int scale,
                 final int roundingMode
         ) {
-            if (mValue != null) {
+            if (mValue != null && value != null) {
                 try {
                     if (scale <= 0) {
                         mValue = mValue.divide(value);
@@ -783,81 +815,35 @@ public final class BigDecimalUtils {
         // = 四舍五入 =
         // ===========
 
-//        /**
-//         * 提供精确的小数位四舍五入处理
-//         * @param v1 需要四舍五入的数值
-//         * @return 四舍五入后的结果
-//         */
-//        public double round(final double v1) {
-//            return round(v1, NEW_SCALE, BigDecimal.ROUND_HALF_UP);
-//        }
-//
-//        /**
-//         * 提供精确的小数位四舍五入处理
-//         * @param v1    需要四舍五入的数值
-//         * @param scale 保留 scale 位小数
-//         * @return 四舍五入后的结果
-//         */
-//        public double round(
-//                final double v1,
-//                final int scale
-//        ) {
-//            return round(v1, scale, BigDecimal.ROUND_HALF_UP);
-//        }
-//
-//        /**
-//         * 提供精确的小数位四舍五入处理
-//         * @param v1           需要四舍五入的数值
-//         * @param scale        保留 scale 位小数
-//         * @param roundingMode 舍入模式
-//         * @return 四舍五入后的结果
-//         */
-//        public double round(
-//                final double v1,
-//                final int scale,
-//                final int roundingMode
-//        ) {
-//            return divide(v1, 1d, scale, roundingMode);
-//        }
-//
-//        // =
-//
-//        /**
-//         * 提供精确的小数位四舍五入处理
-//         * @param v1 需要四舍五入的数值
-//         * @return 四舍五入后的结果
-//         */
-//        public BigDecimal round(final String v1) {
-//            return round(v1, NEW_SCALE, BigDecimal.ROUND_HALF_UP);
-//        }
-//
-//        /**
-//         * 提供精确的小数位四舍五入处理
-//         * @param v1    需要四舍五入的数值
-//         * @param scale 保留 scale 位小数
-//         * @return 四舍五入后的结果
-//         */
-//        public BigDecimal round(
-//                final String v1,
-//                final int scale
-//        ) {
-//            return round(v1, scale, BigDecimal.ROUND_HALF_UP);
-//        }
-//
-//        /**
-//         * 提供精确的小数位四舍五入处理
-//         * @param v1           需要四舍五入的数值
-//         * @param scale        保留 scale 位小数
-//         * @param roundingMode 舍入模式
-//         * @return 四舍五入后的结果
-//         */
-//        public BigDecimal round(
-//                final String v1,
-//                final int scale,
-//                final int roundingMode
-//        ) {
-//            return divide(v1, "1", scale, roundingMode);
-//        }
+        /**
+         * 提供精确的小数位四舍五入处理
+         * @return {@link Operation}
+         */
+        public Operation round() {
+            return round(mConfig);
+        }
+
+        /**
+         * 提供精确的小数位四舍五入处理
+         * @param config {@link Config}
+         * @return {@link Operation}
+         */
+        public Operation round(final Config config) {
+            return divide(new BigDecimal(1D), config);
+        }
+
+        /**
+         * 提供精确的小数位四舍五入处理
+         * @param scale        保留 scale 位小数
+         * @param roundingMode 舍入模式
+         * @return {@link Operation}
+         */
+        public Operation round(
+                final int scale,
+                final int roundingMode
+        ) {
+            return divide(new BigDecimal(1D), scale, roundingMode);
+        }
 
         // ===========
         // = 比较大小 =
@@ -865,54 +851,34 @@ public final class BigDecimalUtils {
 
         /**
          * 比较大小
-         * @param v1 输入的数值
-         * @param v2 被比较的数字
+         * @param value 被比较的数字
          * @return [1 = v1 > v2]、[-1 = v1 < v2]、[0 = v1 = v2]、[-2 = error]
          */
-        public int compareTo(
-                final double v1,
-                final double v2
-        ) {
-            try {
-                return new BigDecimal(Double.valueOf(v1)).compareTo(new BigDecimal(Double.valueOf(v2)));
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "compareTo");
-            }
-            return -2;
+        public int compareTo(final double value) {
+            return compareTo(new BigDecimal(value));
         }
 
         /**
          * 比较大小
-         * @param v1 输入的数值
-         * @param v2 被比较的数字
+         * @param value 被比较的数字
          * @return [1 = v1 > v2]、[-1 = v1 < v2]、[0 = v1 = v2]、[-2 = error]
          */
-        public int compareTo(
-                final String v1,
-                final String v2
-        ) {
-            try {
-                return new BigDecimal(v1).compareTo(new BigDecimal(v2));
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "compareTo");
-            }
-            return -2;
+        public int compareTo(final String value) {
+            return compareTo(BigDecimalUtils.getBigDecimal(value));
         }
 
         /**
          * 比较大小
-         * @param v1 输入的数值
-         * @param v2 被比较的数字
+         * @param value 被比较的数字
          * @return [1 = v1 > v2]、[-1 = v1 < v2]、[0 = v1 = v2]、[-2 = error]
          */
-        public int compareTo(
-                final BigDecimal v1,
-                final BigDecimal v2
-        ) {
-            try {
-                return v1.compareTo(v2);
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "compareTo");
+        public int compareTo(final BigDecimal value) {
+            if (mValue != null && value != null) {
+                try {
+                    return mValue.compareTo(value);
+                } catch (Exception e) {
+                    JCLogUtils.eTag(TAG, e, "compareTo");
+                }
             }
             return -2;
         }
@@ -923,61 +889,57 @@ public final class BigDecimalUtils {
 
         /**
          * 金额分割, 四舍五入金额
-         * @param value 金额数值
          * @return 指定格式处理的字符串
          */
-        public String formatMoney(final BigDecimal value) {
-            return formatMoney(value, 2, BigDecimal.ROUND_HALF_UP, 3, ",");
+        public String formatMoney() {
+            return formatMoney(mConfig);
         }
 
         /**
          * 金额分割, 四舍五入金额
-         * @param value 金额数值
-         * @param scale 小数点后保留几位
-         * @return 指定格式处理的字符串
-         */
-        public String formatMoney(
-                final BigDecimal value,
-                final int scale
-        ) {
-            return formatMoney(value, scale, BigDecimal.ROUND_HALF_UP, 3, ",");
-        }
-
-        /**
-         * 金额分割, 四舍五入金额
-         * @param value 金额数值
-         * @param scale 小数点后保留几位
-         * @param mode  处理模式
-         * @return 指定格式处理的字符串
-         */
-        public String formatMoney(
-                final BigDecimal value,
-                final int scale,
-                final int mode
-        ) {
-            return formatMoney(value, scale, mode, 3, ",");
-        }
-
-        /**
-         * 金额分割, 四舍五入金额
-         * @param value       金额数值
-         * @param scale       小数点后保留几位
-         * @param mode        处理模式
          * @param splitNumber 拆分位数
+         * @param splitSymbol 拆分符号
          * @return 指定格式处理的字符串
          */
         public String formatMoney(
-                final BigDecimal value,
-                final int scale,
-                final int mode,
-                final int splitNumber
+                final int splitNumber,
+                final String splitSymbol
         ) {
-            return formatMoney(value, scale, mode, splitNumber, ",");
+            return formatMoney(mConfig, splitNumber, splitSymbol);
+        }
+
+        // =
+
+        /**
+         * 金额分割, 四舍五入金额
+         * @param config {@link Config}
+         * @return 指定格式处理的字符串
+         */
+        public String formatMoney(final Config config) {
+            return formatMoney(config, 3, ",");
         }
 
         /**
          * 金额分割, 四舍五入金额
-         * @param value       金额数值
+         * @param config      {@link Config}
+         * @param splitNumber 拆分位数
+         * @param splitSymbol 拆分符号
+         * @return 指定格式处理的字符串
+         */
+        public String formatMoney(
+                final Config config,
+                final int splitNumber,
+                final String splitSymbol
+        ) {
+            if (config != null) {
+                return formatMoney(config.getScale(), config.getRoundingMode(), splitNumber, splitSymbol);
+            } else {
+                return formatMoney(NEW_SCALE, ROUNDING_MODE, splitNumber, splitSymbol);
+            }
+        }
+
+        /**
+         * 金额分割, 四舍五入金额
          * @param scale       小数点后保留几位
          * @param mode        处理模式
          * @param splitNumber 拆分位数
@@ -985,20 +947,19 @@ public final class BigDecimalUtils {
          * @return 指定格式处理的字符串
          */
         public String formatMoney(
-                final BigDecimal value,
                 final int scale,
                 final int mode,
                 final int splitNumber,
                 final String splitSymbol
         ) {
-            if (value == null) return null;
+            if (mValue == null) return null;
             try {
                 // 如果等于 0, 直接返回
-                if (value.doubleValue() == 0) {
-                    return value.setScale(scale, mode).toPlainString();
+                if (mValue.doubleValue() == 0) {
+                    return mValue.setScale(scale, mode).toPlainString();
                 }
                 // 获取原始值字符串 ( 非科学计数法 )
-                String valuePlain = value.toPlainString();
+                String valuePlain = mValue.toPlainString();
                 // 判断是否负数
                 boolean isNegative = valuePlain.startsWith("-");
                 // 处理后的数据
