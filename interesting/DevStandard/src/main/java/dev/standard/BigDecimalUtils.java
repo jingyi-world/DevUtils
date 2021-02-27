@@ -362,6 +362,14 @@ public final class BigDecimalUtils {
             }
         }
 
+        public Operation(
+                final BigDecimal value,
+                final Config config
+        ) {
+            this.mValue = value;
+            this.mConfig = config;
+        }
+
         // ===========
         // = get/set =
         // ===========
@@ -468,6 +476,14 @@ public final class BigDecimalUtils {
         // ===========
         // = 获取方法 =
         // ===========
+
+        /**
+         * 克隆对象
+         * @return {@link Operation}
+         */
+        public Operation clone() {
+            return new Operation(mValue, mConfig);
+        }
 
         /**
          * 获取此 BigDecimal 的字符串表示形式科学记数法
@@ -735,197 +751,113 @@ public final class BigDecimalUtils {
 
         /**
          * 提供精确的取余运算
-         * @param v1 被除数
-         * @param v2 除数
-         * @return 两个参数的余数
+         * @param value 除数
+         * @return {@link Operation}
          */
-        public double remainder(
-                final double v1,
-                final double v2
-        ) {
-            return remainder(v1, v2, NEW_SCALE, ROUNDING_MODE);
+        public Operation remainder(final double value) {
+            return remainder(new BigDecimal(value));
         }
 
         /**
          * 提供精确的取余运算
-         * @param v1    被除数
-         * @param v2    除数
-         * @param scale 保留 scale 位小数
-         * @return 两个参数的余数
+         * @param value 除数
+         * @return {@link Operation}
          */
-        public double remainder(
-                final double v1,
-                final double v2,
-                final int scale
-        ) {
-            return remainder(v1, v2, scale, ROUNDING_MODE);
+        public Operation remainder(final String value) {
+            return remainder(BigDecimalUtils.getBigDecimal(value));
         }
 
         /**
          * 提供精确的取余运算
-         * @param v1           被除数
-         * @param v2           除数
-         * @param scale        保留 scale 位小数
-         * @param roundingMode 舍入模式
-         * @return 两个参数的余数
+         * @param value 除数
+         * @return {@link Operation}
          */
-        public double remainder(
-                final double v1,
-                final double v2,
-                final int scale,
-                final int roundingMode
-        ) {
-            try {
-                BigDecimal b1 = new BigDecimal(Double.toString(v1));
-                BigDecimal b2 = new BigDecimal(Double.toString(v2));
-                if (scale <= 0) {
-                    return b1.remainder(b2).intValue();
-                } else {
-                    return b1.remainder(b2).setScale(scale, roundingMode).doubleValue();
-                }
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "remainder");
+        public Operation remainder(final BigDecimal value) {
+            if (mValue != null && value != null) {
+                mValue = mValue.remainder(value);
             }
-            return 0d;
-        }
-
-        // =
-
-        /**
-         * 提供精确的取余运算
-         * @param v1 被除数
-         * @param v2 除数
-         * @return 两个参数的余数
-         */
-        public BigDecimal remainder(
-                final String v1,
-                final String v2
-        ) {
-            return remainder(v1, v2, NEW_SCALE, ROUNDING_MODE);
-        }
-
-        /**
-         * 提供精确的取余运算
-         * @param v1    被除数
-         * @param v2    除数
-         * @param scale 保留 scale 位小数
-         * @return 两个参数的余数
-         */
-        public BigDecimal remainder(
-                final String v1,
-                final String v2,
-                final int scale
-        ) {
-            return remainder(v1, v2, scale, ROUNDING_MODE);
-        }
-
-        /**
-         * 提供精确的取余运算
-         * @param v1           被除数
-         * @param v2           除数
-         * @param scale        保留 scale 位小数
-         * @param roundingMode 舍入模式
-         * @return 两个参数的余数
-         */
-        public BigDecimal remainder(
-                final String v1,
-                final String v2,
-                final int scale,
-                final int roundingMode
-        ) {
-            try {
-                BigDecimal b1 = new BigDecimal(v1);
-                BigDecimal b2 = new BigDecimal(v2);
-                if (scale <= 0) {
-                    return new BigDecimal(b1.remainder(b2).intValue());
-                } else {
-                    return b1.remainder(b2).setScale(scale, roundingMode);
-                }
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "remainder");
-            }
-            return null;
+            return this;
         }
 
         // ===========
         // = 四舍五入 =
         // ===========
 
-        /**
-         * 提供精确的小数位四舍五入处理
-         * @param v1 需要四舍五入的数值
-         * @return 四舍五入后的结果
-         */
-        public double round(final double v1) {
-            return round(v1, NEW_SCALE, BigDecimal.ROUND_HALF_UP);
-        }
-
-        /**
-         * 提供精确的小数位四舍五入处理
-         * @param v1    需要四舍五入的数值
-         * @param scale 保留 scale 位小数
-         * @return 四舍五入后的结果
-         */
-        public double round(
-                final double v1,
-                final int scale
-        ) {
-            return round(v1, scale, BigDecimal.ROUND_HALF_UP);
-        }
-
-        /**
-         * 提供精确的小数位四舍五入处理
-         * @param v1           需要四舍五入的数值
-         * @param scale        保留 scale 位小数
-         * @param roundingMode 舍入模式
-         * @return 四舍五入后的结果
-         */
-        public double round(
-                final double v1,
-                final int scale,
-                final int roundingMode
-        ) {
-            return divide(v1, 1d, scale, roundingMode);
-        }
-
-        // =
-
-        /**
-         * 提供精确的小数位四舍五入处理
-         * @param v1 需要四舍五入的数值
-         * @return 四舍五入后的结果
-         */
-        public BigDecimal round(final String v1) {
-            return round(v1, NEW_SCALE, BigDecimal.ROUND_HALF_UP);
-        }
-
-        /**
-         * 提供精确的小数位四舍五入处理
-         * @param v1    需要四舍五入的数值
-         * @param scale 保留 scale 位小数
-         * @return 四舍五入后的结果
-         */
-        public BigDecimal round(
-                final String v1,
-                final int scale
-        ) {
-            return round(v1, scale, BigDecimal.ROUND_HALF_UP);
-        }
-
-        /**
-         * 提供精确的小数位四舍五入处理
-         * @param v1           需要四舍五入的数值
-         * @param scale        保留 scale 位小数
-         * @param roundingMode 舍入模式
-         * @return 四舍五入后的结果
-         */
-        public BigDecimal round(
-                final String v1,
-                final int scale,
-                final int roundingMode
-        ) {
-            return divide(v1, "1", scale, roundingMode);
-        }
+//        /**
+//         * 提供精确的小数位四舍五入处理
+//         * @param v1 需要四舍五入的数值
+//         * @return 四舍五入后的结果
+//         */
+//        public double round(final double v1) {
+//            return round(v1, NEW_SCALE, BigDecimal.ROUND_HALF_UP);
+//        }
+//
+//        /**
+//         * 提供精确的小数位四舍五入处理
+//         * @param v1    需要四舍五入的数值
+//         * @param scale 保留 scale 位小数
+//         * @return 四舍五入后的结果
+//         */
+//        public double round(
+//                final double v1,
+//                final int scale
+//        ) {
+//            return round(v1, scale, BigDecimal.ROUND_HALF_UP);
+//        }
+//
+//        /**
+//         * 提供精确的小数位四舍五入处理
+//         * @param v1           需要四舍五入的数值
+//         * @param scale        保留 scale 位小数
+//         * @param roundingMode 舍入模式
+//         * @return 四舍五入后的结果
+//         */
+//        public double round(
+//                final double v1,
+//                final int scale,
+//                final int roundingMode
+//        ) {
+//            return divide(v1, 1d, scale, roundingMode);
+//        }
+//
+//        // =
+//
+//        /**
+//         * 提供精确的小数位四舍五入处理
+//         * @param v1 需要四舍五入的数值
+//         * @return 四舍五入后的结果
+//         */
+//        public BigDecimal round(final String v1) {
+//            return round(v1, NEW_SCALE, BigDecimal.ROUND_HALF_UP);
+//        }
+//
+//        /**
+//         * 提供精确的小数位四舍五入处理
+//         * @param v1    需要四舍五入的数值
+//         * @param scale 保留 scale 位小数
+//         * @return 四舍五入后的结果
+//         */
+//        public BigDecimal round(
+//                final String v1,
+//                final int scale
+//        ) {
+//            return round(v1, scale, BigDecimal.ROUND_HALF_UP);
+//        }
+//
+//        /**
+//         * 提供精确的小数位四舍五入处理
+//         * @param v1           需要四舍五入的数值
+//         * @param scale        保留 scale 位小数
+//         * @param roundingMode 舍入模式
+//         * @return 四舍五入后的结果
+//         */
+//        public BigDecimal round(
+//                final String v1,
+//                final int scale,
+//                final int roundingMode
+//        ) {
+//            return divide(v1, "1", scale, roundingMode);
+//        }
 
         // ===========
         // = 比较大小 =
