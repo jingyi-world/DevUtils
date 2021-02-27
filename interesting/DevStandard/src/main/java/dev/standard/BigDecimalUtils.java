@@ -567,116 +567,32 @@ public final class BigDecimalUtils {
 
         /**
          * 提供精确的乘法运算
-         * @param v1 被乘数
-         * @param v2 乘数
-         * @return 两个参数的积
+         * @param value 乘数
+         * @return {@link Operation}
          */
-        public double multiply(
-                final double v1,
-                final double v2
-        ) {
-            return multiply(v1, v2, NEW_SCALE, ROUNDING_MODE);
+        public Operation multiply(final double value) {
+            return multiply(new BigDecimal(value));
         }
 
         /**
          * 提供精确的乘法运算
-         * @param v1    被乘数
-         * @param v2    乘数
-         * @param scale 保留 scale 位小数
-         * @return 两个参数的积
+         * @param value 乘数
+         * @return {@link Operation}
          */
-        public double multiply(
-                final double v1,
-                final double v2,
-                final int scale
-        ) {
-            return multiply(v1, v2, scale, ROUNDING_MODE);
+        public Operation multiply(final String value) {
+            return multiply(BigDecimalUtils.getBigDecimal(value));
         }
 
         /**
          * 提供精确的乘法运算
-         * @param v1           被乘数
-         * @param v2           乘数
-         * @param scale        保留 scale 位小数
-         * @param roundingMode 舍入模式
-         * @return 两个参数的积
+         * @param value 乘数
+         * @return {@link Operation}
          */
-        public double multiply(
-                final double v1,
-                final double v2,
-                final int scale,
-                final int roundingMode
-        ) {
-            try {
-                BigDecimal b1 = new BigDecimal(Double.toString(v1));
-                BigDecimal b2 = new BigDecimal(Double.toString(v2));
-                if (scale <= 0) {
-                    return b1.multiply(b2).intValue();
-                } else {
-                    return b1.multiply(b2).setScale(scale, roundingMode).doubleValue();
-                }
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "multiply");
+        public Operation multiply(final BigDecimal value) {
+            if (mValue != null && value != null) {
+                mValue.multiply(value);
             }
-            return 0d;
-        }
-
-        // =
-
-        /**
-         * 提供精确的乘法运算
-         * @param v1 被乘数
-         * @param v2 乘数
-         * @return 两个参数的积
-         */
-        public BigDecimal multiply(
-                final String v1,
-                final String v2
-        ) {
-            return multiply(v1, v2, NEW_SCALE, ROUNDING_MODE);
-        }
-
-        /**
-         * 提供精确的乘法运算
-         * @param v1    被乘数
-         * @param v2    乘数
-         * @param scale 保留 scale 位小数
-         * @return 两个参数的积
-         */
-        public BigDecimal multiply(
-                final String v1,
-                final String v2,
-                final int scale
-        ) {
-            return multiply(v1, v2, scale, ROUNDING_MODE);
-        }
-
-        /**
-         * 提供精确的乘法运算
-         * @param v1           被乘数
-         * @param v2           乘数
-         * @param scale        保留 scale 位小数
-         * @param roundingMode 舍入模式
-         * @return 两个参数的积
-         */
-        public BigDecimal multiply(
-                final String v1,
-                final String v2,
-                final int scale,
-                final int roundingMode
-        ) {
-            try {
-                BigDecimal b1 = new BigDecimal(v1);
-                BigDecimal b2 = new BigDecimal(v2);
-                if (scale <= 0) {
-                    return new BigDecimal(b1.multiply(b2).intValue());
-                } else {
-                    return b1.multiply(b2).setScale(scale, roundingMode);
-                }
-            } catch (Exception e) {
-                JCLogUtils.eTag(TAG, e, "multiply");
-            }
-            return null;
+            return this;
         }
 
         // ======
