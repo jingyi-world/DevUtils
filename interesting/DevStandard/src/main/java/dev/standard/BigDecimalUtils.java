@@ -10,7 +10,6 @@ import dev.utils.JCLogUtils;
  * <pre>
  *     @see <a href="https://www.cnblogs.com/liqforstudy/p/5652517.html"/>
  *     @see <a href="https://blog.csdn.net/mo_cold_rain/article/details/81366310"/>
- *     向下取 round = BigDecimal.ROUND_DOWN;
  * </pre>
  */
 public final class BigDecimalUtils {
@@ -23,7 +22,7 @@ public final class BigDecimalUtils {
 
     // 小数点位数
     private static int NEW_SCALE     = 10;
-    // 舍入模式
+    // 舍入模式 ( 默认向下取 )
     private static int ROUNDING_MODE = BigDecimal.ROUND_DOWN;
 
     /**
