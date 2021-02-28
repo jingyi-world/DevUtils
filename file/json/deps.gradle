@@ -3,7 +3,7 @@ dependencies {
 	// = dev =
 
 	// dev_app_x
-	implementation 'com.afkt:DevAppX:2.1.7'
+	implementation 'com.afkt:DevAppX:2.1.8'
 	// dev_assist
 	implementation 'com.afkt:DevAssist:1.0.9'
 	// dev_base
