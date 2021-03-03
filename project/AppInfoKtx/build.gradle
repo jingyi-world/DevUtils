@@ -35,6 +35,7 @@ dependencies {
     implementation deps.lib.smartrefresh_footer_classics
     // RecyclerView Adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
     implementation deps.lib.baserecyclerviewadapterhelper
+
     // 加载动画效果 https://github.com/Kyson/WhorlView
-    implementation deps.lib.whorlviewlibrary
+    implementation deps.widget.whorlviewlibrary
 }
