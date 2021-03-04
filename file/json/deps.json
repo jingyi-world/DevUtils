@@ -124,6 +124,7 @@
         "smartrefresh_footer_classics": "com.scwang.smart:refresh-footer-classics:2.0.1",
         "smartrefreshHorizontal": "com.scwang.smart:refresh-layout-horizontal:2.0.0",
         "baserecyclerviewadapterhelper": "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.6",
+        "qmui": "com.qmuiteam:qmui:2.0.0-alpha10",
         "ratingbar": "com.hedgehog.ratingbar:app:1.1.2"
     },
     "deprecated": {

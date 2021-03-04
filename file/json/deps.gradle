@@ -244,6 +244,8 @@ dependencies {
 	implementation 'com.scwang.smart:refresh-layout-horizontal:2.0.0'
 	// baserecyclerviewadapterhelper
 	implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.6'
+	// qmui
+	implementation 'com.qmuiteam:qmui:2.0.0-alpha10'
 	// ratingbar
 	implementation 'com.hedgehog.ratingbar:app:1.1.2'
 
