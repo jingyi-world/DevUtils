@@ -13,7 +13,7 @@ dependencies {
 	// dev_java
 	implementation 'com.afkt:DevJava:1.2.9'
 	// dev_widget_x
-	implementation 'com.afkt:DevWidgetX:1.0.7'
+	implementation 'com.afkt:DevWidgetX:1.0.8'
 	// dev_environment
 	implementation 'com.afkt:DevEnvironment:1.0.2'
 	// dev_environment_base

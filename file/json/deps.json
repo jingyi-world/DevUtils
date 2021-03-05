@@ -5,7 +5,7 @@
         "dev_base": "com.afkt:DevBase:1.0.4",
         "dev_base_mvvm": "com.afkt:DevBaseMVVM:1.0.2",
         "dev_java": "com.afkt:DevJava:1.2.9",
-        "dev_widget_x": "com.afkt:DevWidgetX:1.0.7",
+        "dev_widget_x": "com.afkt:DevWidgetX:1.0.8",
         "dev_environment": "com.afkt:DevEnvironment:1.0.2",
         "dev_environment_base": "com.afkt:DevEnvironmentBase:1.0.2",
         "dev_environment_compiler": "com.afkt:DevEnvironmentCompiler:1.0.2",
