@@ -195,6 +195,10 @@ dependencies {
 	implementation 'com.didichuxing.doraemonkit:dokitx:3.3.5'
 	// dokitx_no_op
 	implementation 'com.didichuxing.doraemonkit:dokitx-no-op:3.3.5'
+	// bugly
+	implementation 'com.tencent.bugly:crashreport:3.3.7'
+	// bugly_ndk
+	implementation 'com.tencent.bugly:nativecrashreport:3.8.0'
 
 	// = widget =
 
