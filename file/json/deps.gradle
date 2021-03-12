@@ -117,10 +117,6 @@ dependencies {
 	implementation 'io.reactivex.rxjava3:rxjava:3.0.7'
 	// rxandroid3
 	implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
-	// networkCaptureSelf
-	implementation 'com.github.DingProg.NetworkCaptureSelf:library:v1.0.1'
-	// networkCaptureSelf_op
-	implementation 'com.github.DingProg.NetworkCaptureSelf:library_no_op:v1.0.1'
 	// fastjson
 	implementation 'com.alibaba:fastjson:1.2.73'
 	// fastjson_android
@@ -199,6 +195,10 @@ dependencies {
 	implementation 'com.tencent.bugly:crashreport:3.3.7'
 	// bugly_ndk
 	implementation 'com.tencent.bugly:nativecrashreport:3.8.0'
+	// networkCaptureSelf
+	implementation 'com.github.DingProg.NetworkCaptureSelf:library:v1.0.1'
+	// networkCaptureSelf_op
+	implementation 'com.github.DingProg.NetworkCaptureSelf:library_no_op:v1.0.1'
 
 	// = build_apk =
 
