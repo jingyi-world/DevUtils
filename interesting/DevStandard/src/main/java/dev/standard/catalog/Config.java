@@ -27,62 +27,57 @@ final class Config {
     // ===========
 
     // Android 文件名
-    public static final String ANDROID_DIR_NAME   = "Android";
+    public static final String              ANDROID_DIR_NAME   = "Android";
     // Android 项目本地路径
-    public static final String ANDROID_LOCAL_PATH = DIR + File.separator + ANDROID_DIR_NAME;
+    public static final String              ANDROID_LOCAL_PATH = DIR + File.separator + ANDROID_DIR_NAME;
+    // Android 文件目录注释
+    public static final Map<String, String> sAndroidCatalogMap = new HashMap<>();
 
     // ========
     // = Java =
     // ========
 
     // Java 文件名
-    public static final String JAVA_DIR_NAME   = "Java";
+    public static final String              JAVA_DIR_NAME   = "Java";
     // Java 项目本地路径
-    public static final String JAVA_LOCAL_PATH = DIR + File.separator + JAVA_DIR_NAME;
+    public static final String              JAVA_LOCAL_PATH = DIR + File.separator + JAVA_DIR_NAME;
+    // Java 文件目录注释
+    public static final Map<String, String> sJavaCatalogMap = new HashMap<>();
 
     // ================
     // = DevUtils Lib =
     // ================
 
     // DevUtils Lib 文件名
-    public static final String DEV_UTILS_DIR_NAME   = "lib";
+    public static final String              DEV_UTILS_DIR_NAME      = "lib";
     // DevUtils Lib 项目本地路径
-    public static final String DEV_UTILS_LOCAL_PATH = USER_DIR + File.separator + DEV_UTILS_DIR_NAME;
+    public static final String              DEV_UTILS_LOCAL_PATH    = USER_DIR + File.separator + DEV_UTILS_DIR_NAME;
+    // DevUtils Lib 文件目录注释
+    public static final Map<String, String> sDevUtilsCatalogMap     = new HashMap<>();
+    // DevUtils Lib 忽略目录
+    public static final List<String>        sDevUtilsIgnoreCatalogs = new ArrayList<>();
 
     // ====================
     // = DevUtils Project =
     // ====================
 
     // DevUtils Project 文件名
-    public static final String PROJECT_DIR_NAME   = "project";
+    public static final String              PROJECT_DIR_NAME   = "project";
     // DevUtils Project 项目本地路径
-    public static final String PROJECT_LOCAL_PATH = USER_DIR + File.separator + PROJECT_DIR_NAME;
+    public static final String              PROJECT_LOCAL_PATH = USER_DIR + File.separator + PROJECT_DIR_NAME;
+    // DevUtils Project 文件目录注释
+    public static final Map<String, String> sProjectCatalogMap = new HashMap<>();
 
     // ========================
     // = DevUtils Interesting =
     // ========================
 
     // DevUtils Interesting 文件名
-    public static final String INTERESTING_DIR_NAME   = "interesting";
+    public static final String              INTERESTING_DIR_NAME   = "interesting";
     // DevUtils Interesting 项目本地路径
-    public static final String INTERESTING_LOCAL_PATH = USER_DIR + File.separator + INTERESTING_DIR_NAME;
-
-    // =======
-    // = Map =
-    // =======
-
-    // Android 文件目录注释
-    public static final Map<String, String> sAndroidCatalogMap      = new HashMap<>();
-    // Java 文件目录注释
-    public static final Map<String, String> sJavaCatalogMap         = new HashMap<>();
-    // DevUtils Lib 文件目录注释
-    public static final Map<String, String> sDevUtilsCatalogMap     = new HashMap<>();
-    // DevUtils Lib 忽略目录
-    public static final List<String>        sDevUtilsIgnoreCatalogs = new ArrayList<>();
-    // DevUtils Project 文件目录注释
-    public static final Map<String, String> sProjectCatalogMap      = new HashMap<>();
+    public static final String              INTERESTING_LOCAL_PATH = USER_DIR + File.separator + INTERESTING_DIR_NAME;
     // DevUtils Interesting 文件目录注释
-    public static final Map<String, String> sInterestingCatalogMap  = new HashMap<>();
+    public static final Map<String, String> sInterestingCatalogMap = new HashMap<>();
 
     static {
 
