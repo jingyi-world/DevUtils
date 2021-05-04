@@ -121,6 +121,12 @@ dependencies {
 	implementation 'io.reactivex.rxjava3:rxjava:3.0.7'
 	// rxandroid3
 	implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+	// auto_dispose
+	implementation 'com.uber.autodispose2:autodispose:2.0.0'
+	// auto_dispose_android
+	implementation 'com.uber.autodispose2:autodispose-android:2.0.0'
+	// auto_dispose_lifecycle
+	implementation 'com.uber.autodispose2:autodispose-androidx-lifecycle:2.0.0'
 	// fastjson
 	implementation 'com.alibaba:fastjson:1.2.73'
 	// fastjson_android
