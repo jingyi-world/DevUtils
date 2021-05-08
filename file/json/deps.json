@@ -3,7 +3,7 @@
         "dev_app_x": "io.github.afkt:DevAppX:2.2.4",
         "dev_assist": "io.github.afkt:DevAssist:1.2.0",
         "dev_base": "io.github.afkt:DevBase:1.0.5",
-        "dev_base_mvvm": "com.afkt:DevBaseMVVM:1.0.2",
+        "dev_base_mvvm": "io.github.afkt:DevBaseMVVM:1.0.3",
         "dev_java": "com.afkt:DevJava:1.3.0",
         "dev_widget_x": "com.afkt:DevWidgetX:1.0.9",
         "dev_environment": "com.afkt:DevEnvironment:1.0.2",
