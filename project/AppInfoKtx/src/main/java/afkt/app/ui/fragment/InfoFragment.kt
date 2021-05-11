@@ -25,6 +25,8 @@ class InfoFragment : BaseFragment<FragmentInfoBinding>() {
         }
     }
 
+    private val mAdapter: InfoAdapter = InfoAdapter()
+
     override fun baseContentId() = R.layout.fragment_info
 
     override fun onViewCreated(
@@ -34,31 +36,30 @@ class InfoFragment : BaseFragment<FragmentInfoBinding>() {
         super.onViewCreated(view, savedInstanceState)
         binding.root.setEnableRefresh(false)
             .setEnableLoadMore(false)
+        binding.root.setAdapter(mAdapter)
+
         viewModel.infoObserve(viewLifecycleOwner, {
             if (it.type == dataStore.typeEnum) {
-                binding.root.setAdapter(InfoAdapter(it.lists))
+                mAdapter.setDataList(it.lists)
             }
         })
         viewModel.exportEvent.observe(viewLifecycleOwner, {
             if (it == dataStore.typeEnum) {
-                if (binding.root.getAdapter<InfoAdapter>() != null) {
-                    val adapter: InfoAdapter? = binding.root.getAdapter()
-                    if (adapter?.data != null) {
-                        val content: String? = DeviceInfoBean.jsonString(adapter.data)
-                        val fileName =
-                            if (TypeEnum.DEVICE_INFO == it) "device_info.txt" else "screen_info.txt"
-                        // 导出数据
-                        val result = FileUtils.saveFile(
-                            FileUtils.getFile(PathConfig.AEP_PATH, fileName),
-                            content?.toByteArray()
-                        )
-                        if (result) {
-                            ToastTintUtils.success(ResourceUtils.getString(R.string.str_export_suc))
-                            return@observe
-                        }
+                if (mAdapter.isDataNotEmpty) {
+                    val content: String? = DeviceInfoBean.jsonString(mAdapter.dataList)
+                    val fileName =
+                        if (TypeEnum.DEVICE_INFO == it) "device_info.txt" else "screen_info.txt"
+                    // 导出数据
+                    val result = FileUtils.saveFile(
+                        FileUtils.getFile(PathConfig.AEP_PATH, fileName),
+                        content?.toByteArray()
+                    )
+                    if (result) {
+                        ToastTintUtils.success(ResourceUtils.getString(R.string.str_export_suc))
+                        return@observe
                     }
-                    ToastTintUtils.error(ResourceUtils.getString(R.string.str_export_fail))
                 }
+                ToastTintUtils.error(ResourceUtils.getString(R.string.str_export_fail))
             }
         })
         when (dataStore.typeEnum) {

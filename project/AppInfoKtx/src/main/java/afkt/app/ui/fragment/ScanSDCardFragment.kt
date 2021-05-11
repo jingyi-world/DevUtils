@@ -36,6 +36,8 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
 
     private var type = TypeEnum.QUERY_APK
 
+    private val mAdapter: ApkListAdapter = ApkListAdapter()
+
     override fun baseContentId(): Int = R.layout.fragment_app
 
     override fun onViewCreated(
@@ -50,6 +52,7 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
             }
         })
         binding.vidFaRefresh.setEnableLoadMore(false)
+        binding.vidFaRefresh.setAdapter(mAdapter)
 
         whorlView = ViewUtils.findViewById(
             binding.vidFaState.getView(ViewAssist.TYPE_ING),
@@ -140,18 +143,15 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
                 direction: Int
             ) {
                 if (direction == ItemTouchHelper.LEFT || direction == ItemTouchHelper.RIGHT) {
-                    val adapter: ApkListAdapter? = binding.vidFaRefresh.getAdapter()
                     try {
                         val position = viewHolder.adapterPosition
-                        FileUtils.deleteFile(adapter?.getItem(position)?.uri)
-                        adapter?.removeAt(position)
+                        FileUtils.deleteFile(mAdapter.getDataItem(position).uri)
+                        mAdapter.removeDataAt(position)
                     } catch (e: Exception) {
                         DevLogger.e(e)
                     }
-                    adapter?.let {
-                        if (it.getDefItemCount() == 0) {
-                            binding.vidFaState.showEmptyData()
-                        }
+                    if (mAdapter.isDataEmpty) {
+                        binding.vidFaState.showEmptyData()
                     }
                 }
             }
@@ -212,7 +212,7 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
             if (lists.isEmpty()) {
                 binding.vidFaState.showEmptyData()
             } else {
-                binding.vidFaRefresh.setAdapter(ApkListAdapter(lists))
+                mAdapter.setDataList(lists)
                 binding.vidFaState.showSuccess()
             }
         }

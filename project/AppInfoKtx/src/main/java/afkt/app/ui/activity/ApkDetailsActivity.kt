@@ -9,13 +9,16 @@ import android.Manifest
 import android.os.Build
 import android.view.Menu
 import android.view.MenuItem
+import dev.callback.DevItemClickCallback
 import dev.utils.DevFinal
 import dev.utils.app.AppUtils
+import dev.utils.app.ClipboardUtils
 import dev.utils.app.IntentUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.ViewHelper
 import dev.utils.app.info.ApkInfoItem
 import dev.utils.app.info.AppInfoUtils
+import dev.utils.app.info.KeyValue
 import dev.utils.app.logger.DevLogger
 import dev.utils.app.permission.PermissionUtils
 import dev.utils.app.toast.ToastTintUtils
@@ -24,19 +27,19 @@ import dev.utils.common.FileUtils
 class ApkDetailsActivity : BaseActivity<ActivityApkDetailsBinding>() {
 
     // APK 信息 Item
-    private var apkInfoItem: ApkInfoItem? = null
+    private lateinit var apkInfoItem: ApkInfoItem
 
     override fun baseContentId(): Int = R.layout.activity_apk_details
 
     override fun initValue() {
         super.initValue()
         try {
-            apkInfoItem =
-                AppInfoUtils.getApkInfoItem(intent.getStringExtra(DevFinal.URI))
+            val apkInfo = AppInfoUtils.getApkInfoItem(intent.getStringExtra(DevFinal.URI))
+            apkInfo?.let { apkInfoItem = it }
         } catch (e: Exception) {
             DevLogger.e(e)
         }
-        if (apkInfoItem == null) {
+        if (!this::apkInfoItem.isInitialized) {
             ToastTintUtils.warning(ResourceUtils.getString(R.string.str_get_apkinfo_fail))
             finish()
             return
@@ -51,20 +54,34 @@ class ApkDetailsActivity : BaseActivity<ActivityApkDetailsBinding>() {
             binding.vidAadToolbar.setNavigationOnClickListener { finish() }
         }
         // 获取 APP 信息
-        val appInfoBean = apkInfoItem!!.appInfoBean
+        val appInfoBean = apkInfoItem.appInfoBean
         ViewHelper.get()
             .setImageDrawable(binding.vidAadAppIgview, appInfoBean.appIcon) // 设置 app 图标
             .setText(binding.vidAadNameTv, appInfoBean.appName) // 设置 app 名
             .setText(binding.vidAadVnameTv, appInfoBean.versionName) // 设置 app 版本
 
-        binding.vidAadRecy.adapter = KeyValueAdapter(apkInfoItem!!.listKeyValues)
+        binding.vidAadRecy.adapter = KeyValueAdapter(apkInfoItem.listKeyValues)
+            .setItemCallback(object : DevItemClickCallback<KeyValue>() {
+                override fun onItemClick(
+                    value: KeyValue?,
+                    param: Int
+                ) {
+                    value?.let {
+                        val txt = it.toString()
+                        // 复制到剪切板
+                        ClipboardUtils.copyText(txt)
+                        // 进行提示
+                        ToastTintUtils.success(ResourceUtils.getString(R.string.str_copy_suc) + ", " + txt)
+                    }
+                }
+            })
     }
 
     override fun initListener() {
         super.initListener()
         // 安装应用
         binding.vidAadInstallTv.setOnClickListener {
-            val sourceDir = apkInfoItem!!.appInfoBean.sourceDir
+            val sourceDir = apkInfoItem.appInfoBean.sourceDir
             if (FileUtils.isFileExists(sourceDir)) {
                 // Android 8.0以上
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -111,7 +128,7 @@ class ApkDetailsActivity : BaseActivity<ActivityApkDetailsBinding>() {
         }
         // 删除安装包
         binding.vidAadDeleteTv.setOnClickListener {
-            val sourceDir = apkInfoItem!!.appInfoBean.sourceDir
+            val sourceDir = apkInfoItem.appInfoBean.sourceDir
             if (FileUtils.isFileExists(sourceDir)) {
                 FileUtils.deleteFile(sourceDir)
                 globalViewModel?.postFileDelete()
@@ -134,13 +151,13 @@ class ApkDetailsActivity : BaseActivity<ActivityApkDetailsBinding>() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.bmpi_share -> {
-                apkInfoItem?.let { ExportUtils.shareApp(it) }
+                ExportUtils.shareApp(apkInfoItem)
             }
             R.id.bmpi_export_apk -> {
-                apkInfoItem?.let { ExportUtils.exportApp(it) }
+                ExportUtils.exportApp(apkInfoItem)
             }
             R.id.bmpi_export_apk_msg -> {
-                apkInfoItem?.let { ExportUtils.exportInfo(it) }
+                ExportUtils.exportInfo(apkInfoItem)
             }
         }
         return true

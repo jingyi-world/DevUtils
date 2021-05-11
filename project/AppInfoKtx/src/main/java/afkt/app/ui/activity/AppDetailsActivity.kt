@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import dev.utils.DevFinal
 import dev.utils.app.AppUtils
+import dev.utils.app.ClipboardUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.helper.ViewHelper
 import dev.utils.app.info.AppInfoItem
@@ -21,20 +22,21 @@ import dev.utils.app.toast.ToastTintUtils
 class AppDetailsActivity : BaseActivity<ActivityAppDetailsBinding>() {
 
     // APP 信息 Item
-    private var appInfoItem: AppInfoItem? = null
+    private lateinit var appInfoItem: AppInfoItem
 
     override fun baseContentId(): Int = R.layout.activity_app_details
 
     override fun initValue() {
         super.initValue()
         try {
-            appInfoItem =
+            val appInfo =
                 AppInfoUtils.getAppInfoItem(intent.getStringExtra(DevFinal.PACKNAME))
+            appInfo?.let { appInfoItem = it }
         } catch (e: Exception) {
             DevLogger.e(e)
         }
-        if (appInfoItem == null) {
-            ToastTintUtils.warning(ResourceUtils.getString(R.string.str_get_appinfo_fail))
+        if (!this::appInfoItem.isInitialized) {
+            ToastTintUtils.warning(ResourceUtils.getString(R.string.str_get_apkinfo_fail))
             finish()
             return
         }
@@ -48,13 +50,13 @@ class AppDetailsActivity : BaseActivity<ActivityAppDetailsBinding>() {
             binding.vidAadToolbar.setNavigationOnClickListener { finish() }
         }
         // 获取 APP 信息
-        val appInfoBean = appInfoItem!!.appInfoBean
+        val appInfoBean = appInfoItem.appInfoBean
         ViewHelper.get()
             .setImageDrawable(binding.vidAadAppIgview, appInfoBean.appIcon) // 设置 app 图标
             .setText(binding.vidAadNameTv, appInfoBean.appName) // 设置 app 名
             .setText(binding.vidAadVnameTv, appInfoBean.versionName) // 设置 app 版本
 
-        val lists = appInfoItem!!.listKeyValues
+        val lists = appInfoItem.listKeyValues
         lists.add(
             0,
             KeyValue.get(
@@ -69,28 +71,30 @@ class AppDetailsActivity : BaseActivity<ActivityAppDetailsBinding>() {
                 ResourceUtils.getString(R.string.str_goto_app_details_setting)
             )
         )
-        binding.vidAadRecy.adapter =
-            KeyValueAdapter(lists).setListener(object : KeyValueAdapter.Listener {
+        binding.vidAadRecy.adapter = KeyValueAdapter(lists)
+            .setItemCallback(object : dev.callback.DevItemClickCallback<KeyValue>() {
                 override fun onItemClick(
-                    item: KeyValue,
-                    position: Int
-                ): Boolean {
-                    return when (position) {
-                        0 -> {
-                            if (!AppUtils.launchAppDetails(appInfoBean.appPackName, "")) {
-                                ToastTintUtils.error(ResourceUtils.getString(R.string.str_operate_fail))
-                            }
-                            true
+                    value: KeyValue?,
+                    param: Int
+                ) {
+                    if (param == 0) {
+                        if (!AppUtils.launchAppDetails(appInfoBean.appPackName, "")) {
+                            ToastTintUtils.error(ResourceUtils.getString(R.string.str_operate_fail))
                         }
-                        1 -> {
-                            if (AppUtils.isInstalledApp(appInfoBean.appPackName)) {
-                                AppUtils.launchAppDetailsSettings(appInfoBean.appPackName)
-                            } else {
-                                ToastTintUtils.error(ResourceUtils.getString(R.string.str_app_not_exist))
-                            }
-                            true
+                    } else if (param == 1) {
+                        if (AppUtils.isInstalledApp(appInfoBean.appPackName)) {
+                            AppUtils.launchAppDetailsSettings(appInfoBean.appPackName)
+                        } else {
+                            ToastTintUtils.error(ResourceUtils.getString(R.string.str_app_not_exist))
                         }
-                        else -> false
+                    } else {
+                        value?.let {
+                            val txt = it.toString()
+                            // 复制到剪切板
+                            ClipboardUtils.copyText(txt)
+                            // 进行提示
+                            ToastTintUtils.success(ResourceUtils.getString(R.string.str_copy_suc) + ", " + txt)
+                        }
                     }
                 }
             })
@@ -103,13 +107,13 @@ class AppDetailsActivity : BaseActivity<ActivityAppDetailsBinding>() {
     // ===========
 
     override fun onClick(v: View) {
-        if (!AppUtils.isInstalledApp(appInfoItem!!.appInfoBean.appPackName)) {
+        if (!AppUtils.isInstalledApp(appInfoItem.appInfoBean.appPackName)) {
             ToastTintUtils.error(ResourceUtils.getString(R.string.str_app_not_exist))
             return
         }
         when (v.id) {
-            R.id.vid_aad_open_app_tv -> AppUtils.launchApp(appInfoItem!!.appInfoBean.appPackName)
-            R.id.vid_aad_uninstall_tv -> AppUtils.uninstallApp(appInfoItem!!.appInfoBean.appPackName)
+            R.id.vid_aad_open_app_tv -> AppUtils.launchApp(appInfoItem.appInfoBean.appPackName)
+            R.id.vid_aad_uninstall_tv -> AppUtils.uninstallApp(appInfoItem.appInfoBean.appPackName)
         }
     }
 
@@ -124,20 +128,20 @@ class AppDetailsActivity : BaseActivity<ActivityAppDetailsBinding>() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId != R.id.bmai_export_app_msg) {
-            if (!AppUtils.isInstalledApp(appInfoItem!!.appInfoBean.appPackName)) {
+            if (!AppUtils.isInstalledApp(appInfoItem.appInfoBean.appPackName)) {
                 ToastTintUtils.error(ResourceUtils.getString(R.string.str_app_not_exist))
                 return false
             }
         }
         when (item.itemId) {
             R.id.bmai_share -> {
-                appInfoItem?.let { ExportUtils.shareApp(it) }
+                ExportUtils.shareApp(appInfoItem)
             }
             R.id.bmai_export_app -> {
-                appInfoItem?.let { ExportUtils.exportApp(it) }
+                ExportUtils.exportApp(appInfoItem)
             }
             R.id.bmai_export_app_msg -> {
-                appInfoItem?.let { ExportUtils.exportInfo(it) }
+                ExportUtils.exportInfo(appInfoItem)
             }
         }
         return true

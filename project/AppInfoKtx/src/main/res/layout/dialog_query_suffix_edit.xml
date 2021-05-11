@@ -47,8 +47,8 @@
                     android:inputType="text"
                     android:maxLength="10"
                     android:maxLines="1"
-                    android:paddingTop="@dimen/dp_10"
-                    android:paddingBottom="@dimen/dp_10"
+                    android:paddingTop="@dimen/un_dp_10"
+                    android:paddingBottom="@dimen/un_dp_10"
                     android:singleLine="true"
                     android:textSize="@dimen/un_sp_14" />
             </LinearLayout>

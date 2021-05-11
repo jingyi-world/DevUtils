@@ -1,57 +1,43 @@
 package afkt.app.ui.adapter
 
 import afkt.app.R
-import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.listener.OnItemClickListener
-import com.chad.library.adapter.base.viewholder.BaseViewHolder
-import dev.utils.app.ClipboardUtils
-import dev.utils.app.ResourceUtils
+import afkt.app.databinding.AdapterItemKeyValueBinding
+import android.view.ViewGroup
+import dev.adapter.DevDataAdapterExt
+import dev.base.adapter.DevBaseViewBindingVH
+import dev.base.adapter.newBindingViewHolder
+import dev.utils.app.helper.ViewHelper
 import dev.utils.app.info.KeyValue
-import dev.utils.app.toast.ToastTintUtils
 
 /**
  * detail: 键值对 Adapter
  * @author Ttt
  */
-class KeyValueAdapter(data: MutableList<KeyValue>) :
-    BaseQuickAdapter<KeyValue, BaseViewHolder>(R.layout.adapter_item_key_value, data) {
+class KeyValueAdapter(data: List<KeyValue>) :
+    DevDataAdapterExt<KeyValue, DevBaseViewBindingVH<AdapterItemKeyValueBinding>>() {
 
     init {
-        setOnItemClickListener(OnItemClickListener { _, _, position ->
-            data[position].run {
-                if (listener != null && listener!!.onItemClick(this, position)) {
-                    return@OnItemClickListener
-                }
-                val txt: String = toString()
-                // 复制到剪切板
-                ClipboardUtils.copyText(txt)
-                // 进行提示
-                ToastTintUtils.success(ResourceUtils.getString(R.string.str_copy_suc) + ", " + txt)
-            }
-        })
+        setDataList(data, false)
     }
 
-    override fun convert(
-        holder: BaseViewHolder,
-        item: KeyValue
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): DevBaseViewBindingVH<AdapterItemKeyValueBinding> {
+        return newBindingViewHolder(parent, R.layout.adapter_item_key_value)
+    }
+
+    override fun onBindViewHolder(
+        holder: DevBaseViewBindingVH<AdapterItemKeyValueBinding>,
+        position: Int
     ) {
-        holder.setText(R.id.vid_aikv_key_tv, item.key)
-            .setText(R.id.vid_aikv_value_tv, item.value)
-    }
+        val item = getDataItem(position)
 
-    // =
-
-    private var listener: Listener? = null
-
-    interface Listener {
-        fun onItemClick(
-            item: KeyValue,
-            position: Int
-        ): Boolean
-    }
-
-    fun setListener(listener: Listener): KeyValueAdapter {
-        this.listener = listener
-        return this
+        ViewHelper.get()
+            .setText(holder.binding.vidAikvKeyTv, item.key)
+            .setText(holder.binding.vidAikvValueTv, item.value)
+            .setOnClicks({
+                mItemCallback?.onItemClick(item, position)
+            }, holder.itemView)
     }
 }

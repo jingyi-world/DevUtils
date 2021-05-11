@@ -1,16 +1,20 @@
 package afkt.app.ui.dialog
 
 import afkt.app.R
+import afkt.app.databinding.AdapterItemQuerySuffixBinding
 import afkt.app.databinding.DialogQuerySuffixBinding
 import afkt.app.utils.QuerySuffixUtils
 import android.app.Dialog
 import android.content.Context
 import android.view.Gravity
+import android.view.ViewGroup
 import android.view.WindowManager
-import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import dev.adapter.DevDataAdapterExt
+import dev.base.adapter.DevBaseViewBindingVH
+import dev.base.adapter.newBindingViewHolder
 import dev.utils.app.ResourceUtils
 import dev.utils.app.ScreenUtils
+import dev.utils.app.helper.ViewHelper
 import dev.utils.app.toast.ToastTintUtils
 
 /**
@@ -61,36 +65,39 @@ class QuerySuffixDialog(context: Context?) :
     // ===========
 
     class QuerySuffixAdapter :
-        BaseQuickAdapter<String, BaseViewHolder>(R.layout.adapter_item_query_suffix, ArrayList()) {
+        DevDataAdapterExt<String, DevBaseViewBindingVH<AdapterItemQuerySuffixBinding>>() {
 
-        init {
-            addChildClickViewIds(R.id.vid_aiqs_framelayout)
-            setOnItemChildClickListener { _, _, position ->
-                val item: String = data[position]
-                if (item.isEmpty()) {
-                    QuerySuffixEditDialog(context) {
-                        refreshData()
-                    }.show()
-                } else {
-                    maps.remove(item)
-                    QuerySuffixUtils.refresh(maps)
-                    refreshData()
-                }
-            }
+        override fun onCreateViewHolder(
+            parent: ViewGroup,
+            viewType: Int
+        ): DevBaseViewBindingVH<AdapterItemQuerySuffixBinding> {
+            return newBindingViewHolder(parent, R.layout.adapter_item_query_suffix)
         }
 
-        override fun convert(
-            holder: BaseViewHolder,
-            item: String
+        override fun onBindViewHolder(
+            holder: DevBaseViewBindingVH<AdapterItemQuerySuffixBinding>,
+            position: Int
         ) {
-            holder.setText(R.id.vid_aiqs_suffix_tv, item)
+            val item = getDataItem(position)
+
+            ViewHelper.get()
+                .setText(holder.binding.vidAiqsSuffixTv, item)
                 .setImageResource(
-                    R.id.vid_aiqs_igview,
+                    holder.binding.vidAiqsIgview,
                     if (item.isEmpty()) R.drawable.icon_add else R.drawable.icon_close
                 )
+                .setOnClicks({
+                    if (item.isEmpty()) {
+                        QuerySuffixEditDialog(context) {
+                            refreshData()
+                        }.show()
+                    } else {
+                        maps.remove(item)
+                        QuerySuffixUtils.refresh(maps)
+                        refreshData()
+                    }
+                }, holder.binding.vidAiqsFramelayout)
         }
-
-        // =
 
         private var maps = LinkedHashMap<String, String>()
 
@@ -98,17 +105,10 @@ class QuerySuffixDialog(context: Context?) :
          * 刷新数据
          */
         fun refreshData() {
-            setNewInstance(readData())
-        }
-
-        /**
-         * 读取数据
-         */
-        private fun readData(): ArrayList<String> {
             maps = LinkedHashMap(QuerySuffixUtils.querySuffixMap)
             val lists = ArrayList<String>(maps.keys)
             lists.add("")
-            return lists
+            setDataList(lists)
         }
     }
 }

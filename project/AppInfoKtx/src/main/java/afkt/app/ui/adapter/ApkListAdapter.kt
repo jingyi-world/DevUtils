@@ -2,11 +2,13 @@ package afkt.app.ui.adapter
 
 import afkt.app.R
 import afkt.app.base.model.FileApkItem
+import afkt.app.databinding.AdapterItemAppBinding
 import afkt.app.ui.activity.ApkDetailsActivity
 import android.content.Intent
-import android.widget.TextView
-import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import android.view.ViewGroup
+import dev.adapter.DevDataAdapterExt
+import dev.base.adapter.DevBaseViewBindingVH
+import dev.base.adapter.newBindingViewHolder
 import dev.utils.DevFinal
 import dev.utils.app.AppUtils
 import dev.utils.app.ResourceUtils
@@ -18,44 +20,46 @@ import dev.utils.common.FileUtils
  * detail: App 列表 Adapter
  * @author Ttt
  */
-class ApkListAdapter(data: MutableList<FileApkItem>?) :
-    BaseQuickAdapter<FileApkItem, BaseViewHolder>(R.layout.adapter_item_app, data) {
+class ApkListAdapter :
+    DevDataAdapterExt<FileApkItem, DevBaseViewBindingVH<AdapterItemAppBinding>>() {
 
-    init {
-        setOnItemClickListener { _, _, position ->
-            (data?.get(position) as FileApkItem).run {
-                if (FileUtils.isFileExists(uri)) {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): DevBaseViewBindingVH<AdapterItemAppBinding> {
+        parentContext(parent)
+        return newBindingViewHolder(parent, R.layout.adapter_item_app)
+    }
+
+    override fun onBindViewHolder(
+        holder: DevBaseViewBindingVH<AdapterItemAppBinding>,
+        position: Int
+    ) {
+        val item = getDataItem(position)
+        val appInfo = item.appInfoBean
+
+        ViewHelper.get()
+            .setText(holder.binding.vidAiaNameTv, appInfo.appName)
+            .setText(holder.binding.vidAiaPackTv, appInfo.appPackName)
+            .setImageDrawable(holder.binding.vidAiaIgview, appInfo.appIcon)
+            .setOnClicks({
+                if (FileUtils.isFileExists(item.uri)) {
                     val intent = Intent(context, ApkDetailsActivity::class.java)
-                    intent.putExtra(DevFinal.URI, uri)
+                    intent.putExtra(DevFinal.URI, item.uri)
                     AppUtils.startActivity(intent)
                 } else {
                     ToastTintUtils.warning(ResourceUtils.getString(R.string.str_file_not_exist))
                 }
-            }
-        }
-    }
+            }, holder.itemView)
 
-    override fun convert(
-        holder: BaseViewHolder,
-        item: FileApkItem
-    ) {
-        val appInfoBean = item.appInfoBean
-        holder.setText(R.id.vid_aia_name_tv, appInfoBean.appName)
-            .setText(R.id.vid_aia_pack_tv, appInfoBean.appPackName)
-            .setImageDrawable(R.id.vid_aia_igview, appInfoBean.appIcon)
-
-        val nameTv: TextView = holder.getView(R.id.vid_aia_name_tv)
-        val packTv: TextView = holder.getView(R.id.vid_aia_pack_tv)
         if (FileUtils.isFileExists(item.uri)) {
-            ViewHelper.get().setAntiAliasFlag(nameTv)
-                .setAntiAliasFlag(packTv)
+            ViewHelper.get()
+                .setAntiAliasFlag(holder.binding.vidAiaNameTv)
+                .setAntiAliasFlag(holder.binding.vidAiaPackTv)
         } else {
-            ViewHelper.get().setStrikeThruText(nameTv)
-                .setStrikeThruText(packTv)
+            ViewHelper.get()
+                .setStrikeThruText(holder.binding.vidAiaNameTv)
+                .setStrikeThruText(holder.binding.vidAiaPackTv)
         }
-    }
-
-    public override fun getDefItemCount(): Int {
-        return super.getDefItemCount()
     }
 }

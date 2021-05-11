@@ -1,13 +1,17 @@
 package afkt.app.ui.adapter
 
 import afkt.app.R
+import afkt.app.databinding.AdapterItemAppBinding
 import afkt.app.ui.activity.AppDetailsActivity
 import android.content.Intent
-import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import android.view.ViewGroup
+import dev.adapter.DevDataAdapterExt
+import dev.base.adapter.DevBaseViewBindingVH
+import dev.base.adapter.newBindingViewHolder
 import dev.utils.DevFinal
 import dev.utils.app.AppUtils
 import dev.utils.app.ResourceUtils
+import dev.utils.app.helper.ViewHelper
 import dev.utils.app.info.AppInfoBean
 import dev.utils.app.toast.ToastTintUtils
 
@@ -15,29 +19,39 @@ import dev.utils.app.toast.ToastTintUtils
  * detail: App 列表 Adapter
  * @author Ttt
  */
-class AppListAdapter(data: MutableList<AppInfoBean>?) :
-    BaseQuickAdapter<AppInfoBean, BaseViewHolder>(R.layout.adapter_item_app, data) {
+class AppListAdapter(data: List<AppInfoBean>?) :
+    DevDataAdapterExt<AppInfoBean, DevBaseViewBindingVH<AdapterItemAppBinding>>() {
 
     init {
-        setOnItemClickListener { _, _, position ->
-            (data?.get(position) as AppInfoBean).run {
-                if (AppUtils.isInstalledApp(appPackName)) {
+        setDataList(data, false)
+    }
+
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): DevBaseViewBindingVH<AdapterItemAppBinding> {
+        parentContext(parent)
+        return newBindingViewHolder(parent, R.layout.adapter_item_app)
+    }
+
+    override fun onBindViewHolder(
+        holder: DevBaseViewBindingVH<AdapterItemAppBinding>,
+        position: Int
+    ) {
+        val item = getDataItem(position)
+
+        ViewHelper.get()
+            .setText(holder.binding.vidAiaNameTv, item.appName)
+            .setText(holder.binding.vidAiaPackTv, item.appPackName)
+            .setImageDrawable(holder.binding.vidAiaIgview, item.appIcon)
+            .setOnClicks({
+                if (AppUtils.isInstalledApp(item.appPackName)) {
                     val intent = Intent(context, AppDetailsActivity::class.java)
-                    intent.putExtra(DevFinal.PACKNAME, appPackName)
+                    intent.putExtra(DevFinal.PACKNAME, item.appPackName)
                     AppUtils.startActivity(intent)
                 } else {
                     ToastTintUtils.warning(ResourceUtils.getString(R.string.str_app_not_exist))
                 }
-            }
-        }
-    }
-
-    override fun convert(
-        holder: BaseViewHolder,
-        item: AppInfoBean
-    ) {
-        holder.setText(R.id.vid_aia_name_tv, item.appName)
-            .setText(R.id.vid_aia_pack_tv, item.appPackName)
-            .setImageDrawable(R.id.vid_aia_igview, item.appIcon)
+            }, holder.itemView)
     }
 }
