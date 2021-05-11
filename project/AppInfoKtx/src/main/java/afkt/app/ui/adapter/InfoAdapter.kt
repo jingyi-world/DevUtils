@@ -25,7 +25,7 @@ class InfoAdapter :
         viewType: Int
     ): DevBaseViewBindingVH<AdapterItemDeviceInfoBinding> {
         parentContext(parent)
-        return newBindingViewHolder(parent, R.layout.adapter_item_app)
+        return newBindingViewHolder(parent, R.layout.adapter_item_device_info)
     }
 
     override fun onBindViewHolder(

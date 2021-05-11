@@ -71,6 +71,7 @@ class QuerySuffixDialog(context: Context?) :
             parent: ViewGroup,
             viewType: Int
         ): DevBaseViewBindingVH<AdapterItemQuerySuffixBinding> {
+            parentContext(parent)
             return newBindingViewHolder(parent, R.layout.adapter_item_query_suffix)
         }
 
