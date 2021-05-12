@@ -121,6 +121,12 @@ dependencies {
 	implementation 'io.reactivex.rxjava3:rxjava:3.0.7'
 	// rxandroid3
 	implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+	// rxlifecycle
+	implementation 'com.trello.rxlifecycle4:rxlifecycle:4.0.2'
+	// rxlifecycle_kotlin
+	implementation 'com.trello.rxlifecycle4:rxlifecycle-kotlin:4.0.2'
+	// rxlifecycle_android_lifecycle_kotlin
+	implementation 'com.trello.rxlifecycle4:rxlifecycle-android-lifecycle-kotlin:4.0.2'
 	// auto_dispose
 	implementation 'com.uber.autodispose2:autodispose:2.0.0'
 	// auto_dispose_android
