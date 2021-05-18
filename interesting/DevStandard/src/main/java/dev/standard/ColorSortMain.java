@@ -58,8 +58,10 @@ public class ColorSortMain {
                     System.out.println(" list is empty");
                     return;
                 }
-                // 根据色调排序
-                ColorUtils.sortHSB(lists);
+                // 饱和度排序
+                ColorUtils.sortSaturation(lists);
+                // 色相排序
+                ColorUtils.sortHUE(lists);
                 // 生成 XML 文件内容
                 String content = Builder.createXML(lists);
                 // 覆盖处理
