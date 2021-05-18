@@ -127,14 +127,14 @@ public class ColorSortMain {
             // 获取 SAXParser 实例
             SAXParser saxParser = factory.newSAXParser();
             // 创建 Handler 对象并进行解析
-            saxParser.parse(xmlPath, new SAXDemoHandel(listener));
+            saxParser.parse(xmlPath, new SAXHandler(listener));
         }
 
         /**
          * detail: 解析 Handler
          * @author Ttt
          */
-        class SAXDemoHandel
+        class SAXHandler
                 extends DefaultHandler {
 
             private       String                     colorKey;
@@ -144,7 +144,7 @@ public class ColorSortMain {
             // 解析集合
             private final List<ColorUtils.ColorInfo> lists = new ArrayList<>();
 
-            public SAXDemoHandel(DocumentListener listener) {
+            public SAXHandler(DocumentListener listener) {
                 this.listener = listener;
             }
 
@@ -201,7 +201,7 @@ public class ColorSortMain {
                 super.characters(ch, start, length);
                 String value = new String(ch, start, length).trim();
                 if (!value.equals("")) {
-                    this.colorValue = value;
+                    this.colorValue = value; // 可设置全部值转大写、小写
                 }
             }
         }
