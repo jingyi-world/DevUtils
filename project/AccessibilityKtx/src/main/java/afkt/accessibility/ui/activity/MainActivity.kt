@@ -14,13 +14,11 @@ import dev.utils.app.IntentUtils
 import dev.utils.app.toast.ToastUtils
 
 /**
- * <pre>
- *     具体代码 copy Github ActivityTracker 库
- *     @see <a href="https://github.com/fashare2015/ActivityTracker"/>
- *     <p></p>
- *     内部只是封装 AccessibilityListenerService 以及 BaseApplication 结合 DevApp#AccessibilityUtils 使用
- *     可自行实现其他功能模块, 例如微信抢红包、自动点击等操作
- * </pre>
+ * 具体代码 copy Github ActivityTracker 库
+ * @see https://github.com/fashare2015/ActivityTracker
+ * <p></p>
+ * 内部只是封装 AccessibilityListenerService 以及 BaseApplication 结合 DevApp#AccessibilityUtils 使用
+ * 可自行实现其他功能模块, 例如微信抢红包、自动点击等操作
  */
 class MainActivity : AppCompatActivity() {
 
