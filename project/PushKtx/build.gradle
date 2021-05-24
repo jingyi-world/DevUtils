@@ -2,7 +2,7 @@ apply from: rootProject.file(files.build_app_gradle)
 
 android {
     defaultConfig {
-        applicationId "afkt.push"
+        applicationId "afkt.jpush"
 
         ndk {
             // 选择要添加的对应 cpu 类型的 .so 库
@@ -12,27 +12,15 @@ android {
 
         manifestPlaceholders = [
                 JPUSH_PKGNAME: applicationId,
-                JPUSH_APPKEY : "366bc1229fa4a6c47817a8f4",
+                JPUSH_APPKEY : "2ad57c3b31d94518c051d2fc",
                 JPUSH_CHANNEL: "dev-install-debug",
         ]
     }
 }
 
 dependencies {
-    implementation project(':DevApp')
     implementation project(':DevBaseMVVM')
 
-    // =============
-    // = 快捷开发库 =
-    // =============
-
-    // Gson https://github.com/google/gson
-    implementation deps.lib.gson
-
-    // ===========
-    // = 极光推送 =
-    // ===========
-
-    implementation 'cn.jiguang.sdk:jpush:3.8.5'
-    implementation 'cn.jiguang.sdk:jcore:2.5.5'
+    // 极光推送 Module
+    implementation project(':DevJPush')
 }
