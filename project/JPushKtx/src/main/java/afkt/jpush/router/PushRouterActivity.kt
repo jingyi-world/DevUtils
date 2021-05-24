@@ -1,13 +1,13 @@
-package afkt.push.router
+package afkt.jpush.router
 
-import afkt.push.jpush.PushMessage
-import afkt.push.jpush.toJson
 import android.app.Activity
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
+import dev.engine.json.DevJSONEngine
+import dev.engine.storage.DevStorageEngine
+import dev.module.push.PushMessage
 import dev.utils.DevFinal
 import dev.utils.app.AppUtils
 
@@ -37,11 +37,11 @@ class PushRouterActivity : Activity() {
                 // 获取推送数据
                 it.getStringExtra(DevFinal.DATA)?.let { data ->
                     // 保存推送数据
-                    SP.savePushData(this, data)
+                    DataManager.savePushData(this, data)
 
-                    // ===========
+                    // ==========
                     // = 跳转处理 =
-                    // ===========
+                    // ==========
 
                     val mainIntent = Intent(Intent.ACTION_MAIN)
                     mainIntent.addCategory(Intent.CATEGORY_LAUNCHER)
@@ -54,9 +54,9 @@ class PushRouterActivity : Activity() {
                     mainIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                     startActivity(mainIntent)
 
-                    // ===============
+                    // =============
                     // = 关闭当前页面 =
-                    // ===============
+                    // =============
 
                     finish()
                 }
@@ -77,7 +77,7 @@ class PushRouterActivity : Activity() {
             pushMessage: PushMessage,
         ): Boolean {
             val intent = Intent(context, PushRouterActivity::class.java)
-            intent.putExtra(DevFinal.DATA, toJson(pushMessage))
+            intent.putExtra(DevFinal.DATA, DevJSONEngine.getEngine().toJson(pushMessage))
             return AppUtils.startActivity(intent)
         }
     }
@@ -145,14 +145,14 @@ object PushRouterChecker {
         activity: Activity?,
         activityClass: String?
     ) {
-        activity?.let { context ->
+        activity?.let { activity ->
             pushCallback?.run {
                 if (isTriggerCallback(activityClass)) {
                     // 是否点击通知栏推送消息 ( 用于判断是否处理推送路由 )
-                    if (SP.isClickPush(context)) {
-                        var pushData = SP.getPushData(context)
+                    if (DataManager.isClickPush(activity)) {
+                        val pushData = DataManager.getPushData(activity)
                         // 触发回调
-                        onCallback(context, pushData)
+                        onCallback(activity, pushData)
                     }
                 }
             }
@@ -184,14 +184,13 @@ interface IPushCallback {
     )
 }
 
+const val PUSH_STORAGE_ID = "DataManager"
+
 /**
- * detail: SharedPreferences 操作代码 ( 可以自行更换 db、mmkv )
+ * detail: 数据操作记录 ( 可自行实现 )
  * @author Ttt
  */
-private object SP {
-
-    // SharedPreferences Name
-    private const val NAME = "pushSP"
+private object DataManager {
 
     // 是否点击通知栏推送消息 ( 用于判断是否处理推送路由 )
     private const val IS_CLICK_PUSH = "isClickPush"
@@ -199,20 +198,18 @@ private object SP {
     // 推送数据 ( JSON 格式 )
     private const val PUSH_DATA = "pushData"
 
-    private fun _sp(context: Context): SharedPreferences {
-        return context.getSharedPreferences(NAME, Activity.MODE_PRIVATE)
-    }
-
     private fun clear(context: Context) {
-        _sp(context)?.edit().clear().commit()
+        DevStorageEngine.getEngine(PUSH_STORAGE_ID)?.clear()
     }
 
     private fun getBoolean(
         context: Context,
         key: String,
-        defValue: Boolean
+        defaultValue: Boolean
     ): Boolean {
-        return _sp(context)?.getBoolean(key, defValue)
+        return DevStorageEngine.getEngine(
+            PUSH_STORAGE_ID
+        )?.getBoolean(key, defaultValue) ?: defaultValue
     }
 
     private fun putBoolean(
@@ -220,15 +217,19 @@ private object SP {
         key: String,
         value: Boolean
     ) {
-        _sp(context)?.edit().putBoolean(key, value).commit()
+        DevStorageEngine.getEngine(
+            PUSH_STORAGE_ID
+        )?.putBoolean(key, value)
     }
 
     private fun getString(
         context: Context,
         key: String,
-        defValue: String?
+        defaultValue: String?
     ): String? {
-        return _sp(context)?.getString(key, defValue)
+        return DevStorageEngine.getEngine(
+            PUSH_STORAGE_ID
+        )?.getString(key, defaultValue) ?: defaultValue
     }
 
     private fun putString(
@@ -236,7 +237,9 @@ private object SP {
         key: String,
         value: String?
     ) {
-        _sp(context)?.edit().putString(key, value).commit()
+        DevStorageEngine.getEngine(
+            PUSH_STORAGE_ID
+        )?.putString(key, value)
     }
 
     // ===============
@@ -267,7 +270,7 @@ private object SP {
      * 获取推送数据
      */
     fun getPushData(context: Context): String? {
-        var pushData = getString(context, PUSH_DATA, null)
+        val pushData = getString(context, PUSH_DATA, null)
         clear(context) // 移除旧数据
         return pushData
     }

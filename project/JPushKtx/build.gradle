@@ -20,6 +20,8 @@ android {
 
 dependencies {
     implementation project(':DevBaseMVVM')
+    implementation project(':DevOther')
+    implementation project(':DevWidget')
 
     // 极光推送 Module
     implementation project(':DevJPush')

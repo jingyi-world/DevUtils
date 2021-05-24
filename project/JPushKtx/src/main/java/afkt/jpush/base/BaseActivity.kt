@@ -1,23 +1,24 @@
-package afkt.push.base
+package afkt.jpush.base
 
-import afkt.push.R
-import afkt.push.router.PushRouterChecker
+import afkt.jpush.R
+import afkt.jpush.router.PushRouterChecker
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.viewbinding.ViewBinding
+import com.alibaba.android.arouter.launcher.ARouter
 import dev.base.expand.content.DevBaseContentViewBindingActivity
 import dev.utils.app.ViewUtils
 
 abstract class BaseActivity<VB : ViewBinding> : DevBaseContentViewBindingActivity<VB>() {
 
-    // ToolBar
-    var toolbar: Toolbar? = null
-
     override fun baseLayoutView(): View? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // 内部初始化
+        priInitialize()
 
         // 是否需要 ToolBar
         if (isToolBar()) initToolBar()
@@ -46,7 +47,7 @@ abstract class BaseActivity<VB : ViewBinding> : DevBaseContentViewBindingActivit
      */
     private fun initToolBar() {
         val titleView = ViewUtils.inflate(this, R.layout.base_toolbar, null)
-        toolbar = titleView.findViewById(R.id.vid_bt_toolbar)
+        val toolbar: Toolbar? = titleView.findViewById(R.id.vid_bt_toolbar)
         contentAssist.addTitleView(titleView)
 
         setSupportActionBar(toolbar)
@@ -58,13 +59,33 @@ abstract class BaseActivity<VB : ViewBinding> : DevBaseContentViewBindingActivit
         }
         // 设置点击事件
         toolbar?.setNavigationOnClickListener { finish() }
+        // 设置标题
+        toolbar?.title = TAG
     }
 
+    // =============
+    // = 内部初始化 =
+    // =============
+
+    private fun priInitialize() {
+        try {
+            ARouter.getInstance().inject(this)
+        } catch (e: Exception) {
+        }
+    }
+
+    // =======
+    // = 通用 =
+    // =======
+
     /**
-     * 设置 ToolBar 标题
-     * @param title 标题
+     * ARouter 跳转方法
+     * @param path 跳转路径
      */
-    fun setTitle(title: String?) {
-        toolbar?.title = title
+    fun routerActivity(
+        path: String
+    ) {
+        ARouter.getInstance().build(path)
+            .navigation(this)
     }
 }

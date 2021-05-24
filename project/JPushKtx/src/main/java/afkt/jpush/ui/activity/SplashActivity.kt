@@ -1,10 +1,9 @@
-package afkt.push.ui.activity
+package afkt.jpush.ui.activity
 
-import afkt.push.R
-import afkt.push.base.BaseActivity
-import android.content.Intent
+import afkt.jpush.R
+import afkt.jpush.base.BaseActivity
+import afkt.jpush.base.config.RouterPath
 import androidx.viewbinding.ViewBinding
-import dev.utils.app.AppUtils
 import dev.utils.app.HandlerUtils
 
 class SplashActivity : BaseActivity<ViewBinding>() {
@@ -17,7 +16,7 @@ class SplashActivity : BaseActivity<ViewBinding>() {
         super.initOther()
         HandlerUtils.postRunnable({
             if (isFinishing) return@postRunnable
-            AppUtils.startActivity(Intent(this, MainActivity::class.java))
+            routerActivity(RouterPath.MainActivity_PATH)
             finish()
         }, 1200)
     }

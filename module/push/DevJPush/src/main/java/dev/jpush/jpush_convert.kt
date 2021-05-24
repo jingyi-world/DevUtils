@@ -1,9 +1,9 @@
 package dev.jpush
 
-import afkt.push.jpush.PushMessage
 import cn.jpush.android.api.CmdMessage
 import cn.jpush.android.api.CustomMessage
 import cn.jpush.android.api.NotificationMessage
+import dev.module.push.PushMessage
 
 fun convertCmdMessage(message: CmdMessage): PushMessage {
     return PushMessage(
@@ -14,19 +14,18 @@ fun convertCmdMessage(message: CmdMessage): PushMessage {
 fun convertNotificationMessage(message: NotificationMessage): PushMessage {
     return PushMessage(
         messageId = message.msgId,
-        notificationId = message.notificationId,
-        notificationTitle = message.notificationTitle,
-        notificationContent = message.notificationContent,
-        notificationExtras = message.notificationExtras,
+        title = message.notificationTitle,
+        content = message.notificationContent,
+        extras = message.notificationExtras,
     )
 }
 
 fun convertCustomMessage(message: CustomMessage): PushMessage {
     return PushMessage(
         messageId = message.messageId,
-        notificationTitle = message.title,
-        notificationContent = message.message,
-        notificationExtras = message.extra,
+        title = message.title,
+        content = message.message,
+        extras = message.extra,
     )
 }
 

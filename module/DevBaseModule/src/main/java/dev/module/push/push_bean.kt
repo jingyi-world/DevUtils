@@ -12,9 +12,17 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class PushMessage(
     val messageId: String? = "",
-    val notificationId: Int = 0,
-    val notificationTitle: String? = "",
-    val notificationContent: String? = "",
-    val notificationExtras: String? = "",
+    val title: String? = "",
+    val content: String? = "",
+    val extras: String? = "",
     val code: String? = ""
-) : Parcelable, IPushEngine.EngineItem()
+) : Parcelable,
+    IPushEngine.EngineItem()
+
+/**
+ * detail: 推送配置包装类
+ * @author Ttt
+ */
+class PushConfig(
+    val isDebugMode: Boolean = false
+) : IPushEngine.EngineConfig()
