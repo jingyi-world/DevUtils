@@ -33,6 +33,15 @@ class BaseApplication : MultiDexApplication() {
         super.onCreate()
 
         if (BuildConfig.DEBUG) {
+            ARouter.openLog()
+            ARouter.openDebug()
+            // 打印日志的时候打印线程堆栈
+            ARouter.printStackTrace()
+        }
+        // 尽可能早, 推荐在 Application 中初始化
+        ARouter.init(this)
+
+        if (BuildConfig.DEBUG) {
             // 初始化 Logger 配置
             DevLogger.init(
                 LogConfig()
@@ -61,6 +70,7 @@ class BaseApplication : MultiDexApplication() {
                 isDebugMode = BuildConfig.DEBUG
             )
         )
+        MMKVUtils.init(this)
         // MMKV Storage Engine 实现
         MMKVUtils.defaultHolder().mmkv?.let { mmkv ->
             DevStorageEngine.setEngine(
