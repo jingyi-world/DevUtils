@@ -3,7 +3,7 @@ package afkt.accessibility.base
 import afkt.accessibility.BuildConfig
 import afkt.accessibility.base.model.ActivityChangedEvent
 import afkt.accessibility.service.AccessibilityListenerService
-import afkt.accessibility.service.AccessibilityListenerService.AccessibilityListener
+import afkt.accessibility.service.AccessibilityListenerService.Listener
 import afkt.accessibility.utils.EventBusUtils
 import android.os.Build
 import android.text.TextUtils
@@ -45,10 +45,10 @@ class BaseApplication : MultiDexApplication() {
      * 初始化服务
      */
     private fun initService() {
-        AccessibilityListenerService.setAccessibilityListener(object : AccessibilityListener() {
+        AccessibilityListenerService.setListener(object : Listener {
             override fun onAccessibilityEvent(
                 event: AccessibilityEvent?,
-                service: AccessibilityListenerService
+                service: AccessibilityListenerService?
             ) {
                 // 打印 Event 信息
 //                AccessibilityUtils.printAccessibilityEvent(event)
@@ -76,13 +76,15 @@ class BaseApplication : MultiDexApplication() {
                 val print = false
                 if (print) { // 开发时打印, 用于获取事件节点信息
                     val builder = StringBuilder()
-                    if (service.rootInActiveWindow != null) {
-                        track(service.rootInActiveWindow, builder, 0)
-                    } else {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                            val lists = service.windows
-                            for (info in lists) {
-                                info?.let { track(it.root, builder, 0) }
+                    service?.let { serviceIT ->
+                        if (serviceIT.rootInActiveWindow != null) {
+                            track(serviceIT.rootInActiveWindow, builder, 0)
+                        } else {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                val lists = serviceIT.windows
+                                for (info in lists) {
+                                    info?.let { track(it.root, builder, 0) }
+                                }
                             }
                         }
                     }
