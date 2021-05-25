@@ -13,6 +13,8 @@ import dev.utils.app.toast.ToastTintUtils
 @Route(path = RouterPath.DeviceActivity_PATH)
 class DeviceActivity : BaseActivity<ActivityDeviceBinding>() {
 
+    override fun isToolBar(): Boolean = true
+
     override fun baseLayoutId(): Int = R.layout.activity_device
 
     override fun initListener() {

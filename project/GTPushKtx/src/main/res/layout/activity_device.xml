@@ -10,14 +10,6 @@
         android:orientation="vertical"
         android:paddingBottom="@dimen/un_dp_20">
 
-        <TextView
-            style="@style/AppTheme.Base_TextView"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/un_dp_50"
-            android:text="DeviceActivity"
-            android:textSize="@dimen/un_sp_28"
-            android:textStyle="bold" />
-
         <Button
             android:id="@+id/vid_ad_active_btn"
             android:layout_gravity="center"
