@@ -1,4 +1,4 @@
-package afkt.jpush.device
+package afkt.gtpush.device
 
 import android.app.admin.DeviceAdminReceiver
 import android.content.Context

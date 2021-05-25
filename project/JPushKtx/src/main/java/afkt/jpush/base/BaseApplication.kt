@@ -2,7 +2,7 @@ package afkt.jpush.base
 
 import afkt.jpush.BuildConfig
 import afkt.jpush.base.config.RouterPath
-import afkt.jpush.jpush.JPushEngineImpl
+import afkt.jpush.push.JPushEngineImpl
 import afkt.jpush.router.IPushCallback
 import afkt.jpush.router.PUSH_STORAGE_ID
 import afkt.jpush.router.PushRouterChecker

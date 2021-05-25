@@ -1,4 +1,4 @@
-package afkt.jpush.base.config
+package afkt.gtpush.base.config
 
 /**
  * detail: ARouter Path

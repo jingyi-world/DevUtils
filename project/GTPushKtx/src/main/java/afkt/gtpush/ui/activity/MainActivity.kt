@@ -1,9 +1,9 @@
-package afkt.jpush.ui.activity
+package afkt.gtpush.ui.activity
 
-import afkt.jpush.R
-import afkt.jpush.base.BaseActivity
-import afkt.jpush.base.config.RouterPath
-import afkt.jpush.databinding.ActivityMainBinding
+import afkt.gtpush.R
+import afkt.gtpush.base.BaseActivity
+import afkt.gtpush.base.config.RouterPath
+import afkt.gtpush.databinding.ActivityMainBinding
 import com.alibaba.android.arouter.facade.annotation.Route
 
 @Route(path = RouterPath.MainActivity_PATH)

@@ -1,7 +1,7 @@
-package afkt.jpush.base
+package afkt.gtpush.base
 
-import afkt.jpush.R
-import afkt.jpush.router.PushRouterChecker
+import afkt.gtpush.R
+import afkt.gtpush.router.PushRouterChecker
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.Toolbar

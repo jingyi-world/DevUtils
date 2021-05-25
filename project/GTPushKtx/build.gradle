@@ -3,7 +3,7 @@ apply from: rootProject.file(files.build_arouter_app_gradle)
 
 android {
     defaultConfig {
-        applicationId "afkt.jpush"
+        applicationId "afkt.gtpush"
 
         ndk {
             // 选择要添加的对应 cpu 类型的 .so 库
@@ -12,9 +12,8 @@ android {
         }
 
         manifestPlaceholders = [
-                JPUSH_PKGNAME: applicationId,
-                JPUSH_APPKEY : "2ad57c3b31d94518c051d2fc",
-                JPUSH_CHANNEL: "dev-install-debug",
+                GETUI_APPID       : "dv4h55Dms46v0jizx59lHA",
+                GT_INSTALL_CHANNEL: "dev-install-debug"
         ]
     }
 }

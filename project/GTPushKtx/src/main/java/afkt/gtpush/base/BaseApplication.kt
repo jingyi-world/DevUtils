@@ -1,12 +1,12 @@
-package afkt.jpush.base
+package afkt.gtpush.base
 
-import afkt.jpush.BuildConfig
-import afkt.jpush.base.config.RouterPath
-import afkt.jpush.jpush.JPushEngineImpl
-import afkt.jpush.router.IPushCallback
-import afkt.jpush.router.PUSH_STORAGE_ID
-import afkt.jpush.router.PushRouterChecker
-import afkt.jpush.ui.activity.SplashActivity
+import afkt.gtpush.BuildConfig
+import afkt.gtpush.base.config.RouterPath
+import afkt.gtpush.push.GTPushEngineImpl
+import afkt.gtpush.router.IPushCallback
+import afkt.gtpush.router.PUSH_STORAGE_ID
+import afkt.gtpush.router.PushRouterChecker
+import afkt.gtpush.ui.activity.SplashActivity
 import android.app.Activity
 import android.text.TextUtils
 import androidx.multidex.MultiDexApplication
@@ -46,7 +46,7 @@ class BaseApplication : MultiDexApplication() {
             DevLogger.init(
                 LogConfig()
                     .logLevel(LogLevel.DEBUG)
-                    .tag("JPushKtx_TAG")
+                    .tag("GTPushKtx_TAG")
                     .sortLog(true)
                     .methodCount(0)
             )
@@ -62,9 +62,9 @@ class BaseApplication : MultiDexApplication() {
         })
         // Gson JSON Engine 实现
         DevJSONEngine.setEngine(GsonEngineImpl())
-        // 极光推送 Engine 实现
-        DevPushEngine.setEngine(JPushEngineImpl())
-        // 极光推送初始化
+        // 个推推送 Engine 实现
+        DevPushEngine.setEngine(GTPushEngineImpl())
+        // 个推推送初始化
         DevPushEngine.getEngine()?.initialize(
             this, PushConfig(
                 isDebugMode = BuildConfig.DEBUG

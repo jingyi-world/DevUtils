@@ -1,4 +1,4 @@
-package afkt.jpush.router
+package afkt.gtpush.router
 
 import android.app.Activity
 import android.content.ComponentName

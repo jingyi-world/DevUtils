@@ -1,4 +1,4 @@
-package afkt.jpush.jpush
+package afkt.jpush.push
 
 import afkt.jpush.router.PushRouterActivity
 import android.app.Application

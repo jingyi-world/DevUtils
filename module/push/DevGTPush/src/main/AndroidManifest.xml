@@ -12,6 +12,10 @@
             android:name="PUSH_APPID"
             android:value="dv4h55Dms46v0jizx59lHA" />
 
+        <meta-data
+            android:name="GETUI_APPID"
+            android:value="dv4h55Dms46v0jizx59lHA" />
+
         <service
             android:exported="true"
             android:label="PushService"
