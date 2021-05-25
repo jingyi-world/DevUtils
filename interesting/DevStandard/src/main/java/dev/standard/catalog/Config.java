@@ -144,6 +144,7 @@ final class Config {
         sProjectCatalogMap.put(".AppInfoKtx", "APP 信息提取器");
         sProjectCatalogMap.put(".DemoKtx", "临时测试代码、库调用调试 Demo");
         sProjectCatalogMap.put(".JPushKtx", "极光推送 ( 逻辑 ) 处理 ( 含设备管理 )");
+        sProjectCatalogMap.put(".GTPushKtx", "个推推送 ( 逻辑 ) 处理 ( 含设备管理 )");
 
         // ========================
         // = DevUtils Interesting =

@@ -1,0 +1,58 @@
+apply plugin: 'com.android.library'
+apply from: rootProject.file(files.build_arouter_module_gradle)
+
+android {
+
+    compileSdkVersion versions.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion versions.lib_minSdkVersion
+        // 混淆配置
+        consumerProguardFiles 'proguard-rules.pro'
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    compileOptions {
+        sourceCompatibility versions.javaVersion
+        targetCompatibility versions.javaVersion
+    }
+
+    kotlinOptions {
+        jvmTarget = versions.javaVersion_str
+    }
+}
+
+// 编码设置
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+
+    // =============
+    // = 快捷开发库 =
+    // =============
+
+    api project(':DevApp')
+    api project(':DevAssist')
+    api project(':DevBaseModule')
+
+    // Gson https://github.com/google/gson
+    api deps.lib.gson
+
+    // ===========================
+    // = Maven Central 方式自动集成 =
+    // ===========================
+
+    // ===========
+    // = 极光推送 =
+    // ===========
+
+    // https://mvnrepository.com/search?q=cn.jiguang.sdk
+    api 'cn.jiguang.sdk:jpush:4.0.6'
+    api 'cn.jiguang.sdk:jcore:2.8.2'
+}
