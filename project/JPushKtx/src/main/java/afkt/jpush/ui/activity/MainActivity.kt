@@ -17,5 +17,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         binding.vidAmOtherBtn.setOnClickListener {
             routerActivity(RouterPath.OtherActivity_PATH)
         }
+
+        binding.vidAmDeviceBtn.setOnClickListener {
+            routerActivity(RouterPath.DeviceActivity_PATH)
+        }
     }
 }

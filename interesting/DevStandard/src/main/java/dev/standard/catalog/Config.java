@@ -143,8 +143,7 @@ final class Config {
         sProjectCatalogMap.put(".AccessibilityKtx", "Android 无障碍使用 ( Activity 栈 )");
         sProjectCatalogMap.put(".AppInfoKtx", "APP 信息提取器");
         sProjectCatalogMap.put(".DemoKtx", "临时测试代码、库调用调试 Demo");
-        sProjectCatalogMap.put(".JPushKtx", "极光推送 ( 逻辑 ) 处理");
-        sProjectCatalogMap.put(".PushLockScreenKtx", "推送锁屏 ( 设备管理 )");
+        sProjectCatalogMap.put(".JPushKtx", "极光推送 ( 逻辑 ) 处理 ( 含设备管理 )");
 
         // ========================
         // = DevUtils Interesting =
