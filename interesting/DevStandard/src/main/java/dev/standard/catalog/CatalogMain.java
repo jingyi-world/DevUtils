@@ -12,6 +12,8 @@ import dev.utils.common.FileUtils;
  */
 final class CatalogMain {
 
+    private static StringBuilder sBuilder = new StringBuilder();
+
     public static void main(String[] args) {
         // 生成 Android 汇总项目目录结构 - https://github.com/afkT/Android
         print(Config.ANDROID_LOCAL_PATH, Config.ANDROID_DIR_NAME, Config.sAndroidCatalogMap, null, 0);
@@ -22,11 +24,16 @@ final class CatalogMain {
         // 生成 DevUtils Lib 汇总项目目录结构 - https://github.com/afkT/DevUtils/blob/master/lib
         print(Config.DEV_UTILS_LOCAL_PATH, Config.DEV_UTILS_DIR_NAME, Config.sDevUtilsCatalogMap, Config.sDevUtilsIgnoreCatalogs, 1);
 
+        // 生成 DevUtils Module 汇总项目目录结构 - https://github.com/afkT/DevUtils/blob/master/module
+        print(Config.MODULE_LOCAL_PATH, Config.MODULE_DIR_NAME, Config.sModuleCatalogMap, Config.sModuleIgnoreCatalogs, 1);
+
         // 生成 DevUtils Project 汇总项目目录结构 - https://github.com/afkT/DevUtils/blob/master/project
         print(Config.PROJECT_LOCAL_PATH, Config.PROJECT_DIR_NAME, Config.sProjectCatalogMap, null, 0);
 
         // 生成 DevUtils Interesting 汇总项目目录结构 - https://github.com/afkT/DevUtils/blob/master/interesting
         print(Config.INTERESTING_LOCAL_PATH, Config.INTERESTING_DIR_NAME, Config.sInterestingCatalogMap, null, 0);
+
+        String all = sBuilder.toString();
     }
 
     private static final String FORMAT = "\"%s\" not found";
@@ -48,7 +55,11 @@ final class CatalogMain {
     ) {
         System.out.println(DevFinal.NEW_LINE_STR_X2);
         if (FileUtils.isFileExists(path)) {
-            System.out.println(CatalogGenerate.generate(path, dirName, mapCatalog, listIgnoreCatalog, layer));
+            String catalog = CatalogGenerate.generate(path, dirName, mapCatalog, listIgnoreCatalog, layer);
+            System.out.println(catalog);
+            // 拼接全部
+            sBuilder.append(catalog)
+                    .append(DevFinal.NEW_LINE_STR_X2);
         } else {
             System.out.println(String.format(FORMAT, path));
         }

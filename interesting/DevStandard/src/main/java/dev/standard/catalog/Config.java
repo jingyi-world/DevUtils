@@ -57,6 +57,19 @@ final class Config {
     // DevUtils Lib 忽略目录
     public static final List<String>        sDevUtilsIgnoreCatalogs = new ArrayList<>();
 
+    // ===================
+    // = DevUtils Module =
+    // ===================
+
+    // DevUtils Module 文件名
+    public static final String              MODULE_DIR_NAME       = "module";
+    // DevUtils Module 项目本地路径
+    public static final String              MODULE_LOCAL_PATH     = USER_DIR + File.separator + MODULE_DIR_NAME;
+    // DevUtils Module 文件目录注释
+    public static final Map<String, String> sModuleCatalogMap     = new HashMap<>();
+    // DevUtils Module 忽略目录
+    public static final List<String>        sModuleIgnoreCatalogs = new ArrayList<>();
+
     // ====================
     // = DevUtils Project =
     // ====================
@@ -135,6 +148,22 @@ final class Config {
         sDevUtilsIgnoreCatalogs.add("DevOther");
         sDevUtilsIgnoreCatalogs.add("DevWidget");
 
+        // ===================
+        // = DevUtils Module =
+        // ===================
+
+        sModuleCatalogMap.put("module", "根目录");
+        sModuleCatalogMap.put(".DevBaseModule", "Module 基础复用组件");
+        sModuleCatalogMap.put(".push", "推送 SDK Engine 实现");
+        sModuleCatalogMap.put(".push.DevGTPush", "个推推送实现代码 ( module 拆分 Engine 实现 )");
+        sModuleCatalogMap.put(".push.DevJPush", "极光推送实现代码 ( module 拆分 Engine 实现 )");
+
+        // ==========================
+        // = DevUtils Module 忽略目录 =
+        // ==========================
+
+        sModuleIgnoreCatalogs.add("DevBaseModule");
+
         // ====================
         // = DevUtils Project =
         // ====================
@@ -143,8 +172,8 @@ final class Config {
         sProjectCatalogMap.put(".AccessibilityKtx", "Android 无障碍使用 ( Activity 栈 )");
         sProjectCatalogMap.put(".AppInfoKtx", "APP 信息提取器");
         sProjectCatalogMap.put(".DemoKtx", "临时测试代码、库调用调试 Demo");
-        sProjectCatalogMap.put(".JPushKtx", "极光推送 ( 逻辑 ) 处理 ( 含设备管理 )");
         sProjectCatalogMap.put(".GTPushKtx", "个推推送 ( 逻辑 ) 处理 ( 含设备管理 )");
+        sProjectCatalogMap.put(".JPushKtx", "极光推送 ( 逻辑 ) 处理 ( 含设备管理 )");
 
         // ========================
         // = DevUtils Interesting =

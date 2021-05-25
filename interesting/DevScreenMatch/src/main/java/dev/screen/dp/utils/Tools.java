@@ -88,11 +88,11 @@ public class Tools {
         list.addAll(set);
         Object[] arr = list.toArray();
         Arrays.sort(arr);
-        StringBuilder stringBuffer = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
         for (Object anArr : arr) {
-            stringBuffer.append(cutLastZero(Double.parseDouble(anArr.toString()))).append(", ");
+            builder.append(cutLastZero(Double.parseDouble(anArr.toString()))).append(", ");
         }
-        String result = stringBuffer.toString();
+        String result = builder.toString();
         if (result.endsWith(", ")) {
             result = result.substring(0, result.length() - 2);
         }
