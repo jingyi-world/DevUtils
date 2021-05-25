@@ -49,10 +49,10 @@ dependencies {
     // ===========================
 
     // ===========
-    // = 极光推送 =
+    // = 个推推送 =
     // ===========
 
-    // https://mvnrepository.com/search?q=cn.jiguang.sdk
-    api 'cn.jiguang.sdk:jpush:4.0.6'
-    api 'cn.jiguang.sdk:jcore:2.8.2'
+    // https://mvnrepository.com/search?q=com.getui
+    api 'com.getui:gtsdk:3.1.4.0'  // 个推 SDK
+    api 'com.getui:gtc:3.1.0.0'  // 个推核心组件
 }
