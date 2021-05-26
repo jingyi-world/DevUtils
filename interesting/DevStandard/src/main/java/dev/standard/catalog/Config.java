@@ -157,7 +157,6 @@ final class Config {
         sModuleCatalogMap.put(".push", "推送 SDK Engine 实现");
         sModuleCatalogMap.put(".push.DevGTPush", "个推推送 Engine 实现代码");
         sModuleCatalogMap.put(".push.DevJPush", "极光推送 Engine 实现代码");
-        sModuleCatalogMap.put(".push.DevYMPush", "友盟推送 Engine 实现代码");
 
         // ==========================
         // = DevUtils Module 忽略目录 =
