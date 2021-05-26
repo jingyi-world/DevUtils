@@ -110,9 +110,11 @@ class GTPushIntentService : GTIntentService() {
         )
         message?.let {
             // 命令回执通知
-            DevPushEngine.getEngine()?.onReceiveCommandResult(
-                context, convertGTCmdMessage(it)
-            )
+            DevPushEngine.getEngine()?.run {
+                onReceiveCommandResult(
+                    context, convertMessage(it)
+                )
+            }
         }
     }
 
@@ -130,9 +132,11 @@ class GTPushIntentService : GTIntentService() {
         )
         message?.let {
             // 推送消息送达通知
-            DevPushEngine.getEngine()?.onNotificationMessageArrived(
-                context, convertGTNotificationMessage(it)
-            )
+            DevPushEngine.getEngine()?.run {
+                onNotificationMessageArrived(
+                    context, convertMessage(it)
+                )
+            }
         }
     }
 
@@ -150,9 +154,11 @@ class GTPushIntentService : GTIntentService() {
         )
         message?.let {
             // 推送消息点击通知
-            DevPushEngine.getEngine()?.onNotificationMessageClicked(
-                context, convertGTNotificationMessage(it)
-            )
+            DevPushEngine.getEngine()?.run {
+                onNotificationMessageClicked(
+                    context, convertMessage(it)
+                )
+            }
         }
     }
 
@@ -170,9 +176,11 @@ class GTPushIntentService : GTIntentService() {
         )
         message?.let {
             // 推送消息点击通知
-            DevPushEngine.getEngine()?.onReceiveMessageData(
-                context, convertGTTransmitMessage(it)
-            )
+            DevPushEngine.getEngine()?.run {
+                onReceiveMessageData(
+                    context, convertMessage(it)
+                )
+            }
         }
     }
 }

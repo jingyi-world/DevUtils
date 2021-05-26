@@ -110,4 +110,8 @@ class JPushEngineImpl : IPushEngine<PushConfig, PushMessage> {
             }
         }
     }
+
+    override fun convertMessage(message: Any?): PushMessage? {
+        return convertEngineMessage(message)
+    }
 }

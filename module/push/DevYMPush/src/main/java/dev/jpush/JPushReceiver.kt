@@ -33,11 +33,9 @@ class JPushReceiver : JPushMessageReceiver() {
         )
         customMessage?.let {
             // 透传消息送达通知
-            DevPushEngine.getEngine()?.run {
-                onReceiveMessageData(
-                    context, convertMessage(it)
-                )
-            }
+            DevPushEngine.getEngine()?.onReceiveMessageData(
+                context, convertCustomMessage(it)
+            )
         }
     }
 
@@ -55,11 +53,9 @@ class JPushReceiver : JPushMessageReceiver() {
         )
         message?.let {
             // 推送消息点击通知
-            DevPushEngine.getEngine()?.run {
-                onNotificationMessageClicked(
-                    context, convertMessage(it)
-                )
-            }
+            DevPushEngine.getEngine()?.onNotificationMessageClicked(
+                context, convertNotificationMessage(it)
+            )
         }
     }
 
@@ -77,11 +73,9 @@ class JPushReceiver : JPushMessageReceiver() {
         )
         message?.let {
             // 推送消息送达通知
-            DevPushEngine.getEngine()?.run {
-                onNotificationMessageArrived(
-                    context, convertMessage(it)
-                )
-            }
+            DevPushEngine.getEngine()?.onNotificationMessageArrived(
+                context, convertNotificationMessage(it)
+            )
         }
     }
 
@@ -173,16 +167,16 @@ class JPushReceiver : JPushMessageReceiver() {
                         context, token
                     )
                 }
+                val platform = it.extra.getInt("platform")
+                val platformStr = convertPlatform(platform)
                 DevLogEngine.getEngine()?.dTag(
-                    TAG, "[onCommandResult] token : $token"
+                    TAG, "[onCommandResult] platform : $platformStr, token : $token"
                 )
             } else {
                 // 命令回执通知
-                DevPushEngine.getEngine()?.run {
-                    onReceiveCommandResult(
-                        context, convertMessage(it)
-                    )
-                }
+                DevPushEngine.getEngine()?.onReceiveCommandResult(
+                    context, convertCmdMessage(it)
+                )
             }
         }
     }

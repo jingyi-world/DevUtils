@@ -1,4 +1,4 @@
-package dev.gtpush
+package afkt.gtpush.push
 
 import com.igexin.sdk.PushConsts
 import com.igexin.sdk.message.BindAliasCmdMessage
@@ -8,7 +8,32 @@ import com.igexin.sdk.message.GTTransmitMessage
 import dev.module.push.PushMessage
 import dev.utils.common.ConvertUtils
 
-fun convertGTCmdMessage(message: GTCmdMessage): PushMessage {
+// ==========
+// = 对外方法 =
+// ==========
+
+fun convertEngineMessage(message: Any?): PushMessage? {
+    return message?.let {
+        return when (it) {
+            is GTCmdMessage -> {
+                convertGTCmdMessage(it)
+            }
+            is GTNotificationMessage -> {
+                convertGTNotificationMessage(it)
+            }
+            is GTTransmitMessage -> {
+                convertGTTransmitMessage(it)
+            }
+            else -> null
+        }
+    }
+}
+
+// ==========
+// = 内部方法 =
+// ==========
+
+private fun convertGTCmdMessage(message: GTCmdMessage): PushMessage {
     var code = ""
     if (message.action == PushConsts.BIND_ALIAS_RESULT) {
         if (message is BindAliasCmdMessage) {
@@ -32,7 +57,7 @@ fun convertGTCmdMessage(message: GTCmdMessage): PushMessage {
     )
 }
 
-fun convertGTNotificationMessage(message: GTNotificationMessage): PushMessage {
+private fun convertGTNotificationMessage(message: GTNotificationMessage): PushMessage {
     return PushMessage(
         messageId = message.messageId,
         title = message.title,
@@ -40,7 +65,7 @@ fun convertGTNotificationMessage(message: GTNotificationMessage): PushMessage {
     )
 }
 
-fun convertGTTransmitMessage(message: GTTransmitMessage): PushMessage {
+private fun convertGTTransmitMessage(message: GTTransmitMessage): PushMessage {
     return PushMessage(
         messageId = message.messageId,
         extras = ConvertUtils.newString(message.payload),

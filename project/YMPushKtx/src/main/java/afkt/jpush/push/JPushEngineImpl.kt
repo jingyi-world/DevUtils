@@ -1,9 +1,9 @@
-package afkt.gtpush.push
+package afkt.jpush.push
 
-import afkt.gtpush.router.PushRouterActivity
+import afkt.jpush.router.PushRouterActivity
 import android.app.Application
 import android.content.Context
-import com.igexin.sdk.PushManager
+import cn.jpush.android.api.JPushInterface
 import dev.engine.push.IPushEngine
 import dev.module.push.PushConfig
 import dev.module.push.PushMessage
@@ -12,18 +12,21 @@ import dev.utils.app.DevicePolicyUtils
 import dev.utils.app.JSONObjectUtils
 
 /**
- * detail: 个推推送 Engine 实现
+ * detail: 极光推送 Engine 实现
  * @author Ttt
  */
-class GTPushEngineImpl : IPushEngine<PushConfig, PushMessage> {
+class JPushEngineImpl : IPushEngine<PushConfig, PushMessage> {
 
     override fun initialize(
         application: Application?,
         config: PushConfig?
     ) {
         application?.let {
+            config?.let { config ->
+                JPushInterface.setDebugMode(config.isDebugMode)
+            }
             // 推送初始化
-            PushManager.getInstance().initialize(it)
+            JPushInterface.init(it)
         }
     }
 
@@ -106,9 +109,5 @@ class GTPushEngineImpl : IPushEngine<PushConfig, PushMessage> {
                 }
             }
         }
-    }
-
-    override fun convertMessage(message: Any?): PushMessage? {
-        return convertEngineMessage(message)
     }
 }

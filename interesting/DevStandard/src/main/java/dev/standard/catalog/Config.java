@@ -155,8 +155,9 @@ final class Config {
         sModuleCatalogMap.put("module", "根目录");
         sModuleCatalogMap.put(".DevBaseModule", "Module 基础复用组件");
         sModuleCatalogMap.put(".push", "推送 SDK Engine 实现");
-        sModuleCatalogMap.put(".push.DevGTPush", "个推推送实现代码 ( module 拆分 Engine 实现 )");
-        sModuleCatalogMap.put(".push.DevJPush", "极光推送实现代码 ( module 拆分 Engine 实现 )");
+        sModuleCatalogMap.put(".push.DevGTPush", "个推推送 Engine 实现代码");
+        sModuleCatalogMap.put(".push.DevJPush", "极光推送 Engine 实现代码");
+        sModuleCatalogMap.put(".push.DevYMPush", "友盟推送 Engine 实现代码");
 
         // ==========================
         // = DevUtils Module 忽略目录 =
