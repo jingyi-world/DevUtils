@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply from: rootProject.file(files.build_arouter_module_gradle)
+apply plugin: 'kotlin-android'
 
 android {
 
@@ -39,10 +39,6 @@ dependencies {
 
     api project(':DevApp')
     api project(':DevAssist')
-    api project(':DevBaseModule')
-
-    // Gson https://github.com/google/gson
-    api deps.lib.gson
 
     // ===========================
     // = Maven Central 方式自动集成 =

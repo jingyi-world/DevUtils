@@ -24,9 +24,22 @@ dependencies {
     implementation project(':DevOther')
     implementation project(':DevWidget')
 
+    // ==========
+    // = Module =
+    // ==========
+
+    // Module 基础复用组件
+    implementation project(':DevBaseModule')
+
     // 个推推送 Module
     implementation project(':DevGTPush')
 
+    // ============
+    // = 快捷开发库 =
+    // ============
+
+    // Gson https://github.com/google/gson
+    implementation deps.lib.gson
     // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/readme_cn.md
     implementation deps.lib.mmkv
 }
