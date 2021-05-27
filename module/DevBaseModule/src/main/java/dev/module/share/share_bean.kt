@@ -1,28 +1,24 @@
 package dev.module.share
 
 import android.os.Parcelable
-import dev.engine.push.IPushEngine
+import dev.engine.share.IShareEngine
 import kotlinx.android.parcel.Parcelize
 
 /**
- * detail: 推送消息包装类
+ * detail: 分享参数包装类
  * @author Ttt
  * 自行根据所需参数进行封装
  */
 @Parcelize
-data class PushMessage(
+data class ShareParams(
     val messageId: String? = "",
-    val title: String? = "",
-    val content: String? = "",
-    val extras: String? = "",
-    val code: String? = ""
 ) : Parcelable,
-    IPushEngine.EngineItem()
+    IShareEngine.EngineItem()
 
 /**
- * detail: 推送配置包装类
+ * detail: 分享配置包装类
  * @author Ttt
  */
-class PushConfig(
+class ShareConfig(
     val isDebugMode: Boolean = false
-) : IPushEngine.EngineConfig()
+) : IShareEngine.EngineConfig()

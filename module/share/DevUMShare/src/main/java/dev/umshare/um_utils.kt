@@ -1,4 +1,4 @@
-package dev.ymshare
+package dev.umshare
 
 import android.app.Activity
 import android.content.Intent

@@ -39,6 +39,7 @@ dependencies {
 
     api project(':DevApp')
     api project(':DevAssist')
+    api project(':DevBaseModule')
 
     // ===========================
     // = Maven Central 方式自动集成 =
@@ -59,7 +60,6 @@ dependencies {
     api 'com.umeng.umsdk:share-core:7.1.4'
 //    // 分享面板功能 ( 可选 )
 //    api 'com.umeng.umsdk:share-board:7.1.4'
-
 
     // =======
     // = SDK =
