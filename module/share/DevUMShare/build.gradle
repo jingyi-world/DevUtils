@@ -82,4 +82,7 @@ dependencies {
 
     api 'com.umeng.umsdk:share-alipay:7.1.4'
     api 'com.umeng.umsdk:share-dingding:7.1.4'
+
+    // https://developers.dingtalk.com/document/mobile-app-guide/android-sharing-sdk-access-process
+    api 'com.alibaba.android:ddsharesdk:1.1.0'
 }
