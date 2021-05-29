@@ -1,4 +1,4 @@
-package dev.umshare.apshare
+package pack.apshare
 
 import com.umeng.socialize.media.ShareCallbackActivity
 
