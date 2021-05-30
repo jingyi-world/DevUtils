@@ -1,0 +1,39 @@
+apply from: rootProject.file(files.build_app_gradle)
+apply from: rootProject.file(files.build_arouter_app_gradle)
+
+android {
+    defaultConfig {
+        applicationId "afkt.umshare"
+
+        ndk {
+            // 选择要添加的对应 cpu 类型的 .so 库
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+
+        manifestPlaceholders = [
+                // DevUMShare share-qq 所需
+                qqappid        : "100424468",
+        ]
+    }
+}
+
+dependencies {
+    implementation project(':DevBaseMVVM')
+    implementation project(':DevOther')
+    implementation project(':DevWidget')
+
+    // ==========
+    // = Module =
+    // ==========
+
+    // 友盟分享 Module
+    implementation project(':DevUMShare')
+
+    // ============
+    // = 快捷开发库 =
+    // ============
+
+    // Gson https://github.com/google/gson
+    implementation deps.lib.gson
+}
