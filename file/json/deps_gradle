@@ -189,32 +189,48 @@ dependencies {
 
 	// = property =
 
-	// xcrash
-	implementation 'com.iqiyi.xcrash:xcrash-android-lib:3.0.0'
-	// glance
-	implementation 'com.glance.guolindev:glance:1.0.0'
+	// bugly
+	implementation 'com.tencent.bugly:crashreport:3.3.92'
+	// bugly_ndk
+	implementation 'com.tencent.bugly:nativecrashreport:3.9.0'
+	// uetool
+	implementation 'me.ele:uetool:1.2.9'
+	// uetool_no_op
+	implementation 'me.ele:uetool-no-op:1.2.9'
 	// leakcanary
 	implementation 'com.squareup.leakcanary:leakcanary-android:2.7'
 	// blockcanary_android
 	implementation 'com.github.markzhai:blockcanary-android:1.5.0'
 	// blockcanary_no_op
 	implementation 'com.github.markzhai:blockcanary-no-op:1.5.0'
-	// uetool
-	implementation 'me.ele:uetool:1.2.9'
-	// uetool_no_op
-	implementation 'me.ele:uetool-no-op:1.2.9'
+	// xcrash
+	implementation 'com.iqiyi.xcrash:xcrash-android-lib:3.0.0'
 	// dokitx
 	implementation 'com.didichuxing.doraemonkit:dokitx:3.3.5'
 	// dokitx_no_op
 	implementation 'com.didichuxing.doraemonkit:dokitx-no-op:3.3.5'
-	// bugly
-	implementation 'com.tencent.bugly:crashreport:3.3.92'
-	// bugly_ndk
-	implementation 'com.tencent.bugly:nativecrashreport:3.9.0'
+	// glance
+	implementation 'com.glance.guolindev:glance:1.0.0'
 	// networkCaptureSelf
 	implementation 'com.github.DingProg.NetworkCaptureSelf:library:v1.0.1'
 	// networkCaptureSelf_op
 	implementation 'com.github.DingProg.NetworkCaptureSelf:library_no_op:v1.0.1'
+	// matrix_android_lib
+	implementation 'com.tencent.matrix:matrix-android-lib:0.9.0'
+	// matrix_android_commons
+	implementation 'com.tencent.matrix:matrix-android-commons:0.9.0'
+	// matrix_trace_canary
+	implementation 'com.tencent.matrix:matrix-trace-canary:0.9.0'
+	// matrix_resource_canary_android
+	implementation 'com.tencent.matrix:matrix-resource-canary-android:0.9.0'
+	// matrix_resource_canary_common
+	implementation 'com.tencent.matrix:matrix-resource-canary-common:0.9.0'
+	// matrix_io_canary
+	implementation 'com.tencent.matrix:matrix-io-canary:0.9.0'
+	// matrix_sqlite_lint
+	implementation 'com.tencent.matrix:matrix-sqlite-lint-android-sdk:0.9.0'
+	// matrix_battery_canary
+	implementation 'com.tencent.matrix:matrix-battery-canary:0.9.0'
 
 	// = build_apk =
 
