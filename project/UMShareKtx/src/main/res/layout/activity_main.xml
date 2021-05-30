@@ -1,36 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:orientation="vertical">
+    android:scrollbars="none">
 
-    <TextView
-        style="@style/AppTheme.Base_TextView"
-        android:gravity="center"
-        android:layout_marginTop="@dimen/un_dp_50"
-        android:text="MainActivity"
-        android:textSize="@dimen/un_sp_28"
-        android:textStyle="bold" />
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/un_dp_20">
 
-    <Button
-        style="@style/AppTheme.Base_Button"
-        android:id="@+id/vid_am_other_btn"
-        android:layout_gravity="center"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/un_dp_50"
-        android:layout_width="wrap_content"
-        android:padding="@dimen/un_dp_20"
-        android:text="跳转其他页面"
-        android:textSize="@dimen/un_sp_20" />
+        <Button
+            android:id="@+id/vid_am_open_minapp_btn"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/un_dp_10"
+            android:layout_width="wrap_content"
+            android:padding="@dimen/un_dp_20"
+            android:text="打开小程序"
+            android:textSize="@dimen/un_sp_15" />
 
-    <Button
-        style="@style/AppTheme.Base_Button"
-        android:id="@+id/vid_am_device_btn"
-        android:layout_gravity="center"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/un_dp_20"
-        android:layout_width="wrap_content"
-        android:padding="@dimen/un_dp_20"
-        android:text="设备管理 ( 推送锁屏、解锁等 )"
-        android:textSize="@dimen/un_sp_20" />
-</LinearLayout>
+        <Button
+            android:id="@+id/vid_am_share_minapp_btn"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/un_dp_10"
+            android:layout_width="wrap_content"
+            android:padding="@dimen/un_dp_20"
+            android:text="分享小程序"
+            android:textSize="@dimen/un_sp_15" />
+
+        <Button
+            android:id="@+id/vid_am_share_url_btn"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/un_dp_10"
+            android:layout_width="wrap_content"
+            android:padding="@dimen/un_dp_20"
+            android:text="分享链接"
+            android:textSize="@dimen/un_sp_15" />
+
+        <Button
+            android:id="@+id/vid_am_share_image_btn"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/un_dp_10"
+            android:layout_width="wrap_content"
+            android:padding="@dimen/un_dp_20"
+            android:text="分享图片"
+            android:textSize="@dimen/un_sp_15" />
+
+        <Button
+            android:id="@+id/vid_am_share_video_btn"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/un_dp_10"
+            android:layout_width="wrap_content"
+            android:padding="@dimen/un_dp_20"
+            android:text="分享视频"
+            android:textSize="@dimen/un_sp_15" />
+
+        <Button
+            android:id="@+id/vid_am_share_music_btn"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/un_dp_10"
+            android:layout_width="wrap_content"
+            android:padding="@dimen/un_dp_20"
+            android:text="分享音乐"
+            android:textSize="@dimen/un_sp_15" />
+
+        <Button
+            android:id="@+id/vid_am_share_emoji_btn"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/un_dp_10"
+            android:layout_width="wrap_content"
+            android:padding="@dimen/un_dp_20"
+            android:text="分享表情"
+            android:textSize="@dimen/un_sp_15" />
+
+        <Button
+            android:id="@+id/vid_am_share_text_btn"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/un_dp_10"
+            android:layout_width="wrap_content"
+            android:padding="@dimen/un_dp_20"
+            android:text="分享文本"
+            android:textSize="@dimen/un_sp_15" />
+
+        <Button
+            android:id="@+id/vid_am_share_file_btn"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/un_dp_10"
+            android:layout_width="wrap_content"
+            android:padding="@dimen/un_dp_20"
+            android:text="分享文件"
+            android:textSize="@dimen/un_sp_15" />
+
+        <Button
+            android:id="@+id/vid_am_share_btn"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/un_dp_10"
+            android:layout_width="wrap_content"
+            android:padding="@dimen/un_dp_20"
+            android:text="分享操作"
+            android:textSize="@dimen/un_sp_15" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

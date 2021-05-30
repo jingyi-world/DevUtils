@@ -1,10 +1,13 @@
 package afkt.umshare.base
 
+import afkt.umshare.base.config.shareConfig
 import androidx.multidex.MultiDexApplication
 import com.alibaba.android.arouter.launcher.ARouter
 import dev.DevUtils
 import dev.engine.json.DevJSONEngine
 import dev.engine.log.DevLogEngine
+import dev.engine.share.DevShareEngine
+import dev.umshare.UMShareEngine
 import dev.utils.BuildConfig
 import dev.utils.app.logger.DevLogger
 import dev.utils.app.logger.LogConfig
@@ -47,5 +50,10 @@ class BaseApplication : MultiDexApplication() {
         })
         // Gson JSON Engine 实现
         DevJSONEngine.setEngine(GsonEngineImpl())
+
+        // 友盟分享 Engine 实现
+        DevShareEngine.setEngine(UMShareEngine())
+        // 初始化分享配置
+        DevShareEngine.getEngine().initialize(this, shareConfig)
     }
 }
