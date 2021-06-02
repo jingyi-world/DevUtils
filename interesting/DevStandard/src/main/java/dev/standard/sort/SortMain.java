@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import dev.utils.common.StringUtils;
+
 /**
  * detail: DevFinal 常量单词排序
  * @author Ttt
@@ -20,10 +22,10 @@ public class SortMain {
         String              FORMAT = "public static final String %s = \"%s\";";
         List<String>        lists  = new ArrayList<>();
         Map<String, String> maps   = new HashMap<>();
-        Field[]             fields = SortMain.class.getDeclaredFields(); // DevFinal
+        Field[]             fields = SortMain.class.getDeclaredFields();
         for (Field field : fields) {
             String descriptor = Modifier.toString(field.getModifiers());
-            descriptor = descriptor.equals("") == true ? "" : descriptor + " ";
+            descriptor = StringUtils.isEmpty(descriptor) ? "" : descriptor + " ";
             maps.put(field.getName(), descriptor);
 
             lists.add(field.getName());
