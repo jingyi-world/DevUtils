@@ -30,23 +30,23 @@ dependencies {
 	// core
 	implementation 'androidx.core:core-ktx:1.3.2'
 	// coroutines
-	implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3'
+	implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0'
 	// lifecycle_runtime
-	implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.0'
+	implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
 	// lifecycle_viewmodel
-	implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0'
+	implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
 	// lifecycle_livedata
-	implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.0'
+	implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
 	// lifecycle_viewmodel_savedstate
-	implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.0'
+	implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1'
 	// lifecycle_common_java8
-	implementation 'androidx.lifecycle:lifecycle-common-java8:2.3.0'
+	implementation 'androidx.lifecycle:lifecycle-common-java8:2.3.1'
 	// room_runtime
-	implementation 'androidx.room:room-runtime:2.2.6'
+	implementation 'androidx.room:room-runtime:2.3.0'
 	// room_compiler
-	implementation 'androidx.room:room-compiler:2.2.6'
+	implementation 'androidx.room:room-compiler:2.3.0'
 	// room_ktx
-	implementation 'androidx.room:room-ktx:2.2.6'
+	implementation 'androidx.room:room-ktx:2.3.0'
 	// work_runtime_ktx
 	implementation 'androidx.work:work-runtime-ktx:2.5.0'
 	// work_runtime
@@ -85,16 +85,16 @@ dependencies {
 	// flexbox
 	implementation 'com.google.android:flexbox:2.0.1'
 	// hilt_android
-	implementation 'com.google.dagger:hilt-android:2.28-alpha'
+	implementation 'com.google.dagger:hilt-android:2.36'
 	// hilt_android_compiler
-	implementation 'com.google.dagger:hilt-android-compiler:2.28-alpha'
+	implementation 'com.google.dagger:hilt-android-compiler:2.36'
 	// startup
 	implementation 'androidx.startup:startup-runtime:1.0.0'
 
 	// = lib =
 
 	// gson
-	implementation 'com.google.code.gson:gson:2.8.6'
+	implementation 'com.google.code.gson:gson:2.8.7'
 	// glide
 	implementation 'com.github.bumptech.glide:glide:4.12.0'
 	// glide_compiler
@@ -118,9 +118,11 @@ dependencies {
 	// retrofit_rxjava3
 	implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
 	// rxjava3
-	implementation 'io.reactivex.rxjava3:rxjava:3.0.12'
+	implementation 'io.reactivex.rxjava3:rxjava:3.0.13'
 	// rxandroid3
 	implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+	// rxkotlin
+	implementation 'io.reactivex.rxjava3:rxkotlin:3.0.1'
 	// rxlifecycle
 	implementation 'com.trello.rxlifecycle4:rxlifecycle:4.0.2'
 	// rxlifecycle_kotlin
@@ -160,7 +162,7 @@ dependencies {
 	// zxing_android_code
 	implementation 'com.google.zxing:android-core:3.3.0'
 	// mmkv
-	implementation 'com.tencent:mmkv-static:1.2.8'
+	implementation 'com.tencent:mmkv-static:1.2.9'
 	// autosize
 	implementation 'me.jessyan:autosize:1.2.1'
 	// greenDAO
@@ -185,7 +187,7 @@ dependencies {
 	// javapoet
 	implementation 'com.squareup:javapoet:1.13.0'
 	// auto_service
-	implementation 'com.google.auto.service:auto-service:1.0-rc7'
+	implementation 'com.google.auto.service:auto-service:1.0'
 
 	// = property =
 
@@ -258,7 +260,7 @@ dependencies {
 	// waveview
 	implementation 'com.gelitenight.waveview:waveview:1.0.0'
 	// banner
-	implementation 'io.github.youth5201314:banner:2.2.1'
+	implementation 'io.github.youth5201314:banner:2.2.2'
 	// calendarview
 	implementation 'com.haibin:calendarview:3.7.1'
 	// ucrop
@@ -287,6 +289,8 @@ dependencies {
 	implementation 'com.scwang.smart:refresh-layout-horizontal:2.0.0'
 	// baserecyclerviewadapterhelper
 	implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.6'
+	// multitype
+	implementation 'com.drakeet.multitype:multitype:4.2.0'
 	// qmui
 	implementation 'com.qmuiteam:qmui:2.0.0-alpha10'
 	// ratingbar
