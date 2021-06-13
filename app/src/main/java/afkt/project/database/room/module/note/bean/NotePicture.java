@@ -32,8 +32,8 @@ public class NotePicture {
             @NonNull Long noteId,
             String picture
     ) {
-        this.id = (long) UUID.randomUUID().hashCode();
-        this.noteId = noteId;
+        this.id      = (long) UUID.randomUUID().hashCode();
+        this.noteId  = noteId;
         this.picture = picture;
     }
 
@@ -42,8 +42,8 @@ public class NotePicture {
             @NonNull Long noteId,
             String picture
     ) {
-        this.id = id;
-        this.noteId = noteId;
+        this.id      = id;
+        this.noteId  = noteId;
         this.picture = picture;
     }
 }

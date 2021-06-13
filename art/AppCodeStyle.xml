@@ -1,13 +1,15 @@
 <code_scheme name="AppCodeStyle" version="173">
     <JavaCodeStyleSettings>
         <option name="ALIGN_MULTILINE_TEXT_BLOCKS" value="true" />
-        <option name="RECORD_COMPONENTS_WRAP" value="2" />
-        <option name="NEW_LINE_AFTER_LPAREN_IN_RECORD_HEADER" value="true" />
-        <option name="RPAREN_ON_NEW_LINE_IN_RECORD_HEADER" value="true" />
+        <option name="RECORD_COMPONENTS_WRAP" value="0" />
+        <option name="ALIGN_MULTILINE_RECORDS" value="false" />
     </JavaCodeStyleSettings>
     <JetCodeStyleSettings>
         <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
     </JetCodeStyleSettings>
+    <Properties>
+        <option name="KEEP_BLANK_LINES" value="true" />
+    </Properties>
     <editorconfig>
         <option name="ENABLED" value="false" />
     </editorconfig>
@@ -35,6 +37,8 @@
         <option name="ALIGN_MULTILINE_THROWS_LIST" value="true" />
         <option name="ALIGN_GROUP_FIELD_DECLARATIONS" value="true" />
         <option name="ALIGN_CONSECUTIVE_VARIABLE_DECLARATIONS" value="true" />
+        <option name="ALIGN_CONSECUTIVE_ASSIGNMENTS" value="true" />
+        <option name="ALIGN_SUBSEQUENT_SIMPLE_METHODS" value="true" />
         <option name="METHOD_PARAMETERS_WRAP" value="2" />
         <option name="METHOD_PARAMETERS_LPAREN_ON_NEXT_LINE" value="true" />
         <option name="METHOD_PARAMETERS_RPAREN_ON_NEXT_LINE" value="true" />

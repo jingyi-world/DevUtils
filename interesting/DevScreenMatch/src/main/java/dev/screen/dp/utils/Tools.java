@@ -61,7 +61,7 @@ public class Tools {
         int    length     = sourceValue.length();
         String endValue   = sourceValue.substring(length - 2, length); // 单位 dp 或 sp
         String startValue = sourceValue.substring(0, length - 2);
-        endValue = endValue.trim();
+        endValue   = endValue.trim();
         startValue = startValue.trim();
         if ("".equals(endValue) || "".equals(startValue)) {
             return sourceValue;

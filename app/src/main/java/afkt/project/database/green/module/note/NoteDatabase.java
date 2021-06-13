@@ -29,9 +29,9 @@ public final class NoteDatabase
             DaoMaster daoMaster,
             DaoSession daoSession
     ) {
-        this.mHelper = helper;
-        this.mDatabase = database;
-        this.mDaoMaster = daoMaster;
+        this.mHelper     = helper;
+        this.mDatabase   = database;
+        this.mDaoMaster  = daoMaster;
         this.mDaoSession = daoSession;
     }
 

@@ -81,11 +81,11 @@ public class Note {
             Date date,
             NoteType type
     ) {
-        this.id = id;
-        this.text = text;
+        this.id      = id;
+        this.text    = text;
         this.comment = comment;
-        this.date = date;
-        this.type = type;
+        this.date    = date;
+        this.type    = type;
     }
 
     @Generated(hash = 1272611929)
@@ -204,6 +204,6 @@ public class Note {
     @Generated(hash = 799086675)
     public void __setDaoSession(DaoSession daoSession) {
         this.daoSession = daoSession;
-        myDao = daoSession != null ? daoSession.getNoteDao() : null;
+        myDao           = daoSession != null ? daoSession.getNoteDao() : null;
     }
 }

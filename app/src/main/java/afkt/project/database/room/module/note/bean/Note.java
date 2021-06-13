@@ -50,10 +50,10 @@ public class Note {
             Date date,
             NoteType type
     ) {
-        this.id = id;
-        this.text = text;
+        this.id      = id;
+        this.text    = text;
         this.comment = comment;
-        this.date = date;
-        this.type = type;
+        this.date    = date;
+        this.type    = type;
     }
 }

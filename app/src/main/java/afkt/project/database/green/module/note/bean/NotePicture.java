@@ -25,9 +25,9 @@ public class NotePicture {
             @NotNull String picture,
             Long noteId
     ) {
-        this.id = id;
+        this.id      = id;
         this.picture = picture;
-        this.noteId = noteId;
+        this.noteId  = noteId;
     }
 
     @Generated(hash = 1572647509)
