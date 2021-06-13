@@ -74,9 +74,9 @@ class BaseApplication : MultiDexApplication() {
         // MMKV Storage Engine 实现
         MMKVUtils.defaultHolder().mmkv?.let { mmkv ->
             DevStorageEngine.setEngine(
+                PUSH_STORAGE_ID,
                 MMKVStorageEngineImpl(
                     MMKVConfig(
-                        storageID = PUSH_STORAGE_ID,
                         cipher = null,
                         mmkv = mmkv
                     )
