@@ -22,9 +22,9 @@ import dev.utils.app.logger.DevLogger
 import dev.utils.app.logger.LogConfig
 import dev.utils.app.logger.LogLevel
 import ktx.dev.engine.json.GsonEngineImpl
-import ktx.dev.engine.log.DevLoggerEngineImpl
 import ktx.dev.engine.keyvalue.MMKVConfig
 import ktx.dev.engine.keyvalue.MMKVKeyValueEngineImpl
+import ktx.dev.engine.log.DevLoggerEngineImpl
 import ktx.dev.other.MMKVUtils
 
 class BaseApplication : MultiDexApplication() {
