@@ -4,7 +4,7 @@ import afkt.gtpush.BuildConfig
 import afkt.gtpush.base.config.RouterPath
 import afkt.gtpush.push.GTPushEngineImpl
 import afkt.gtpush.router.IPushCallback
-import afkt.gtpush.router.PUSH_STORAGE_ID
+import afkt.gtpush.router.PUSH_KEYVALUE_ID
 import afkt.gtpush.router.PushRouterChecker
 import afkt.gtpush.ui.activity.SplashActivity
 import android.app.Activity
@@ -13,9 +13,9 @@ import androidx.multidex.MultiDexApplication
 import com.alibaba.android.arouter.launcher.ARouter
 import dev.DevUtils
 import dev.engine.json.DevJSONEngine
+import dev.engine.keyvalue.DevKeyValueEngine
 import dev.engine.log.DevLogEngine
 import dev.engine.push.DevPushEngine
-import dev.engine.storage.DevStorageEngine
 import dev.module.push.PushConfig
 import dev.utils.DevFinal
 import dev.utils.app.logger.DevLogger
@@ -23,8 +23,8 @@ import dev.utils.app.logger.LogConfig
 import dev.utils.app.logger.LogLevel
 import ktx.dev.engine.json.GsonEngineImpl
 import ktx.dev.engine.log.DevLoggerEngineImpl
-import ktx.dev.engine.storage.MMKVConfig
-import ktx.dev.engine.storage.MMKVStorageEngineImpl
+import ktx.dev.engine.keyvalue.MMKVConfig
+import ktx.dev.engine.keyvalue.MMKVKeyValueEngineImpl
 import ktx.dev.other.MMKVUtils
 
 class BaseApplication : MultiDexApplication() {
@@ -71,11 +71,11 @@ class BaseApplication : MultiDexApplication() {
             )
         )
         MMKVUtils.init(this)
-        // MMKV Storage Engine 实现
+        // MMKV Key-Value Engine 实现
         MMKVUtils.defaultHolder().mmkv?.let { mmkv ->
-            DevStorageEngine.setEngine(
-                PUSH_STORAGE_ID,
-                MMKVStorageEngineImpl(
+            DevKeyValueEngine.setEngine(
+                PUSH_KEYVALUE_ID,
+                MMKVKeyValueEngineImpl(
                     MMKVConfig(
                         cipher = null,
                         mmkv = mmkv

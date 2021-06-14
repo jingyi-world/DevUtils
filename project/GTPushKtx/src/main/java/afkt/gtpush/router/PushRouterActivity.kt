@@ -6,7 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import dev.engine.json.DevJSONEngine
-import dev.engine.storage.DevStorageEngine
+import dev.engine.keyvalue.DevKeyValueEngine
 import dev.module.push.PushMessage
 import dev.utils.DevFinal
 import dev.utils.app.AppUtils
@@ -184,7 +184,7 @@ interface IPushCallback {
     )
 }
 
-const val PUSH_STORAGE_ID = "DataManager"
+const val PUSH_KEYVALUE_ID = "DataManager"
 
 /**
  * detail: 数据操作记录 ( 可自行实现 )
@@ -199,7 +199,7 @@ private object DataManager {
     private const val PUSH_DATA = "pushData"
 
     private fun clear(context: Context) {
-        DevStorageEngine.getEngine(PUSH_STORAGE_ID)?.clear()
+        DevKeyValueEngine.getEngine(PUSH_KEYVALUE_ID)?.clear()
     }
 
     private fun getBoolean(
@@ -207,8 +207,8 @@ private object DataManager {
         key: String,
         defaultValue: Boolean
     ): Boolean {
-        return DevStorageEngine.getEngine(
-            PUSH_STORAGE_ID
+        return DevKeyValueEngine.getEngine(
+            PUSH_KEYVALUE_ID
         )?.getBoolean(key, defaultValue) ?: defaultValue
     }
 
@@ -217,8 +217,8 @@ private object DataManager {
         key: String,
         value: Boolean
     ) {
-        DevStorageEngine.getEngine(
-            PUSH_STORAGE_ID
+        DevKeyValueEngine.getEngine(
+            PUSH_KEYVALUE_ID
         )?.putBoolean(key, value)
     }
 
@@ -227,8 +227,8 @@ private object DataManager {
         key: String,
         defaultValue: String?
     ): String? {
-        return DevStorageEngine.getEngine(
-            PUSH_STORAGE_ID
+        return DevKeyValueEngine.getEngine(
+            PUSH_KEYVALUE_ID
         )?.getString(key, defaultValue) ?: defaultValue
     }
 
@@ -237,8 +237,8 @@ private object DataManager {
         key: String,
         value: String?
     ) {
-        DevStorageEngine.getEngine(
-            PUSH_STORAGE_ID
+        DevKeyValueEngine.getEngine(
+            PUSH_KEYVALUE_ID
         )?.putString(key, value)
     }
 
