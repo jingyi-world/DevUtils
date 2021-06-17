@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 
 import dev.screen.dp.utils.DimenItem;
 import dev.screen.dp.utils.Tools;
@@ -104,7 +105,7 @@ final class GenerateDPValueFiles {
             return;
         }
         // 解析源 dimens.xml 文件
-        ArrayList<DimenItem> list = XmlIO.readDimenFile(baseDimenFilePath);
+        List<DimenItem> list = XmlIO.readDimenFile(baseDimenFilePath);
         if (list == null || list.size() <= 0) {
             System.out.println("DK WARNING: dimens.xml 文件无数据!");
             return;

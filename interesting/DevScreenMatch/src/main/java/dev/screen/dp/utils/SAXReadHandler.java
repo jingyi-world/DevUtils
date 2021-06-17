@@ -4,6 +4,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * detail: 解析 xml 工具类
@@ -19,7 +20,7 @@ public class SAXReadHandler
     static final String               ELEMENT_DIMEN    = "dimen";
     static final String               PROPERTY_NAME    = "name";
 
-    public ArrayList<DimenItem> getData() {
+    public List<DimenItem> getData() {
         return list;
     }
 

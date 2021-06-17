@@ -5,7 +5,7 @@ import org.xml.sax.helpers.AttributesImpl;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -25,7 +25,7 @@ public class XmlIO {
      * 解析 dimens 文件
      * @param baseDimenFilePath 源 dimens 文件路径
      */
-    public static ArrayList<DimenItem> readDimenFile(final String baseDimenFilePath) {
+    public static List<DimenItem> readDimenFile(final String baseDimenFilePath) {
         try {
             SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
             SAXParser        saxparser        = saxParserFactory.newSAXParser();
@@ -49,7 +49,7 @@ public class XmlIO {
      */
     public static boolean createDestinationDimens(
             final boolean isFontMatch,
-            final ArrayList<DimenItem> list,
+            final List<DimenItem> list,
             final double multiple,
             final String outPutFile
     ) {
