@@ -36,9 +36,9 @@ class BaseApplication : MultiDexApplication(),
         mAppViewModelStore = ViewModelStore()
     }
 
-    // ===========
+    // ==========
     // = 静态方法 =
-    // ===========
+    // ==========
 
     companion object {
 

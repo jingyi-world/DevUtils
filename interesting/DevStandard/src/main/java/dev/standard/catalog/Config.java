@@ -135,9 +135,9 @@ final class Config {
         sDevUtilsCatalogMap.put(".Environment.DevEnvironmentCompiler", "Debug ( 打包 / 编译 ) 生成实现代码");
         sDevUtilsCatalogMap.put(".Environment.DevEnvironmentCompilerRelease", "Release ( 打包 / 编译 ) 生成实现代码");
 
-        // ========================
+        // =======================
         // = DevUtils Lib 忽略目录 =
-        // ========================
+        // =======================
 
         sDevUtilsIgnoreCatalogs.add("DevApp");
         sDevUtilsIgnoreCatalogs.add("DevAssist");

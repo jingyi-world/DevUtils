@@ -113,9 +113,9 @@ public final class NoteDatabase
         return mDaoSession;
     }
 
-    // =============
+    // ============
     // = 数据库升级 =
-    // =============
+    // ============
 
     /**
      * detail: DB 升级 Helper
@@ -154,9 +154,9 @@ public final class NoteDatabase
         }
     }
 
-    // ===============
+    // =============
     // = 对外公开方法 =
-    // ===============
+    // =============
 
     public NoteDao getNoteDao() {
         return mDaoSession.getNoteDao();

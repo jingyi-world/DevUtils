@@ -55,9 +55,9 @@ abstract class BaseActivity<VB : ViewBinding> : DevBaseContentViewBindingActivit
         toolbar?.title = TAG
     }
 
-    // =============
+    // ============
     // = 内部初始化 =
-    // =============
+    // ============
 
     private fun priInitialize() {
         try {

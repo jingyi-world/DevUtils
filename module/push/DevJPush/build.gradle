@@ -33,9 +33,9 @@ tasks.withType(JavaCompile) {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
 
-    // =============
+    // ============
     // = 快捷开发库 =
-    // =============
+    // ============
 
     api project(':DevApp')
     api project(':DevAssist')
@@ -44,9 +44,9 @@ dependencies {
     // = Maven Central 方式自动集成 =
     // ===========================
 
-    // ===========
+    // ==========
     // = 极光推送 =
-    // ===========
+    // ==========
 
     // https://mvnrepository.com/search?q=cn.jiguang.sdk
     api 'cn.jiguang.sdk:jpush:4.0.6'

@@ -35,9 +35,9 @@ public class Note {
 
     public NoteType type; // Note 类型
 
-    // ===========
+    // ==========
     // = 构造函数 =
-    // ===========
+    // ==========
 
     @Ignore
     public Note() {

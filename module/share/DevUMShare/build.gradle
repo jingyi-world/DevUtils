@@ -33,9 +33,9 @@ tasks.withType(JavaCompile) {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
 
-    // =============
+    // ============
     // = 快捷开发库 =
-    // =============
+    // ============
 
     api project(':DevApp')
     api project(':DevAssist')
@@ -45,9 +45,9 @@ dependencies {
     // = Maven Central 方式自动集成 =
     // ===========================
 
-    // ===========
+    // ==========
     // = 友盟分享 =
-    // ===========
+    // ==========
 
     // https://developer.umeng.com/docs/128606/detail/193879
     api 'com.umeng.umsdk:common:9.3.8' // 必选

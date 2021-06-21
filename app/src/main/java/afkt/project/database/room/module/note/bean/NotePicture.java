@@ -23,9 +23,9 @@ public class NotePicture {
 
     public String picture;
 
-    // ===========
+    // ==========
     // = 构造函数 =
-    // ===========
+    // ==========
 
     @Ignore
     public NotePicture(

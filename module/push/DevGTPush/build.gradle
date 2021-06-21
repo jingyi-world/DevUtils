@@ -33,9 +33,9 @@ tasks.withType(JavaCompile) {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
 
-    // =============
+    // ============
     // = 快捷开发库 =
-    // =============
+    // ============
 
     api project(':DevApp')
     api project(':DevAssist')
@@ -44,9 +44,9 @@ dependencies {
     // = Maven Central 方式自动集成 =
     // ===========================
 
-    // ===========
+    // ==========
     // = 个推推送 =
-    // ===========
+    // ==========
 
     // https://mvnrepository.com/search?q=com.getui
     api 'com.getui:gtsdk:3.1.4.0'  // 个推 SDK

@@ -52,9 +52,9 @@ class AccessibilityListenerService : AccessibilityService() {
         LogPrintUtils.dTag(TAG, "onServiceConnected")
     }
 
-    // ===========
+    // ==========
     // = 生命周期 =
-    // ===========
+    // ==========
 
     override fun onCreate() {
         super.onCreate()
@@ -109,9 +109,9 @@ class AccessibilityListenerService : AccessibilityService() {
         fun onServiceDestroy() {}
     }
 
-    // ===============
+    // =============
     // = 对外公开方法 =
-    // ===============
+    // =============
 
     companion object {
         // 日志 TAG
@@ -188,9 +188,9 @@ class AccessibilityListenerService : AccessibilityService() {
         const val COMMAND_CLOSE = "COMMAND_CLOSE"
     }
 
-    // ========
+    // =======
     // = 新增 =
-    // ========
+    // =======
 
     private var mTrackerWindowManager: TrackerWindowManager? = null
 
