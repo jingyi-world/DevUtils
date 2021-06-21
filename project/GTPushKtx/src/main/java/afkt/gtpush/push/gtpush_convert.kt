@@ -8,9 +8,9 @@ import com.igexin.sdk.message.GTTransmitMessage
 import dev.module.push.PushMessage
 import dev.utils.common.ConvertUtils
 
-// ==========
-// = 对外方法 =
-// ==========
+// =============
+// = 对外公开方法 =
+// =============
 
 fun convertEngineMessage(message: Any?): PushMessage? {
     return message?.let {
