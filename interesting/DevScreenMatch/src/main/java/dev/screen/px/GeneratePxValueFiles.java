@@ -22,7 +22,7 @@ final class GeneratePxValueFiles {
 
     // 项目路径
     private final String PROJECT_PATH = "/interesting/DevScreenMatch/res/";
-    // 保存地址
+    // 存储地址
     private final String DIR          = new File(System.getProperty("user.dir"), PROJECT_PATH).getAbsolutePath();
 
     // 基准宽度

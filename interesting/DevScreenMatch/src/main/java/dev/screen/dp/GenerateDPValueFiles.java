@@ -27,7 +27,7 @@ final class GenerateDPValueFiles {
 
     // 项目路径
     private static final String PROJECT_PATH    = "/interesting/DevScreenMatch/res";
-    // 保存地址
+    // 存储地址
     private static final String DIR             = new File(System.getProperty("user.dir"), PROJECT_PATH).getAbsolutePath();
     // 适配基准文件
     private static final String ADAPTATION_FILE = "/values/dimens.xml";
