@@ -11,6 +11,6 @@ fun shareActivityResult(
     data: Intent?
 ) {
     activity?.let {
-        UMShareAPI.get(activity).onActivityResult(requestCode, resultCode, data)
+        UMShareAPI.get(it).onActivityResult(requestCode, resultCode, data)
     }
 }
