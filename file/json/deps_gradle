@@ -3,15 +3,15 @@ dependencies {
 	// = dev =
 
 	// dev_app_x
-	implementation 'io.github.afkt:DevAppX:2.2.7'
+	implementation 'io.github.afkt:DevAppX:2.2.8'
 	// dev_assist
-	implementation 'io.github.afkt:DevAssist:1.2.4'
+	implementation 'io.github.afkt:DevAssist:1.2.5'
 	// dev_base
 	implementation 'io.github.afkt:DevBase:1.0.6'
 	// dev_base_mvvm
 	implementation 'io.github.afkt:DevBaseMVVM:1.0.4'
 	// dev_java
-	implementation 'io.github.afkt:DevJava:1.3.4'
+	implementation 'io.github.afkt:DevJava:1.3.5'
 	// dev_widget_x
 	implementation 'io.github.afkt:DevWidgetX:1.1.0'
 	// dev_environment
