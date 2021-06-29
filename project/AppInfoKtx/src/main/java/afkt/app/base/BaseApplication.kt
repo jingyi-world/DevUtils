@@ -3,17 +3,18 @@ package afkt.app.base
 import afkt.app.BuildConfig
 import afkt.app.R
 import afkt.app.base.model.AppConfig
-import afkt.app.base.model.PathConfig
 import android.view.View
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.multidex.MultiDexApplication
 import dev.DevUtils
+import dev.engine.storage.DevStorageEngine
 import dev.utils.app.logger.DevLogger
 import dev.utils.app.logger.LogConfig
 import dev.utils.app.logger.LogLevel
 import dev.widget.assist.ViewAssist
 import dev.widget.function.StateLayout
+import ktx.dev.engine.storage.DevMediaStoreEngineImpl
 
 class BaseApplication : MultiDexApplication(),
     ViewModelStoreOwner {
@@ -44,8 +45,8 @@ class BaseApplication : MultiDexApplication(),
             DevUtils.openDebug()
         }
 
-        // 初始化文件夹
-        PathConfig.createFolder()
+        // 初始化内外存储 Engine
+        DevStorageEngine.setEngine(DevMediaStoreEngineImpl())
 
         // 全局状态布局配置
         val global = StateLayout.Global(object : StateLayout.Listener {

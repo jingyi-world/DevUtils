@@ -11,6 +11,7 @@ dependencies {
     implementation project(':DevAssist')
     implementation project(':DevBase2')
     implementation project(':DevBaseMVVM')
+    implementation project(':DevOther')
     implementation project(':DevWidget')
 
     // ============

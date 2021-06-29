@@ -8,12 +8,10 @@ import afkt.app.base.model.TypeEnum
 import afkt.app.base.setDataStore
 import afkt.app.databinding.FragmentInfoBinding
 import afkt.app.ui.adapter.InfoAdapter
+import afkt.app.utils.ExportUtils
 import afkt.app.utils.ProjectUtils
 import android.os.Bundle
 import android.view.View
-import dev.utils.app.ResourceUtils
-import dev.utils.app.toast.ToastTintUtils
-import dev.utils.common.FileUtils
 
 class InfoFragment : BaseFragment<FragmentInfoBinding>() {
 
@@ -50,16 +48,10 @@ class InfoFragment : BaseFragment<FragmentInfoBinding>() {
                     val fileName =
                         if (TypeEnum.DEVICE_INFO == it) "device_info.txt" else "screen_info.txt"
                     // 导出数据
-                    val result = FileUtils.saveFile(
-                        FileUtils.getFile(PathConfig.AEP_PATH, fileName),
-                        content?.toByteArray()
+                    ExportUtils.exportInfo(
+                        fileName, PathConfig.AEP_PATH, content
                     )
-                    if (result) {
-                        ToastTintUtils.success(ResourceUtils.getString(R.string.str_export_suc))
-                        return@observe
-                    }
                 }
-                ToastTintUtils.error(ResourceUtils.getString(R.string.str_export_fail))
             }
         })
         when (dataStore.typeEnum) {

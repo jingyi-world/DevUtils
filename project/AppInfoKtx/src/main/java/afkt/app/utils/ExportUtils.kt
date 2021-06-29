@@ -4,6 +4,8 @@ import afkt.app.R
 import afkt.app.base.model.PathConfig
 import android.content.Intent
 import dev.DevUtils
+import dev.base.DevSource
+import dev.engine.storage.DevStorageEngine
 import dev.utils.app.AppUtils
 import dev.utils.app.HandlerUtils
 import dev.utils.app.ResourceUtils
@@ -13,6 +15,9 @@ import dev.utils.app.info.AppInfoItem
 import dev.utils.app.toast.ToastTintUtils
 import dev.utils.common.FileUtils
 import dev.utils.common.thread.DevThreadManager
+import ktx.dev.engine.storage.OnDevInsertListener
+import ktx.dev.engine.storage.StorageItem
+import ktx.dev.engine.storage.StorageResult
 import java.io.File
 
 /**
@@ -33,14 +38,14 @@ object ExportUtils {
      * 导出 APP 信息
      */
     fun exportInfo(appInfoItem: AppInfoItem) {
-        exportInfo(true, appInfoItem.appInfoBean, ProjectUtils.toJson(appInfoItem))
+        exportAppInfo(true, appInfoItem.appInfoBean, ProjectUtils.toJson(appInfoItem))
     }
 
     /**
      * 导出 APK 信息
      */
     fun exportInfo(apkInfoItem: ApkInfoItem) {
-        exportInfo(false, apkInfoItem.appInfoBean, ProjectUtils.toJson(apkInfoItem))
+        exportAppInfo(false, apkInfoItem.appInfoBean, ProjectUtils.toJson(apkInfoItem))
     }
 
     /**
@@ -49,28 +54,54 @@ object ExportUtils {
      * @param appInfoBean App 信息
      * @param info 导出信息
      */
-    private fun exportInfo(
+    private fun exportAppInfo(
         isApp: Boolean,
         appInfoBean: AppInfoBean,
         info: String?
     ) {
-        HandlerUtils.postRunnable {
-            val path = if (isApp) PathConfig.AEP_APPMSG_PATH else PathConfig.AEP_APKMSG_PATH
-            // 应用名_包名_版本名.txt
-            val fileName =
-                appInfoBean.appName + "_" + appInfoBean.appPackName + "_" + appInfoBean.versionName + ".txt"
-            // 导出数据
-            val result = FileUtils.saveFile(
-                FileUtils.getFile(path, fileName),
-                info?.toByteArray()
+        val folder = if (isApp) PathConfig.AEP_APPMSG_PATH else PathConfig.AEP_APKMSG_PATH
+        // 应用名_包名_版本名.txt
+        val fileName =
+            appInfoBean.appName + "_" + appInfoBean.appPackName + "_" + appInfoBean.versionName + ".txt"
+        exportInfo(fileName, folder, info)
+    }
+
+    /**
+     * 最终导出信息方法
+     * @param fileName 文件名
+     * @param folder 存储文件夹
+     * @param info 导出信息
+     */
+    fun exportInfo(
+        fileName: String,
+        folder: String,
+        info: String?
+    ) {
+        DevStorageEngine.getEngine()?.apply {
+            insertDownloadToExternal(
+                StorageItem.createExternalItemFolder(
+                    fileName, folder
+                ),
+                DevSource.create(
+                    info?.toByteArray()
+                ),
+                object : OnDevInsertListener {
+                    override fun onResult(
+                        result: StorageResult,
+                        params: StorageItem?,
+                        source: DevSource?
+                    ) {
+                        if (result.isSuccess()) {
+                            ToastTintUtils.success(
+                                ResourceUtils.getString(R.string.str_export_suc)
+                                        + "\n" + FileUtils.getAbsolutePath(result.getFile())
+                            )
+                        } else {
+                            ToastTintUtils.error(ResourceUtils.getString(R.string.str_export_fail))
+                        }
+                    }
+                }
             )
-            if (result) {
-                ToastTintUtils.success(
-                    ResourceUtils.getString(R.string.str_export_suc) + " " + path + fileName
-                )
-            } else {
-                ToastTintUtils.error(ResourceUtils.getString(R.string.str_export_fail))
-            }
         }
     }
 
@@ -106,7 +137,7 @@ object ExportUtils {
             val fileName =
                 appInfoBean.appName + "_" + appInfoBean.appPackName + "_" + appInfoBean.versionName + ".apk"
 
-            val destFile = FileUtils.getFile(PathConfig.AEP_APK_PATH, fileName)
+            val destFile = FileUtils.getFile(PathConfig.AIP_APK_PATH, fileName)
             val destPath = destFile.absolutePath
             if (destFile.exists()) {
                 ToastTintUtils.success(
