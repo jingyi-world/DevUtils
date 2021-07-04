@@ -125,7 +125,6 @@
     "widget": {
         "gpuimage": "jp.co.cyberagent.android:gpuimage:2.1.0",
         "whorlviewlibrary": "com.tt:whorlviewlibrary:1.0.3",
-        "circleimageview": "de.hdodenhof:circleimageview:3.1.0",
         "pickerview": "com.contrarywind:Android-PickerView:4.1.9",
         "photoview": "com.github.chrisbanes:PhotoView:2.3.0",
         "consecutiveScroller": "com.github.donkingliang:ConsecutiveScroller:4.4.2",
@@ -145,7 +144,7 @@
         "smartrefresh_footer_ball": "com.scwang.smart:refresh-footer-ball:2.0.3",
         "smartrefresh_footer_classics": "com.scwang.smart:refresh-footer-classics:2.0.3",
         "smartrefreshHorizontal": "com.scwang.smart:refresh-layout-horizontal:2.0.0",
-        "baserecyclerviewadapterhelper": "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.6",
+        "base_recyclerview_adapter_helper": "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.6",
         "multitype": "com.drakeet.multitype:multitype:4.3.0",
         "qmui": "com.qmuiteam:qmui:2.0.0-alpha10",
         "ratingbar": "com.hedgehog.ratingbar:app:1.1.2"
@@ -156,6 +155,7 @@
         "butterknife_compiler": "com.jakewharton:butterknife-compiler:10.2.3",
         "kotterknife": "com.jakewharton:kotterknife:0.1.0-SNAPSHOT",
         "okgo": "com.lzy.net:okgo:3.0.4",
-        "okserver": "com.lzy.net:okserver:2.0.5"
+        "okserver": "com.lzy.net:okserver:2.0.5",
+        "circleimageview": "de.hdodenhof:circleimageview:3.1.0"
     }
 }

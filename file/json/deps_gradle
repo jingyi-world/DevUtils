@@ -245,8 +245,6 @@ dependencies {
 	implementation 'jp.co.cyberagent.android:gpuimage:2.1.0'
 	// whorlviewlibrary
 	implementation 'com.tt:whorlviewlibrary:1.0.3'
-	// circleimageview
-	implementation 'de.hdodenhof:circleimageview:3.1.0'
 	// pickerview
 	implementation 'com.contrarywind:Android-PickerView:4.1.9'
 	// photoview
@@ -285,7 +283,7 @@ dependencies {
 	implementation 'com.scwang.smart:refresh-footer-classics:2.0.3'
 	// smartrefreshHorizontal
 	implementation 'com.scwang.smart:refresh-layout-horizontal:2.0.0'
-	// baserecyclerviewadapterhelper
+	// base_recyclerview_adapter_helper
 	implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.6'
 	// multitype
 	implementation 'com.drakeet.multitype:multitype:4.3.0'
@@ -308,4 +306,6 @@ dependencies {
 	implementation 'com.lzy.net:okgo:3.0.4'
 	// okserver
 	implementation 'com.lzy.net:okserver:2.0.5'
+	// circleimageview
+	implementation 'de.hdodenhof:circleimageview:3.1.0'
 }
