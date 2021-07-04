@@ -42,6 +42,7 @@ final class GeneratePxValueFiles {
         // width, height
         listDimesions.add("320,480");
         listDimesions.add("480,800");
+        listDimesions.add("480,845");
         listDimesions.add("480,854");
         listDimesions.add("540,888");
         listDimesions.add("540,960");
@@ -57,6 +58,8 @@ final class GeneratePxValueFiles {
         listDimesions.add("1080,1776");
         listDimesions.add("1080,1812");
         listDimesions.add("1080,1920");
+        listDimesions.add("1080,2400");
+        listDimesions.add("1440,2408");
         listDimesions.add("1440,2560");
     }
 
