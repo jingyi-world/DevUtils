@@ -126,6 +126,7 @@ final class Config {
         sDevUtilsCatalogMap.put(".DevBase", "Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库");
         sDevUtilsCatalogMap.put(".DevBase2", "Base 基础代码 ( 非基类库 )");
         sDevUtilsCatalogMap.put(".DevBaseMVVM", "MVVM ( ViewDataBinding + ViewModel ) 基类库");
+        sDevUtilsCatalogMap.put(".DevHttpCapture", "OKHttp 抓包工具库");
         sDevUtilsCatalogMap.put(".DevJava", "Java 工具类库 ( 不依赖 android api )");
         sDevUtilsCatalogMap.put(".DevOther", "第三方库封装、以及部分特殊工具类等, 方便 copy 封装类使用");
         sDevUtilsCatalogMap.put(".DevWidget", "自定义 View UI 库");
@@ -134,6 +135,9 @@ final class Config {
         sDevUtilsCatalogMap.put(".Environment.DevEnvironmentBase", "注解类、实体类、监听事件等通用基础");
         sDevUtilsCatalogMap.put(".Environment.DevEnvironmentCompiler", "Debug ( 打包 / 编译 ) 生成实现代码");
         sDevUtilsCatalogMap.put(".Environment.DevEnvironmentCompilerRelease", "Release ( 打包 / 编译 ) 生成实现代码");
+        sDevUtilsCatalogMap.put(".HttpCapture", "OKHttp 抓包工具库可视化");
+        sDevUtilsCatalogMap.put(".HttpCapture.DevHttpCaptureCompiler", "Debug ( 打包 / 编译 ) 实现代码");
+        sDevUtilsCatalogMap.put(".HttpCapture.DevHttpCaptureCompilerRelease", "Release ( 打包 / 编译 ) 实现代码");
 
         // =======================
         // = DevUtils Lib 忽略目录 =
@@ -144,6 +148,7 @@ final class Config {
         sDevUtilsIgnoreCatalogs.add("DevBase");
         sDevUtilsIgnoreCatalogs.add("DevBase2");
         sDevUtilsIgnoreCatalogs.add("DevBaseMVVM");
+        sDevUtilsIgnoreCatalogs.add("DevHttpCapture");
         sDevUtilsIgnoreCatalogs.add("DevJava");
         sDevUtilsIgnoreCatalogs.add("DevOther");
         sDevUtilsIgnoreCatalogs.add("DevWidget");
