@@ -97,8 +97,10 @@ final class CatalogGenerate {
             }
             // 属于文件夹才处理
             if (file.isDirectory()) {
-                FileUtils.FileList catalog = new FileUtils.FileList(file,
-                        getFolderLists(file.getAbsolutePath(), callback, ignoreCatalog, layer, curLayer + 1));
+                FileUtils.FileList catalog = new FileUtils.FileList(
+                        file,
+                        getFolderLists(file.getAbsolutePath(), callback, ignoreCatalog, layer, curLayer + 1)
+                );
                 lists.add(catalog);
                 // 触发回调
                 if (callback != null) {

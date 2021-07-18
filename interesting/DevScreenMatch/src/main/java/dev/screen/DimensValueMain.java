@@ -48,7 +48,7 @@ public class DimensValueMain {
         builder.append(DevFinal.NEW_LINE_STR_X2);
         // 生成正数的
         for (float value = start; value <= end; value += interval) {
-            int    intValue = (int) value;
+            int intValue    = (int) value;
             String strValue = String.valueOf(value);
             strValue = BigDecimalUtils.operation(strValue).round(1, BigDecimal.ROUND_HALF_UP).toPlainString();
             // 属于整数
