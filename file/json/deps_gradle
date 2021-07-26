@@ -60,16 +60,16 @@ dependencies {
 	// datastore_preferences
 	implementation 'androidx.datastore:datastore-preferences:1.0.0-alpha06'
 	// fragment_ktx
-	implementation 'androidx.fragment:fragment-ktx:1.3.3'
+	implementation 'androidx.fragment:fragment-ktx:1.3.6'
 	// activity_ktx
-	implementation 'androidx.activity:activity-ktx:1.2.3'
+	implementation 'androidx.activity:activity-ktx:1.2.4'
 
 	// = androidx =
 
 	// appcompat
-	implementation 'androidx.appcompat:appcompat:1.3.0-rc01'
+	implementation 'androidx.appcompat:appcompat:1.3.1'
 	// appcompat_resources
-	implementation 'androidx.appcompat:appcompat-resources:1.3.0-rc01'
+	implementation 'androidx.appcompat:appcompat-resources:1.3.1'
 	// cardview
 	implementation 'androidx.cardview:cardview:1.0.0'
 	// recyclerview
@@ -83,17 +83,19 @@ dependencies {
 	// sqlite
 	implementation 'androidx.sqlite:sqlite:2.1.0'
 	// design
-	implementation 'com.google.android.material:material:1.3.0'
+	implementation 'com.google.android.material:material:1.4.0'
 	// fragment
-	implementation 'androidx.fragment:fragment:1.3.3'
+	implementation 'androidx.fragment:fragment:1.3.6'
+	// activity
+	implementation 'androidx.activity:activity:1.2.4'
 	// palette
 	implementation 'androidx.palette:palette:1.0.0'
 	// flexbox
 	implementation 'com.google.android:flexbox:2.0.1'
 	// hilt_android
-	implementation 'com.google.dagger:hilt-android:2.36'
+	implementation 'com.google.dagger:hilt-android:2.38'
 	// hilt_android_compiler
-	implementation 'com.google.dagger:hilt-android-compiler:2.36'
+	implementation 'com.google.dagger:hilt-android-compiler:2.38'
 	// startup
 	implementation 'androidx.startup:startup-runtime:1.0.0'
 
@@ -142,7 +144,7 @@ dependencies {
 	// auto_dispose_lifecycle
 	implementation 'com.uber.autodispose2:autodispose-androidx-lifecycle:2.0.0'
 	// fastjson
-	implementation 'com.alibaba:fastjson:1.2.73'
+	implementation 'com.alibaba:fastjson:1.2.76'
 	// fastjson_android
 	implementation 'com.alibaba:fastjson:1.1.72.android'
 	// anchors
@@ -150,25 +152,25 @@ dependencies {
 	// panelSwitchHelper
 	implementation 'com.effective.android:panelSwitchHelper-androidx:1.3.13'
 	// pictureSelector
-	implementation 'io.github.lucksiege:pictureselector:v2.7.3-rc03'
+	implementation 'io.github.lucksiege:pictureselector:v2.7.3-rc06'
 	// lottie
-	implementation 'com.airbnb.android:lottie:3.7.0'
+	implementation 'com.airbnb.android:lottie:3.7.2'
 	// aria_core
-	implementation 'com.arialyy.aria:core:3.8.12'
+	implementation 'com.arialyy.aria:core:3.8.16'
 	// aria_compiler
-	implementation 'com.arialyy.aria:compiler:3.8.12'
+	implementation 'com.arialyy.aria:compiler:3.8.16'
 	// aria_ftp
-	implementation 'com.arialyy.aria:ftpComponent:3.8.12'
+	implementation 'com.arialyy.aria:ftpComponent:3.8.16'
 	// aria_sftp
-	implementation 'com.arialyy.aria:sftpComponent:3.8.12'
+	implementation 'com.arialyy.aria:sftpComponent:3.8.16'
 	// aria_m3u8
-	implementation 'com.arialyy.aria:m3u8Component:3.8.12'
+	implementation 'com.arialyy.aria:m3u8Component:3.8.16'
 	// zxing_code
 	implementation 'com.google.zxing:core:3.4.1'
 	// zxing_android_code
 	implementation 'com.google.zxing:android-core:3.3.0'
 	// mmkv
-	implementation 'com.tencent:mmkv-static:1.2.9'
+	implementation 'com.tencent:mmkv-static:1.2.10'
 	// autosize
 	implementation 'me.jessyan:autosize:1.2.1'
 	// greenDAO
@@ -180,13 +182,13 @@ dependencies {
 	// kluban
 	implementation 'com.github.forJrking:KLuban:1.1.0'
 	// xxPermissions
-	implementation 'com.github.getActivity:XXPermissions:11.5'
+	implementation 'com.github.getActivity:XXPermissions:11.6'
 	// progressmanager
 	implementation 'me.jessyan:progressmanager:1.5.0'
 	// arouter_api
-	implementation 'com.alibaba:arouter-api:1.5.1'
+	implementation 'com.alibaba:arouter-api:1.5.2'
 	// arouter_compiler
-	implementation 'com.alibaba:arouter-compiler:1.5.1'
+	implementation 'com.alibaba:arouter-compiler:1.5.2'
 
 	// = aop =
 
@@ -254,7 +256,7 @@ dependencies {
 	// photoview
 	implementation 'com.github.chrisbanes:PhotoView:2.3.0'
 	// consecutiveScroller
-	implementation 'com.github.donkingliang:ConsecutiveScroller:4.4.2'
+	implementation 'com.github.donkingliang:ConsecutiveScroller:4.5.3'
 	// mpAndroidChart
 	implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 	// waveview
