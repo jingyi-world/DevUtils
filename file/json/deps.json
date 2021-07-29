@@ -112,14 +112,14 @@
         "dokitx": "com.didichuxing.doraemonkit:dokitx:3.3.5",
         "dokitx_no_op": "com.didichuxing.doraemonkit:dokitx-no-op:3.3.5",
         "glance": "com.glance.guolindev:glance:1.0.0",
-        "matrix_android_lib": "com.tencent.matrix:matrix-android-lib:0.9.0",
-        "matrix_android_commons": "com.tencent.matrix:matrix-android-commons:0.9.0",
-        "matrix_trace_canary": "com.tencent.matrix:matrix-trace-canary:0.9.0",
-        "matrix_resource_canary_android": "com.tencent.matrix:matrix-resource-canary-android:0.9.0",
-        "matrix_resource_canary_common": "com.tencent.matrix:matrix-resource-canary-common:0.9.0",
-        "matrix_io_canary": "com.tencent.matrix:matrix-io-canary:0.9.0",
-        "matrix_sqlite_lint": "com.tencent.matrix:matrix-sqlite-lint-android-sdk:0.9.0",
-        "matrix_battery_canary": "com.tencent.matrix:matrix-battery-canary:0.9.0"
+        "matrix_android_lib": "com.tencent.matrix:matrix-android-lib:1.0.0",
+        "matrix_android_commons": "com.tencent.matrix:matrix-android-commons:1.0.0",
+        "matrix_trace_canary": "com.tencent.matrix:matrix-trace-canary:1.0.0",
+        "matrix_resource_canary_android": "com.tencent.matrix:matrix-resource-canary-android:1.0.0",
+        "matrix_resource_canary_common": "com.tencent.matrix:matrix-resource-canary-common:1.0.0",
+        "matrix_io_canary": "com.tencent.matrix:matrix-io-canary:1.0.0",
+        "matrix_sqlite_lint": "com.tencent.matrix:matrix-sqlite-lint-android-sdk:1.0.0",
+        "matrix_battery_canary": "com.tencent.matrix:matrix-battery-canary:1.0.0"
     },
     "build_apk": {
         "walle": "com.meituan.android.walle:library:1.1.7",
