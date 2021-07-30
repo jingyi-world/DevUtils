@@ -219,8 +219,6 @@ dependencies {
 	implementation 'com.didichuxing.doraemonkit:dokitx:3.3.5'
 	// dokitx_no_op
 	implementation 'com.didichuxing.doraemonkit:dokitx-no-op:3.3.5'
-	// glance
-	implementation 'com.glance.guolindev:glance:1.0.0'
 	// matrix_android_lib
 	implementation 'com.tencent.matrix:matrix-android-lib:1.0.0'
 	// matrix_android_commons

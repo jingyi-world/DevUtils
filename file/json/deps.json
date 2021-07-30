@@ -111,7 +111,6 @@
         "xcrash": "com.iqiyi.xcrash:xcrash-android-lib:3.0.0",
         "dokitx": "com.didichuxing.doraemonkit:dokitx:3.3.5",
         "dokitx_no_op": "com.didichuxing.doraemonkit:dokitx-no-op:3.3.5",
-        "glance": "com.glance.guolindev:glance:1.0.0",
         "matrix_android_lib": "com.tencent.matrix:matrix-android-lib:1.0.0",
         "matrix_android_commons": "com.tencent.matrix:matrix-android-commons:1.0.0",
         "matrix_trace_canary": "com.tencent.matrix:matrix-trace-canary:1.0.0",
