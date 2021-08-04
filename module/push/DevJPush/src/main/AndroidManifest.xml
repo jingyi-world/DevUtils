@@ -12,9 +12,9 @@
         <!-- 可以在更多手机平台上使得推送通道保持的更稳定 -->
 
         <service
+            android:name="dev.jpush.JPushService"
             android:enabled="true"
             android:exported="false"
-            android:name="dev.jpush.JPushService"
             android:process=":pushcore">
             <intent-filter>
                 <action android:name="cn.jiguang.user.service.action" />
@@ -22,9 +22,9 @@
         </service>
 
         <receiver
+            android:name="dev.jpush.JPushReceiver"
             android:enabled="true"
-            android:exported="false"
-            android:name="dev.jpush.JPushReceiver">
+            android:exported="false">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.RECEIVE_MESSAGE" />
                 <category android:name="${applicationId}" />
