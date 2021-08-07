@@ -42,12 +42,12 @@ class AppSortDialog(
         window!!.attributes = params
 
         val inflater = LayoutInflater.from(context)
-        val appSortArys: Array<String> = ResourceUtils.getStringArray(R.array.array_app_sort)
-        for (i in appSortArys.indices) {
+        val appSortArrays: Array<String> = ResourceUtils.getStringArray(R.array.array_app_sort)
+        for (i in appSortArrays.indices) {
             val itemView: View = inflater.inflate(R.layout.view_radio_btn, null, false)
             val radioButton = itemView.findViewById<RadioButton>(R.id.vid_vrb_radio)
             radioButton.id = i
-            radioButton.text = appSortArys[i]
+            radioButton.text = appSortArrays[i]
             radioButton.setOnClickListener { // 获取选中索引
                 val sortPos: Int = ProjectUtils.getAppSortType()
                 if (i != sortPos) {
