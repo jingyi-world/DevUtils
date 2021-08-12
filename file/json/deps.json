@@ -108,9 +108,6 @@
         "leakcanary": "com.squareup.leakcanary:leakcanary-android:2.7",
         "blockcanary_android": "com.github.markzhai:blockcanary-android:1.5.0",
         "blockcanary_no_op": "com.github.markzhai:blockcanary-no-op:1.5.0",
-        "xcrash": "com.iqiyi.xcrash:xcrash-android-lib:3.0.0",
-        "dokitx": "com.didichuxing.doraemonkit:dokitx:3.3.5",
-        "dokitx_no_op": "com.didichuxing.doraemonkit:dokitx-no-op:3.3.5",
         "matrix_android_lib": "com.tencent.matrix:matrix-android-lib:1.0.0",
         "matrix_android_commons": "com.tencent.matrix:matrix-android-commons:1.0.0",
         "matrix_trace_canary": "com.tencent.matrix:matrix-trace-canary:1.0.0",
@@ -157,7 +154,6 @@
         "butterknife_compiler": "com.jakewharton:butterknife-compiler:10.2.3",
         "kotterknife": "com.jakewharton:kotterknife:0.1.0-SNAPSHOT",
         "okgo": "com.lzy.net:okgo:3.0.4",
-        "okserver": "com.lzy.net:okserver:2.0.5",
-        "circleimageview": "de.hdodenhof:circleimageview:3.1.0"
+        "okserver": "com.lzy.net:okserver:2.0.5"
     }
 }
