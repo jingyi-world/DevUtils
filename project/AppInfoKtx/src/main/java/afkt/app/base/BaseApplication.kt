@@ -33,7 +33,7 @@ class BaseApplication : MultiDexApplication(),
 
         if (BuildConfig.DEBUG) {
             // 初始化 Logger 配置
-            DevLogger.init(
+            DevLogger.initialize(
                 LogConfig()
                     .logLevel(LogLevel.DEBUG)
                     .tag(AppConfig.LOG_TAG)

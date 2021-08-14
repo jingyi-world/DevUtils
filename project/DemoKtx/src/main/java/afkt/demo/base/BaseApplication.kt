@@ -21,7 +21,7 @@ class BaseApplication : MultiDexApplication(),
         super.onCreate()
 
         // 初始化 Logger 配置
-        DevLogger.init(
+        DevLogger.initialize(
             LogConfig()
                 .logLevel(LogLevel.DEBUG)
                 .tag(TAG)

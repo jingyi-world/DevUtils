@@ -29,14 +29,14 @@ import org.greenrobot.eventbus.ThreadMode
 class FloatingView : LinearLayout {
 
     constructor(context: Context?) : super(context) {
-        init()
+        initialize()
     }
 
     constructor(
         context: Context?,
         attrs: AttributeSet?
     ) : super(context, attrs) {
-        init()
+        initialize()
     }
 
     constructor(
@@ -48,7 +48,7 @@ class FloatingView : LinearLayout {
         attrs,
         defStyleAttr
     ) {
-        init()
+        initialize()
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -58,7 +58,7 @@ class FloatingView : LinearLayout {
         defStyleAttr: Int,
         defStyleRes: Int
     ) : super(context, attrs, defStyleAttr, defStyleRes) {
-        init()
+        initialize()
     }
 
     private val TAG = FloatingView::class.java.simpleName
@@ -67,7 +67,7 @@ class FloatingView : LinearLayout {
     private var packageNameTv: TextView? = null
     private var classNameTv: TextView? = null
 
-    private fun init() {
+    private fun initialize() {
         mWindowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
 
         View.inflate(context, R.layout.layout_floating, this)

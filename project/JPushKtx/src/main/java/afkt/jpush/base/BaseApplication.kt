@@ -43,7 +43,7 @@ class BaseApplication : MultiDexApplication() {
 
         if (BuildConfig.DEBUG) {
             // 初始化 Logger 配置
-            DevLogger.init(
+            DevLogger.initialize(
                 LogConfig()
                     .logLevel(LogLevel.DEBUG)
                     .tag("JPushKtx_TAG")
@@ -70,7 +70,7 @@ class BaseApplication : MultiDexApplication() {
                 isDebugMode = BuildConfig.DEBUG
             )
         )
-        MMKVUtils.init(this)
+        MMKVUtils.initialize(this)
         // MMKV Key-Value Engine 实现
         MMKVUtils.defaultHolder().mmkv?.let { mmkv ->
             DevKeyValueEngine.setEngine(
