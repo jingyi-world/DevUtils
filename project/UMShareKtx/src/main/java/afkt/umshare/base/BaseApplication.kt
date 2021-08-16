@@ -12,8 +12,8 @@ import dev.utils.BuildConfig
 import dev.utils.app.logger.DevLogger
 import dev.utils.app.logger.LogConfig
 import dev.utils.app.logger.LogLevel
-import ktx.dev.engine.json.GsonEngineImpl
-import ktx.dev.engine.log.DevLoggerEngineImpl
+import dev.engine.json.GsonEngineImpl
+import dev.engine.log.DevLoggerEngineImpl
 
 class BaseApplication : MultiDexApplication() {
 

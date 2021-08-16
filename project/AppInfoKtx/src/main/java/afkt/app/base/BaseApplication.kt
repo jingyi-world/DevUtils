@@ -14,7 +14,7 @@ import dev.utils.app.logger.LogConfig
 import dev.utils.app.logger.LogLevel
 import dev.widget.assist.ViewAssist
 import dev.widget.function.StateLayout
-import ktx.dev.engine.storage.DevMediaStoreEngineImpl
+import dev.engine.storage.DevMediaStoreEngineImpl
 
 class BaseApplication : MultiDexApplication(),
     ViewModelStoreOwner {
