@@ -46,7 +46,7 @@ object DataStoreUse {
 
         SPUtils.getPreference(context, "BB").put("abc", "def")
 
-        var dataStore = DataStoreUtils.migrationSPToDataStore(
+        val dataStore = DataStoreUtils.migrationSPToDataStore(
             spStoreName, "AA", "BB"
         )
 

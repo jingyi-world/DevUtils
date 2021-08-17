@@ -29,11 +29,4 @@ dependencies {
 
     // 友盟分享 Module
     implementation project(':DevUMShare')
-
-    // ============
-    // = 快捷开发库 =
-    // ============
-
-    // Gson https://github.com/google/gson
-    implementation deps.lib.gson
 }

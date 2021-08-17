@@ -8,13 +8,12 @@ import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.multidex.MultiDexApplication
 import dev.DevUtils
-import dev.engine.storage.DevStorageEngine
+import dev.engine.DevEngine
 import dev.utils.app.logger.DevLogger
 import dev.utils.app.logger.LogConfig
 import dev.utils.app.logger.LogLevel
 import dev.widget.assist.ViewAssist
 import dev.widget.function.StateLayout
-import dev.engine.storage.DevMediaStoreEngineImpl
 
 class BaseApplication : MultiDexApplication(),
     ViewModelStoreOwner {
@@ -45,8 +44,8 @@ class BaseApplication : MultiDexApplication(),
             DevUtils.openDebug()
         }
 
-        // 初始化内外存储 Engine
-        DevStorageEngine.setEngine(DevMediaStoreEngineImpl())
+        // 使用内部默认实现 Engine
+        DevEngine.defaultEngine()
 
         // 全局状态布局配置
         val global = StateLayout.Global(object : StateLayout.Listener {

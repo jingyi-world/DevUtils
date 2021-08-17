@@ -11,18 +11,13 @@ dependencies {
     implementation project(':DevAssist')
     implementation project(':DevBase2')
     implementation project(':DevBaseMVVM')
-    implementation project(':DevOther')
+    implementation project(':DevEngine')
     implementation project(':DevWidget')
 
     // ============
     // = 快捷开发库 =
     // ============
 
-    // Gson https://github.com/google/gson
-    implementation deps.lib.gson
-    // Glide 加载框架 https://github.com/bumptech/glide
-    implementation deps.lib.glide
-    kapt deps.lib.glide_compiler
     // 今日头条屏幕适配方案终极版 https://github.com/JessYanCoding/AndroidAutoSize/blob/master/README-zh.md
     implementation deps.lib.autosize
 

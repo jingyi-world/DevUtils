@@ -33,13 +33,4 @@ dependencies {
 
     // 极光推送 Module
     implementation project(':DevJPush')
-
-    // ============
-    // = 快捷开发库 =
-    // ============
-
-    // Gson https://github.com/google/gson
-    implementation deps.lib.gson
-    // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/readme_cn.md
-    implementation deps.lib.mmkv
 }
