@@ -23,7 +23,8 @@ import dev.DevUtils;
  *     arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
  * </pre>
  */
-@Database(entities = {Note.class, NotePicture.class}, version = 1, exportSchema = false) // , exportSchema = false
+@Database(entities = {Note.class, NotePicture.class}, version = 1, exportSchema = false)
+// , exportSchema = false
 @TypeConverters({NoteConverter.class})
 public abstract class NoteDatabase
         extends AbsRoomDatabase {
