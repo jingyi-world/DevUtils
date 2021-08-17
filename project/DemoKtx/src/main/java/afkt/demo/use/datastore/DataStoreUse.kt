@@ -4,10 +4,10 @@ import android.app.Activity
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.asLiveData
-import dev.other.DataStoreUtils
 import dev.utils.app.logger.DevLogger
 import dev.utils.app.share.SPUtils
 import kotlinx.coroutines.flow.first
+import java.dev.other.DataStoreUtils
 
 object DataStoreUse {
 
