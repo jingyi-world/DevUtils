@@ -4,16 +4,13 @@ import afkt.umshare.base.config.shareConfig
 import androidx.multidex.MultiDexApplication
 import com.alibaba.android.arouter.launcher.ARouter
 import dev.DevUtils
-import dev.engine.json.DevJSONEngine
-import dev.engine.log.DevLogEngine
+import dev.engine.DevEngine
 import dev.engine.share.DevShareEngine
 import dev.umshare.UMShareEngine
 import dev.utils.BuildConfig
 import dev.utils.app.logger.DevLogger
 import dev.utils.app.logger.LogConfig
 import dev.utils.app.logger.LogLevel
-import dev.engine.json.GsonEngineImpl
-import dev.engine.log.DevLoggerEngineImpl
 
 class BaseApplication : MultiDexApplication() {
 
@@ -42,14 +39,10 @@ class BaseApplication : MultiDexApplication() {
             DevUtils.openLog()
             DevUtils.openDebug()
         }
-        // DevLogger Log Engine 实现
-        DevLogEngine.setEngine(object : DevLoggerEngineImpl() {
-            override fun isPrintLog(): Boolean {
-                return BuildConfig.DEBUG
-            }
-        })
-        // Gson JSON Engine 实现
-        DevJSONEngine.setEngine(GsonEngineImpl())
+
+        // 使用内部默认实现 Engine
+        DevEngine.defaultMMKVInitialize(this)
+            .defaultEngine()
 
         // 友盟分享 Engine 实现
         DevShareEngine.setEngine(UMShareEngine())

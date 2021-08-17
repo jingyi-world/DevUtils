@@ -12,20 +12,16 @@ import android.text.TextUtils
 import androidx.multidex.MultiDexApplication
 import com.alibaba.android.arouter.launcher.ARouter
 import dev.DevUtils
-import dev.engine.json.DevJSONEngine
+import dev.engine.DevEngine
 import dev.engine.keyvalue.DevKeyValueEngine
-import dev.engine.log.DevLogEngine
+import dev.engine.keyvalue.MMKVConfig
+import dev.engine.keyvalue.MMKVKeyValueEngineImpl
 import dev.engine.push.DevPushEngine
 import dev.module.push.PushConfig
 import dev.utils.DevFinal
 import dev.utils.app.logger.DevLogger
 import dev.utils.app.logger.LogConfig
 import dev.utils.app.logger.LogLevel
-import dev.engine.json.GsonEngineImpl
-import dev.engine.keyvalue.MMKVConfig
-import dev.engine.keyvalue.MMKVKeyValueEngineImpl
-import dev.engine.log.DevLoggerEngineImpl
-import ktx.dev.other.MMKVUtils
 
 class BaseApplication : MultiDexApplication() {
 
@@ -54,25 +50,12 @@ class BaseApplication : MultiDexApplication() {
             DevUtils.openLog()
             DevUtils.openDebug()
         }
-        // DevLogger Log Engine 实现
-        DevLogEngine.setEngine(object : DevLoggerEngineImpl() {
-            override fun isPrintLog(): Boolean {
-                return BuildConfig.DEBUG
-            }
-        })
-        // Gson JSON Engine 实现
-        DevJSONEngine.setEngine(GsonEngineImpl())
-        // 个推推送 Engine 实现
-        DevPushEngine.setEngine(GTPushEngineImpl())
-        // 个推推送初始化
-        DevPushEngine.getEngine()?.initialize(
-            this, PushConfig(
-                isDebugMode = BuildConfig.DEBUG
-            )
-        )
-        MMKVUtils.initialize(this)
+
+        // 使用内部默认实现 Engine
+        DevEngine.defaultMMKVInitialize(this)
+            .defaultEngine()
         // MMKV Key-Value Engine 实现
-        MMKVUtils.defaultHolder().mmkv?.let { mmkv ->
+        DevEngine.getMMKVByHolder()?.let { mmkv ->
             DevKeyValueEngine.setEngine(
                 PUSH_KEYVALUE_ID,
                 MMKVKeyValueEngineImpl(
@@ -83,6 +66,15 @@ class BaseApplication : MultiDexApplication() {
                 )
             )
         }
+
+        // 个推推送 Engine 实现
+        DevPushEngine.setEngine(GTPushEngineImpl())
+        // 个推推送初始化
+        DevPushEngine.getEngine()?.initialize(
+            this, PushConfig(
+                isDebugMode = BuildConfig.DEBUG
+            )
+        )
 
         // =============
         // = 推送路由处理 =
