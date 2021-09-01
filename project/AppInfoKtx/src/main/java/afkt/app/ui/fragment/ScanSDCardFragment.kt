@@ -16,13 +16,14 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.tt.whorlviewlibrary.WhorlView
 import dev.callback.DevCallback
+import dev.engine.DevEngine
+import dev.engine.permission.IPermissionEngine
 import dev.utils.DevFinal
 import dev.utils.app.ListViewUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.TextViewUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.logger.DevLogger
-import dev.utils.app.permission.PermissionUtils
 import dev.utils.app.toast.ToastTintUtils
 import dev.utils.common.FileUtils
 import dev.utils.common.HtmlUtils
@@ -236,33 +237,34 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
      * @param refresh 是否刷新
      */
     private fun requestReadWrite(refresh: Boolean) {
-        PermissionUtils.permission(
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
-        ).callback(object :
-            PermissionUtils.PermissionCallback {
-            override fun onGranted() {
-                ScanSDCardUtils.instance.query(refresh) // 扫描 SDCard
-            }
+        DevEngine.getPermission()?.request(
+            activity, arrayOf(
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ), object : IPermissionEngine.Callback {
+                override fun onGranted() {
+                    ScanSDCardUtils.instance.query(refresh) // 扫描 SDCard
+                }
 
-            override fun onDenied(
-                grantedList: List<String>,
-                deniedList: List<String>,
-                notFoundList: List<String>
-            ) {
-                val builder = StringBuilder()
-                    .append("申请通过的权限").append(grantedList.toTypedArray().contentToString())
-                    .append(DevFinal.NEW_LINE_STR)
-                    .append("拒绝的权限").append(deniedList.toString())
-                    .append(DevFinal.NEW_LINE_STR)
-                    .append("未找到的权限").append(notFoundList.toString())
-                if (deniedList.isNotEmpty()) {
-                    DevLogger.d(builder.toString())
-                    ToastTintUtils.info(ResourceUtils.getString(R.string.str_read_write_request_tips))
-                } else {
-                    onGranted()
+                override fun onDenied(
+                    grantedList: List<String>,
+                    deniedList: List<String>,
+                    notFoundList: List<String>
+                ) {
+                    val builder = StringBuilder()
+                        .append("申请通过的权限").append(grantedList.toTypedArray().contentToString())
+                        .append(DevFinal.NEW_LINE_STR)
+                        .append("拒绝的权限").append(deniedList.toString())
+                        .append(DevFinal.NEW_LINE_STR)
+                        .append("未找到的权限").append(notFoundList.toString())
+                    if (deniedList.isNotEmpty()) {
+                        DevLogger.d(builder.toString())
+                        ToastTintUtils.info(ResourceUtils.getString(R.string.str_read_write_request_tips))
+                    } else {
+                        onGranted()
+                    }
                 }
             }
-        }).request(activity)
+        )
     }
 }

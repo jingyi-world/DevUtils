@@ -10,6 +10,8 @@ import android.os.Build
 import android.view.Menu
 import android.view.MenuItem
 import dev.callback.DevItemClickCallback
+import dev.engine.DevEngine
+import dev.engine.permission.IPermissionEngine
 import dev.utils.DevFinal
 import dev.utils.app.AppUtils
 import dev.utils.app.ClipboardUtils
@@ -20,7 +22,6 @@ import dev.utils.app.info.ApkInfoItem
 import dev.utils.app.info.AppInfoUtils
 import dev.utils.app.info.KeyValue
 import dev.utils.app.logger.DevLogger
-import dev.utils.app.permission.PermissionUtils
 import dev.utils.app.toast.ToastTintUtils
 import dev.utils.common.FileUtils
 
@@ -88,36 +89,37 @@ class ApkDetailsActivity : BaseActivity<ActivityApkDetailsBinding>() {
                     if (packageManager.canRequestPackageInstalls()) {
                         AppUtils.installApp(sourceDir) // 安装 APK
                     } else {
-                        PermissionUtils.permission(
-                            Manifest.permission.REQUEST_INSTALL_PACKAGES
-                        ).callback(object :
-                            PermissionUtils.PermissionCallback {
-                            override fun onGranted() {
-                                AppUtils.installApp(sourceDir) // 安装 APK
-                            }
+                        DevEngine.getPermission()?.request(
+                            this, arrayOf(
+                                Manifest.permission.REQUEST_INSTALL_PACKAGES
+                            ), object : IPermissionEngine.Callback {
+                                override fun onGranted() {
+                                    AppUtils.installApp(sourceDir) // 安装 APK
+                                }
 
-                            override fun onDenied(
-                                grantedList: List<String>,
-                                deniedList: List<String>,
-                                notFoundList: List<String>
-                            ) {
-                                val builder = StringBuilder()
-                                    .append("申请通过的权限")
-                                    .append(grantedList.toTypedArray().contentToString())
-                                    .append(DevFinal.NEW_LINE_STR)
-                                    .append("拒绝的权限").append(deniedList.toString())
-                                    .append(DevFinal.NEW_LINE_STR)
-                                    .append("未找到的权限").append(notFoundList.toString())
-                                if (deniedList.isNotEmpty()) {
-                                    DevLogger.d(builder.toString())
-                                    ToastTintUtils.info(ResourceUtils.getString(R.string.str_install_request_tips))
-                                    // 跳转设置页面, 开启安装未知应用权限
-                                    startActivity(IntentUtils.getLaunchAppInstallPermissionSettingsIntent())
-                                } else {
-                                    onGranted()
+                                override fun onDenied(
+                                    grantedList: List<String>,
+                                    deniedList: List<String>,
+                                    notFoundList: List<String>
+                                ) {
+                                    val builder = StringBuilder()
+                                        .append("申请通过的权限")
+                                        .append(grantedList.toTypedArray().contentToString())
+                                        .append(DevFinal.NEW_LINE_STR)
+                                        .append("拒绝的权限").append(deniedList.toString())
+                                        .append(DevFinal.NEW_LINE_STR)
+                                        .append("未找到的权限").append(notFoundList.toString())
+                                    if (deniedList.isNotEmpty()) {
+                                        DevLogger.d(builder.toString())
+                                        ToastTintUtils.info(ResourceUtils.getString(R.string.str_install_request_tips))
+                                        // 跳转设置页面, 开启安装未知应用权限
+                                        startActivity(IntentUtils.getLaunchAppInstallPermissionSettingsIntent())
+                                    } else {
+                                        onGranted()
+                                    }
                                 }
                             }
-                        }).request(this)
+                        )
                     }
                 } else { // 安装 APK
                     AppUtils.installApp(sourceDir)
