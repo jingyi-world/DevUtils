@@ -47,6 +47,6 @@ class BaseApplication : MultiDexApplication() {
         // 友盟分享 Engine 实现
         DevShareEngine.setEngine(UMShareEngine())
         // 初始化分享配置
-        DevShareEngine.getEngine().initialize(this, shareConfig)
+        DevShareEngine.getEngine()?.initialize(this, shareConfig)
     }
 }

@@ -20,70 +20,70 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         binding.vidAmOpenMinappBtn.setOnClickListener {
             // 打开小程序
-            DevShareEngine.getEngine().openMinApp(
+            DevShareEngine.getEngine()?.openMinApp(
                 this, null
             )
         }
 
         binding.vidAmShareMinappBtn.setOnClickListener {
             // 分享小程序
-            DevShareEngine.getEngine().shareMinApp(
+            DevShareEngine.getEngine()?.shareMinApp(
                 this, null, null
             )
         }
 
         binding.vidAmShareUrlBtn.setOnClickListener {
             // 分享链接
-            DevShareEngine.getEngine().shareUrl(
+            DevShareEngine.getEngine()?.shareUrl(
                 this, null, null
             )
         }
 
         binding.vidAmShareImageBtn.setOnClickListener {
             // 分享图片
-            DevShareEngine.getEngine().shareImage(
+            DevShareEngine.getEngine()?.shareImage(
                 this, null, null
             )
         }
 
         binding.vidAmShareVideoBtn.setOnClickListener {
             // 分享视频
-            DevShareEngine.getEngine().shareVideo(
+            DevShareEngine.getEngine()?.shareVideo(
                 this, null, null
             )
         }
 
         binding.vidAmShareMusicBtn.setOnClickListener {
             // 分享音乐
-            DevShareEngine.getEngine().shareMusic(
+            DevShareEngine.getEngine()?.shareMusic(
                 this, null, null
             )
         }
 
         binding.vidAmShareEmojiBtn.setOnClickListener {
             // 分享表情
-            DevShareEngine.getEngine().shareEmoji(
+            DevShareEngine.getEngine()?.shareEmoji(
                 this, null, null
             )
         }
 
         binding.vidAmShareTextBtn.setOnClickListener {
             // 分享文本
-            DevShareEngine.getEngine().shareText(
+            DevShareEngine.getEngine()?.shareText(
                 this, null, null
             )
         }
 
         binding.vidAmShareFileBtn.setOnClickListener {
             // 分享文件
-            DevShareEngine.getEngine().shareFile(
+            DevShareEngine.getEngine()?.shareFile(
                 this, null, null
             )
         }
 
         binding.vidAmShareBtn.setOnClickListener {
             // 分享操作
-            DevShareEngine.getEngine().shareFile(
+            DevShareEngine.getEngine()?.shareFile(
                 this, null, object : ShareListener<ShareParams> {
                     override fun onStart(params: ShareParams?) {
                     }
