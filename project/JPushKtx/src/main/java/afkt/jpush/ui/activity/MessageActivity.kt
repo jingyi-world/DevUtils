@@ -6,7 +6,7 @@ import afkt.jpush.base.config.RouterPath
 import afkt.jpush.databinding.ActivityMessageBinding
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
-import dev.engine.json.DevJSONEngine
+import dev.engine.DevEngine
 import dev.utils.DevFinal
 
 /**
@@ -28,7 +28,7 @@ class MessageActivity : BaseActivity<ActivityMessageBinding>() {
     override fun initValue() {
         super.initValue()
 
-        binding.vidAmMessageTv.text = DevJSONEngine.getEngine()?.toJsonIndent(
+        binding.vidAmMessageTv.text = DevEngine.getJSON()?.toJsonIndent(
             pushData
         ) ?: "error"
     }

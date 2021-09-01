@@ -5,7 +5,7 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import dev.engine.json.DevJSONEngine
+import dev.engine.DevEngine
 import dev.engine.keyvalue.DevKeyValueEngine
 import dev.module.push.PushMessage
 import dev.utils.DevFinal
@@ -77,7 +77,7 @@ class PushRouterActivity : Activity() {
             pushMessage: PushMessage,
         ): Boolean {
             val intent = Intent(context, PushRouterActivity::class.java)
-            intent.putExtra(DevFinal.DATA, DevJSONEngine.getEngine()?.toJson(pushMessage))
+            intent.putExtra(DevFinal.DATA, DevEngine.getJSON()?.toJson(pushMessage))
             return AppUtils.startActivity(intent)
         }
     }
