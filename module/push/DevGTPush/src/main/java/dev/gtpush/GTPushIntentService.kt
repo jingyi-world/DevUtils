@@ -6,7 +6,6 @@ import com.igexin.sdk.message.GTCmdMessage
 import com.igexin.sdk.message.GTNotificationMessage
 import com.igexin.sdk.message.GTTransmitMessage
 import dev.engine.DevEngine
-import dev.engine.log.DevLogEngine
 import dev.engine.push.DevPushEngine
 
 /**

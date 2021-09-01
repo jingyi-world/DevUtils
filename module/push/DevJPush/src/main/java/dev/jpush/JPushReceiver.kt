@@ -7,7 +7,6 @@ import cn.jpush.android.api.CustomMessage
 import cn.jpush.android.api.NotificationMessage
 import cn.jpush.android.service.JPushMessageReceiver
 import dev.engine.DevEngine
-import dev.engine.log.DevLogEngine
 import dev.engine.push.DevPushEngine
 
 /**
