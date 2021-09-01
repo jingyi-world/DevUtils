@@ -39,6 +39,7 @@ dependencies {
 
     api project(':DevApp')
     api project(':DevAssist')
+    api project(':DevEngine')
 
     // ===========================
     // = Maven Central 方式自动集成 =

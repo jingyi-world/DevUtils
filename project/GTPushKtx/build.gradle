@@ -21,7 +21,6 @@ android {
 
 dependencies {
     implementation project(':DevBaseMVVM')
-    implementation project(':DevEngine')
     implementation project(':DevWidget')
 
     // ==========

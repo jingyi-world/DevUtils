@@ -6,6 +6,7 @@ import cn.jpush.android.api.CmdMessage
 import cn.jpush.android.api.CustomMessage
 import cn.jpush.android.api.NotificationMessage
 import cn.jpush.android.service.JPushMessageReceiver
+import dev.engine.DevEngine
 import dev.engine.log.DevLogEngine
 import dev.engine.push.DevPushEngine
 
@@ -28,7 +29,7 @@ class JPushReceiver : JPushMessageReceiver() {
         context: Context,
         customMessage: CustomMessage?
     ) {
-        DevLogEngine.getEngine()?.dTag(
+        DevEngine.getLog()?.dTag(
             TAG, "[onMessage] $customMessage"
         )
         customMessage?.let {
@@ -50,7 +51,7 @@ class JPushReceiver : JPushMessageReceiver() {
         context: Context,
         message: NotificationMessage?
     ) {
-        DevLogEngine.getEngine()?.dTag(
+        DevEngine.getLog()?.dTag(
             TAG, "[onNotifyMessageOpened] $message"
         )
         message?.let {
@@ -72,7 +73,7 @@ class JPushReceiver : JPushMessageReceiver() {
         context: Context,
         message: NotificationMessage?
     ) {
-        DevLogEngine.getEngine()?.dTag(
+        DevEngine.getLog()?.dTag(
             TAG, "[onNotifyMessageArrived] $message"
         )
         message?.let {
@@ -94,7 +95,7 @@ class JPushReceiver : JPushMessageReceiver() {
         context: Context,
         message: NotificationMessage?
     ) {
-        DevLogEngine.getEngine()?.dTag(
+        DevEngine.getLog()?.dTag(
             TAG, "[onNotifyMessageDismiss] $message"
         )
     }
@@ -108,7 +109,7 @@ class JPushReceiver : JPushMessageReceiver() {
         context: Context,
         intent: Intent?
     ) {
-        DevLogEngine.getEngine()?.dTag(
+        DevEngine.getLog()?.dTag(
             TAG, "[onMultiActionClicked] 用户点击了通知栏按钮"
         )
     }
@@ -122,7 +123,7 @@ class JPushReceiver : JPushMessageReceiver() {
         context: Context,
         registrationId: String?
     ) {
-        DevLogEngine.getEngine()?.dTag(
+        DevEngine.getLog()?.dTag(
             TAG, "[onRegister] $registrationId"
         )
         registrationId?.let {
@@ -142,7 +143,7 @@ class JPushReceiver : JPushMessageReceiver() {
         context: Context,
         isConnected: Boolean
     ) {
-        DevLogEngine.getEngine()?.dTag(
+        DevEngine.getLog()?.dTag(
             TAG, "[onConnected] $isConnected"
         )
         // 在线状态变化通知
@@ -160,7 +161,7 @@ class JPushReceiver : JPushMessageReceiver() {
         context: Context,
         cmdMessage: CmdMessage?
     ) {
-        DevLogEngine.getEngine()?.dTag(
+        DevEngine.getLog()?.dTag(
             TAG, "[onCommandResult] $cmdMessage"
         )
         cmdMessage?.let {
@@ -173,7 +174,7 @@ class JPushReceiver : JPushMessageReceiver() {
                         context, token
                     )
                 }
-                DevLogEngine.getEngine()?.dTag(
+                DevEngine.getLog()?.dTag(
                     TAG, "[onCommandResult] token : $token"
                 )
             } else {
@@ -198,7 +199,7 @@ class JPushReceiver : JPushMessageReceiver() {
         isOn: Boolean,
         source: Int
     ) {
-        DevLogEngine.getEngine()?.dTag(
+        DevEngine.getLog()?.dTag(
             TAG, "[onNotificationSettingsCheck] isOn : $isOn, source: $source"
         )
     }

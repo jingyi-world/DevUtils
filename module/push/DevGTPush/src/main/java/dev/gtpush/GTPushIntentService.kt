@@ -5,6 +5,7 @@ import com.igexin.sdk.GTIntentService
 import com.igexin.sdk.message.GTCmdMessage
 import com.igexin.sdk.message.GTNotificationMessage
 import com.igexin.sdk.message.GTTransmitMessage
+import dev.engine.DevEngine
 import dev.engine.log.DevLogEngine
 import dev.engine.push.DevPushEngine
 
@@ -27,7 +28,7 @@ class GTPushIntentService : GTIntentService() {
         context: Context?,
         pid: Int
     ) {
-        DevLogEngine.getEngine()?.dTag(
+        DevEngine.getLog()?.dTag(
             TAG, "[onReceiveServicePid] $pid"
         )
         // 推送进程启动通知
@@ -45,7 +46,7 @@ class GTPushIntentService : GTIntentService() {
         context: Context?,
         clientId: String?
     ) {
-        DevLogEngine.getEngine()?.dTag(
+        DevEngine.getLog()?.dTag(
             TAG, "[onReceiveClientId] $clientId"
         )
         clientId?.let {
@@ -67,7 +68,7 @@ class GTPushIntentService : GTIntentService() {
     ) {
         super.onReceiveDeviceToken(context, deviceToken)
 
-        DevLogEngine.getEngine()?.dTag(
+        DevEngine.getLog()?.dTag(
             TAG, "[onReceiveDeviceToken] $deviceToken"
         )
         deviceToken?.let {
@@ -87,7 +88,7 @@ class GTPushIntentService : GTIntentService() {
         context: Context?,
         online: Boolean
     ) {
-        DevLogEngine.getEngine()?.dTag(
+        DevEngine.getLog()?.dTag(
             TAG, "[onReceiveOnlineState] $online"
         )
         // 在线状态变化通知
@@ -105,7 +106,7 @@ class GTPushIntentService : GTIntentService() {
         context: Context?,
         message: GTCmdMessage?
     ) {
-        DevLogEngine.getEngine()?.dTag(
+        DevEngine.getLog()?.dTag(
             TAG, "[onReceiveCommandResult] $message"
         )
         message?.let {
@@ -127,7 +128,7 @@ class GTPushIntentService : GTIntentService() {
         context: Context?,
         message: GTNotificationMessage?
     ) {
-        DevLogEngine.getEngine()?.dTag(
+        DevEngine.getLog()?.dTag(
             TAG, "[onNotificationMessageArrived] $message"
         )
         message?.let {
@@ -149,7 +150,7 @@ class GTPushIntentService : GTIntentService() {
         context: Context?,
         message: GTNotificationMessage?
     ) {
-        DevLogEngine.getEngine()?.dTag(
+        DevEngine.getLog()?.dTag(
             TAG, "[onNotificationMessageClicked] $message"
         )
         message?.let {
@@ -171,7 +172,7 @@ class GTPushIntentService : GTIntentService() {
         context: Context?,
         message: GTTransmitMessage?
     ) {
-        DevLogEngine.getEngine()?.dTag(
+        DevEngine.getLog()?.dTag(
             TAG, "[onReceiveMessageData] $message"
         )
         message?.let {
