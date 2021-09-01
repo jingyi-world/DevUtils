@@ -42,11 +42,11 @@ class BaseApplication : MultiDexApplication() {
 
         // 使用内部默认实现 Engine
         DevEngine.defaultMMKVInitialize(this)
-            .defaultEngine()
+            .defaultEngine(DevEngine.getMMKVConfig())
 
-        // 友盟分享 Engine 实现
-        DevShareEngine.setEngine(UMShareEngine())
-        // 初始化分享配置
-        DevShareEngine.getEngine()?.initialize(this, shareConfig)
+        // 友盟分享 Engine 实现并初始化
+        DevShareEngine.setEngine(UMShareEngine()).initialize(
+            this, shareConfig
+        )
     }
 }

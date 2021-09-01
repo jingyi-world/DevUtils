@@ -67,13 +67,9 @@ class BaseApplication : MultiDexApplication() {
             )
         }
 
-        // 极光推送 Engine 实现
-        DevPushEngine.setEngine(JPushEngineImpl())
-        // 极光推送初始化
-        DevPushEngine.getEngine()?.initialize(
-            this, PushConfig(
-                isDebugMode = BuildConfig.DEBUG
-            )
+        // 极光推送 Engine 实现并初始化
+        DevPushEngine.setEngine(JPushEngineImpl()).initialize(
+            this, PushConfig(isDebugMode = BuildConfig.DEBUG)
         )
 
         // =============

@@ -67,13 +67,9 @@ class BaseApplication : MultiDexApplication() {
             )
         }
 
-        // 个推推送 Engine 实现
-        DevPushEngine.setEngine(GTPushEngineImpl())
-        // 个推推送初始化
-        DevPushEngine.getEngine()?.initialize(
-            this, PushConfig(
-                isDebugMode = BuildConfig.DEBUG
-            )
+        // 个推推送 Engine 实现并初始化
+        DevPushEngine.setEngine(GTPushEngineImpl()).initialize(
+            this, PushConfig(isDebugMode = BuildConfig.DEBUG)
         )
 
         // =============
