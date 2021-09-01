@@ -6,7 +6,6 @@ import com.igexin.sdk.message.GTCmdMessage
 import com.igexin.sdk.message.GTNotificationMessage
 import com.igexin.sdk.message.GTTransmitMessage
 import dev.engine.DevEngine
-import dev.engine.push.DevPushEngine
 
 /**
  * detail: 个推推送广播
@@ -31,7 +30,7 @@ class GTPushIntentService : GTIntentService() {
             TAG, "[onReceiveServicePid] $pid"
         )
         // 推送进程启动通知
-        DevPushEngine.getEngine()?.onReceiveServicePid(
+        DevEngine.getPush()?.onReceiveServicePid(
             context, pid
         )
     }
@@ -50,7 +49,7 @@ class GTPushIntentService : GTIntentService() {
         )
         clientId?.let {
             // 初始化 Client Id 成功通知
-            DevPushEngine.getEngine()?.onReceiveClientId(
+            DevEngine.getPush()?.onReceiveClientId(
                 context, it
             )
         }
@@ -72,7 +71,7 @@ class GTPushIntentService : GTIntentService() {
         )
         deviceToken?.let {
             // 设备 ( 厂商 ) Token 通知
-            DevPushEngine.getEngine()?.onReceiveDeviceToken(
+            DevEngine.getPush()?.onReceiveDeviceToken(
                 context, it
             )
         }
@@ -91,7 +90,7 @@ class GTPushIntentService : GTIntentService() {
             TAG, "[onReceiveOnlineState] $online"
         )
         // 在线状态变化通知
-        DevPushEngine.getEngine()?.onReceiveOnlineState(
+        DevEngine.getPush()?.onReceiveOnlineState(
             context, online
         )
     }
@@ -110,7 +109,7 @@ class GTPushIntentService : GTIntentService() {
         )
         message?.let {
             // 命令回执通知
-            DevPushEngine.getEngine()?.run {
+            DevEngine.getPush()?.run {
                 onReceiveCommandResult(
                     context, convertMessage(it)
                 )
@@ -132,7 +131,7 @@ class GTPushIntentService : GTIntentService() {
         )
         message?.let {
             // 推送消息送达通知
-            DevPushEngine.getEngine()?.run {
+            DevEngine.getPush()?.run {
                 onNotificationMessageArrived(
                     context, convertMessage(it)
                 )
@@ -154,7 +153,7 @@ class GTPushIntentService : GTIntentService() {
         )
         message?.let {
             // 推送消息点击通知
-            DevPushEngine.getEngine()?.run {
+            DevEngine.getPush()?.run {
                 onNotificationMessageClicked(
                     context, convertMessage(it)
                 )
@@ -176,7 +175,7 @@ class GTPushIntentService : GTIntentService() {
         )
         message?.let {
             // 推送消息点击通知
-            DevPushEngine.getEngine()?.run {
+            DevEngine.getPush()?.run {
                 onReceiveMessageData(
                     context, convertMessage(it)
                 )

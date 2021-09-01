@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import dev.engine.DevEngine
-import dev.engine.keyvalue.DevKeyValueEngine
 import dev.module.push.PushMessage
 import dev.utils.DevFinal
 import dev.utils.app.AppUtils
@@ -199,7 +198,7 @@ private object DataManager {
     private const val PUSH_DATA = "pushData"
 
     private fun clear(context: Context) {
-        DevKeyValueEngine.getEngine(PUSH_KEYVALUE_ID)?.clear()
+        DevEngine.getKeyValue(PUSH_KEYVALUE_ID)?.clear()
     }
 
     private fun getBoolean(
@@ -207,7 +206,7 @@ private object DataManager {
         key: String,
         defaultValue: Boolean
     ): Boolean {
-        return DevKeyValueEngine.getEngine(
+        return DevEngine.getKeyValue(
             PUSH_KEYVALUE_ID
         )?.getBoolean(key, defaultValue) ?: defaultValue
     }
@@ -217,7 +216,7 @@ private object DataManager {
         key: String,
         value: Boolean
     ) {
-        DevKeyValueEngine.getEngine(
+        DevEngine.getKeyValue(
             PUSH_KEYVALUE_ID
         )?.putBoolean(key, value)
     }
@@ -227,7 +226,7 @@ private object DataManager {
         key: String,
         defaultValue: String?
     ): String? {
-        return DevKeyValueEngine.getEngine(
+        return DevEngine.getKeyValue(
             PUSH_KEYVALUE_ID
         )?.getString(key, defaultValue) ?: defaultValue
     }
@@ -237,7 +236,7 @@ private object DataManager {
         key: String,
         value: String?
     ) {
-        DevKeyValueEngine.getEngine(
+        DevEngine.getKeyValue(
             PUSH_KEYVALUE_ID
         )?.putString(key, value)
     }

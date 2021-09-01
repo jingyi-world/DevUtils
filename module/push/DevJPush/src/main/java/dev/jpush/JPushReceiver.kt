@@ -7,7 +7,6 @@ import cn.jpush.android.api.CustomMessage
 import cn.jpush.android.api.NotificationMessage
 import cn.jpush.android.service.JPushMessageReceiver
 import dev.engine.DevEngine
-import dev.engine.push.DevPushEngine
 
 /**
  * detail: 极光推送广播
@@ -33,7 +32,7 @@ class JPushReceiver : JPushMessageReceiver() {
         )
         customMessage?.let {
             // 透传消息送达通知
-            DevPushEngine.getEngine()?.run {
+            DevEngine.getPush()?.run {
                 onReceiveMessageData(
                     context, convertMessage(it)
                 )
@@ -55,7 +54,7 @@ class JPushReceiver : JPushMessageReceiver() {
         )
         message?.let {
             // 推送消息点击通知
-            DevPushEngine.getEngine()?.run {
+            DevEngine.getPush()?.run {
                 onNotificationMessageClicked(
                     context, convertMessage(it)
                 )
@@ -77,7 +76,7 @@ class JPushReceiver : JPushMessageReceiver() {
         )
         message?.let {
             // 推送消息送达通知
-            DevPushEngine.getEngine()?.run {
+            DevEngine.getPush()?.run {
                 onNotificationMessageArrived(
                     context, convertMessage(it)
                 )
@@ -127,7 +126,7 @@ class JPushReceiver : JPushMessageReceiver() {
         )
         registrationId?.let {
             // 初始化 Client Id 成功通知
-            DevPushEngine.getEngine()?.onReceiveClientId(
+            DevEngine.getPush()?.onReceiveClientId(
                 context, it
             )
         }
@@ -146,7 +145,7 @@ class JPushReceiver : JPushMessageReceiver() {
             TAG, "[onConnected] $isConnected"
         )
         // 在线状态变化通知
-        DevPushEngine.getEngine()?.onReceiveOnlineState(
+        DevEngine.getPush()?.onReceiveOnlineState(
             context, isConnected
         )
     }
@@ -169,7 +168,7 @@ class JPushReceiver : JPushMessageReceiver() {
                 val token = it.extra.getString("token")
                 token?.let {
                     // 设备 ( 厂商 ) Token 通知
-                    DevPushEngine.getEngine()?.onReceiveDeviceToken(
+                    DevEngine.getPush()?.onReceiveDeviceToken(
                         context, token
                     )
                 }
@@ -178,7 +177,7 @@ class JPushReceiver : JPushMessageReceiver() {
                 )
             } else {
                 // 命令回执通知
-                DevPushEngine.getEngine()?.run {
+                DevEngine.getPush()?.run {
                     onReceiveCommandResult(
                         context, convertMessage(it)
                     )
