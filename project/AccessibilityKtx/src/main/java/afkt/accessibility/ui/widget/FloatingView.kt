@@ -16,7 +16,7 @@ import android.view.WindowManager
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import dev.utils.app.helper.ViewHelper
+import dev.utils.app.helper.view.ViewHelper
 import dev.utils.app.logger.DevLogger
 import dev.utils.app.toast.ToastUtils
 import org.greenrobot.eventbus.Subscribe

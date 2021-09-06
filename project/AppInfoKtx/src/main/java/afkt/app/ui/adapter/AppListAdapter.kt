@@ -11,7 +11,7 @@ import dev.base.adapter.newBindingViewHolder
 import dev.utils.DevFinal
 import dev.utils.app.AppUtils
 import dev.utils.app.ResourceUtils
-import dev.utils.app.helper.ViewHelper
+import dev.utils.app.helper.view.ViewHelper
 import dev.utils.app.info.AppInfoBean
 import dev.utils.app.toast.ToastTintUtils
 

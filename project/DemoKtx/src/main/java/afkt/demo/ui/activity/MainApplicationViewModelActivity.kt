@@ -9,7 +9,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import dev.base.expand.viewmodel.DevBaseViewModelActivity
-import dev.utils.app.helper.ViewHelper
+import dev.utils.app.helper.view.ViewHelper
 import dev.utils.common.ColorUtils
 
 /**

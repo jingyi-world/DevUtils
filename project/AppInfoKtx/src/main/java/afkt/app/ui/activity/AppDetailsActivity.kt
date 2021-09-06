@@ -12,7 +12,7 @@ import dev.utils.DevFinal
 import dev.utils.app.AppUtils
 import dev.utils.app.ClipboardUtils
 import dev.utils.app.ResourceUtils
-import dev.utils.app.helper.ViewHelper
+import dev.utils.app.helper.view.ViewHelper
 import dev.utils.app.info.AppInfoItem
 import dev.utils.app.info.AppInfoUtils
 import dev.utils.app.info.KeyValue

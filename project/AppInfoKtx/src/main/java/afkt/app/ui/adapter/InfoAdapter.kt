@@ -10,7 +10,7 @@ import dev.base.adapter.DevBaseViewBindingVH
 import dev.base.adapter.newBindingViewHolder
 import dev.utils.app.ClipboardUtils
 import dev.utils.app.ResourceUtils
-import dev.utils.app.helper.ViewHelper
+import dev.utils.app.helper.view.ViewHelper
 import dev.utils.app.toast.ToastTintUtils
 
 /**

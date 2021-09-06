@@ -17,7 +17,7 @@ import dev.utils.app.AppUtils
 import dev.utils.app.ClipboardUtils
 import dev.utils.app.IntentUtils
 import dev.utils.app.ResourceUtils
-import dev.utils.app.helper.ViewHelper
+import dev.utils.app.helper.view.ViewHelper
 import dev.utils.app.info.ApkInfoItem
 import dev.utils.app.info.AppInfoUtils
 import dev.utils.app.info.KeyValue
