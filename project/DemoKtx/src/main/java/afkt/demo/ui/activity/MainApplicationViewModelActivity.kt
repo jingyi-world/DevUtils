@@ -32,10 +32,10 @@ class MainApplicationViewModelActivity : DevBaseViewModelActivity<ApplicationVie
         initViewModel()
 
         ViewHelper.get().setText(
-            findViewById(R.id.vid_amavm_title_tv),
-            "Application ViewModel Title"
+            "Application ViewModel Title",
+            findViewById(R.id.vid_amavm_title_tv)
         ).setBackgroundColor(
-            findViewById(R.id.vid_ivd_view), ColorUtils.getRandomColor()
+            ColorUtils.getRandomColor(), findViewById(R.id.vid_ivd_view)
         )
 
         // 嵌套处理

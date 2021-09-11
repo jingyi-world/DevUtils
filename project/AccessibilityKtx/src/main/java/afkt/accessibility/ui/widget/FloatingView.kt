@@ -128,8 +128,8 @@ class FloatingView : LinearLayout {
             DevLogger.dTag(TAG, "%s -> %s", packageName, trimName)
 
             ViewHelper.get()
-                .setText(packageNameTv, packageName)
-                .setText(classNameTv, trimName)
+                .setText(packageName, packageNameTv)
+                .setText(trimName, classNameTv)
         }
     }
 }

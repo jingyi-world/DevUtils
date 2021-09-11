@@ -52,9 +52,9 @@ class AppDetailsActivity : BaseActivity<ActivityAppDetailsBinding>() {
         // 获取 APP 信息
         val appInfoBean = appInfoItem.appInfoBean
         ViewHelper.get()
-            .setImageDrawable(binding.vidAadAppIgview, appInfoBean.appIcon) // 设置 app 图标
-            .setText(binding.vidAadNameTv, appInfoBean.appName) // 设置 app 名
-            .setText(binding.vidAadVnameTv, appInfoBean.versionName) // 设置 app 版本
+            .setImageDrawable(appInfoBean.appIcon, binding.vidAadAppIgview) // 设置 app 图标
+            .setText(appInfoBean.appName, binding.vidAadNameTv) // 设置 app 名
+            .setText(appInfoBean.versionName, binding.vidAadVnameTv) // 设置 app 版本
 
         val lists = appInfoItem.listKeyValues
         lists.add(

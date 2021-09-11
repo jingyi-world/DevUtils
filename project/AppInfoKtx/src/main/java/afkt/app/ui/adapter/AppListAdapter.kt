@@ -41,10 +41,10 @@ class AppListAdapter(data: List<AppInfoBean>?) :
         val item = getDataItem(position)
 
         ViewHelper.get()
-            .setText(holder.binding.vidAiaNameTv, item.appName)
-            .setText(holder.binding.vidAiaPackTv, item.appPackName)
-            .setImageDrawable(holder.binding.vidAiaIgview, item.appIcon)
-            .setOnClicks({
+            .setText(item.appName, holder.binding.vidAiaNameTv)
+            .setText(item.appPackName, holder.binding.vidAiaPackTv)
+            .setImageDrawable(item.appIcon, holder.binding.vidAiaIgview)
+            .setOnClick({
                 if (AppUtils.isInstalledApp(item.appPackName)) {
                     val intent = Intent(context, AppDetailsActivity::class.java)
                     intent.putExtra(DevFinal.PACKNAME, item.appPackName)

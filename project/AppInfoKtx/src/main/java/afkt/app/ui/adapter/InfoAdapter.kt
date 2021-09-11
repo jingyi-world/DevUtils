@@ -35,9 +35,9 @@ class InfoAdapter :
         val item = getDataItem(position)
 
         ViewHelper.get()
-            .setText(holder.binding.vidAidiValueTv, item.value)
-            .setText(holder.binding.vidAidiKeyTv, ResourceUtils.getString(item.resId))
-            .setOnClicks({
+            .setText(item.value, holder.binding.vidAidiValueTv)
+            .setText(ResourceUtils.getString(item.resId), holder.binding.vidAidiKeyTv)
+            .setOnClick({
                 val txt: String = DeviceInfoBean.copyString(item)
                 // 复制到剪切板
                 ClipboardUtils.copyText(txt)

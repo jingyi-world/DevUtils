@@ -82,12 +82,12 @@ class QuerySuffixDialog(context: Context?) :
             val item = getDataItem(position)
 
             ViewHelper.get()
-                .setText(holder.binding.vidAiqsSuffixTv, item)
+                .setText(item, holder.binding.vidAiqsSuffixTv)
                 .setImageResource(
-                    holder.binding.vidAiqsIgview,
-                    if (item.isEmpty()) R.drawable.icon_add else R.drawable.icon_close
+                    if (item.isEmpty()) R.drawable.icon_add else R.drawable.icon_close,
+                    holder.binding.vidAiqsIgview
                 )
-                .setOnClicks({
+                .setOnClick({
                     if (item.isEmpty()) {
                         QuerySuffixEditDialog(context) {
                             refreshData()

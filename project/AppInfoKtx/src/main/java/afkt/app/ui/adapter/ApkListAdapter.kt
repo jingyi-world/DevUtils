@@ -39,10 +39,10 @@ class ApkListAdapter :
         val appInfo = item.appInfoBean
 
         ViewHelper.get()
-            .setText(holder.binding.vidAiaNameTv, appInfo.appName)
-            .setText(holder.binding.vidAiaPackTv, appInfo.appPackName)
-            .setImageDrawable(holder.binding.vidAiaIgview, appInfo.appIcon)
-            .setOnClicks({
+            .setText(appInfo.appName, holder.binding.vidAiaNameTv)
+            .setText(appInfo.appPackName, holder.binding.vidAiaPackTv)
+            .setImageDrawable(appInfo.appIcon, holder.binding.vidAiaIgview)
+            .setOnClick({
                 if (FileUtils.isFileExists(item.uri)) {
                     val intent = Intent(context, ApkDetailsActivity::class.java)
                     intent.putExtra(DevFinal.URI, item.uri)
