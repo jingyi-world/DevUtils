@@ -39,14 +39,14 @@ class VDBContentFragment : DevBaseContentViewDataBindingFragment<FragmentVdbCont
         contentAssist.addTitleView(
             QuickHelper.get(TextView(context))
                 .setText("Fragment new TextView ( addTitleView )")
-                .setTextColor(ResourceUtils.getColor(R.color.black))
+                .setTextColors(ResourceUtils.getColor(R.color.black))
                 .setWidthHeight(
                     ViewUtils.MATCH_PARENT,
                     ResourceUtils.getDimensionInt(R.dimen.un_dp_50)
                 )
-                .setTextGravity(Gravity.CENTER)
+                .setGravity(Gravity.CENTER)
                 .setBold()
-                .setOnClicks { view ->
+                .setOnClick { view ->
                     showToast(TextViewUtils.getText(view))
                 }
                 .getView()

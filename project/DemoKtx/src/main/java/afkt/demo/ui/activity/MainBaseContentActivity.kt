@@ -41,15 +41,15 @@ class MainBaseContentActivity :
         contentAssist.addTitleView(
             QuickHelper.get(TextView(this))
                 .setText("随机标题: " + ChineseUtils.randomWord(10))
-                .setTextColor(ResourceUtils.getColor(R.color.red))
+                .setTextColors(ResourceUtils.getColor(R.color.red))
                 .setBackgroundColor(ResourceUtils.getColor(R.color.pink))
                 .setWidthHeight(
                     ViewUtils.MATCH_PARENT,
                     ResourceUtils.getDimensionInt(R.dimen.un_dp_50)
                 )
-                .setTextGravity(Gravity.CENTER)
+                .setGravity(Gravity.CENTER)
                 .setBold()
-                .setOnClicks { view ->
+                .setOnClick { view ->
                     showToast(TextViewUtils.getText(view))
                 }
                 .getView()
@@ -71,7 +71,7 @@ class MainBaseContentActivity :
             QuickHelper.get(ViewUtils.getChildAtLast<ImageView>(it))
                 .setMargin(ResourceUtils.getDimensionInt(R.dimen.un_dp_20))
                 .setLayoutGravity(Gravity.RIGHT or Gravity.BOTTOM)
-                .setOnClicks {
+                .setOnClick {
                     showToast("点击了悬浮 View")
                 }
         }
