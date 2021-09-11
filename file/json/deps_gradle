@@ -10,6 +10,8 @@ dependencies {
 	implementation 'io.github.afkt:DevBase:1.0.6'
 	// dev_base_mvvm
 	implementation 'io.github.afkt:DevBaseMVVM:1.0.4'
+	// dev_engine
+	implementation 'io.github.afkt:DevEngine:1.0.0'
 	// dev_java
 	implementation 'io.github.afkt:DevJava:1.3.5'
 	// dev_widget_x
