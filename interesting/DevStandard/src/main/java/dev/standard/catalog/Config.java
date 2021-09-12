@@ -126,6 +126,7 @@ final class Config {
         sDevUtilsCatalogMap.put(".DevBase", "Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库");
         sDevUtilsCatalogMap.put(".DevBase2", "Base 基础代码 ( 非基类库 )");
         sDevUtilsCatalogMap.put(".DevBaseMVVM", "MVVM ( ViewDataBinding + ViewModel ) 基类库");
+        sDevUtilsCatalogMap.put(".DevEngine", "第三方框架解耦、一键替换第三方库");
         sDevUtilsCatalogMap.put(".DevHttpCapture", "OKHttp 抓包工具库");
         sDevUtilsCatalogMap.put(".DevJava", "Java 工具类库 ( 不依赖 android api )");
         sDevUtilsCatalogMap.put(".DevOther", "第三方库封装、以及部分特殊工具类等, 方便 copy 封装类使用");
@@ -148,6 +149,7 @@ final class Config {
         sDevUtilsIgnoreCatalogs.add("DevBase");
         sDevUtilsIgnoreCatalogs.add("DevBase2");
         sDevUtilsIgnoreCatalogs.add("DevBaseMVVM");
+        sDevUtilsIgnoreCatalogs.add("DevEngine");
         sDevUtilsIgnoreCatalogs.add("DevHttpCapture");
         sDevUtilsIgnoreCatalogs.add("DevJava");
         sDevUtilsIgnoreCatalogs.add("DevOther");
