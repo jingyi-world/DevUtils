@@ -7,7 +7,9 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!-- 管理外部设备权限 -->
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
     <!-- 安装权限 -->
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <!-- 卸载权限 -->
@@ -18,14 +20,15 @@
         tools:ignore="QueryAllPackagesPermission" />
 
     <application
-        android:name=".base.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/icon_launcher"
         android:label="@string/app_name"
+        android:name=".base.BaseApplication"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/icon_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="AllowBackup">
 
         <meta-data
             android:name="design_width_in_dp"
@@ -36,6 +39,7 @@
             android:value="640" />
 
         <activity
+            android:exported="true"
             android:name=".ui.activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden">
@@ -47,12 +51,14 @@
         </activity>
 
         <activity
+            android:exported="false"
             android:name=".ui.activity.ApkDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar2"
             android:windowSoftInputMode="adjustPan|stateHidden" />
 
         <activity
+            android:exported="false"
             android:name=".ui.activity.AppDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar2"

@@ -9,9 +9,9 @@
         <!-- ========== -->
 
         <service
-            android:name="dev.gtpush.GTPushService"
             android:exported="true"
             android:label="PushService"
+            android:name="dev.gtpush.GTPushService"
             android:process=":pushservice" />
 
         <service
