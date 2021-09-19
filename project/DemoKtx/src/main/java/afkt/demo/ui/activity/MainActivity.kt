@@ -41,6 +41,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 //        startActivity(Intent(this, MainFragmentMVVMActivity::class.java))
 //        startActivity(Intent(this, MainFragmentParentMVVMActivity::class.java))
 //        startActivity(Intent(this, MainBaseContentVMImplActivity::class.java))
-        startActivity(Intent(this, MainMVVMUtilsActivity::class.java))
+//        startActivity(Intent(this, MainMVVMUtilsActivity::class.java))
+        startActivity(Intent(this, MainViewPagerActivity::class.java))
     }
 }

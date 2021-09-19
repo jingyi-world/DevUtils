@@ -68,5 +68,10 @@
             android:exported="false"
             android:name=".ui.activity.MainMVVMUtilsActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:exported="false"
+            android:name=".ui.activity.MainViewPagerActivity"
+            android:screenOrientation="portrait" />
     </application>
 </manifest>
