@@ -9,13 +9,18 @@
         <!-- ========== -->
 
         <service
+            android:name="dev.gtpush.GTPushService"
             android:exported="true"
             android:label="PushService"
-            android:name="dev.gtpush.GTPushService"
             android:process=":pushservice" />
 
         <service
             android:name="dev.gtpush.GTPushIntentService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <!-- =========== -->
+        <!-- 第三方厂商配置 -->
+        <!-- =========== -->
+
     </application>
 </manifest>
