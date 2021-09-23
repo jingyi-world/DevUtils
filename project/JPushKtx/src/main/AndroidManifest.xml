@@ -7,10 +7,10 @@
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
 
     <application
+        android:name="afkt.jpush.base.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/icon_launcher"
         android:label="@string/app_name"
-        android:name="afkt.jpush.base.BaseApplication"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/icon_launcher_round"
         android:supportsRtl="true"
@@ -18,8 +18,8 @@
         tools:ignore="AllowBackup">
 
         <activity
-            android:exported="true"
             android:name="afkt.jpush.ui.activity.SplashActivity"
+            android:exported="true"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,26 +29,26 @@
         </activity>
 
         <activity
+            android:name="afkt.jpush.ui.activity.MainActivity"
             android:exported="false"
             android:launchMode="singleTask"
-            android:name="afkt.jpush.ui.activity.MainActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:exported="false"
             android:name="afkt.jpush.ui.activity.OtherActivity"
+            android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:exported="false"
             android:name="afkt.jpush.ui.activity.MessageActivity"
+            android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:exported="false"
             android:name="afkt.jpush.device.DeviceActivity"
+            android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
@@ -57,8 +57,8 @@
         <!-- ============= -->
 
         <activity
-            android:exported="false"
             android:name="afkt.jpush.router.PushRouterActivity"
+            android:exported="false"
             android:screenOrientation="portrait" />
 
         <!-- ========== -->
@@ -66,8 +66,8 @@
         <!-- ========== -->
 
         <receiver
-            android:exported="true"
             android:name=".device.DeviceReceiver"
+            android:exported="true"
             android:permission="android.permission.BIND_DEVICE_ADMIN">
             <meta-data
                 android:name="android.app.device_admin"

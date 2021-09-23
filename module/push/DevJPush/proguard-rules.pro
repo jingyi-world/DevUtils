@@ -19,3 +19,42 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# 华为
+
+-ignorewarnings
+-keepattributes *Annotation* 
+-keepattributes Exceptions 
+-keepattributes InnerClasses 
+-keepattributes Signature 
+-keepattributes SourceFile,LineNumberTable 
+-keep class com.hianalytics.android.**{*;} 
+-keep class com.huawei.updatesdk.**{*;} 
+-keep class com.huawei.hms.**{*;}
+
+# 小米
+
+-dontwarn com.xiaomi.push.**
+-keep class com.xiaomi.push.** { *; }
+
+# OPPO
+
+-dontwarn com.coloros.mcsdk.**
+-keep class com.coloros.mcsdk.** { *; }
+
+-dontwarn com.heytap.**
+-keep class com.heytap.** { *; }
+
+-dontwarn com.mcs.**
+-keep class com.mcs.** { *; }
+
+# VIVO
+
+-dontwarn com.vivo.push.**
+-keep class com.vivo.push.**{*; }
+-keep class com.vivo.vms.**{*; }
+
+# 魅族
+
+-dontwarn com.meizu.cloud.**
+-keep class com.meizu.cloud.** { *; }

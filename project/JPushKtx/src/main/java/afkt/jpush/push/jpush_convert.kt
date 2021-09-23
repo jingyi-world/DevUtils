@@ -66,8 +66,8 @@ private fun convertPlatform(platform: Int): String {
         3 -> "魅族"
         4 -> "OPPO"
         5 -> "VIVO"
-        6 -> "ASUS"
-        8 -> "FCM"
+        6 -> "ASUS" // 华硕
+        8 -> "FCM" // Firebase
         else -> "UNKNOWN"
     }
 }

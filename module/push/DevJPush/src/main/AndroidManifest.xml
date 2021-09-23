@@ -30,5 +30,10 @@
                 <category android:name="${applicationId}" />
             </intent-filter>
         </receiver>
+
+        <!-- =========== -->
+        <!-- 第三方厂商配置 -->
+        <!-- =========== -->
+
     </application>
 </manifest>
