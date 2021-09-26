@@ -2,7 +2,7 @@ package dev.module.push
 
 import android.os.Parcelable
 import dev.engine.push.IPushEngine
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 /**
  * detail: 推送消息包装类
