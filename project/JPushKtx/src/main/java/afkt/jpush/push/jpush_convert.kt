@@ -3,7 +3,10 @@ package afkt.jpush.push
 import cn.jpush.android.api.CmdMessage
 import cn.jpush.android.api.CustomMessage
 import cn.jpush.android.api.NotificationMessage
+import dev.jpush.getPushSDKName
+import dev.jpush.toJPushThirdMessage
 import dev.module.push.PushMessage
+import org.json.JSONObject
 
 // =============
 // = 对外公开方法 =
@@ -21,6 +24,9 @@ fun convertEngineMessage(message: Any?): PushMessage? {
             is CustomMessage -> {
                 convertCustomMessage(it)
             }
+            is JSONObject -> {
+                convertJSONObject(it)
+            }
             else -> null
         }
     }
@@ -32,7 +38,10 @@ fun convertEngineMessage(message: Any?): PushMessage? {
 
 private fun convertCmdMessage(message: CmdMessage): PushMessage {
     return PushMessage(
-        code = message.cmd.toString()
+        cmd = message.cmd.toString(),
+        extrasBundle = message.extra,
+        errorCode = message.errorCode.toString(),
+        msg = message.msg
     )
 }
 
@@ -42,6 +51,8 @@ private fun convertNotificationMessage(message: NotificationMessage): PushMessag
         title = message.notificationTitle,
         content = message.notificationContent,
         extras = message.notificationExtras,
+        whichPushSDK = message.platform,
+        whichPushSDKName = getPushSDKName(message.platform.toByte()),
     )
 }
 
@@ -51,23 +62,19 @@ private fun convertCustomMessage(message: CustomMessage): PushMessage {
         title = message.title,
         content = message.message,
         extras = message.extra,
+        whichPushSDK = message.platform.toInt(),
+        whichPushSDKName = getPushSDKName(message.platform),
     )
 }
 
-/**
- * 转换平台字符串标识
- * @param platform Int
- * @return String
- */
-private fun convertPlatform(platform: Int): String {
-    return when (platform) {
-        1 -> "小米"
-        2 -> "华为"
-        3 -> "魅族"
-        4 -> "OPPO"
-        5 -> "VIVO"
-        6 -> "ASUS" // 华硕
-        8 -> "FCM" // Firebase
-        else -> "UNKNOWN"
-    }
+private fun convertJSONObject(jsonObject: JSONObject): PushMessage {
+    val message = toJPushThirdMessage(jsonObject)
+    return PushMessage(
+        messageId = message.msgId,
+        title = message.title,
+        content = message.content,
+        extras = message.extras,
+        whichPushSDK = message.whichPushSDK.toInt(),
+        whichPushSDKName = message.whichPushSDKName,
+    )
 }

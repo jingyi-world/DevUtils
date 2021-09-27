@@ -1,5 +1,6 @@
 package dev.module.push
 
+import android.os.Bundle
 import android.os.Parcelable
 import dev.engine.push.IPushEngine
 import kotlinx.parcelize.Parcelize
@@ -15,7 +16,18 @@ data class PushMessage(
     val title: String? = "",
     val content: String? = "",
     val extras: String? = "",
-    val code: String? = ""
+    val whichPushSDK: Int = 0,
+    val whichPushSDKName: String? = "",
+    val code: String? = "",
+
+    // ==========
+    // = 额外扩展 =
+    // ==========
+
+    val cmd: String? = "",
+    val extrasBundle: Bundle? = null,
+    val errorCode: String? = "",
+    val msg: String? = "",
 ) : Parcelable,
     IPushEngine.EngineItem()
 

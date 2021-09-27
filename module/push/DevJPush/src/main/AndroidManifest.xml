@@ -42,5 +42,17 @@
         <!-- 第三方厂商配置 -->
         <!-- =========== -->
 
+        <!-- 第三方厂商推送消息点击处理 Activity -->
+
+        <activity
+            android:name="dev.jpush.JPushThirdClickActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/DevActivityNoAnimTheme">
+            <intent-filter>
+                <action android:name="dev.jpush.JPushThirdClickActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 </manifest>
