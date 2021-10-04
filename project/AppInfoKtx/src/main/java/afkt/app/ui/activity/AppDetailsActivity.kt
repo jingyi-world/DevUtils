@@ -127,20 +127,20 @@ class AppDetailsActivity : BaseActivity<ActivityAppDetailsBinding>() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId != R.id.bmai_export_app_msg) {
+        if (item.itemId != R.id.vid_bmai_export_app_msg) {
             if (!AppUtils.isInstalledApp(appInfoItem.appInfoBean.appPackName)) {
                 ToastTintUtils.error(ResourceUtils.getString(R.string.str_app_not_exist))
                 return false
             }
         }
         when (item.itemId) {
-            R.id.bmai_share -> {
+            R.id.vid_bmai_share -> {
                 ExportUtils.shareApp(appInfoItem)
             }
-            R.id.bmai_export_app -> {
+            R.id.vid_bmai_export_app -> {
                 ExportUtils.exportApp(appInfoItem)
             }
-            R.id.bmai_export_app_msg -> {
+            R.id.vid_bmai_export_app_msg -> {
                 ExportUtils.exportInfo(appInfoItem)
             }
         }

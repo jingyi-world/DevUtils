@@ -97,12 +97,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
         // 设置 NavigationView Item 点击事件
         binding.vidAmNavView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.nav_user_apps -> toggleFragment(TypeEnum.APP_USER)
-                R.id.nav_system_apps -> toggleFragment(TypeEnum.APP_SYSTEM)
-                R.id.nav_phone_info -> toggleFragment(TypeEnum.DEVICE_INFO)
-                R.id.nav_screen_info -> toggleFragment(TypeEnum.SCREEN_INFO)
-                R.id.nav_query_apk -> toggleFragment(TypeEnum.QUERY_APK)
-                R.id.nav_setting -> toggleFragment(TypeEnum.SETTING)
+                R.id.vid_nav_user_apps -> toggleFragment(TypeEnum.APP_USER)
+                R.id.vid_nav_system_apps -> toggleFragment(TypeEnum.APP_SYSTEM)
+                R.id.vid_nav_phone_info -> toggleFragment(TypeEnum.DEVICE_INFO)
+                R.id.vid_nav_screen_info -> toggleFragment(TypeEnum.SCREEN_INFO)
+                R.id.vid_nav_query_apk -> toggleFragment(TypeEnum.QUERY_APK)
+                R.id.vid_nav_setting -> toggleFragment(TypeEnum.SETTING)
             }
             binding.vidAmDrawerLayout.closeDrawer(GravityCompat.START)
             true
@@ -169,13 +169,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
 
     private fun getNavItemId(): Int {
         return when (DISPLAY_FRAGMENT_TYPE) {
-            TypeEnum.APP_USER -> R.id.nav_user_apps
-            TypeEnum.APP_SYSTEM -> R.id.nav_system_apps
-            TypeEnum.DEVICE_INFO -> R.id.nav_phone_info
-            TypeEnum.SCREEN_INFO -> R.id.nav_screen_info
-            TypeEnum.QUERY_APK -> R.id.nav_query_apk
-            TypeEnum.SETTING -> R.id.nav_setting
-            else -> R.id.nav_user_apps
+            TypeEnum.APP_USER -> R.id.vid_nav_user_apps
+            TypeEnum.APP_SYSTEM -> R.id.vid_nav_system_apps
+            TypeEnum.DEVICE_INFO -> R.id.vid_nav_phone_info
+            TypeEnum.SCREEN_INFO -> R.id.vid_nav_screen_info
+            TypeEnum.QUERY_APK -> R.id.vid_nav_query_apk
+            TypeEnum.SETTING -> R.id.vid_nav_setting
+            else -> R.id.vid_nav_user_apps
         }
     }
 
@@ -240,15 +240,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.bma_refresh -> viewModel.postRefresh(mFragmentType)
-            R.id.bmd_export_item -> viewModel.postExportEvent(mFragmentType)
+            R.id.vid_bma_refresh -> viewModel.postRefresh(mFragmentType)
+            R.id.vid_bmd_export_item -> viewModel.postExportEvent(mFragmentType)
         }
         return true
     }
 
     // 初始化搜索操作
     private fun initSearchOperate(menu: Menu) {
-        val searchItem = menu.findItem(R.id.bma_search)
+        val searchItem = menu.findItem(R.id.vid_bma_search)
         // 初始化搜索 View
         searchView = searchItem.actionView as SearchView
         searchView?.let {

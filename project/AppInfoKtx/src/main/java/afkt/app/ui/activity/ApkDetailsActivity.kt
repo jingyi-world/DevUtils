@@ -152,13 +152,13 @@ class ApkDetailsActivity : BaseActivity<ActivityApkDetailsBinding>() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.bmpi_share -> {
+            R.id.vid_bmpi_share -> {
                 ExportUtils.shareApp(apkInfoItem)
             }
-            R.id.bmpi_export_apk -> {
+            R.id.vid_bmpi_export_apk -> {
                 ExportUtils.exportApp(apkInfoItem)
             }
-            R.id.bmpi_export_apk_msg -> {
+            R.id.vid_bmpi_export_apk_msg -> {
                 ExportUtils.exportInfo(apkInfoItem)
             }
         }
