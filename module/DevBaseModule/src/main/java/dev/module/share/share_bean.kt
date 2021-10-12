@@ -1,15 +1,98 @@
 package dev.module.share
 
+import dev.base.DevSource
 import dev.engine.share.IShareEngine
 
 /**
- * detail: 分享参数包装类
+ * detail: 分享 ( 资源 ) 平台
  * @author Ttt
- * 自行根据所需参数进行封装
+ * 参考友盟 SHARE_MEDIA 自行获取常用分享平台
+ * 不直接使用 SHARE_MEDIA 方便使用 Engine 替换操作
  */
-data class ShareParams(
-    val messageId: String? = "",
-) : IShareEngine.EngineItem()
+enum class SharePlatform {
+
+    // 新浪微博
+    SINA,
+
+    // QQ、QQ 空间
+    QQ,
+    QZONE,
+
+    // 微信、微信朋友圈、微信收藏
+    WEIXIN,
+    WEIXIN_CIRCLE,
+    WEIXIN_FAVORITE,
+
+    // 企业微信
+    WXWORK,
+
+    // 支付宝
+    ALIPAY,
+
+    // 钉钉
+    DINGTALK,
+
+//    // 更多、其他 ( 预留 )
+//    MORE
+
+    // 无任何平台分享
+    NONE
+}
+
+/**
+ * detail: 分享类型
+ * @author Ttt
+ */
+enum class ShareType {
+
+    // 打开小程序
+    OPEN_MIN_APP,
+
+    // 分享小程序
+    SHARE_MIN_APP,
+
+    // 分享链接
+    SHARE_URL,
+
+    // 分享图片
+    SHARE_IMAGE,
+
+    // 分享视频
+    SHARE_VIDEO,
+
+    // 分享音乐
+    SHARE_MUSIC,
+
+    // 分享表情
+    SHARE_EMOJI,
+
+    // 分享文本
+    SHARE_TEXT,
+
+    // 分享文件
+    SHARE_FILE,
+}
+
+/**
+ * detail: 分享平台 Key
+ * @author Ttt
+ */
+class SharePlatformKey(
+    // 分享平台
+    val platform: SharePlatform,
+    /// appId
+    val appId: String,
+    // appKey
+    val appKey: String? = "",
+    // 授权回调页
+    val redirectUrl: String? = "",
+    // Android FileProvider
+    val fileProvider: String? = "",
+    // 微信企业号 授权应用 ID
+    val agentId: String? = "",
+    // 企业微信 Url schema
+    val schema: String? = ""
+)
 
 /**
  * detail: 分享配置包装类
@@ -27,48 +110,28 @@ class ShareConfig(
     val platformKey: List<SharePlatformKey>
 ) : IShareEngine.EngineConfig()
 
-/**
- * detail: 分享 ( 资源 ) 平台
- * @author Ttt
- * 参考友盟 SHARE_MEDIA 自行获取常用分享平台
- * 不直接使用 SHARE_MEDIA 方便使用 Engine 替换操作
- */
-enum class SharePlatform {
-    // 新浪微博
-    SINA,
-
-    // QQ、QQ 空间
-    QZONE,
-    QQ,
-
-    // 微信、微信朋友圈、微信收藏
-    WEIXIN,
-    WEIXIN_CIRCLE,
-    WEIXIN_FAVORITE,
-
-    // 企业微信
-    WXWORK,
-
-    // 支付宝
-    ALIPAY,
-
-    // 钉钉
-    DINGTALK,
-
-    // 更多、其他 ( 预留 )
-    MORE
-}
 
 /**
- * detail: 分享平台 Key
+ * detail: 分享参数包装类
  * @author Ttt
+ * 自行根据所需参数进行封装
  */
-class SharePlatformKey(
-    val platform: SharePlatform,
-    val appId: String,
-    val appKey: String? = "",
-    val redirectUrl: String? = "",
-    val fileProvider: String? = "",
-    val agentId: String? = "",
-    val schema: String? = ""
-)
+data class ShareParams(
+    // 分享平台
+    var platform: SharePlatform,
+    // 分享类型
+    var shareType: ShareType,
+    // 缩略图资源
+    var thumbnail: DevSource? = null,
+    // 消息、title
+    var title: String? = null,
+    // 消息描述
+    var description: String? = null,
+    // 页面路径 ( 小程序页面路径 )
+    var path: String? = null,
+    // 小程序原始 ID
+    var userName: String? = null,
+    var miniAppId: String? = null,
+    // 分享链接
+    var url: String? = null,
+) : IShareEngine.EngineItem()

@@ -21,7 +21,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         binding.vidAmOpenMinappBtn.setOnClickListener {
             // 打开小程序
             DevEngine.getShare()?.openMinApp(
-                this, null
+                this, null, null
             )
         }
 
