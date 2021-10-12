@@ -17,13 +17,13 @@ dependencies {
 	// dev_widget_x
 	implementation 'io.github.afkt:DevWidgetX:1.1.1'
 	// dev_environment
-	implementation 'io.github.afkt:DevEnvironment:1.0.4'
+	implementation 'io.github.afkt:DevEnvironment:1.0.5'
 	// dev_environment_base
-	implementation 'io.github.afkt:DevEnvironmentBase:1.0.4'
+	implementation 'io.github.afkt:DevEnvironmentBase:1.0.5'
 	// dev_environment_compiler
-	implementation 'io.github.afkt:DevEnvironmentCompiler:1.0.4'
+	implementation 'io.github.afkt:DevEnvironmentCompiler:1.0.5'
 	// dev_environment_compiler_release
-	implementation 'io.github.afkt:DevEnvironmentCompilerRelease:1.0.4'
+	implementation 'io.github.afkt:DevEnvironmentCompilerRelease:1.0.5'
 	// dev_http_capture
 	implementation 'io.github.afkt:DevHttpCapture:1.0.3'
 	// dev_http_capture_compiler

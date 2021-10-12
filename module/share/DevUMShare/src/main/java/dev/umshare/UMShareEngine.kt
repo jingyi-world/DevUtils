@@ -14,7 +14,6 @@ import dev.engine.share.IShareEngine
 import dev.engine.share.listener.ShareListener
 import dev.module.share.*
 
-
 /**
  * detail: 友盟分享 Engine 实现
  * @author Ttt
@@ -114,7 +113,6 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
             try {
                 // 获取 UM 分享平台
                 val umPlatform = convertSharePlatform(params.platform)
-
 
             } catch (error: Exception) {
                 // 分享异常捕获事件触发回调

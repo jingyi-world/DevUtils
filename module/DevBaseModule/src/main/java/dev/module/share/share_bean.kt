@@ -110,7 +110,6 @@ class ShareConfig(
     val platformKey: List<SharePlatformKey>
 ) : IShareEngine.EngineConfig()
 
-
 /**
  * detail: 分享参数包装类
  * @author Ttt
