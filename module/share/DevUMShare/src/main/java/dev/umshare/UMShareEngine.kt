@@ -8,9 +8,7 @@ import com.umeng.commonsdk.UMConfigure
 import com.umeng.socialize.PlatformConfig
 import com.umeng.socialize.ShareAction
 import com.umeng.socialize.UMShareAPI
-import com.umeng.socialize.media.UMMin
-import com.umeng.socialize.media.UMQQMini
-import com.umeng.socialize.media.UMWeb
+import com.umeng.socialize.media.*
 import dev.engine.share.IShareEngine
 import dev.engine.share.listener.ShareListener
 import dev.module.share.*
@@ -311,6 +309,9 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
                         .setCallback(shareListener)
                         .share()
                     return true
+                } else {
+                    // 平台不支持事件触发回调
+                    listenerTriggerByNotSupportPlatform(params.platform, shareListener)
                 }
             } catch (error: Exception) {
                 // 分享异常捕获事件触发回调
@@ -335,7 +336,37 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
         params: ShareParams?,
         listener: ShareListener<ShareParams>?
     ): Boolean {
-        TODO("Not yet implemented")
+        // 转换分享事件
+        val shareListener = convertShareListener(params, listener)
+        if (activity != null && params != null) {
+            try {
+                // 视频只能使用网络视频
+
+                // 视频链接
+                val video = UMVideo(params.url)
+                // 视频缩略图
+                video.setThumb(convertShareImage(activity, params, params.thumbnail!!))
+                // 视频标题
+                video.title = params.title
+                // 视频描述
+                video.description = params.description
+                // 分享操作
+                ShareAction(activity)
+                    .withMedia(video)
+                    .withText(params.description)
+                    .setPlatform(convertSharePlatform(params.platform))
+                    .setCallback(shareListener)
+                    .share()
+                return true
+            } catch (error: Exception) {
+                // 分享异常捕获事件触发回调
+                listenerTriggerByError(params, error, shareListener)
+            }
+        } else {
+            // 参数无效事件触发回调
+            listenerTriggerByInvalidParams(activity, params, listener)
+        }
+        return false
     }
 
     /**
@@ -350,7 +381,38 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
         params: ShareParams?,
         listener: ShareListener<ShareParams>?
     ): Boolean {
-        TODO("Not yet implemented")
+        // 转换分享事件
+        val shareListener = convertShareListener(params, listener)
+        if (activity != null && params != null) {
+            try {
+                // 音乐只能使用网络音乐
+
+                // 音乐链接
+                val music = UMusic(params.url)
+                // 音乐缩略图
+                music.setThumb(convertShareImage(activity, params, params.thumbnail!!))
+                // 音乐标题
+                music.title = params.title
+                // 音乐描述
+                music.description = params.description
+                // 音乐点击后跳转链接
+                music.setmTargetUrl(params.targetUrl)
+                // 分享操作
+                ShareAction(activity)
+                    .withMedia(music)
+                    .setPlatform(convertSharePlatform(params.platform))
+                    .setCallback(shareListener)
+                    .share()
+                return true
+            } catch (error: Exception) {
+                // 分享异常捕获事件触发回调
+                listenerTriggerByError(params, error, shareListener)
+            }
+        } else {
+            // 参数无效事件触发回调
+            listenerTriggerByInvalidParams(activity, params, listener)
+        }
+        return false
     }
 
     /**
@@ -365,7 +427,35 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
         params: ShareParams?,
         listener: ShareListener<ShareParams>?
     ): Boolean {
-        TODO("Not yet implemented")
+        // 转换分享事件
+        val shareListener = convertShareListener(params, listener)
+        if (activity != null && params != null) {
+            try {
+                // 目前只有微信好友分享支持 Emoji 表情, 其他平台暂不支持
+                if (isWEIXIN(params.platform)) {
+                    val emoji = convertShareEmoji(activity, params, params.image!!)
+                    // 缩略图
+                    emoji.setThumb(convertShareImage(activity, params, params.thumbnail!!))
+                    // 分享操作
+                    ShareAction(activity)
+                        .withMedia(emoji)
+                        .setPlatform(convertSharePlatform(params.platform))
+                        .setCallback(shareListener)
+                        .share()
+                    return true
+                } else {
+                    // 平台不支持事件触发回调
+                    listenerTriggerByNotSupportPlatform(params.platform, shareListener)
+                }
+            } catch (error: Exception) {
+                // 分享异常捕获事件触发回调
+                listenerTriggerByError(params, error, shareListener)
+            }
+        } else {
+            // 参数无效事件触发回调
+            listenerTriggerByInvalidParams(activity, params, listener)
+        }
+        return false
     }
 
     /**
@@ -380,7 +470,7 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
         params: ShareParams?,
         listener: ShareListener<ShareParams>?
     ): Boolean {
-        TODO("Not yet implemented")
+        return false
     }
 
     /**

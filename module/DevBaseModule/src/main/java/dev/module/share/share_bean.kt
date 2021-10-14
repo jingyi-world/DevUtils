@@ -153,6 +153,8 @@ data class ShareParams(
     var miniAppId: String? = null,
     // 分享链接
     var url: String? = null,
+    // 跳转链接
+    var targetUrl: String? = null,
 
     // ==========
     // = 图片处理 =

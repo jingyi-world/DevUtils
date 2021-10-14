@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import com.umeng.socialize.UMShareListener
 import com.umeng.socialize.bean.SHARE_MEDIA
+import com.umeng.socialize.media.UMEmoji
 import com.umeng.socialize.media.UMImage
 import dev.base.DevSource
 import dev.engine.log.DevLogEngine
@@ -32,6 +33,62 @@ internal fun convertImageCompressStyle(compressStyle: ImageCompressStyle?): UMIm
 }
 
 /**
+ * 通过 [DevSource] 转换 [UMEmoji]
+ * @param context Context
+ * @param params   Share ( Data、Params ) Item
+ * @param source DevSource
+ * @return UMEmoji
+ * 推荐使用网络图片和资源文件的方式 ( 平台兼容性更高 )
+ * 部分平台分享的图片需要设置缩略图
+ * 用户设置的图片大小最好不要超过 250k, 缩略图不要超过 18k
+ */
+internal fun convertShareEmoji(
+    context: Context,
+    params: ShareParams,
+    source: DevSource
+): UMEmoji {
+    var emoji: UMEmoji? = null
+    // 网络图片
+    if (source.isUrl) emoji = UMEmoji(context, source.mUrl)
+    // 资源文件
+    if (source.isResource) emoji = UMEmoji(context, source.mResource)
+    // 本地文件
+    if (source.isFile) emoji = UMEmoji(context, source.mFile)
+    // Uri
+    if (source.isUri) {
+        val stream = ResourceUtils.openInputStream(source.mUri)
+        val bytes = StreamUtils.inputStreamToBytes(stream)
+        emoji = UMEmoji(context, bytes)
+    }
+    // InputStream
+    if (source.isInputStream) {
+        val bytes = StreamUtils.inputStreamToBytes(source.mInputStream)
+        emoji = UMEmoji(context, bytes)
+    }
+    // 字节流
+    if (source.isBytes) emoji = UMEmoji(context, source.mBytes)
+    // Bitmap
+    if (source.isBitmap) emoji = UMEmoji(context, source.mBitmap)
+    // Drawable
+    if (source.isDrawable) {
+        emoji = UMEmoji(context, ImageUtils.drawableToBitmap(source.mDrawable))
+    }
+    emoji?.let {
+        // 压缩类型
+        val compressStyle = convertImageCompressStyle(params.compressStyle)
+        if (compressStyle != null) {
+            it.compressStyle = compressStyle
+        }
+        // 压缩存储类型
+        if (params.compressFormat != null) {
+            it.compressFormat = params.compressFormat
+        }
+        return it
+    }
+    throw Exception("暂不支持无效资源")
+}
+
+/**
  * 通过 [DevSource] 转换 [UMImage]
  * @param context Context
  * @param params   Share ( Data、Params ) Item
@@ -46,33 +103,33 @@ internal fun convertShareImage(
     params: ShareParams,
     source: DevSource
 ): UMImage {
-    var umImage: UMImage? = null
+    var image: UMImage? = null
     // 网络图片
-    if (source.isUrl) umImage = UMImage(context, source.mUrl)
+    if (source.isUrl) image = UMImage(context, source.mUrl)
     // 资源文件
-    if (source.isResource) umImage = UMImage(context, source.mResource)
+    if (source.isResource) image = UMImage(context, source.mResource)
     // 本地文件
-    if (source.isFile) umImage = UMImage(context, source.mFile)
+    if (source.isFile) image = UMImage(context, source.mFile)
     // Uri
     if (source.isUri) {
         val stream = ResourceUtils.openInputStream(source.mUri)
         val bytes = StreamUtils.inputStreamToBytes(stream)
-        umImage = UMImage(context, bytes)
+        image = UMImage(context, bytes)
     }
     // InputStream
     if (source.isInputStream) {
         val bytes = StreamUtils.inputStreamToBytes(source.mInputStream)
-        umImage = UMImage(context, bytes)
+        image = UMImage(context, bytes)
     }
     // 字节流
-    if (source.isBytes) umImage = UMImage(context, source.mBytes)
+    if (source.isBytes) image = UMImage(context, source.mBytes)
     // Bitmap
-    if (source.isBitmap) umImage = UMImage(context, source.mBitmap)
+    if (source.isBitmap) image = UMImage(context, source.mBitmap)
     // Drawable
     if (source.isDrawable) {
-        umImage = UMImage(context, ImageUtils.drawableToBitmap(source.mDrawable))
+        image = UMImage(context, ImageUtils.drawableToBitmap(source.mDrawable))
     }
-    umImage?.let {
+    image?.let {
         // 压缩类型
         val compressStyle = convertImageCompressStyle(params.compressStyle)
         if (compressStyle != null) {
