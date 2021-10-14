@@ -33,9 +33,6 @@ enum class SharePlatform {
     // 钉钉
     DINGTALK,
 
-//    // 更多、其他 ( 预留 )
-//    MORE
-
     // 无任何平台分享
     NONE
 }
@@ -87,6 +84,22 @@ enum class ImageCompressStyle {
     QUALITY
 }
 
+/**
+ * detail: 小程序类型
+ * @author Ttt
+ */
+enum class MiniProgramType {
+
+    // 正式版
+    TYPE_RELEASE,
+
+    // 开发版
+    TYPE_TEST,
+
+    // 体验版
+    TYPE_PREVIEW,
+}
+
 // ========
 // = 配置类 =
 // ========
@@ -98,9 +111,9 @@ enum class ImageCompressStyle {
 class SharePlatformKey(
     // 分享平台
     val platform: SharePlatform,
-    /// appId
+    // APPId
     val appId: String,
-    // appKey
+    // APPKey
     val appKey: String? = "",
     // 授权回调页
     val redirectUrl: String? = "",
@@ -117,7 +130,7 @@ class SharePlatformKey(
  * @author Ttt
  */
 class ShareConfig(
-    // 分享 SDK appKey
+    // 分享 SDK APPKey
     val appKey: String,
     // 渠道信息
     val channel: String,
@@ -142,7 +155,7 @@ data class ShareParams(
     var thumbnail: DevSource? = null,
     // 分享图片
     var image: DevSource? = null,
-    // 消息、title
+    // 消息标题
     var title: String? = null,
     // 消息描述
     var description: String? = null,
@@ -150,11 +163,14 @@ data class ShareParams(
     var path: String? = null,
     // 小程序原始 ID
     var userName: String? = null,
+    // 小程序 APPId ( APPKey )
     var miniAppId: String? = null,
     // 分享链接
     var url: String? = null,
     // 跳转链接
     var targetUrl: String? = null,
+    // 小程序类型
+    var miniProgramType: MiniProgramType = MiniProgramType.TYPE_RELEASE,
 
     // ==========
     // = 图片处理 =

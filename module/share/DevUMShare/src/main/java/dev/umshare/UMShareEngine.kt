@@ -4,6 +4,8 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.content.Intent
+import com.tencent.mm.opensdk.modelbiz.WXLaunchMiniProgram
+import com.tencent.mm.opensdk.openapi.WXAPIFactory
 import com.umeng.commonsdk.UMConfigure
 import com.umeng.socialize.PlatformConfig
 import com.umeng.socialize.ShareAction
@@ -113,10 +115,23 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
         val shareListener = convertShareListener(params, listener)
         if (activity != null && params != null) {
             try {
-                // 获取 UM 分享平台
-                val umPlatform = convertSharePlatform(params.platform)
-
-                return true
+                if (isWEIXIN(params.platform)) {
+                    val api = WXAPIFactory.createWXAPI(activity, params.miniAppId)
+                    val req = WXLaunchMiniProgram.Req()
+                    // 小程序原始 ID
+                    req.userName = params.userName
+                    // 小程序页面路径
+                    req.path = params.path
+                    // 小程序类型
+                    req.miniprogramType = convertMiniProgramType(params.miniProgramType)
+                    // 打开小程序
+                    api.sendReq(req)
+                    return true
+                }
+                // 平台不支持事件触发回调
+                listenerTriggerByNotSupportPlatform(
+                    params.platform, params.shareType, shareListener
+                )
             } catch (error: Exception) {
                 // 分享异常捕获事件触发回调
                 listenerTriggerByError(params, error, shareListener)
@@ -148,48 +163,49 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
                 // 其中微信小程序只支持分享到微信好友、朋友圈, 微信收藏暂不支持
                 if (isWEIXIN(params.platform) || isWEIXIN_CIRCLE(params.platform)) {
                     // 兼容低版本的网页链接
-                    val umMin = UMMin(params.url)
+                    val miniProgram = UMMin(params.url)
                     // 小程序消息封面图片
-                    umMin.setThumb(convertShareImage(activity, params, params.thumbnail!!))
+                    miniProgram.setThumb(convertShareImage(activity, params, params.thumbnail!!))
                     // 小程序消息 title
-                    umMin.title = params.title
+                    miniProgram.title = params.title
                     // 小程序消息描述
-                    umMin.description = params.description
+                    miniProgram.description = params.description
                     // 小程序页面路径
-                    umMin.path = params.path
+                    miniProgram.path = params.path
                     // 小程序原始 ID ( 在微信平台查询 )
-                    umMin.userName = params.userName
+                    miniProgram.userName = params.userName
                     // 分享操作
                     ShareAction(activity)
-                        .withMedia(umMin)
+                        .withMedia(miniProgram)
                         .setPlatform(convertSharePlatform(params.platform))
                         .setCallback(shareListener)
                         .share()
                     return true
                 } else if (isQQ(params.platform)) {
                     // 兼容低版本的网页链接
-                    val qqMini = UMQQMini(params.url)
+                    val miniProgram = UMQQMini(params.url)
                     // 小程序消息封面图片 ( 缩略图支持网络图片和本地图片 )
-                    qqMini.setThumb(convertShareImage(activity, params, params.thumbnail!!))
+                    miniProgram.setThumb(convertShareImage(activity, params, params.thumbnail!!))
                     // 小程序消息 title
-                    qqMini.title = params.title
+                    miniProgram.title = params.title
                     // 小程序消息描述
-                    qqMini.description = params.description
+                    miniProgram.description = params.description
                     // 小程序页面路径
-                    qqMini.path = params.path
+                    miniProgram.path = params.path
                     // 小程序原始 ID
-                    qqMini.miniAppId = params.miniAppId
+                    miniProgram.miniAppId = params.userName
                     // 分享操作
                     ShareAction(activity)
-                        .withMedia(qqMini)
+                        .withMedia(miniProgram)
                         .setPlatform(convertSharePlatform(params.platform))
                         .setCallback(shareListener)
                         .share()
                     return true
-                } else {
-                    // 平台不支持事件触发回调
-                    listenerTriggerByNotSupportPlatform(params.platform, shareListener)
                 }
+                // 平台不支持事件触发回调
+                listenerTriggerByNotSupportPlatform(
+                    params.platform, params.shareType, shareListener
+                )
             } catch (error: Exception) {
                 // 分享异常捕获事件触发回调
                 listenerTriggerByError(params, error, shareListener)
@@ -309,10 +325,11 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
                         .setCallback(shareListener)
                         .share()
                     return true
-                } else {
-                    // 平台不支持事件触发回调
-                    listenerTriggerByNotSupportPlatform(params.platform, shareListener)
                 }
+                // 平台不支持事件触发回调
+                listenerTriggerByNotSupportPlatform(
+                    params.platform, params.shareType, shareListener
+                )
             } catch (error: Exception) {
                 // 分享异常捕获事件触发回调
                 listenerTriggerByError(params, error, shareListener)
@@ -443,10 +460,11 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
                         .setCallback(shareListener)
                         .share()
                     return true
-                } else {
-                    // 平台不支持事件触发回调
-                    listenerTriggerByNotSupportPlatform(params.platform, shareListener)
                 }
+                // 平台不支持事件触发回调
+                listenerTriggerByNotSupportPlatform(
+                    params.platform, params.shareType, shareListener
+                )
             } catch (error: Exception) {
                 // 分享异常捕获事件触发回调
                 listenerTriggerByError(params, error, shareListener)
@@ -470,6 +488,17 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
         params: ShareParams?,
         listener: ShareListener<ShareParams>?
     ): Boolean {
+        // 转换分享事件
+        val shareListener = convertShareListener(params, listener)
+        if (activity != null && params != null) {
+            // 平台不支持事件触发回调
+            listenerTriggerByNotSupportPlatform(
+                params.platform, params.shareType, shareListener
+            )
+        } else {
+            // 参数无效事件触发回调
+            listenerTriggerByInvalidParams(activity, params, listener)
+        }
         return false
     }
 

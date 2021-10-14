@@ -2,6 +2,7 @@ package dev.umshare
 
 import android.app.Activity
 import android.content.Context
+import com.tencent.mm.opensdk.modelbiz.WXLaunchMiniProgram
 import com.umeng.socialize.UMShareListener
 import com.umeng.socialize.bean.SHARE_MEDIA
 import com.umeng.socialize.media.UMEmoji
@@ -9,12 +10,25 @@ import com.umeng.socialize.media.UMImage
 import dev.base.DevSource
 import dev.engine.log.DevLogEngine
 import dev.engine.share.listener.ShareListener
-import dev.module.share.ImageCompressStyle
-import dev.module.share.ShareParams
-import dev.module.share.SharePlatform
+import dev.module.share.*
 import dev.utils.app.ResourceUtils
 import dev.utils.app.image.ImageUtils
 import dev.utils.common.StreamUtils
+
+/**
+ * 转换小程序类型
+ * @param miniProgramType MiniProgramType
+ */
+internal fun convertMiniProgramType(miniProgramType: MiniProgramType): Int {
+    return when (miniProgramType) {
+        // 正式版
+        MiniProgramType.TYPE_RELEASE -> WXLaunchMiniProgram.Req.MINIPTOGRAM_TYPE_RELEASE
+        // 开发版
+        MiniProgramType.TYPE_TEST -> WXLaunchMiniProgram.Req.MINIPROGRAM_TYPE_TEST
+        // 体验版
+        MiniProgramType.TYPE_PREVIEW -> WXLaunchMiniProgram.Req.MINIPROGRAM_TYPE_PREVIEW
+    }
+}
 
 /**
  * 转换图片压缩类型
@@ -146,7 +160,7 @@ internal fun convertShareImage(
 
 /**
  * 通过 [SharePlatform] 转换 [SHARE_MEDIA]
- * @param platform SharePlatform
+ * @param platform 分享 ( 资源 ) 平台
  * @param throwError 是否抛出异常
  * @return SHARE_MEDIA
  */
@@ -230,14 +244,16 @@ internal fun convertShareListener(
 
 /**
  * 平台不支持事件触发回调
- * @param platform SharePlatform
+ * @param platform 分享 ( 资源 ) 平台
+ * @param shareType 分享类型
  * @param listener 分享回调
  */
 internal fun listenerTriggerByNotSupportPlatform(
     platform: SharePlatform,
+    shareType: ShareType,
     listener: UMShareListener
 ) {
-    listener.onError(SHARE_MEDIA.MORE, Exception("暂不支持平台 $platform"))
+    listener.onError(SHARE_MEDIA.MORE, Exception("$platform 平台暂不支持 $shareType 操作"))
 }
 
 /**
