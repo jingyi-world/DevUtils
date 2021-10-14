@@ -51,6 +51,26 @@
             android:textSize="@dimen/un_sp_15" />
 
         <Button
+            android:id="@+id/vid_am_share_image_list_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/un_dp_10"
+            android:padding="@dimen/un_dp_20"
+            android:text="分享多张图片"
+            android:textSize="@dimen/un_sp_15" />
+
+        <Button
+            android:id="@+id/vid_am_share_text_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/un_dp_10"
+            android:padding="@dimen/un_dp_20"
+            android:text="分享文本"
+            android:textSize="@dimen/un_sp_15" />
+
+        <Button
             android:id="@+id/vid_am_share_video_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -78,16 +98,6 @@
             android:layout_marginTop="@dimen/un_dp_10"
             android:padding="@dimen/un_dp_20"
             android:text="分享表情"
-            android:textSize="@dimen/un_sp_15" />
-
-        <Button
-            android:id="@+id/vid_am_share_text_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/un_dp_10"
-            android:padding="@dimen/un_dp_20"
-            android:text="分享文本"
             android:textSize="@dimen/un_sp_15" />
 
         <Button
