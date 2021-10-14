@@ -8,20 +8,83 @@ import com.umeng.socialize.media.UMImage
 import dev.base.DevSource
 import dev.engine.log.DevLogEngine
 import dev.engine.share.listener.ShareListener
+import dev.module.share.ImageCompressStyle
 import dev.module.share.ShareParams
 import dev.module.share.SharePlatform
+import dev.utils.app.ResourceUtils
+import dev.utils.app.image.ImageUtils
+import dev.utils.common.StreamUtils
+
+/**
+ * 转换图片压缩类型
+ * @param compressStyle ImageCompressStyle?
+ * @return UMImage.CompressStyle
+ */
+internal fun convertImageCompressStyle(compressStyle: ImageCompressStyle?): UMImage.CompressStyle? {
+    return compressStyle?.let {
+        when (it) {
+            // 大小压缩 ( 适合普通很大的图 )
+            ImageCompressStyle.SCALE -> UMImage.CompressStyle.SCALE
+            // 质量压缩 ( 适合长图分享 )
+            ImageCompressStyle.QUALITY -> UMImage.CompressStyle.QUALITY
+        }
+    }
+}
 
 /**
  * 通过 [DevSource] 转换 [UMImage]
  * @param context Context
+ * @param params   Share ( Data、Params ) Item
  * @param source DevSource
  * @return UMImage
+ * 推荐使用网络图片和资源文件的方式 ( 平台兼容性更高 )
+ * 部分平台分享的图片需要设置缩略图
+ * 用户设置的图片大小最好不要超过 250k, 缩略图不要超过 18k
  */
 internal fun convertShareImage(
     context: Context,
+    params: ShareParams,
     source: DevSource
 ): UMImage {
-    return UMImage(context, "")
+    var umImage: UMImage? = null
+    // 网络图片
+    if (source.isUrl) umImage = UMImage(context, source.mUrl)
+    // 资源文件
+    if (source.isResource) umImage = UMImage(context, source.mResource)
+    // 本地文件
+    if (source.isFile) umImage = UMImage(context, source.mFile)
+    // Uri
+    if (source.isUri) {
+        val stream = ResourceUtils.openInputStream(source.mUri)
+        val bytes = StreamUtils.inputStreamToBytes(stream)
+        umImage = UMImage(context, bytes)
+    }
+    // InputStream
+    if (source.isInputStream) {
+        val bytes = StreamUtils.inputStreamToBytes(source.mInputStream)
+        umImage = UMImage(context, bytes)
+    }
+    // 字节流
+    if (source.isBytes) umImage = UMImage(context, source.mBytes)
+    // Bitmap
+    if (source.isBitmap) umImage = UMImage(context, source.mBitmap)
+    // Drawable
+    if (source.isDrawable) {
+        umImage = UMImage(context, ImageUtils.drawableToBitmap(source.mDrawable))
+    }
+    umImage?.let {
+        // 压缩类型
+        val compressStyle = convertImageCompressStyle(params.compressStyle)
+        if (compressStyle != null) {
+            it.compressStyle = compressStyle
+        }
+        // 压缩存储类型
+        if (params.compressFormat != null) {
+            it.compressFormat = params.compressFormat
+        }
+        return it
+    }
+    throw Exception("暂不支持无效资源")
 }
 
 /**

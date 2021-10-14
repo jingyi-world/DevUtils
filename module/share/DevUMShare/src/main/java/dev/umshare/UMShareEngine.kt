@@ -10,9 +10,11 @@ import com.umeng.socialize.ShareAction
 import com.umeng.socialize.UMShareAPI
 import com.umeng.socialize.media.UMMin
 import com.umeng.socialize.media.UMQQMini
+import com.umeng.socialize.media.UMWeb
 import dev.engine.share.IShareEngine
 import dev.engine.share.listener.ShareListener
 import dev.module.share.*
+
 
 /**
  * detail: 友盟分享 Engine 实现
@@ -93,7 +95,9 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
         }
     }
 
-    // =
+    // ==========
+    // = 分享操作 =
+    // ==========
 
     /**
      * 打开小程序
@@ -114,6 +118,7 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
                 // 获取 UM 分享平台
                 val umPlatform = convertSharePlatform(params.platform)
 
+                return true
             } catch (error: Exception) {
                 // 分享异常捕获事件触发回调
                 listenerTriggerByError(params, error, shareListener)
@@ -147,7 +152,7 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
                     // 兼容低版本的网页链接
                     val umMin = UMMin(params.url)
                     // 小程序消息封面图片
-                    umMin.setThumb(convertShareImage(activity, params.thumbnail!!))
+                    umMin.setThumb(convertShareImage(activity, params, params.thumbnail!!))
                     // 小程序消息 title
                     umMin.title = params.title
                     // 小程序消息描述
@@ -160,13 +165,14 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
                     ShareAction(activity)
                         .withMedia(umMin)
                         .setPlatform(convertSharePlatform(params.platform))
-                        .setCallback(shareListener).share()
+                        .setCallback(shareListener)
+                        .share()
                     return true
                 } else if (isQQ(params.platform)) {
                     // 兼容低版本的网页链接
                     val qqMini = UMQQMini(params.url)
                     // 小程序消息封面图片 ( 缩略图支持网络图片和本地图片 )
-                    qqMini.setThumb(convertShareImage(activity, params.thumbnail!!))
+                    qqMini.setThumb(convertShareImage(activity, params, params.thumbnail!!))
                     // 小程序消息 title
                     qqMini.title = params.title
                     // 小程序消息描述
@@ -179,7 +185,8 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
                     ShareAction(activity)
                         .withMedia(qqMini)
                         .setPlatform(convertSharePlatform(params.platform))
-                        .setCallback(shareListener).share()
+                        .setCallback(shareListener)
+                        .share()
                     return true
                 } else {
                     // 平台不支持事件触发回调
@@ -208,7 +215,34 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
         params: ShareParams?,
         listener: ShareListener<ShareParams>?
     ): Boolean {
-        TODO("Not yet implemented")
+        // 转换分享事件
+        val shareListener = convertShareListener(params, listener)
+        if (activity != null && params != null) {
+            try {
+                // 链接地址
+                val web = UMWeb(params.url)
+                // 链接缩略图 ( 缩略图支持网络图片和本地图片 )
+                web.setThumb(convertShareImage(activity, params, params.thumbnail!!))
+                // 链接标题
+                web.title = params.title
+                // 链接描述
+                web.description = params.description
+                // 分享操作
+                ShareAction(activity)
+                    .withMedia(web)
+                    .setPlatform(convertSharePlatform(params.platform))
+                    .setCallback(shareListener)
+                    .share()
+                return true
+            } catch (error: Exception) {
+                // 分享异常捕获事件触发回调
+                listenerTriggerByError(params, error, shareListener)
+            }
+        } else {
+            // 参数无效事件触发回调
+            listenerTriggerByInvalidParams(activity, params, listener)
+        }
+        return false
     }
 
     /**
@@ -223,7 +257,70 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
         params: ShareParams?,
         listener: ShareListener<ShareParams>?
     ): Boolean {
-        TODO("Not yet implemented")
+        // 转换分享事件
+        val shareListener = convertShareListener(params, listener)
+        if (activity != null && params != null) {
+            try {
+                // 分享图片
+                val image = convertShareImage(activity, params, params.image!!)
+                // 判断是否需要缩略图
+                if (params.thumbnail != null) {
+                    image.setThumb(convertShareImage(activity, params, params.thumbnail!!))
+                }
+                // 分享操作
+                ShareAction(activity)
+                    .withMedia(image)
+                    .withText(params.description)
+                    .setPlatform(convertSharePlatform(params.platform))
+                    .setCallback(shareListener)
+                    .share()
+                return true
+            } catch (error: Exception) {
+                // 分享异常捕获事件触发回调
+                listenerTriggerByError(params, error, shareListener)
+            }
+        } else {
+            // 参数无效事件触发回调
+            listenerTriggerByInvalidParams(activity, params, listener)
+        }
+        return false
+    }
+
+    /**
+     * 分享文本
+     * @param activity Activity
+     * @param params   Share ( Data、Params ) Item
+     * @param listener 分享回调
+     * @return {@code true} success, {@code false} fail
+     */
+    override fun shareText(
+        activity: Activity?,
+        params: ShareParams?,
+        listener: ShareListener<ShareParams>?
+    ): Boolean {
+        // 转换分享事件
+        val shareListener = convertShareListener(params, listener)
+        if (activity != null && params != null) {
+            try {
+                // QQ 不支持纯文本方式的分享, 但 QQ 空间支持
+                if (isQZONE(params.platform)) {
+                    // 分享操作
+                    ShareAction(activity)
+                        .withText(params.description)
+                        .setPlatform(convertSharePlatform(params.platform))
+                        .setCallback(shareListener)
+                        .share()
+                    return true
+                }
+            } catch (error: Exception) {
+                // 分享异常捕获事件触发回调
+                listenerTriggerByError(params, error, shareListener)
+            }
+        } else {
+            // 参数无效事件触发回调
+            listenerTriggerByInvalidParams(activity, params, listener)
+        }
+        return false
     }
 
     /**
@@ -272,21 +369,6 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
     }
 
     /**
-     * 分享文本
-     * @param activity Activity
-     * @param params   Share ( Data、Params ) Item
-     * @param listener 分享回调
-     * @return {@code true} success, {@code false} fail
-     */
-    override fun shareText(
-        activity: Activity?,
-        params: ShareParams?,
-        listener: ShareListener<ShareParams>?
-    ): Boolean {
-        TODO("Not yet implemented")
-    }
-
-    /**
      * 分享文件
      * @param activity Activity
      * @param params   Share ( Data、Params ) Item
@@ -323,14 +405,14 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
                 ShareType.SHARE_URL -> shareUrl(activity, params, listener)
                 // 分享图片
                 ShareType.SHARE_IMAGE -> shareImage(activity, params, listener)
+                // 分享文本
+                ShareType.SHARE_TEXT -> shareText(activity, params, listener)
                 // 分享视频
                 ShareType.SHARE_VIDEO -> shareVideo(activity, params, listener)
                 // 分享音乐
                 ShareType.SHARE_MUSIC -> shareMusic(activity, params, listener)
                 // 分享表情
                 ShareType.SHARE_EMOJI -> shareEmoji(activity, params, listener)
-                // 分享文本
-                ShareType.SHARE_TEXT -> shareText(activity, params, listener)
                 // 分享文件
                 ShareType.SHARE_FILE -> shareFile(activity, params, listener)
             }

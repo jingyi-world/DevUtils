@@ -1,5 +1,6 @@
 package dev.module.share
 
+import android.graphics.Bitmap
 import dev.base.DevSource
 import dev.engine.share.IShareEngine
 
@@ -57,6 +58,9 @@ enum class ShareType {
     // 分享图片
     SHARE_IMAGE,
 
+    // 分享文本
+    SHARE_TEXT,
+
     // 分享视频
     SHARE_VIDEO,
 
@@ -66,12 +70,26 @@ enum class ShareType {
     // 分享表情
     SHARE_EMOJI,
 
-    // 分享文本
-    SHARE_TEXT,
-
     // 分享文件
     SHARE_FILE,
 }
+
+/**
+ * detail: 图片压缩类型
+ * @author Ttt
+ */
+enum class ImageCompressStyle {
+
+    // 大小压缩 ( 适合普通很大的图 )
+    SCALE,
+
+    // 质量压缩 ( 适合长图分享 )
+    QUALITY
+}
+
+// ========
+// = 配置类 =
+// ========
 
 /**
  * detail: 分享平台 Key
@@ -120,8 +138,10 @@ data class ShareParams(
     var platform: SharePlatform,
     // 分享类型
     var shareType: ShareType,
-    // 缩略图资源
+    // 缩略图资源 ( 封面 )
     var thumbnail: DevSource? = null,
+    // 分享图片
+    var image: DevSource? = null,
     // 消息、title
     var title: String? = null,
     // 消息描述
@@ -133,4 +153,13 @@ data class ShareParams(
     var miniAppId: String? = null,
     // 分享链接
     var url: String? = null,
+
+    // ==========
+    // = 图片处理 =
+    // ==========
+
+    // 压缩类型
+    var compressStyle: ImageCompressStyle? = null,
+    // 压缩存储类型
+    var compressFormat: Bitmap.CompressFormat? = null,
 ) : IShareEngine.EngineItem()
