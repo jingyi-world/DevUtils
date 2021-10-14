@@ -55,6 +55,9 @@ enum class ShareType {
     // 分享图片
     SHARE_IMAGE,
 
+    // 分享多张图片
+    SHARE_IMAGE_LIST,
+
     // 分享文本
     SHARE_TEXT,
 
@@ -155,6 +158,8 @@ data class ShareParams(
     var thumbnail: DevSource? = null,
     // 分享图片
     var image: DevSource? = null,
+    // 分享多图
+    val imageList: MutableList<DevSource> = mutableListOf(),
     // 消息标题
     var title: String? = null,
     // 消息描述

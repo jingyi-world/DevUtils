@@ -301,6 +301,54 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
     }
 
     /**
+     * 分享多张图片
+     * @param activity Activity
+     * @param params   Share ( Data、Params ) Item
+     * @param listener 分享回调
+     * @return {@code true} success, {@code false} fail
+     */
+    override fun shareImageList(
+        activity: Activity?,
+        params: ShareParams?,
+        listener: ShareListener<ShareParams>?
+    ): Boolean {
+        // 转换分享事件
+        val shareListener = convertShareListener(params, listener)
+        if (activity != null && params != null) {
+            try {
+                // 现在支持多图分享的平台有两个, 一个是新浪微博一个是 QQ 空间
+                // 注意上传多图需要带文字描述 ( withText )
+
+                if (isQZONE(params.platform) || isSINA(params.platform)) {
+                    val images = mutableListOf<UMImage>()
+                    params.imageList.forEach {
+                        images.add(convertShareImage(activity, params, it))
+                    }
+                    // 分享操作
+                    ShareAction(activity)
+                        .withMedias(*images.toTypedArray())
+                        .withText(params.description)
+                        .setPlatform(convertSharePlatform(params.platform))
+                        .setCallback(shareListener)
+                        .share()
+                    return true
+                }
+                // 平台不支持事件触发回调
+                listenerTriggerByNotSupportPlatform(
+                    params.platform, params.shareType, shareListener
+                )
+            } catch (error: Exception) {
+                // 分享异常捕获事件触发回调
+                listenerTriggerByError(params, error, shareListener)
+            }
+        } else {
+            // 参数无效事件触发回调
+            listenerTriggerByInvalidParams(activity, params, listener)
+        }
+        return false
+    }
+
+    /**
      * 分享文本
      * @param activity Activity
      * @param params   Share ( Data、Params ) Item
@@ -524,6 +572,8 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
                 ShareType.SHARE_URL -> shareUrl(activity, params, listener)
                 // 分享图片
                 ShareType.SHARE_IMAGE -> shareImage(activity, params, listener)
+                // 分享多张图片
+                ShareType.SHARE_IMAGE_LIST -> shareImageList(activity, params, listener)
                 // 分享文本
                 ShareType.SHARE_TEXT -> shareText(activity, params, listener)
                 // 分享视频
