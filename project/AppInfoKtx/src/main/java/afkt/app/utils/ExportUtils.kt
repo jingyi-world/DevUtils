@@ -3,7 +3,6 @@ package afkt.app.utils
 import afkt.app.R
 import afkt.app.base.model.PathConfig
 import android.content.Intent
-import dev.DevUtils
 import dev.base.DevSource
 import dev.engine.DevEngine
 import dev.engine.storage.OnDevInsertListener
@@ -12,6 +11,7 @@ import dev.engine.storage.StorageResult
 import dev.utils.app.AppUtils
 import dev.utils.app.HandlerUtils
 import dev.utils.app.ResourceUtils
+import dev.utils.app.UriUtils
 import dev.utils.app.info.ApkInfoItem
 import dev.utils.app.info.AppInfoBean
 import dev.utils.app.info.AppInfoItem
@@ -197,7 +197,7 @@ object ExportUtils {
             val intent = Intent()
             intent.action = Intent.ACTION_SEND
             intent.type = "*/*"
-            intent.putExtra(Intent.EXTRA_STREAM, DevUtils.getUriForFile(file))
+            intent.putExtra(Intent.EXTRA_STREAM, UriUtils.getUriForFile(file))
             if (AppUtils.startActivity(intent)) return
         } catch (e: java.lang.Exception) {
         }
