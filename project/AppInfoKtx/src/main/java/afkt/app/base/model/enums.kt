@@ -53,8 +53,8 @@ enum class TypeEnum(
     companion object {
 
         /**
-         * 获取对应 Tag Type
-         * @param tag Tag
+         * 获取对应 TAG Type
+         * @param tag TAG
          */
         fun get(tag: Int): TypeEnum {
             return when (tag) {
