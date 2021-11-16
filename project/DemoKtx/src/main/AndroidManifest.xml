@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/icon_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="AllowBackup">
+        tools:ignore="AllowBackup,LockedOrientationActivity">
 
         <activity
             android:name=".ui.activity.MainActivity"
