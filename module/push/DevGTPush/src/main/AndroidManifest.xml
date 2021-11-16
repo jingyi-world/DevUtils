@@ -10,7 +10,7 @@
 
         <service
             android:name="dev.gtpush.GTPushService"
-            android:exported="true"
+            android:exported="false"
             android:label="PushService"
             android:process=":pushservice" />
 
