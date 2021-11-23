@@ -2,7 +2,6 @@ package afkt.project.database.green.module.note;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.text.TextUtils;
 
 import org.greenrobot.greendao.database.Database;
 

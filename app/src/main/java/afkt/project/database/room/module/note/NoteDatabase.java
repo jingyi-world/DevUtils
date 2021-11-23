@@ -1,7 +1,5 @@
 package afkt.project.database.room.module.note;
 
-import android.text.TextUtils;
-
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
