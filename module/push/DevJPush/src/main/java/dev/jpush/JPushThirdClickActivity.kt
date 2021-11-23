@@ -6,6 +6,7 @@ import android.text.TextUtils
 import androidx.appcompat.app.AppCompatActivity
 import dev.engine.DevEngine
 import dev.utils.app.JSONObjectUtils
+import dev.utils.common.StringUtils
 import org.json.JSONObject
 
 // 消息 ID
@@ -63,11 +64,11 @@ class JPushThirdClickActivity : AppCompatActivity() {
             data = intent.data.toString()
         }
         // 获取 FCM/OPPO/小米/VIVO/魅族 平台附带的 JPUSH 信息
-        if (TextUtils.isEmpty(data) && intent.extras != null) {
+        if (StringUtils.isSpace(data) && intent.extras != null) {
             data = intent.extras?.getString("JMessageExtra")
         }
 
-        if (TextUtils.isEmpty(data)) return
+        if (StringUtils.isSpace(data)) return
 
         DevEngine.getLog()?.dTag(
             TAG, "[handlerPushOp] $data"

@@ -22,6 +22,7 @@ import dev.utils.DevFinal
 import dev.utils.app.logger.DevLogger
 import dev.utils.app.logger.LogConfig
 import dev.utils.app.logger.LogLevel
+import dev.utils.common.StringUtils
 
 class BaseApplication : MultiDexApplication() {
 
@@ -79,7 +80,7 @@ class BaseApplication : MultiDexApplication() {
         // 设置启动页、推送点击回调处理
         PushRouterChecker.setCallback(SplashActivity::class.java, object : IPushCallback {
             override fun isTriggerCallback(activityClass: String?): Boolean {
-                if (TextUtils.isEmpty(activityClass)) return false
+                if (StringUtils.isSpace(activityClass)) return false
 
                 activityClass?.let { className ->
                     if (className == SplashActivity::class.java.simpleName) {

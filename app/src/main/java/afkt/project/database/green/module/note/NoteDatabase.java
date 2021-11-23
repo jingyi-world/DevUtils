@@ -68,7 +68,7 @@ public final class NoteDatabase
             final String dbName,
             final String password
     ) {
-        if (TextUtils.isEmpty(dbName)) return null;
+        if (StringUtils.isSpace(dbName)) return null;
 
         // Database
         Database database;
@@ -77,7 +77,7 @@ public final class NoteDatabase
                 DevUtils.getContext(),
                 AbsGreenDatabase.createDatabaseName(dbName, StringUtils.isNotEmpty(password))
         );
-        if (TextUtils.isEmpty(password)) {
+        if (StringUtils.isSpace(password)) {
             // regular SQLite database
             database = helper.getWritableDb();
         } else {

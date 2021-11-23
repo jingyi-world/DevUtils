@@ -58,7 +58,7 @@ class BaseApplication : MultiDexApplication() {
                     if (it.eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
                         val packageName = it.packageName
                         val className = it.className
-                        if (!TextUtils.isEmpty(packageName) && !TextUtils.isEmpty(className)) {
+                        if (!StringUtils.isSpace(packageName) && !StringUtils.isSpace(className)) {
                             EventBusUtils.post(
                                 ActivityChangedEvent(
                                     it.packageName.toString(),

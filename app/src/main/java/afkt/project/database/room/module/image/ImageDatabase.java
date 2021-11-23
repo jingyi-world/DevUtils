@@ -35,7 +35,7 @@ public abstract class ImageDatabase { // extends AbsRoomDatabase
 //     * @return {@link RoomDatabase}
 //     */
 //    public static ImageDatabase database(final String dbName, final String password) {
-//        if (TextUtils.isEmpty(dbName)) return null;
+//        if (StringUtils.isSpace(dbName)) return null;
 //
 //        ImageDatabase database = Room.databaseBuilder(
 //                DevUtils.getContext(), ImageDatabase.class, dbName
