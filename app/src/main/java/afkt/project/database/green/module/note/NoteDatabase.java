@@ -2,6 +2,7 @@ package afkt.project.database.green.module.note;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.text.TextUtils;
 
 import org.greenrobot.greendao.database.Database;
 
@@ -67,7 +68,7 @@ public final class NoteDatabase
             final String dbName,
             final String password
     ) {
-        if (StringUtils.isSpace(dbName)) return null;
+        if (TextUtils.isEmpty(dbName)) return null;
 
         // Database
         Database database;
@@ -76,7 +77,7 @@ public final class NoteDatabase
                 DevUtils.getContext(),
                 AbsGreenDatabase.createDatabaseName(dbName, StringUtils.isNotEmpty(password))
         );
-        if (StringUtils.isSpace(password)) {
+        if (TextUtils.isEmpty(password)) {
             // regular SQLite database
             database = helper.getWritableDb();
         } else {

@@ -80,7 +80,7 @@ class BaseApplication : MultiDexApplication() {
         // 设置启动页、推送点击回调处理
         PushRouterChecker.setCallback(SplashActivity::class.java, object : IPushCallback {
             override fun isTriggerCallback(activityClass: String?): Boolean {
-                if (StringUtils.isSpace(activityClass)) return false
+                if (TextUtils.isEmpty(activityClass)) return false
 
                 activityClass?.let { className ->
                     if (className == SplashActivity::class.java.simpleName) {

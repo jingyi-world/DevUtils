@@ -64,11 +64,11 @@ class JPushThirdClickActivity : AppCompatActivity() {
             data = intent.data.toString()
         }
         // 获取 FCM/OPPO/小米/VIVO/魅族 平台附带的 JPUSH 信息
-        if (StringUtils.isSpace(data) && intent.extras != null) {
+        if (TextUtils.isEmpty(data) && intent.extras != null) {
             data = intent.extras?.getString("JMessageExtra")
         }
 
-        if (StringUtils.isSpace(data)) return
+        if (TextUtils.isEmpty(data)) return
 
         DevEngine.getLog()?.dTag(
             TAG, "[handlerPushOp] $data"

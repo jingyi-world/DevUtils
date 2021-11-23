@@ -1,5 +1,7 @@
 package afkt.project.database.room.module.note;
 
+import android.text.TextUtils;
+
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
@@ -60,7 +62,7 @@ public abstract class NoteDatabase
             final String dbName,
             final String password
     ) {
-        if (StringUtils.isSpace(dbName)) return null;
+        if (TextUtils.isEmpty(dbName)) return null;
 
         NoteDatabase database = Room.databaseBuilder(
                 DevUtils.getContext(), NoteDatabase.class, dbName
