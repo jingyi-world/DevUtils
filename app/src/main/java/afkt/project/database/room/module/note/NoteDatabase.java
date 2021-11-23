@@ -13,7 +13,6 @@ import afkt.project.database.room.module.note.bean.NoteConverter;
 import afkt.project.database.room.module.note.bean.NotePicture;
 import afkt.project.database.room.module.note.dao.NoteDao;
 import dev.DevUtils;
-import dev.utils.common.StringUtils;
 
 /**
  * detail: Room 数据库创建
