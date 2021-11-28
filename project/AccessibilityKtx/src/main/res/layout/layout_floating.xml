@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@color/color_ddaaaaaa"
@@ -15,7 +16,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/vid_lf_package_name_tv"
+            android:id="@+id/vid_package"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="packageName"
@@ -29,7 +30,7 @@
             android:background="@color/color_77" />
 
         <TextView
-            android:id="@+id/vid_lf_class_name_tv"
+            android:id="@+id/vid_class"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/un_dp_8"
@@ -39,10 +40,10 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/vid_lf_icon_igview"
+        android:id="@+id/vid_close"
         android:layout_width="@dimen/un_dp_20"
         android:layout_height="@dimen/un_dp_20"
         android:layout_marginLeft="@dimen/un_dp_8"
         android:src="@drawable/icon_close"
-        android:tint="@color/color_55" />
+        app:tint="@color/color_55" />
 </LinearLayout>

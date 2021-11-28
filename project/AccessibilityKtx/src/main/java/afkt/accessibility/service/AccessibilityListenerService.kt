@@ -1,5 +1,6 @@
 package afkt.accessibility.service
 
+import afkt.accessibility.utils.TrackerUtils
 import android.accessibilityservice.AccessibilityService
 import android.content.Intent
 import android.view.accessibility.AccessibilityEvent
@@ -192,27 +193,17 @@ class AccessibilityListenerService : AccessibilityService() {
     // = 新增 =
     // =======
 
-    private var mTrackerWindowManager: TrackerWindowManager? = null
-
-    private fun initTrackerWindowManager() {
-        if (mTrackerWindowManager == null) {
-            mTrackerWindowManager = TrackerWindowManager(this)
-        }
-    }
-
     override fun onStartCommand(
         intent: Intent,
         flags: Int,
         startId: Int
     ): Int {
         LogPrintUtils.dTag(TAG, "onStartCommand")
-        initTrackerWindowManager()
-        val command = intent.getStringExtra(COMMAND)
-        if (command != null) {
+        intent.getStringExtra(COMMAND)?.let { command ->
             if (command == COMMAND_OPEN) {
-                mTrackerWindowManager?.addView()
+                TrackerUtils.instance.addView()
             } else if (command == COMMAND_CLOSE) {
-                mTrackerWindowManager?.removeView()
+                TrackerUtils.instance.removeView()
             }
         }
         return super.onStartCommand(intent, flags, startId)
