@@ -11,7 +11,9 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import dev.DevUtils
-import dev.utils.app.assist.FloatWindowManagerAssist
+import dev.utils.app.assist.floating.DevFloatingTouchIMPL
+import dev.utils.app.assist.floating.FloatingWindowManagerAssist
+import dev.utils.app.assist.floating.IFloatingTouch
 import dev.utils.app.helper.view.ViewHelper
 import dev.utils.app.logger.DevLogger
 import dev.utils.app.toast.ToastUtils
@@ -32,11 +34,19 @@ class TrackerUtils private constructor() {
     }
 
     // 悬浮窗管理辅助类
-    private val mAssist = FloatWindowManagerAssist()
+    private val mAssist = FloatingWindowManagerAssist()
 
     // 悬浮窗触摸辅助类实现
-    private val mTouchAssist: FloatWindowManagerAssist.TouchIMPL by lazy {
-        FloatWindowManagerAssist.DevTouchIMPL(mAssist)
+    private val mTouchAssist: IFloatingTouch by lazy {
+        object : DevFloatingTouchIMPL() {
+            override fun updateViewLayout(
+                view: View?,
+                dx: Int,
+                dy: Int
+            ) {
+                mAssist.updateViewLayout(view, dx, dy)
+            }
+        }
     }
 
     // 悬浮 View
@@ -66,7 +76,7 @@ class TrackerUtils private constructor() {
 @SuppressLint("ViewConstructor")
 class FloatingView(
     thisContext: Context,
-    private val assist: FloatWindowManagerAssist.TouchIMPL
+    private val assist: IFloatingTouch
 ) : LinearLayout(thisContext) {
 
     init {

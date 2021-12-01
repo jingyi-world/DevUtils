@@ -7,7 +7,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import dev.utils.app.ActivityUtils
-import dev.utils.app.assist.FloatWindowManagerAssist
+import dev.utils.app.assist.floating.FloatingWindowManagerAssist
 import dev.utils.app.toast.ToastUtils
 
 /**
@@ -51,13 +51,13 @@ class MainActivity : AppCompatActivity() {
     ) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (FloatWindowManagerAssist.isOverlayRequestCode(requestCode)) {
+        if (FloatingWindowManagerAssist.isOverlayRequestCode(requestCode)) {
             checkOverlayPermission()
         }
     }
 
     private fun checkOverlayPermission() {
-        if (!FloatWindowManagerAssist.checkOverlayPermission(this, true)) {
+        if (!FloatingWindowManagerAssist.checkOverlayPermission(this, true)) {
             ToastUtils.showShort(R.string.str_open_floating_tips)
         }
     }
