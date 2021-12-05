@@ -22,7 +22,6 @@ import dev.utils.DevFinal
 import dev.utils.app.logger.DevLogger
 import dev.utils.app.logger.LogConfig
 import dev.utils.app.logger.LogLevel
-import dev.utils.common.StringUtils
 
 class BaseApplication : MultiDexApplication() {
 
