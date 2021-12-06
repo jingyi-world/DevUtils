@@ -22,7 +22,7 @@ final class ConfigMain {
         // 保存文件
         FileUtils.saveFile(
                 new File("file/json/deps_gradle"),
-                String.format("dependencies {%s%s}", dependencies, DevFinal.NEW_LINE_STR).getBytes()
+                String.format("dependencies {%s%s}", dependencies, DevFinal.SYMBOL.NEW_LINE_STR).getBytes()
         );
         System.out.println(dependencies);
     }

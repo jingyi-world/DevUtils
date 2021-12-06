@@ -53,13 +53,13 @@ final class CatalogMain {
             final List<String> listIgnoreCatalog,
             final int layer
     ) {
-        System.out.println(DevFinal.NEW_LINE_STR_X2);
+        System.out.println(DevFinal.SYMBOL.NEW_LINE_STR_X2);
         if (FileUtils.isFileExists(path)) {
             String catalog = CatalogGenerate.generate(path, dirName, mapCatalog, listIgnoreCatalog, layer);
             System.out.println(catalog);
             // 拼接全部
             sBuilder.append(catalog)
-                    .append(DevFinal.NEW_LINE_STR_X2);
+                    .append(DevFinal.SYMBOL.NEW_LINE_STR_X2);
         } else {
             System.out.println(String.format(FORMAT, path));
         }
