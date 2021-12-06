@@ -51,7 +51,7 @@ class AppSortDialog(
             radioButton.setOnClickListener { // 获取选中索引
                 val sortPos: Int = ProjectUtils.getAppSortType()
                 if (i != sortPos) {
-                    SharedUtils.put(DevFinal.SORT, i)
+                    SharedUtils.put(DevFinal.STR.SORT, i)
                     // 发送应用排序变更通知事件
                     viewModel.postAppSort()
                 }

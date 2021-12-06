@@ -28,21 +28,21 @@ object QuerySuffixUtils {
      * 重置处理
      */
     fun reset() {
-        SharedUtils.remove(DevFinal.SUFFIX)
+        SharedUtils.remove(DevFinal.STR.SUFFIX)
     }
 
     /**
      * 刷新配置
      */
     fun refresh(maps: LinkedHashMap<String, String>?) {
-        SharedUtils.put(DevFinal.SUFFIX, Gson().toJson(maps))
+        SharedUtils.put(DevFinal.STR.SUFFIX, Gson().toJson(maps))
     }
 
     /**
      * 获取搜索后缀
      */
     private val querySuffixStr: String?
-        get() = SharedUtils.getString(DevFinal.SUFFIX) ?: dfConfig
+        get() = SharedUtils.getString(DevFinal.STR.SUFFIX) ?: dfConfig
 
     /**
      * 获取搜索后缀

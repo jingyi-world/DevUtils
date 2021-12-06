@@ -36,14 +36,14 @@ object ProjectUtils {
      * 重置排序类型索引
      */
     fun resetAppSortType() {
-        SharedUtils.put(DevFinal.SORT, 0)
+        SharedUtils.put(DevFinal.STR.SORT, 0)
     }
 
     /**
      * 获取排序类型索引
      */
     fun getAppSortType(): Int {
-        val sortPos = SharedUtils.getInt(DevFinal.SORT)
+        val sortPos = SharedUtils.getInt(DevFinal.STR.SORT)
         return max(sortPos, 0)
     }
 
