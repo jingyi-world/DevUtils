@@ -64,9 +64,9 @@ public final class DepsJsonBean {
         if (maps != null && !maps.isEmpty()) {
             StringBuilder builder = new StringBuilder();
             for (Map.Entry<String, String> entry : maps.entrySet()) {
-                builder.append(DevFinal.SYMBOL.NEW_LINE_STR);
+                builder.append(DevFinal.SYMBOL.NEW_LINE);
                 builder.append(String.format(FORMAT_ANNOTATION, entry.getKey()));
-                builder.append(DevFinal.SYMBOL.NEW_LINE_STR);
+                builder.append(DevFinal.SYMBOL.NEW_LINE);
                 builder.append(String.format(FORMAT_DEPENDENCIES, mark, entry.getValue()));
             }
             return builder.toString();
@@ -96,9 +96,9 @@ public final class DepsJsonBean {
         StringBuilder builder = new StringBuilder();
         for (Map.Entry<String, Map<String, String>> entry : mDepsMaps.entrySet()) {
             if (divider) {
-                builder.append(DevFinal.SYMBOL.NEW_LINE_STR_X2)
+                builder.append(DevFinal.SYMBOL.NEW_LINE_X2)
                         .append(String.format(FORMAT_ANNOTATION, ("= " + entry.getKey() + " =")))
-                        .append(DevFinal.SYMBOL.NEW_LINE_STR);
+                        .append(DevFinal.SYMBOL.NEW_LINE);
             }
             builder.append(getDependencies(mark, entry.getValue()));
         }

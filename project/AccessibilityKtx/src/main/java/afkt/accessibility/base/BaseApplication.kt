@@ -109,17 +109,17 @@ class BaseApplication : MultiDexApplication() {
         info?.let {
             if (it.childCount == 0) {
                 builder
-                    .append(DevFinal.SYMBOL.NEW_LINE_STR)
+                    .append(DevFinal.SYMBOL.NEW_LINE)
                     .append(StringUtils.appendSpace(index)).append("child widget: ")
                     .append(it.className)
-                    .append(DevFinal.SYMBOL.NEW_LINE_STR)
+                    .append(DevFinal.SYMBOL.NEW_LINE)
                     .append(StringUtils.appendSpace(index)).append("showDialog: ")
                     .append(it.canOpenPopup())
-                    .append(DevFinal.SYMBOL.NEW_LINE_STR)
+                    .append(DevFinal.SYMBOL.NEW_LINE)
                     .append(StringUtils.appendSpace(index)).append("windowId: ").append(it.windowId)
-                    .append(DevFinal.SYMBOL.NEW_LINE_STR)
+                    .append(DevFinal.SYMBOL.NEW_LINE)
                     .append(StringUtils.appendSpace(index)).append("Text: ").append(it.text)
-                    .append(DevFinal.SYMBOL.NEW_LINE_STR)
+                    .append(DevFinal.SYMBOL.NEW_LINE)
                     .append(StringUtils.appendSpace(index)).append("itViewId: ")
                     .append(it.viewIdResourceName)
             } else {

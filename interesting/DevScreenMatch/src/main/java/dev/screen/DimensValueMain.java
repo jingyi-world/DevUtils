@@ -45,7 +45,7 @@ public class DimensValueMain {
         String symbol = (negative ? "-" : "");
 
         StringBuilder builder = new StringBuilder();
-        builder.append(DevFinal.SYMBOL.NEW_LINE_STR_X2);
+        builder.append(DevFinal.SYMBOL.NEW_LINE_X2);
         // 生成正数的
         for (float value = start; value <= end; value += interval) {
             int    intValue = (int) value;
@@ -62,7 +62,7 @@ public class DimensValueMain {
                             format, unit + "_" + strValue + suffix,
                             symbol, value, unit
                     )
-            ).append(DevFinal.SYMBOL.NEW_LINE_STR);
+            ).append(DevFinal.SYMBOL.NEW_LINE);
         }
         return builder.toString();
     }
