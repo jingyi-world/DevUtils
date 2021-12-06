@@ -45,7 +45,7 @@ class ApkListAdapter :
             .setOnClick({
                 if (FileUtils.isFileExists(item.uri)) {
                     val intent = Intent(context, ApkDetailsActivity::class.java)
-                    intent.putExtra(DevFinal.URI, item.uri)
+                    intent.putExtra(DevFinal.STR.URI, item.uri)
                     AppUtils.startActivity(intent)
                 } else {
                     ToastTintUtils.warning(ResourceUtils.getString(R.string.str_file_not_exist))

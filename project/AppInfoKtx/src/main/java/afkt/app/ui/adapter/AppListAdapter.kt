@@ -47,7 +47,7 @@ class AppListAdapter(data: List<AppInfoBean>?) :
             .setOnClick({
                 if (AppUtils.isInstalledApp(item.appPackName)) {
                     val intent = Intent(context, AppDetailsActivity::class.java)
-                    intent.putExtra(DevFinal.PACKNAME, item.appPackName)
+                    intent.putExtra(DevFinal.STR.PACKNAME, item.appPackName)
                     AppUtils.startActivity(intent)
                 } else {
                     ToastTintUtils.warning(ResourceUtils.getString(R.string.str_app_not_exist))

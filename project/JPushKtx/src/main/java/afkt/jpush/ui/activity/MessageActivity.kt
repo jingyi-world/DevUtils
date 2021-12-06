@@ -22,7 +22,7 @@ class MessageActivity : BaseActivity<ActivityMessageBinding>() {
     override fun baseLayoutId(): Int = R.layout.activity_message
 
     @JvmField
-    @Autowired(name = DevFinal.DATA)
+    @Autowired(name = DevFinal.STR.DATA)
     var pushData: String? = null
 
     override fun initValue() {

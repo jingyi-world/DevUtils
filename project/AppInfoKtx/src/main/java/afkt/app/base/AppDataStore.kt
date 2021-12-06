@@ -13,7 +13,7 @@ class AppDataStore {
     fun initDataStore(arguments: Bundle?) {
         arguments?.let {
             // TypeEnum
-            val typeInt = it.getInt(DevFinal.TYPE)
+            val typeInt = it.getInt(DevFinal.STR.TYPE)
             typeEnum = TypeEnum.get(typeInt)
         }
     }
@@ -28,6 +28,6 @@ class AppDataStore {
  */
 fun Fragment.setDataStore(type: TypeEnum) {
     val bundle = Bundle()
-    bundle.putInt(DevFinal.TYPE, type.tag)
+    bundle.putInt(DevFinal.STR.TYPE, type.tag)
     this.arguments = bundle
 }

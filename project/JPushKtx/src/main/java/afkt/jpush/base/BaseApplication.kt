@@ -97,7 +97,7 @@ class BaseApplication : MultiDexApplication() {
                     if (activity != null) {
                         ARouter.getInstance()
                             .build(RouterPath.MessageActivity_PATH)
-                            .withString(DevFinal.DATA, it)
+                            .withString(DevFinal.STR.DATA, it)
                             .navigation(activity)
                     }
                 }

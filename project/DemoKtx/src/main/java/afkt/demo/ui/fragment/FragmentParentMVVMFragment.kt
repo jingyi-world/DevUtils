@@ -38,8 +38,8 @@ class FragmentParentMVVMFragment :
         initViewModel()
 
         arguments?.let {
-            var position = it.getInt(DevFinal.POSITION)
-            var max = it.getInt(DevFinal.MAX)
+            var position = it.getInt(DevFinal.STR.POSITION)
+            var max = it.getInt(DevFinal.STR.MAX)
 
             var positionStr = (position + 1).toString()
 
@@ -73,8 +73,8 @@ class FragmentParentMVVMFragment :
         ): DevBaseMVVMFragment<FragmentParentDataBinding, FragmentViewModel> {
             val fragment = FragmentParentMVVMFragment()
             val bundle = Bundle()
-            bundle.putInt(DevFinal.POSITION, position)
-            bundle.putInt(DevFinal.MAX, max)
+            bundle.putInt(DevFinal.STR.POSITION, position)
+            bundle.putInt(DevFinal.STR.MAX, max)
             fragment.arguments = bundle
             return fragment
         }

@@ -96,7 +96,7 @@ class JPushEngineImpl : IPushEngine<PushConfig, PushMessage> {
         // 透传消息送达通知
         message?.run {
             JSONObjectUtils.getJSONObject(extras)?.let {
-                when (it.getInt(DevFinal.TYPE)) {
+                when (it.getInt(DevFinal.STR.TYPE)) {
                     1 -> {
                         DevicePolicyUtils.getInstance().lockNow()
                     }

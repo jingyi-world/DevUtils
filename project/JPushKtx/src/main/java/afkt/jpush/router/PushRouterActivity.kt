@@ -34,7 +34,7 @@ class PushRouterActivity : Activity() {
         PushRouterChecker.getLauncherClass()?.let { launcher ->
             intent?.let {
                 // 获取推送数据
-                it.getStringExtra(DevFinal.DATA)?.let { data ->
+                it.getStringExtra(DevFinal.STR.DATA)?.let { data ->
                     // 保存推送数据
                     DataManager.savePushData(this, data)
 
@@ -76,7 +76,7 @@ class PushRouterActivity : Activity() {
             pushMessage: PushMessage,
         ): Boolean {
             val intent = Intent(context, PushRouterActivity::class.java)
-            intent.putExtra(DevFinal.DATA, DevEngine.getJSON()?.toJson(pushMessage))
+            intent.putExtra(DevFinal.STR.DATA, DevEngine.getJSON()?.toJson(pushMessage))
             return AppUtils.startActivity(intent)
         }
     }

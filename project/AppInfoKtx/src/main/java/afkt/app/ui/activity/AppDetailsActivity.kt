@@ -30,7 +30,7 @@ class AppDetailsActivity : BaseActivity<ActivityAppDetailsBinding>() {
         super.initValue()
         try {
             val appInfo =
-                AppInfoUtils.getAppInfoItem(intent.getStringExtra(DevFinal.PACKNAME))
+                AppInfoUtils.getAppInfoItem(intent.getStringExtra(DevFinal.STR.PACKNAME))
             appInfo?.let { appInfoItem = it }
         } catch (e: Exception) {
             DevLogger.e(e)

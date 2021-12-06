@@ -29,7 +29,7 @@ class ItemValueFragment : DevBaseContentViewBindingFragment<FragmentItemValueBin
         super.onViewCreated(view, savedInstanceState)
 
         arguments?.let {
-            val value = it.getInt(DevFinal.VALUE)
+            val value = it.getInt(DevFinal.STR.VALUE)
 
             binding.vidFivTv.text = "$value"
 
@@ -41,7 +41,7 @@ class ItemValueFragment : DevBaseContentViewBindingFragment<FragmentItemValueBin
         fun get(value: Int): DevBaseContentViewBindingFragment<FragmentItemValueBinding> {
             val fragment = ItemValueFragment()
             val bundle = Bundle()
-            bundle.putInt(DevFinal.VALUE, value)
+            bundle.putInt(DevFinal.STR.VALUE, value)
             fragment.arguments = bundle
             return fragment
         }

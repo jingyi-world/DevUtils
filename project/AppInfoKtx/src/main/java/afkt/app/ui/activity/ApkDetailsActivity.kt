@@ -35,7 +35,7 @@ class ApkDetailsActivity : BaseActivity<ActivityApkDetailsBinding>() {
     override fun initValue() {
         super.initValue()
         try {
-            val apkInfo = AppInfoUtils.getApkInfoItem(intent.getStringExtra(DevFinal.URI))
+            val apkInfo = AppInfoUtils.getApkInfoItem(intent.getStringExtra(DevFinal.STR.URI))
             apkInfo?.let { apkInfoItem = it }
         } catch (e: Exception) {
             DevLogger.e(e)
@@ -105,9 +105,9 @@ class ApkDetailsActivity : BaseActivity<ActivityApkDetailsBinding>() {
                                     val builder = StringBuilder()
                                         .append("申请通过的权限")
                                         .append(grantedList.toTypedArray().contentToString())
-                                        .append(DevFinal.NEW_LINE_STR)
+                                        .append(DevFinal.SYMBOL.NEW_LINE_STR)
                                         .append("拒绝的权限").append(deniedList.toString())
-                                        .append(DevFinal.NEW_LINE_STR)
+                                        .append(DevFinal.SYMBOL.NEW_LINE_STR)
                                         .append("未找到的权限").append(notFoundList.toString())
                                     if (deniedList.isNotEmpty()) {
                                         DevLogger.d(builder.toString())

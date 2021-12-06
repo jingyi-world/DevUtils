@@ -253,9 +253,9 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
                 ) {
                     val builder = StringBuilder()
                         .append("申请通过的权限").append(grantedList.toTypedArray().contentToString())
-                        .append(DevFinal.NEW_LINE_STR)
+                        .append(DevFinal.SYMBOL.NEW_LINE_STR)
                         .append("拒绝的权限").append(deniedList.toString())
-                        .append(DevFinal.NEW_LINE_STR)
+                        .append(DevFinal.SYMBOL.NEW_LINE_STR)
                         .append("未找到的权限").append(notFoundList.toString())
                     if (deniedList.isNotEmpty()) {
                         DevLogger.d(builder.toString())
