@@ -104,6 +104,7 @@ public class StateMain {
 
         // return 返回类名
         String className = "CommonState";
+//        String className = "RequestState";
         // get 片段字符串拼接
         StringBuilder getPartBuilder = new StringBuilder();
         // set 片段字符串拼接
@@ -120,6 +121,7 @@ public class StateMain {
         for (String name : lists) {
             if (name.equalsIgnoreCase("base")) continue;
             if (name.contains("_BASE")) continue;
+            if (name.contains("_base")) continue;
             // 获取注释
             String annotation = null;
             String descriptor = maps.get(name);
@@ -132,12 +134,13 @@ public class StateMain {
                     annotation = StringUtils.clearStartsWith(annotation, "// ");
                 }
             }
+            String finalName = StringUtils.underScoreCaseToCamelCase(name);
 
             getPartBuilder
                     .append(DevFinal.SYMBOL.NEW_LINE)
                     .append(String.format(
                             IS_METHOD_STR, annotation,
-                            name, name.toUpperCase()
+                            finalName, name.toUpperCase()
                     ));
 
             setPartBuilder
@@ -145,7 +148,7 @@ public class StateMain {
                     .append(String.format(
                             SET_METHOD_STR, annotation,
                             className, className,
-                            name, name.toUpperCase()
+                            finalName, name.toUpperCase()
                     ));
         }
         // 最终内容
