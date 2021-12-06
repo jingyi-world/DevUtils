@@ -15,6 +15,8 @@ import javax.xml.transform.sax.SAXTransformerFactory;
 import javax.xml.transform.sax.TransformerHandler;
 import javax.xml.transform.stream.StreamResult;
 
+import dev.utils.DevFinal;
+
 /**
  * detail: dimens 处理
  * @author duke
@@ -71,7 +73,7 @@ public class XmlIO {
             // 是否自动添加额外的空白
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
             // 设置字符编码
-            transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+            transformer.setOutputProperty(OutputKeys.ENCODING, DevFinal.ENCODE.UTF_8);
             // 添加 xml 版本, 默认也是 1.0
             transformer.setOutputProperty(OutputKeys.VERSION, "1.0");
             // 保存 xml 路径
