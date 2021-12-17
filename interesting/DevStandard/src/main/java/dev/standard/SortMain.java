@@ -1,4 +1,4 @@
-package dev.standard.sort;
+package dev.standard;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;

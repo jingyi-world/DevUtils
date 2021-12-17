@@ -1,4 +1,4 @@
-package dev.standard.sort;
+package dev.standard.generate;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -22,7 +22,7 @@ import dev.utils.common.StringUtils;
  *     CommonState、RequestState 类
  * </pre>
  */
-public class StateMain {
+public class StateGenerateMain {
 
     // 请求字符串前缀
     private static final String REQUEST_PREFIX  = "REQUEST_";
@@ -74,7 +74,7 @@ public class StateMain {
         // 循环所有常量
         Map<String, String> maps   = new HashMap<>();
         List<String>        lists  = new ArrayList<>();
-        Field[]             fields = StateMain.class.getDeclaredFields();
+        Field[]             fields = StateGenerateMain.class.getDeclaredFields();
         for (Field field : fields) {
             // 属于 Int 类型才处理
             if (field.getType().toString().equals("int")) {
@@ -94,7 +94,7 @@ public class StateMain {
             }
         }
         // 获取该文件路径
-        String filePath = "\\interesting\\DevStandard\\src\\main\\java\\dev\\standard\\sort\\StateMain.java";
+        String filePath = "\\interesting\\DevStandard\\src\\main\\java\\dev\\standard\\sort\\StateGenerateMain.java";
         File   file     = new File(System.getProperty("user.dir"), filePath);
         // 读取该文件内容
         List<String> textLists = FileIOUtils.readFileToList(file, DevFinal.ENCODE.UTF_8);
