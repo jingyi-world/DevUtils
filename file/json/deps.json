@@ -16,7 +16,7 @@
         "dev_http_capture_compiler_release": "io.github.afkt:DevHttpCaptureCompilerRelease:1.0.5"
     },
     "kotlin": {
-        "stdlib": "org.jetbrains.kotlin:kotlin-stdlib:1.5.31",
+        "stdlib": "org.jetbrains.kotlin:kotlin-stdlib:1.6.10",
         "core": "androidx.core:core-ktx:1.6.0",
         "coroutines": "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2",
         "lifecycle_runtime": "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1",
