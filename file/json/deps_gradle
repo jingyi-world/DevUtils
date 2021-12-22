@@ -208,9 +208,9 @@ dependencies {
 	// bugly_ndk
 	implementation 'com.tencent.bugly:nativecrashreport:3.9.2'
 	// uetool
-	implementation 'me.ele:uetool:1.3.2'
+	implementation 'com.github.eleme.UETool:uetool:1.3.2'
 	// uetool_no_op
-	implementation 'me.ele:uetool-no-op:1.3.2'
+	implementation 'com.github.eleme.UETool:uetool-no-op:1.3.2'
 	// leakcanary
 	implementation 'com.squareup.leakcanary:leakcanary-android:2.7'
 	// blockcanary_android
