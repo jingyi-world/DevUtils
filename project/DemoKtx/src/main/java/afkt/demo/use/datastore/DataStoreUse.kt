@@ -1,7 +1,5 @@
 package afkt.demo.use.datastore
 
-import android.app.Activity
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.asLiveData
 import dev.utils.app.logger.DevLogger
@@ -26,9 +24,8 @@ object DataStoreUse {
 
     /**
      * 写入数据
-     * @param context [Context]
      */
-    private suspend fun write(context: Context) {
+    private suspend fun write(activity: AppCompatActivity) {
 
         // 首先进行 SP 数据存储存储
         // 会在 /data/data/afkt.demo/shared_prefs/ 创建 **.xml
@@ -36,23 +33,38 @@ object DataStoreUse {
         // 存储到 /data/data/afkt.demo/files/datastore/ 中指定的 **.preferences_pb
         // 并且会把 shared_prefs 下迁移成功的文件进行删除
 
-        SPUtils.getPreference(context, "AA").put("type", "AA")
+        SPUtils.getPreference(activity, "AA").put("type", "AA")
 
-        SPUtils.getPreference(context, "AA").put("errorType", "AA")
+        SPUtils.getPreference(activity, "AA").put("errorType", "AA")
 
-        SPUtils.getPreference(context, "BB").put("type", "BB")
+        SPUtils.getPreference(activity, "BB").put("type", "BB")
 
-        SPUtils.getPreference(context, "BB").put("errorType", 1)
+        SPUtils.getPreference(activity, "BB").put("errorType", 1)
 
-        SPUtils.getPreference(context, "BB").put("abc", "def")
+        SPUtils.getPreference(activity, "BB").put("abc", "def")
 
         val dataStore = DataStoreUtils.migrationSPToDataStore(
             spStoreName, "AA", "BB"
         )
 
-        dataStore.put("one", 1)
+        /**
+         * 监听 [spStoreName] DataStore key "one" 值变化
+         * [listener]
+         */
+        DataStoreUtils.get(spStoreName).getStringFlow("one")?.let {
+            it.asLiveData().observe(activity) { value ->
+                DevLogger.dTag(
+                    TAG, "listener %s, key : %s, value : %s",
+                    spStoreName, "one", value
+                )
+            }
+        }
+
+        dataStore.put("one", "设置值看监听效果")
 
         DataStoreUtils.get(spStoreName).put("two", "二")
+
+        dataStore.put("type", "修改值, 查看监听")
 
         // =======
         // = TAG =
@@ -73,7 +85,6 @@ object DataStoreUse {
 
     /**
      * 读取数据
-     * @param activity [Activity]
      */
     private suspend fun read(activity: AppCompatActivity) {
         DevLogger.dTag(
@@ -129,7 +140,6 @@ object DataStoreUse {
 
     /**
      * 监听数据变化
-     * @param activity [Activity]
      */
     private fun listener(activity: AppCompatActivity) {
         /**
@@ -144,15 +154,22 @@ object DataStoreUse {
             }
         }
         /**
-         * 监听 [spStoreName] DataStore key "userName" 值变化
+         * 最新正式版 - 限制同一个 name 只能创建一次 DataStore 并存储对象进行存储复用
+         * 具体查看 [DataStoreUtils] 顶部注意事项注释
+         * 因为进行 SharedPreferences 迁移, 进行创建 spStoreName 会导致同一个 name 多次创建
+         * 所以下面的监听代码, 需要放在迁移后的代码下进行监听
+         * 从而使用 [DataStoreUtils] 的 cacheMap 进行复用
          */
-        DataStoreUtils.get(spStoreName).getStringFlow("type")?.let {
-            it.asLiveData().observe(activity) { value ->
-                DevLogger.dTag(
-                    TAG, "listener %s, key : %s, value : %s",
-                    spStoreName, "type", value
-                )
-            }
-        }
+//        /**
+//         * 监听 [spStoreName] DataStore key "one" 值变化
+//         */
+//        DataStoreUtils.get(spStoreName).getStringFlow("one")?.let {
+//            it.asLiveData().observe(activity) { value ->
+//                DevLogger.dTag(
+//                    TAG, "listener %s, key : %s, value : %s",
+//                    spStoreName, "one", value
+//                )
+//            }
+//        }
     }
 }
