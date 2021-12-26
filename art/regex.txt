@@ -76,3 +76,7 @@ android\:id\=\"\@\+id\/[^v]
 
 
 ((implementation)|(api))[ ]+['"]
+
+
+?>
+T : [\w<>]+\?\>
