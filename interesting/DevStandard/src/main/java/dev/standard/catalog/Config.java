@@ -164,6 +164,8 @@ final class Config {
         sModuleCatalogMap.put(".push", "推送 SDK Engine 实现");
         sModuleCatalogMap.put(".push.DevGTPush", "个推推送 Engine 实现代码");
         sModuleCatalogMap.put(".push.DevJPush", "极光推送 Engine 实现代码");
+        sModuleCatalogMap.put(".share", "分享 SDK Engine 实现");
+        sModuleCatalogMap.put(".share.DevUMShare", "友盟分享 Engine 实现代码");
 
         // ==========================
         // = DevUtils Module 忽略目录 =
@@ -181,6 +183,7 @@ final class Config {
         sProjectCatalogMap.put(".DemoKtx", "临时测试代码、库调用调试 Demo");
         sProjectCatalogMap.put(".GTPushKtx", "个推推送 ( 逻辑 ) 处理 ( 含设备管理 )");
         sProjectCatalogMap.put(".JPushKtx", "极光推送 ( 逻辑 ) 处理 ( 含设备管理 )");
+        sProjectCatalogMap.put(".UMShareKtx", "友盟分享 ( 逻辑 ) 处理");
 
         // ========================
         // = DevUtils Interesting =
