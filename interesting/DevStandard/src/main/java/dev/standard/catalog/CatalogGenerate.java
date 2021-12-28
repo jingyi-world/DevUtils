@@ -92,7 +92,7 @@ final class CatalogGenerate {
                 continue;
             }
             // 判断根目录是否需要忽略
-            if (curLayer != 0 && StringUtils.isContains(baseFile.getName(), ignoreCatalog)) {
+            if (curLayer != 0 && StringUtils.isOrEquals(baseFile.getName(), ignoreCatalog)) {
                 return lists;
             }
             // 属于文件夹才处理
