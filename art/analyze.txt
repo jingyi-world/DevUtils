@@ -26,4 +26,4 @@ anonymous type can be replaced with lambda
 
 
 
-local 'var' is never modi
+local 'var' is never modified
