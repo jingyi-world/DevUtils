@@ -39,10 +39,10 @@ class MVVMUtilsFragment :
         initViewModel()
 
         arguments?.let {
-            var position = it.getInt(DevFinal.STR.POSITION)
-            var max = it.getInt(DevFinal.STR.MAX)
+            val position = it.getInt(DevFinal.STR.POSITION)
+            val max = it.getInt(DevFinal.STR.MAX)
 
-            var positionStr = (position + 1).toString()
+            val positionStr = (position + 1).toString()
 
             // 设置索引文案
             binding.position = positionStr
