@@ -2,6 +2,7 @@ package dev.standard.generate;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import dev.utils.DevFinal;
@@ -60,7 +61,10 @@ public class DevIntentGenerateMain {
         METHOD_STR = builder.toString();
     }
 
+    private static final HashSet<String> sIgnoreSet = new HashSet<>();
+
     public static void main(String[] args) {
+        sIgnoreSet.addAll(DevFinalIgnore.ignoreSet());
         // 循环所有常量
         List<String> lists  = new ArrayList<>();
         Field[]      fields = DevFinal.STR.class.getDeclaredFields();
@@ -76,6 +80,11 @@ public class DevIntentGenerateMain {
 
         StringBuilder builder = new StringBuilder();
         for (String name : lists) {
+            // 判断是否忽略常量
+            if (sIgnoreSet.contains(name)) {
+                continue;
+            }
+
             String finalName     = StringUtils.underScoreCaseToCamelCase(name);
             String nameUpperCase = name.toUpperCase();
 
