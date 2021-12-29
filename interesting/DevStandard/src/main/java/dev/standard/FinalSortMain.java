@@ -10,19 +10,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import dev.utils.DevFinal;
 import dev.utils.common.StringUtils;
 
 /**
- * detail: DevFinal 常量单词排序
+ * detail: DevFinal 常量排序
  * @author Ttt
  */
-public class SortMain {
+public class FinalSortMain {
 
     public static void main(String[] args) {
         String              FORMAT = "public static final String %s = \"%s\";";
         List<String>        lists  = new ArrayList<>();
         Map<String, String> maps   = new HashMap<>();
-        Field[]             fields = SortMain.class.getDeclaredFields();
+        Field[]             fields = FinalSortMain.class.getDeclaredFields();
         for (Field field : fields) {
             String descriptor = Modifier.toString(field.getModifiers());
             descriptor = StringUtils.isEmpty(descriptor) ? "" : descriptor + " ";
@@ -35,8 +36,15 @@ public class SortMain {
         // 使根据指定比较器产生的顺序对指定对象数组进行排序
         Collections.sort(lists, comparator);
 
+        StringBuilder builder = new StringBuilder();
         for (String key : lists) {
-            System.out.println(String.format(FORMAT, key.toUpperCase(), key.toLowerCase()));
+            builder.append(DevFinal.SYMBOL.NEW_LINE)
+                    .append(String.format(FORMAT, key.toUpperCase(), key.toLowerCase()));
         }
+        // 最终内容
+        String content = builder.toString();
+        System.out.println(content);
+
+        String debug = "";
     }
 }
