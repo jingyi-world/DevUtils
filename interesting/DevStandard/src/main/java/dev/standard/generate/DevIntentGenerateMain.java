@@ -55,8 +55,16 @@ public class DevIntentGenerateMain {
         builder.append("\n     * 是否存在 Key ( %s )");
         builder.append("\n     * @return {@code true} yes, {@code false} no");
         builder.append("\n     */");
-        builder.append("\n    public boolean contains%sKey() {");
+        builder.append("\n    public boolean contains%s() {");
         builder.append("\n        return containsKey(DevFinal.STR.%s);");
+        builder.append("\n    }");
+        builder.append("\n");
+        builder.append("\n    /**");
+        builder.append("\n     * Key ( %s ) 保存的 Value 是否为 null");
+        builder.append("\n     * @return {@code true} yes, {@code false} no");
+        builder.append("\n     */");
+        builder.append("\n    public boolean isNullValue%s() {");
+        builder.append("\n        return isNullValue(DevFinal.STR.%s);");
         builder.append("\n    }");
         METHOD_STR = builder.toString();
     }
@@ -96,6 +104,7 @@ public class DevIntentGenerateMain {
             builder.append(DevFinal.SYMBOL.NEW_LINE)
                     .append(String.format(
                             METHOD_STR,
+                            nameUpperCase, finalName, nameUpperCase,
                             nameUpperCase, finalName, nameUpperCase,
                             nameUpperCase, finalName, nameUpperCase,
                             nameUpperCase, finalName, nameUpperCase,
