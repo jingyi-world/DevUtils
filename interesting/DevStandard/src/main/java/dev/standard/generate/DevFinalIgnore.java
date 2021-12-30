@@ -449,5 +449,6 @@ final class DevFinalIgnore {
         public static final String VAL       = "val";
         public static final String VAR       = "var";
         public static final String VOID      = "void";
+        public static final String WHILE     = "while";
     }
 }
