@@ -70,7 +70,7 @@ class MainBaseContentActivity :
         contentAssist.floatFrame?.let {
             QuickHelper.get(ViewUtils.getChildAtLast<ImageView>(it))
                 .setMargin(ResourceUtils.getDimensionInt(R.dimen.un_dp_20))
-                .setLayoutGravity(Gravity.RIGHT or Gravity.BOTTOM)
+                .setLayoutGravity(Gravity.END or Gravity.BOTTOM)
                 .setOnClick {
                     showToast("点击了悬浮 View")
                 }
