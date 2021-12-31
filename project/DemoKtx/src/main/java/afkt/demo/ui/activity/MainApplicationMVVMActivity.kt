@@ -47,7 +47,7 @@ class MainApplicationMVVMActivity :
         // 复用方法进行监听
         ViewModelTempUtils.observe(TAG, this, viewModel)
         // 临时改变值
-        Handler().postDelayed(Runnable {
+        Handler().postDelayed({
             viewModel.number.value = Int.MAX_VALUE
         }, 2000)
     }

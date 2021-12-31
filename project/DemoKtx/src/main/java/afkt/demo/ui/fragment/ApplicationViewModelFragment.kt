@@ -51,7 +51,7 @@ class ApplicationViewModelFragment : DevBaseViewBindingFragment<FragmentParentBi
             // 进行 ViewModel 绑定
             ViewModelTempUtils.observe(TAG + positionStr, this, viewModel)
             // 临时改变值
-            Handler().postDelayed(Runnable {
+            Handler().postDelayed({
                 viewModel.number.value = RandomUtils.nextInt()
             }, (position + 1) * 1000L + 2000L)
             // 判断是否达到最大值

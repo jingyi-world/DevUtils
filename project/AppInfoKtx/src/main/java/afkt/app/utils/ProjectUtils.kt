@@ -116,10 +116,10 @@ object ProjectUtils {
         // 产品名称
         lists.add(DeviceInfoItem(R.string.str_info_product, Build.PRODUCT))
         // 是否模拟器
-        val emulator = map["IS_EMULATOR".toLowerCase()]
+        val emulator = map["IS_EMULATOR".lowercase()]
         emulator?.let { lists.add(DeviceInfoItem(R.string.str_info_is_emulator, it)) }
         // 是否允许 debug 调试
-        val debuggable = map["IS_DEBUGGABLE".toLowerCase()]
+        val debuggable = map["IS_DEBUGGABLE".lowercase()]
         debuggable?.let { lists.add(DeviceInfoItem(R.string.str_info_is_debuggable, it)) }
         // 基带版本
         lists.add(DeviceInfoItem(R.string.str_info_baseband_version, DeviceUtils.getBaseband_Ver()))
@@ -144,7 +144,7 @@ object ProjectUtils {
         lists.add(DeviceInfoItem(R.string.str_info_cpu_abi1, Build.CPU_ABI))
         lists.add(DeviceInfoItem(R.string.str_info_cpu_abi2, Build.CPU_ABI2))
         // 判断支持的指令集
-        val supportedAbis = map["SUPPORTED_ABIS".toLowerCase()]
+        val supportedAbis = map["SUPPORTED_ABIS".lowercase()]
         supportedAbis?.let { lists.add(DeviceInfoItem(R.string.str_info_supported_abis, it)) }
         // CPU 数量
         lists.add(

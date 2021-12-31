@@ -1,4 +1,4 @@
-package pack.ddshare
+package afkt.umshare.ddshare
 
 import com.umeng.socialize.media.DingCallBack
 

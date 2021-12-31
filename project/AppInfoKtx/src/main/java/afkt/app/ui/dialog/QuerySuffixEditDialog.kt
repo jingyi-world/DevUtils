@@ -62,7 +62,7 @@ class QuerySuffixEditDialog(
                 cancelDialog()
                 return@setOnClickListener
             }
-            input = input.toLowerCase()
+            input = input.lowercase()
             val maps = QuerySuffixUtils.querySuffixMap
             if (maps.containsKey(input)) {
                 cancelDialog()
