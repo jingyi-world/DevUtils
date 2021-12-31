@@ -9,15 +9,14 @@ import dev.utils.DevFinal;
 import dev.utils.common.StringUtils;
 
 /**
- * detail: DevIntent 类创建
+ * detail: IntentData 类创建
  * @author Ttt
  * <pre>
  *     专门用于根据 {@link DevFinal.STR} 常量
- *     生成 DevAssist 库中, dev.base 包下
- *     DevIntent 类 ( DevFinal.STR Intent 传参读写辅助类 )
+ *     生成 IntentData 类快捷方法 ( DevFinal.STR Intent 传参读写辅助类 )
  * </pre>
  */
-public class DevIntentGenerateMain {
+public class IntentDataJavaGenerateMain {
 
     // 方法字符串
     private static final String METHOD_STR;
@@ -37,17 +36,17 @@ public class DevIntentGenerateMain {
         builder.append("\n    /**");
         builder.append("\n     * 设置 Key ( %s ) 对应的 Value");
         builder.append("\n     * @param value 保存的 value");
-        builder.append("\n     * @return {@link DevIntent}");
+        builder.append("\n     * @return {@link IntentData}");
         builder.append("\n     */");
-        builder.append("\n    public DevIntent set%s(final String value) {");
+        builder.append("\n    public IntentData set%s(final String value) {");
         builder.append("\n        return put(DevFinal.STR.%s, value);");
         builder.append("\n    }");
         builder.append("\n");
         builder.append("\n    /**");
         builder.append("\n     * 移除 Key ( %s )");
-        builder.append("\n     * @return {@link DevIntent}");
+        builder.append("\n     * @return {@link IntentData}");
         builder.append("\n     */");
-        builder.append("\n    public DevIntent remove%s() {");
+        builder.append("\n    public IntentData remove%s() {");
         builder.append("\n        return remove(DevFinal.STR.%s);");
         builder.append("\n    }");
         builder.append("\n");
