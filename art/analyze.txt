@@ -27,3 +27,7 @@ anonymous type can be replaced with lambda
 
 
 local 'var' is never modified
+
+
+
+class member can have private
