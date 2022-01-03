@@ -148,7 +148,7 @@ dependencies {
 	// auto_dispose_lifecycle
 	implementation 'com.uber.autodispose2:autodispose-androidx-lifecycle:2.0.0'
 	// fastjson
-	implementation 'com.alibaba:fastjson:1.2.78'
+	implementation 'com.alibaba:fastjson:1.2.79'
 	// fastjson_android
 	implementation 'com.alibaba:fastjson:1.1.73.android'
 	// anchors

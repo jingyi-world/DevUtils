@@ -74,7 +74,7 @@
         "auto_dispose": "com.uber.autodispose2:autodispose:2.0.0",
         "auto_dispose_android": "com.uber.autodispose2:autodispose-android:2.0.0",
         "auto_dispose_lifecycle": "com.uber.autodispose2:autodispose-androidx-lifecycle:2.0.0",
-        "fastjson": "com.alibaba:fastjson:1.2.78",
+        "fastjson": "com.alibaba:fastjson:1.2.79",
         "fastjson_android": "com.alibaba:fastjson:1.1.73.android",
         "anchors": "com.effective.android:anchors:1.1.4",
         "panelSwitchHelper": "com.effective.android:panelSwitchHelper-androidx:1.3.13",
