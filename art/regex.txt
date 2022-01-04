@@ -30,6 +30,7 @@ Dev[\w]+Engine\.(get|set)Engine\(
 android\:id\=\"\@\+id\/[^v]
 android\:id\=\"\@\+id\/vid_[fai][\w]+_
 android\:id\=\"\@\+id\/vid_[\w]+_
+android\:id\=\"\@\+id\/vid_[\w\d]+_[\w\d]+
 
 
 

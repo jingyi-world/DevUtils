@@ -22,14 +22,14 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
         savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
-        binding.vidFsAppsortLinear.setOnClickListener { AppSortDialog(viewModel, context).show() }
-        binding.vidFsScanapkLinear.setOnClickListener { QuerySuffixDialog(context).show() }
-        binding.vidFsStorageLinear.setOnClickListener {
+        binding.vidAppsortLinear.setOnClickListener { AppSortDialog(viewModel, context).show() }
+        binding.vidScanapkLinear.setOnClickListener { QuerySuffixDialog(context).show() }
+        binding.vidStorageLinear.setOnClickListener {
             if (VersionUtils.isR()) {
                 AppUtils.startActivity(IntentUtils.getManageAppAllFilesAccessPermissionIntent())
             }
         }
-        binding.vidFsResetLinear.setOnClickListener {
+        binding.vidResetLinear.setOnClickListener {
             ProjectUtils.resetAppSortType() // 重置排序类型索引
             QuerySuffixUtils.reset() // 清空后缀
             AppListUtils.reset() // 清空应用列表
@@ -46,7 +46,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
 
     private fun selectAppSort() {
         // 设置选择排序文案
-        binding.vidFsAppsortTv.text =
+        binding.vidAppsortTv.text =
             ResourceUtils.getStringArray(R.array.array_app_sort)!![ProjectUtils.getAppSortType()]
     }
 
@@ -56,11 +56,11 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
         if (
             ViewUtils.setVisibility(
                 VersionUtils.isR(),
-                binding.vidFsStorageLinear
+                binding.vidStorageLinear
             )
         ) {
             TextViewUtils.setText(
-                binding.vidFsStorageTv,
+                binding.vidStorageTv,
                 ResourceUtils.getString(
                     if (PathUtils.isExternalStorageManager()) {
                         R.string.str_manage_storage_disable

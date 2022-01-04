@@ -39,9 +39,9 @@ class ApkListAdapter :
         val appInfo = item.appInfoBean
 
         ViewHelper.get()
-            .setText(appInfo.appName, holder.binding.vidAiaNameTv)
-            .setText(appInfo.appPackName, holder.binding.vidAiaPackTv)
-            .setImageDrawable(appInfo.appIcon, holder.binding.vidAiaIgview)
+            .setText(appInfo.appName, holder.binding.vidNameTv)
+            .setText(appInfo.appPackName, holder.binding.vidPackTv)
+            .setImageDrawable(appInfo.appIcon, holder.binding.vidIgview)
             .setOnClick({
                 if (FileUtils.isFileExists(item.uri)) {
                     val intent = Intent(context, ApkDetailsActivity::class.java)
@@ -54,12 +54,12 @@ class ApkListAdapter :
 
         if (FileUtils.isFileExists(item.uri)) {
             ViewHelper.get()
-                .setAntiAliasFlag(holder.binding.vidAiaNameTv)
-                .setAntiAliasFlag(holder.binding.vidAiaPackTv)
+                .setAntiAliasFlag(holder.binding.vidNameTv)
+                .setAntiAliasFlag(holder.binding.vidPackTv)
         } else {
             ViewHelper.get()
-                .setStrikeThruText(holder.binding.vidAiaNameTv)
-                .setStrikeThruText(holder.binding.vidAiaPackTv)
+                .setStrikeThruText(holder.binding.vidNameTv)
+                .setStrikeThruText(holder.binding.vidPackTv)
         }
     }
 }

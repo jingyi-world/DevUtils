@@ -52,15 +52,15 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
                 viewModel.postSDCardScan(value!!)
             }
         })
-        binding.vidFaRefresh.setEnableLoadMore(false)
-        binding.vidFaRefresh.setAdapter(mAdapter)
+        binding.vidRefresh.setEnableLoadMore(false)
+        binding.vidRefresh.setAdapter(mAdapter)
 
         whorlView = ViewUtils.findViewById(
-            binding.vidFaState.getView(ViewAssist.TYPE_ING),
-            R.id.vid_sli_load_view
+            binding.vidState.getView(ViewAssist.TYPE_ING),
+            R.id.vid_load_view
         )
         // 设置监听
-        binding.vidFaState.setListener(object : StateLayout.Listener {
+        binding.vidState.setListener(object : StateLayout.Listener {
             override fun onRemove(
                 layout: StateLayout,
                 type: Int,
@@ -73,9 +73,9 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
                 type: Int
             ) {
                 if (type == ViewAssist.TYPE_SUCCESS) {
-                    ViewUtils.reverseVisibilitys(true, binding.vidFaRefresh, binding.vidFaState)
+                    ViewUtils.reverseVisibilitys(true, binding.vidRefresh, binding.vidState)
                     whorlView?.stop()
-                    binding.vidFaRefresh.finishRefresh()
+                    binding.vidRefresh.finishRefresh()
                 }
             }
 
@@ -87,11 +87,11 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
             ) {
                 if (ViewUtils.reverseVisibilitys(
                         type == ViewAssist.TYPE_SUCCESS,
-                        binding.vidFaRefresh, binding.vidFaState
+                        binding.vidRefresh, binding.vidState
                     )
                 ) {
                     whorlView?.stop()
-                    binding.vidFaRefresh.finishRefresh()
+                    binding.vidRefresh.finishRefresh()
                 } else {
                     if (type == ViewAssist.TYPE_ING) {
                         if (whorlView != null && !whorlView!!.isCircling) {
@@ -101,7 +101,7 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
                         whorlView?.stop()
                         // 无数据处理
                         if (type == ViewAssist.TYPE_EMPTY_DATA) {
-                            binding.vidFaRefresh.finishRefresh()
+                            binding.vidRefresh.finishRefresh()
                             val tips = if (dataStore.searchContent.isEmpty()) {
                                 ResourceUtils.getString(R.string.str_search_noresult_tips_1)
                             } else {
@@ -111,16 +111,16 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
                                 )
                             }
                             TextViewUtils.setHtmlText(
-                                view.findViewById(R.id.vid_slnd_tips_tv), tips
+                                view.findViewById(R.id.vid_tips_tv), tips
                             )
                         }
                     }
                 }
             }
         })
-        binding.vidFaState.showIng()
+        binding.vidState.showIng()
         // 设置刷新事件
-        binding.vidFaRefresh.setOnRefreshListener {
+        binding.vidRefresh.setOnRefreshListener {
             requestReadWrite(true)
         }
         val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.Callback() {
@@ -152,12 +152,12 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
                         DevLogger.e(e)
                     }
                     if (mAdapter.isDataEmpty) {
-                        binding.vidFaState.showEmptyData()
+                        binding.vidState.showEmptyData()
                     }
                 }
             }
         })
-        itemTouchHelper.attachToRecyclerView(binding.vidFaRefresh.getRecyclerView())
+        itemTouchHelper.attachToRecyclerView(binding.vidRefresh.getRecyclerView())
     }
 
     override fun initObserve() {
@@ -194,13 +194,13 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
         // 回到顶部
         viewModel.backTopEvent.observe(this) {
             if (it == dataStore.typeEnum) {
-                ListViewUtils.smoothScrollToTop(binding.vidFaRefresh.getRecyclerView())
+                ListViewUtils.smoothScrollToTop(binding.vidRefresh.getRecyclerView())
             }
         }
         // 刷新操作
         viewModel.refresh.observe(this) {
             if (it == dataStore.typeEnum) {
-                binding.vidFaRefresh.getRefreshLayout()?.autoRefresh()
+                binding.vidRefresh.getRefreshLayout()?.autoRefresh()
             }
         }
         // 文件扫描
@@ -211,16 +211,16 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
                 AppSearchUtils.filterApkList(it, dataStore.searchContent)
             }
             if (lists.isEmpty()) {
-                binding.vidFaState.showEmptyData()
+                binding.vidState.showEmptyData()
             } else {
                 mAdapter.setDataList(lists)
-                binding.vidFaState.showSuccess()
+                binding.vidState.showSuccess()
             }
         }
         // 文件删除
         globalViewModel?.let {
             it.fileDelete.observe(this) {
-                binding.vidFaRefresh.getRecyclerView()?.adapter?.notifyDataSetChanged()
+                binding.vidRefresh.getRecyclerView()?.adapter?.notifyDataSetChanged()
             }
         }
     }

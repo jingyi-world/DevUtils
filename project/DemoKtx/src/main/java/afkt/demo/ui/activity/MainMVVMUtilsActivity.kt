@@ -35,10 +35,10 @@ class MainMVVMUtilsActivity :
         binding.title = "MVVM Utils Title"
 
         // 随机设置背景色
-        binding.vidAmmvvmuInclude.color = ColorUtils.getRandomColor()
+        binding.vidInclude.color = ColorUtils.getRandomColor()
 
         // 嵌套处理
-        MVVMUtilsFragment.commit(supportFragmentManager, R.id.vid_ammvvmu_frame, 0, 4)
+        MVVMUtilsFragment.commit(supportFragmentManager, R.id.vid_frame, 0, 4)
     }
 
     override fun initViewModel() {

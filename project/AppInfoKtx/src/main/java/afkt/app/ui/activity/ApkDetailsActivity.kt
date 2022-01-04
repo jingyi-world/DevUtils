@@ -45,23 +45,23 @@ class ApkDetailsActivity : BaseActivity<ActivityApkDetailsBinding>() {
             finish()
             return
         }
-        setSupportActionBar(binding.vidAadToolbar)
+        setSupportActionBar(binding.vidToolbar)
         supportActionBar?.let {
             // 给左上角图标的左边加上一个返回的图标
             it.setDisplayHomeAsUpEnabled(true)
             // 对应 ActionBar.DISPLAY_SHOW_TITLE
             it.setDisplayShowTitleEnabled(false)
             // 设置点击事件
-            binding.vidAadToolbar.setNavigationOnClickListener { finish() }
+            binding.vidToolbar.setNavigationOnClickListener { finish() }
         }
         // 获取 APP 信息
         val appInfoBean = apkInfoItem.appInfoBean
         ViewHelper.get()
-            .setImageDrawable(appInfoBean.appIcon, binding.vidAadAppIgview) // 设置 app 图标
-            .setText(appInfoBean.appName, binding.vidAadNameTv) // 设置 app 名
-            .setText(appInfoBean.versionName, binding.vidAadVnameTv) // 设置 app 版本
+            .setImageDrawable(appInfoBean.appIcon, binding.vidAppIgview) // 设置 app 图标
+            .setText(appInfoBean.appName, binding.vidNameTv) // 设置 app 名
+            .setText(appInfoBean.versionName, binding.vidVnameTv) // 设置 app 版本
 
-        binding.vidAadRecy.adapter = KeyValueAdapter(apkInfoItem.listKeyValues)
+        binding.vidRecy.adapter = KeyValueAdapter(apkInfoItem.listKeyValues)
             .setItemCallback(object : DevItemClickCallback<KeyValue>() {
                 override fun onItemClick(
                     value: KeyValue?,
@@ -81,7 +81,7 @@ class ApkDetailsActivity : BaseActivity<ActivityApkDetailsBinding>() {
     override fun initListener() {
         super.initListener()
         // 安装应用
-        binding.vidAadInstallTv.setOnClickListener {
+        binding.vidInstallTv.setOnClickListener {
             val sourceDir = apkInfoItem.appInfoBean.sourceDir
             if (FileUtils.isFileExists(sourceDir)) {
                 // Android 8.0以上
@@ -129,7 +129,7 @@ class ApkDetailsActivity : BaseActivity<ActivityApkDetailsBinding>() {
             }
         }
         // 删除安装包
-        binding.vidAadDeleteTv.setOnClickListener {
+        binding.vidDeleteTv.setOnClickListener {
             val sourceDir = apkInfoItem.appInfoBean.sourceDir
             if (FileUtils.isFileExists(sourceDir)) {
                 FileUtils.deleteFile(sourceDir)
@@ -152,13 +152,13 @@ class ApkDetailsActivity : BaseActivity<ActivityApkDetailsBinding>() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.vid_bmpi_share -> {
+            R.id.vid_menu_share -> {
                 ExportUtils.shareApp(apkInfoItem)
             }
-            R.id.vid_bmpi_export_apk -> {
+            R.id.vid_menu_export_apk -> {
                 ExportUtils.exportApp(apkInfoItem)
             }
-            R.id.vid_bmpi_export_apk_msg -> {
+            R.id.vid_menu_export_apk_msg -> {
                 ExportUtils.exportInfo(apkInfoItem)
             }
         }

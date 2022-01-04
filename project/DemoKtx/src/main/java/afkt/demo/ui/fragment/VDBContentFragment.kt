@@ -59,6 +59,6 @@ class VDBContentFragment : DevBaseContentViewDataBindingFragment<FragmentVdbCont
         )
 
         // 嵌套处理
-        ParentFragment.commit(childFragmentManager, binding.vidFvdbFrame.id, 0, 4)
+        ParentFragment.commit(childFragmentManager, binding.vidFrame.id, 0, 4)
     }
 }

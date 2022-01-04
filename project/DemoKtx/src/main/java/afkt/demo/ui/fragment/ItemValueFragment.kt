@@ -31,7 +31,7 @@ class ItemValueFragment : DevBaseContentViewBindingFragment<FragmentItemValueBin
         arguments?.let {
             val value = it.getInt(DevFinal.STR.VALUE)
 
-            binding.vidFivTv.text = "$value"
+            binding.vidTv.text = "$value"
 
             binding.root.setBackgroundColor(ColorUtils.getRandomColor())
         }

@@ -24,7 +24,7 @@ class DeviceActivity : BaseActivity<ActivityDeviceBinding>() {
             .setComponentName(DeviceReceiver::class.java)
 
         // 激活组件 ( 申请权限 )
-        binding.vidAdActiveBtn.setOnClickListener {
+        binding.vidActiveBtn.setOnClickListener {
             if (DevicePolicyUtils.getInstance().isAdminActive()) {
                 showToast(true, "已激活组件")
                 return@setOnClickListener
@@ -35,7 +35,7 @@ class DeviceActivity : BaseActivity<ActivityDeviceBinding>() {
         }
 
         // 移除组件
-        binding.vidAdRemoveActiveBtn.setOnClickListener {
+        binding.vidRemoveActiveBtn.setOnClickListener {
             DialogUtils.createAlertDialog(this, "移除组件",
                 "是否移除组件 ( 移除设备管理权限 )", "取消", "确认",
                 object : DialogUtils.DialogListener() {
@@ -48,14 +48,14 @@ class DeviceActivity : BaseActivity<ActivityDeviceBinding>() {
         }
 
         // 锁屏
-        binding.vidAdLockBtn.setOnClickListener {
+        binding.vidLockBtn.setOnClickListener {
             showToast(
                 DevicePolicyUtils.getInstance().lockNow()
             )
         }
 
         // 延迟锁屏
-        binding.vidAdDelayLockBtn.setOnClickListener {
+        binding.vidDelayLockBtn.setOnClickListener {
             showToast(
                 DevicePolicyUtils.getInstance().lockByTime(30000L)
             )

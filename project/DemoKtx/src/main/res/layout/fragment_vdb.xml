@@ -14,7 +14,7 @@
     </data>
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/vid_fvdb_scrollView"
+        android:id="@+id/vid_scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fadingEdge="none"
@@ -23,7 +23,7 @@
         android:scrollbars="none">
 
         <LinearLayout
-            android:id="@+id/vid_fvdb_linear"
+            android:id="@+id/vid_linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">

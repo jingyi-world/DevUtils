@@ -34,8 +34,8 @@ class KeyValueAdapter(data: List<KeyValue>) :
         val item = getDataItem(position)
 
         ViewHelper.get()
-            .setText(item.key, holder.binding.vidAikvKeyTv)
-            .setText(item.value, holder.binding.vidAikvValueTv)
+            .setText(item.key, holder.binding.vidKeyTv)
+            .setText(item.value, holder.binding.vidValueTv)
             .setOnClick({
                 mItemCallback?.onItemClick(item, position)
             }, holder.itemView)

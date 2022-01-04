@@ -36,7 +36,7 @@ class MainViewPagerActivity : DevBaseViewBindingActivity<ActivityMainViewpagerBi
         fragments.add(ItemValueFragment.get(3))
         fragments.add(ItemValueFragment.get(4))
 
-        binding.vidAmvpVp.apply {
+        binding.vidVp.apply {
             // 设置适配器
             adapter = MainTabAdapter(fragments, this@MainViewPagerActivity)
         }
@@ -47,25 +47,25 @@ class MainViewPagerActivity : DevBaseViewBindingActivity<ActivityMainViewpagerBi
                     return@setOnClick
                 }
                 setSelectTab(TAB_1)
-            }, binding.vidAmvpTab1)
+            }, binding.vidTab1)
             .setOnClick({
                 if (isSelectTab(TAB_2)) {
                     return@setOnClick
                 }
                 setSelectTab(TAB_2)
-            }, binding.vidAmvpTab2)
+            }, binding.vidTab2)
             .setOnClick({
                 if (isSelectTab(TAB_3)) {
                     return@setOnClick
                 }
                 setSelectTab(TAB_3)
-            }, binding.vidAmvpTab3)
+            }, binding.vidTab3)
             .setOnClick({
                 if (isSelectTab(TAB_4)) {
                     return@setOnClick
                 }
                 setSelectTab(TAB_4)
-            }, binding.vidAmvpTab4)
+            }, binding.vidTab4)
     }
 
     // Tab 类型索引
@@ -79,7 +79,7 @@ class MainViewPagerActivity : DevBaseViewBindingActivity<ActivityMainViewpagerBi
      * @param tabType Int
      */
     private fun isSelectTab(tabType: Int): Boolean {
-        return (binding.vidAmvpVp.currentItem == tabType)
+        return (binding.vidVp.currentItem == tabType)
     }
 
     /**
@@ -88,6 +88,6 @@ class MainViewPagerActivity : DevBaseViewBindingActivity<ActivityMainViewpagerBi
      */
     private fun setSelectTab(tabType: Int) {
         // 滑动到指定 Tab
-        binding.vidAmvpVp.setCurrentItem(tabType, false)
+        binding.vidVp.setCurrentItem(tabType, false)
     }
 }

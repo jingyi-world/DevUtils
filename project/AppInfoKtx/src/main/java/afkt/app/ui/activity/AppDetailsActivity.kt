@@ -40,21 +40,21 @@ class AppDetailsActivity : BaseActivity<ActivityAppDetailsBinding>() {
             finish()
             return
         }
-        setSupportActionBar(binding.vidAadToolbar)
+        setSupportActionBar(binding.vidToolbar)
         supportActionBar?.let {
             // 给左上角图标的左边加上一个返回的图标
             it.setDisplayHomeAsUpEnabled(true)
             // 对应 ActionBar.DISPLAY_SHOW_TITLE
             it.setDisplayShowTitleEnabled(false)
             // 设置点击事件
-            binding.vidAadToolbar.setNavigationOnClickListener { finish() }
+            binding.vidToolbar.setNavigationOnClickListener { finish() }
         }
         // 获取 APP 信息
         val appInfoBean = appInfoItem.appInfoBean
         ViewHelper.get()
-            .setImageDrawable(appInfoBean.appIcon, binding.vidAadAppIgview) // 设置 app 图标
-            .setText(appInfoBean.appName, binding.vidAadNameTv) // 设置 app 名
-            .setText(appInfoBean.versionName, binding.vidAadVnameTv) // 设置 app 版本
+            .setImageDrawable(appInfoBean.appIcon, binding.vidAppIgview) // 设置 app 图标
+            .setText(appInfoBean.appName, binding.vidNameTv) // 设置 app 名
+            .setText(appInfoBean.versionName, binding.vidVnameTv) // 设置 app 版本
 
         val lists = appInfoItem.listKeyValues
         lists.add(
@@ -71,7 +71,7 @@ class AppDetailsActivity : BaseActivity<ActivityAppDetailsBinding>() {
                 ResourceUtils.getString(R.string.str_goto_app_details_setting)
             )
         )
-        binding.vidAadRecy.adapter = KeyValueAdapter(lists)
+        binding.vidRecy.adapter = KeyValueAdapter(lists)
             .setItemCallback(object : dev.callback.DevItemClickCallback<KeyValue>() {
                 override fun onItemClick(
                     value: KeyValue?,
@@ -98,8 +98,8 @@ class AppDetailsActivity : BaseActivity<ActivityAppDetailsBinding>() {
                     }
                 }
             })
-        binding.vidAadOpenAppTv.setOnClickListener(this)
-        binding.vidAadUninstallTv.setOnClickListener(this)
+        binding.vidOpenAppTv.setOnClickListener(this)
+        binding.vidUninstallTv.setOnClickListener(this)
     }
 
     // ===========
@@ -112,8 +112,8 @@ class AppDetailsActivity : BaseActivity<ActivityAppDetailsBinding>() {
             return
         }
         when (v.id) {
-            R.id.vid_aad_open_app_tv -> AppUtils.launchApp(appInfoItem.appInfoBean.appPackName)
-            R.id.vid_aad_uninstall_tv -> AppUtils.uninstallApp(appInfoItem.appInfoBean.appPackName)
+            R.id.vid_open_app_tv -> AppUtils.launchApp(appInfoItem.appInfoBean.appPackName)
+            R.id.vid_uninstall_tv -> AppUtils.uninstallApp(appInfoItem.appInfoBean.appPackName)
         }
     }
 
@@ -127,20 +127,20 @@ class AppDetailsActivity : BaseActivity<ActivityAppDetailsBinding>() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId != R.id.vid_bmai_export_app_msg) {
+        if (item.itemId != R.id.vid_menu_export_app_msg) {
             if (!AppUtils.isInstalledApp(appInfoItem.appInfoBean.appPackName)) {
                 ToastTintUtils.error(ResourceUtils.getString(R.string.str_app_not_exist))
                 return false
             }
         }
         when (item.itemId) {
-            R.id.vid_bmai_share -> {
+            R.id.vid_menu_share -> {
                 ExportUtils.shareApp(appInfoItem)
             }
-            R.id.vid_bmai_export_app -> {
+            R.id.vid_menu_export_app -> {
                 ExportUtils.exportApp(appInfoItem)
             }
-            R.id.vid_bmai_export_app_msg -> {
+            R.id.vid_menu_export_app_msg -> {
                 ExportUtils.exportInfo(appInfoItem)
             }
         }

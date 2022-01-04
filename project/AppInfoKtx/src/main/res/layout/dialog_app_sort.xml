@@ -25,13 +25,13 @@
                 android:textSize="@dimen/un_sp_18" />
 
             <RadioGroup
-                android:id="@+id/vid_das_radiogroup"
+                android:id="@+id/vid_radiogroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/un_dp_17" />
 
             <TextView
-                android:id="@+id/vid_das_cancel_tv"
+                android:id="@+id/vid_cancel_tv"
                 style="@style/AppTheme.Base_TextView"
                 android:layout_width="wrap_content"
                 android:layout_gravity="right"

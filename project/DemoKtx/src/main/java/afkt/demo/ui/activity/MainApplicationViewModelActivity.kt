@@ -33,13 +33,13 @@ class MainApplicationViewModelActivity : DevBaseViewModelActivity<ApplicationVie
 
         ViewHelper.get().setText(
             "Application ViewModel Title",
-            findViewById(R.id.vid_amavm_title_tv)
+            findViewById(R.id.vid_title_tv)
         ).setBackgroundColor(
-            ColorUtils.getRandomColor(), findViewById(R.id.vid_ivd_view)
+            ColorUtils.getRandomColor(), findViewById(R.id.vid_view)
         )
 
         // 嵌套处理
-        ApplicationViewModelFragment.commit(supportFragmentManager, R.id.vid_amavm_frame, 0, 4)
+        ApplicationViewModelFragment.commit(supportFragmentManager, R.id.vid_frame, 0, 4)
     }
 
     override fun initViewModel() {

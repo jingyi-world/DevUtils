@@ -50,10 +50,10 @@ class QuerySuffixDialog(context: Context?) :
 
         // 初始化适配器并绑定
         val adapter = QuerySuffixAdapter()
-        binding.vidDqsRecycleview.adapter = adapter
+        binding.vidRecycleview.adapter = adapter
         adapter.refreshData()
 
-        binding.vidDqsCloseTv.setOnClickListener {
+        binding.vidCloseTv.setOnClickListener {
             // 提示设置生效
             ToastTintUtils.success(ResourceUtils.getString(R.string.str_setting_scan_suffix_suc))
             cancel()
@@ -82,10 +82,10 @@ class QuerySuffixDialog(context: Context?) :
             val item = getDataItem(position)
 
             ViewHelper.get()
-                .setText(item, holder.binding.vidAiqsSuffixTv)
+                .setText(item, holder.binding.vidSuffixTv)
                 .setImageResource(
                     if (item.isEmpty()) R.drawable.icon_add else R.drawable.icon_close,
-                    holder.binding.vidAiqsIgview
+                    holder.binding.vidIgview
                 )
                 .setOnClick({
                     if (item.isEmpty()) {
@@ -97,7 +97,7 @@ class QuerySuffixDialog(context: Context?) :
                         QuerySuffixUtils.refresh(maps)
                         refreshData()
                     }
-                }, holder.binding.vidAiqsFramelayout)
+                }, holder.binding.vidFramelayout)
         }
 
         private var maps = LinkedHashMap<String, String>()

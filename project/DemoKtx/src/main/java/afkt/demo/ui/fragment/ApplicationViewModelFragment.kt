@@ -43,7 +43,7 @@ class ApplicationViewModelFragment : DevBaseViewBindingFragment<FragmentParentBi
             val positionStr = (position + 1).toString()
 
             // 设置索引文案
-            binding.vidFpPositionTv.text = positionStr
+            binding.vidPositionTv.text = positionStr
 
             val viewModel = DevBaseViewModelAssist().getAppViewModel(
                 BaseApplication.getApplication(), ApplicationViewModel::class.java
@@ -58,7 +58,7 @@ class ApplicationViewModelFragment : DevBaseViewBindingFragment<FragmentParentBi
             if (position >= max) return
 
             // 设置 Fragment
-            commit(childFragmentManager, binding.vidFpFrame.id, position + 1, max)
+            commit(childFragmentManager, binding.vidFrame.id, position + 1, max)
         }
 
         LogPrintUtils.dTag(

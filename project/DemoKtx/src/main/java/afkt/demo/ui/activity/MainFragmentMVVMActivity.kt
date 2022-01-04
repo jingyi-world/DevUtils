@@ -32,10 +32,10 @@ class MainFragmentMVVMActivity :
         binding.title = "Fragment MVVM Title"
 
         // 随机设置背景色
-        binding.vidAmfmvvmInclude.color = ColorUtils.getRandomColor()
+        binding.vidInclude.color = ColorUtils.getRandomColor()
 
         // 嵌套处理
-        FragmentMVVMFragment.commit(supportFragmentManager, R.id.vid_amfmvvm_frame, 0, 4)
+        FragmentMVVMFragment.commit(supportFragmentManager, R.id.vid_frame, 0, 4)
     }
 
     override fun initViewModel() {

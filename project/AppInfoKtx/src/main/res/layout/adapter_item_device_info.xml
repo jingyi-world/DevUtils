@@ -7,13 +7,13 @@
     android:padding="@dimen/un_dp_15">
 
     <TextView
-        android:id="@+id/vid_aidi_key_tv"
+        android:id="@+id/vid_key_tv"
         style="@style/AppTheme.Base_TextView"
         android:textSize="@dimen/un_sp_14"
         tools:text="@string/app_name" />
 
     <TextView
-        android:id="@+id/vid_aidi_value_tv"
+        android:id="@+id/vid_value_tv"
         style="@style/AppTheme.Base_TextView"
         android:layout_marginTop="@dimen/un_dp_5"
         android:textSize="@dimen/un_sp_15"

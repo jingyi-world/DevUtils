@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/vid_fp_position_tv"
+        android:id="@+id/vid_position_tv"
         android:layout_width="match_parent"
         android:layout_height="@dimen/un_dp_100"
         android:gravity="center"
@@ -16,7 +16,7 @@
         tools:text="1" />
 
     <FrameLayout
-        android:id="@+id/vid_fp_frame"
+        android:id="@+id/vid_frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>

@@ -36,7 +36,7 @@ class MainBaseContentActivity :
         binding.title = "DataBinding Content Title"
 
         // 随机设置背景色
-        binding.vidAmcInclude.color = ColorUtils.getRandomColor()
+        binding.vidInclude.color = ColorUtils.getRandomColor()
 
         contentAssist.addTitleView(
             QuickHelper.get(TextView(this))

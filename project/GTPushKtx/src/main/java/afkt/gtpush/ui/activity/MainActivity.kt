@@ -14,11 +14,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun initListener() {
         super.initListener()
 
-        binding.vidAmOtherBtn.setOnClickListener {
+        binding.vidOtherBtn.setOnClickListener {
             routerActivity(RouterPath.OtherActivity_PATH)
         }
 
-        binding.vidAmDeviceBtn.setOnClickListener {
+        binding.vidDeviceBtn.setOnClickListener {
             routerActivity(RouterPath.DeviceActivity_PATH)
         }
     }

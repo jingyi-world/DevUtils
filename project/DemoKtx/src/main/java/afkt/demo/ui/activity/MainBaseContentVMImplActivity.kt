@@ -37,7 +37,7 @@ class MainBaseContentVMImplActivity :
         binding.title = "MVVM VMImpl Content Title"
 
         // 随机设置背景色
-        binding.vidAmcvmiInclude.color = ColorUtils.getRandomColor()
+        binding.vidInclude.color = ColorUtils.getRandomColor()
 
         contentAssist.addTitleView(
             QuickHelper.get(TextView(this))

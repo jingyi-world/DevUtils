@@ -30,7 +30,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         binding.title = "DataBinding Title"
 
         // 随机设置背景色
-        binding.vidAmInclude.color = ColorUtils.getRandomColor()
+        binding.vidInclude.color = ColorUtils.getRandomColor()
 
 //        // 跳转校验
 //        startActivity(Intent(this, MainNonViewDataActivity::class.java))

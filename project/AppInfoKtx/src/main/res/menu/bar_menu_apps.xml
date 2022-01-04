@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/vid_bma_search"
+        android:id="@+id/vid_menu_search"
         android:title="@string/str_search"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/vid_bma_refresh"
+        android:id="@+id/vid_menu_refresh"
         android:title="@string/str_refresh" />
 </menu>

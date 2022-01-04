@@ -24,7 +24,7 @@
             android:textSize="@dimen/un_sp_15" />
 
         <LinearLayout
-            android:id="@+id/vid_fs_appsort_linear"
+            android:id="@+id/vid_appsort_linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/selector_bg_item_r3"
@@ -39,7 +39,7 @@
                 android:textSize="@dimen/un_sp_16" />
 
             <TextView
-                android:id="@+id/vid_fs_appsort_tv"
+                android:id="@+id/vid_appsort_tv"
                 style="@style/AppTheme.Base_TextView"
                 android:layout_marginTop="@dimen/un_dp_3"
                 android:textColor="@color/color_808080"
@@ -47,7 +47,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/vid_fs_scanapk_linear"
+            android:id="@+id/vid_scanapk_linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/selector_bg_item_r3"
@@ -70,7 +70,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/vid_fs_storage_linear"
+            android:id="@+id/vid_storage_linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/selector_bg_item_r3"
@@ -85,7 +85,7 @@
                 android:textSize="@dimen/un_sp_16" />
 
             <TextView
-                android:id="@+id/vid_fs_storage_tv"
+                android:id="@+id/vid_storage_tv"
                 style="@style/AppTheme.Base_TextView"
                 android:layout_marginTop="@dimen/un_dp_3"
                 android:text="@string/str_manage_storage_enable"
@@ -103,7 +103,7 @@
             android:textSize="@dimen/un_sp_15" />
 
         <LinearLayout
-            android:id="@+id/vid_fs_reset_linear"
+            android:id="@+id/vid_reset_linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/selector_bg_item_r3"

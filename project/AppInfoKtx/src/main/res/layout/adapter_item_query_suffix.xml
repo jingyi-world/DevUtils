@@ -5,16 +5,16 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/vid_aiqs_suffix_tv"
+        android:id="@+id/vid_suffix_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_toLeftOf="@id/vid_aiqs_framelayout"
+        android:layout_toLeftOf="@id/vid_framelayout"
         android:paddingLeft="@dimen/un_dp_10" />
 
     <FrameLayout
-        android:id="@+id/vid_aiqs_framelayout"
+        android:id="@+id/vid_framelayout"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
@@ -22,7 +22,7 @@
         android:padding="@dimen/un_dp_10">
 
         <ImageView
-            android:id="@+id/vid_aiqs_igview"
+            android:id="@+id/vid_igview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|right"

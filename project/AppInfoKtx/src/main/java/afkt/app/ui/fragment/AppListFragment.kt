@@ -39,13 +39,13 @@ class AppListFragment : BaseFragment<FragmentAppBinding>() {
         savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
-        binding.vidFaRefresh.setEnableLoadMore(false)
+        binding.vidRefresh.setEnableLoadMore(false)
         whorlView = ViewUtils.findViewById(
-            binding.vidFaState.getView(ViewAssist.TYPE_ING),
-            R.id.vid_sli_load_view
+            binding.vidState.getView(ViewAssist.TYPE_ING),
+            R.id.vid_load_view
         )
         // 设置监听
-        binding.vidFaState.setListener(object : StateLayout.Listener {
+        binding.vidState.setListener(object : StateLayout.Listener {
             override fun onRemove(
                 layout: StateLayout,
                 type: Int,
@@ -58,9 +58,9 @@ class AppListFragment : BaseFragment<FragmentAppBinding>() {
                 type: Int
             ) {
                 if (type == ViewAssist.TYPE_SUCCESS) {
-                    ViewUtils.reverseVisibilitys(true, binding.vidFaRefresh, binding.vidFaState)
+                    ViewUtils.reverseVisibilitys(true, binding.vidRefresh, binding.vidState)
                     whorlView?.stop()
-                    binding.vidFaRefresh.finishRefresh()
+                    binding.vidRefresh.finishRefresh()
                 }
             }
 
@@ -72,11 +72,11 @@ class AppListFragment : BaseFragment<FragmentAppBinding>() {
             ) {
                 if (ViewUtils.reverseVisibilitys(
                         type == ViewAssist.TYPE_SUCCESS,
-                        binding.vidFaRefresh, binding.vidFaState
+                        binding.vidRefresh, binding.vidState
                     )
                 ) {
                     whorlView?.stop()
-                    binding.vidFaRefresh.finishRefresh()
+                    binding.vidRefresh.finishRefresh()
                 } else {
                     if (type == ViewAssist.TYPE_ING) {
                         if (whorlView != null && !whorlView!!.isCircling) {
@@ -86,7 +86,7 @@ class AppListFragment : BaseFragment<FragmentAppBinding>() {
                         whorlView?.stop()
                         // 无数据处理
                         if (type == ViewAssist.TYPE_EMPTY_DATA) {
-                            binding.vidFaRefresh.finishRefresh()
+                            binding.vidRefresh.finishRefresh()
                             val tips = if (dataStore.searchContent.isEmpty()) {
                                 ResourceUtils.getString(R.string.str_search_noresult_tips_1)
                             } else {
@@ -96,16 +96,16 @@ class AppListFragment : BaseFragment<FragmentAppBinding>() {
                                 )
                             }
                             TextViewUtils.setHtmlText(
-                                view.findViewById(R.id.vid_slnd_tips_tv), tips
+                                view.findViewById(R.id.vid_tips_tv), tips
                             )
                         }
                     }
                 }
             }
         })
-        binding.vidFaState.showIng()
+        binding.vidState.showIng()
         // 设置刷新事件
-        binding.vidFaRefresh.setOnRefreshListener {
+        binding.vidRefresh.setOnRefreshListener {
             AppListUtils.getAppLists(dataStore.typeEnum, true)
         }
     }
@@ -142,10 +142,10 @@ class AppListFragment : BaseFragment<FragmentAppBinding>() {
                     AppSearchUtils.filterAppList(it.lists, dataStore.searchContent)
                 }
                 if (lists.isEmpty()) {
-                    binding.vidFaState.showEmptyData()
+                    binding.vidState.showEmptyData()
                 } else {
-                    binding.vidFaRefresh.setAdapter(AppListAdapter(lists))
-                    binding.vidFaState.showSuccess()
+                    binding.vidRefresh.setAdapter(AppListAdapter(lists))
+                    binding.vidState.showSuccess()
                 }
             }
         }
@@ -159,13 +159,13 @@ class AppListFragment : BaseFragment<FragmentAppBinding>() {
         // 回到顶部
         viewModel.backTopEvent.observe(this) {
             if (it == dataStore.typeEnum) {
-                ListViewUtils.smoothScrollToTop(binding.vidFaRefresh.getRecyclerView())
+                ListViewUtils.smoothScrollToTop(binding.vidRefresh.getRecyclerView())
             }
         }
         // 刷新操作
         viewModel.refresh.observe(this) {
             if (it == dataStore.typeEnum) {
-                binding.vidFaRefresh.getRefreshLayout()?.autoRefresh()
+                binding.vidRefresh.getRefreshLayout()?.autoRefresh()
             }
         }
     }

@@ -28,7 +28,7 @@ class MessageActivity : BaseActivity<ActivityMessageBinding>() {
     override fun initValue() {
         super.initValue()
 
-        binding.vidAmMessageTv.text = DevEngine.getJSON()?.toJsonIndent(
+        binding.vidMessageTv.text = DevEngine.getJSON()?.toJsonIndent(
             pushData
         ) ?: "error"
     }

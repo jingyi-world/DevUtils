@@ -73,20 +73,20 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
         })
         initFragment()
         // 设置标题
-        binding.vidAmNavView.setCheckedItem(getNavItemId())
-        binding.vidAmToolbar.setTitle(DISPLAY_FRAGMENT_TYPE.titleId)
-        binding.vidAmTopBtn.setOnClickListener {
+        binding.vidNavView.setCheckedItem(getNavItemId())
+        binding.vidToolbar.setTitle(DISPLAY_FRAGMENT_TYPE.titleId)
+        binding.vidTopBtn.setOnClickListener {
             viewModel.postBackTop(mFragmentType)
         }
         // 设置侧边栏
-        setSupportActionBar(binding.vidAmToolbar)
+        setSupportActionBar(binding.vidToolbar)
         // 设置切换动画事件等
         val toggle = ActionBarDrawerToggle(
-            this, binding.vidAmDrawerLayout, binding.vidAmToolbar,
+            this, binding.vidDrawerLayout, binding.vidToolbar,
             R.string.str_navigation_drawer_open,
             R.string.str_navigation_drawer_close
         )
-        binding.vidAmDrawerLayout.addDrawerListener(toggle)
+        binding.vidDrawerLayout.addDrawerListener(toggle)
         toggle.syncState()
         // 显示 Fragment Type
         toggleFragment(DISPLAY_FRAGMENT_TYPE)
@@ -95,7 +95,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
     override fun initListener() {
         super.initListener()
         // 设置 NavigationView Item 点击事件
-        binding.vidAmNavView.setNavigationItemSelectedListener { item ->
+        binding.vidNavView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.vid_nav_user_apps -> toggleFragment(TypeEnum.APP_USER)
                 R.id.vid_nav_system_apps -> toggleFragment(TypeEnum.APP_SYSTEM)
@@ -104,7 +104,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
                 R.id.vid_nav_query_apk -> toggleFragment(TypeEnum.QUERY_APK)
                 R.id.vid_nav_setting -> toggleFragment(TypeEnum.SETTING)
             }
-            binding.vidAmDrawerLayout.closeDrawer(GravityCompat.START)
+            binding.vidDrawerLayout.closeDrawer(GravityCompat.START)
             true
         }
     }
@@ -129,7 +129,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
 
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         for (item in mFragments.values) {
-            transaction.add(R.id.vid_am_linear, item, item.toString()).hide(item)
+            transaction.add(R.id.vid_linear, item, item.toString()).hide(item)
         }
         transaction.commit()
     }
@@ -151,17 +151,17 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
             // 回到顶部按钮控制
             when (type) {
                 TypeEnum.APP_USER, TypeEnum.APP_SYSTEM, TypeEnum.QUERY_APK -> {
-                    ViewUtils.setVisibility(true, binding.vidAmTopBtn)
+                    ViewUtils.setVisibility(true, binding.vidTopBtn)
                 }
-                else -> ViewUtils.setVisibility(false, binding.vidAmTopBtn)
+                else -> ViewUtils.setVisibility(false, binding.vidTopBtn)
             }
             // 通知系统更新菜单
             invalidateOptionsMenu()
             // 发送 Fragment 切换通知事件
             viewModel.postFragmentChange(type)
             // 设置标题
-            binding.vidAmToolbar.setTitle(type.titleId)
-            binding.vidAmNavView.setCheckedItem(getNavItemId())
+            binding.vidToolbar.setTitle(type.titleId)
+            binding.vidNavView.setCheckedItem(getNavItemId())
             // 失去焦点 ( 解决存在键盘, 点击侧边导航栏切换, 软键盘还存在 )
             searchView?.clearFocus()
         }
@@ -185,8 +185,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
 
     override fun onBackPressed() {
         // 如果显示了侧边栏, 则关闭
-        if (binding.vidAmDrawerLayout.isDrawerOpen(GravityCompat.START)) {
-            binding.vidAmDrawerLayout.closeDrawer(GravityCompat.START)
+        if (binding.vidDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+            binding.vidDrawerLayout.closeDrawer(GravityCompat.START)
         } else {
             searchView?.let {
                 if (!it.isIconified) {
@@ -240,15 +240,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.vid_bma_refresh -> viewModel.postRefresh(mFragmentType)
-            R.id.vid_bmd_export_item -> viewModel.postExportEvent(mFragmentType)
+            R.id.vid_menu_refresh -> viewModel.postRefresh(mFragmentType)
+            R.id.vid_menu_export_item -> viewModel.postExportEvent(mFragmentType)
         }
         return true
     }
 
     // 初始化搜索操作
     private fun initSearchOperate(menu: Menu) {
-        val searchItem = menu.findItem(R.id.vid_bma_search)
+        val searchItem = menu.findItem(R.id.vid_menu_search)
         // 初始化搜索 View
         searchView = searchItem.actionView as SearchView
         searchView?.let {

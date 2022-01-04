@@ -7,7 +7,7 @@
     android:padding="@dimen/un_dp_10">
 
     <ImageView
-        android:id="@+id/vid_aia_igview"
+        android:id="@+id/vid_igview"
         android:layout_width="@dimen/un_dp_50"
         android:layout_height="@dimen/un_dp_50"
         android:layout_alignParentLeft="true"
@@ -20,11 +20,11 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/un_dp_10"
-        android:layout_toRightOf="@id/vid_aia_igview"
+        android:layout_toRightOf="@id/vid_igview"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/vid_aia_name_tv"
+            android:id="@+id/vid_name_tv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -35,7 +35,7 @@
             tools:text="@string/app_name" />
 
         <TextView
-            android:id="@+id/vid_aia_pack_tv"
+            android:id="@+id/vid_pack_tv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"

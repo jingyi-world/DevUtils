@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         checkOverlayPermission()
         // Activity 栈
-        binding.vidAmActivityTrackerBtn.setOnClickListener {
+        binding.vidActivityTrackerBtn.setOnClickListener {
             if (AccessibilityListenerService.checkAccessibility()) {
                 startService(
                     Intent(this@MainActivity, AccessibilityListenerService::class.java)

@@ -26,6 +26,6 @@ class MainNonViewDataActivity : DevBaseViewBindingActivity<ActivityMainNonViewda
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding.vidAmnvdTv.text = "非使用 Data 的 ViewDataBinding"
+        binding.vidTv.text = "非使用 Data 的 ViewDataBinding"
     }
 }
