@@ -26,13 +26,14 @@ import dev.utils.app.ResourceUtils
 import dev.utils.app.ViewUtils
 import dev.utils.app.assist.DelayAssist
 import dev.utils.app.toast.ToastTintUtils
+import java.util.*
 
 class MainActivity : BaseActivity<ActivityMainBinding>(),
     View.OnClickListener {
 
     private var searchView: SearchView? = null
 
-    private var mFragments: HashMap<TypeEnum, Fragment> = HashMap()
+    private var mFragments: EnumMap<TypeEnum, Fragment> = EnumMap(TypeEnum::class.java)
 
     // 当前 Fragment 类型
     private var mFragmentType = TypeEnum.NONE
