@@ -25,7 +25,7 @@ class DeviceActivity : BaseActivity<ActivityDeviceBinding>() {
 
         // 激活组件 ( 申请权限 )
         binding.vidActiveBtn.setOnClickListener {
-            if (DevicePolicyUtils.getInstance().isAdminActive()) {
+            if (DevicePolicyUtils.getInstance().isAdminActive) {
                 showToast(true, "已激活组件")
                 return@setOnClickListener
             }
