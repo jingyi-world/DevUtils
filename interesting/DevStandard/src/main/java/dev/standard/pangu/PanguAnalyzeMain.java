@@ -45,12 +45,12 @@ final class PanguAnalyzeMain {
 //                        && absolutePath.endsWith(".gradle")
 //                        && absolutePath.endsWith(".java")
 
-                return absolutePath.indexOf("\\.git") != -1
-                        || absolutePath.indexOf("\\.idea") != -1
-                        || absolutePath.indexOf("\\.gradlew") != -1
-                        || absolutePath.indexOf("\\wrapper") != -1
-                        || absolutePath.indexOf("\\.gradle") != -1
-                        || absolutePath.indexOf("\\build") != -1
+                return absolutePath.contains(File.separator + ".git")
+                        || absolutePath.contains(File.separator + ".idea")
+                        || absolutePath.contains(File.separator + ".gradlew")
+                        || absolutePath.contains(File.separator + "wrapper")
+                        || absolutePath.contains(File.separator + ".gradle")
+                        || absolutePath.contains(File.separator + "build")
                         || FileUtils.isAudioFormats(file)
                         || FileUtils.isVideoFormats(file)
                         || FileUtils.isImageFormats(file)
