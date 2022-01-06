@@ -45,7 +45,7 @@ class AppSortDialog(
         val appSortArrays: Array<String> = ResourceUtils.getStringArray(R.array.array_app_sort)
         for (i in appSortArrays.indices) {
             val itemView: View = inflater.inflate(R.layout.view_radio_btn, null, false)
-            val radioButton = itemView.findViewById<RadioButton>(R.id.vid_radio)
+            val radioButton = itemView.findViewById<RadioButton>(R.id.vid_rb)
             radioButton.id = i
             radioButton.text = appSortArrays[i]
             radioButton.setOnClickListener { // 获取选中索引
@@ -57,7 +57,7 @@ class AppSortDialog(
                 }
                 cancel()
             }
-            binding.vidRadiogroup.addView(
+            binding.vidRg.addView(
                 itemView,
                 ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
@@ -65,7 +65,7 @@ class AppSortDialog(
                 )
             )
         }
-        binding.vidRadiogroup.check(ProjectUtils.getAppSortType())
+        binding.vidRg.check(ProjectUtils.getAppSortType())
         binding.vidCancelTv.setOnClickListener { cancel() }
     }
 }

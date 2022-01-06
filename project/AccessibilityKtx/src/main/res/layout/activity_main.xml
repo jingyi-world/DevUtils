@@ -7,7 +7,7 @@
     android:scrollbars="none">
 
     <LinearLayout
-        android:id="@+id/vid_drawer_layout"
+        android:id="@+id/vid_drawer_ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"

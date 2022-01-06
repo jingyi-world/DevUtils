@@ -41,11 +41,11 @@ class AppListFragment : BaseFragment<FragmentAppBinding>() {
         super.onViewCreated(view, savedInstanceState)
         binding.vidRefresh.setEnableLoadMore(false)
         whorlView = ViewUtils.findViewById(
-            binding.vidState.getView(ViewAssist.TYPE_ING),
-            R.id.vid_load_view
+            binding.vidStateSl.getView(ViewAssist.TYPE_ING),
+            R.id.vid_whv
         )
         // 设置监听
-        binding.vidState.setListener(object : StateLayout.Listener {
+        binding.vidStateSl.setListener(object : StateLayout.Listener {
             override fun onRemove(
                 layout: StateLayout,
                 type: Int,
@@ -58,7 +58,7 @@ class AppListFragment : BaseFragment<FragmentAppBinding>() {
                 type: Int
             ) {
                 if (type == ViewAssist.TYPE_SUCCESS) {
-                    ViewUtils.reverseVisibilitys(true, binding.vidRefresh, binding.vidState)
+                    ViewUtils.reverseVisibilitys(true, binding.vidRefresh, binding.vidStateSl)
                     whorlView?.stop()
                     binding.vidRefresh.finishRefresh()
                 }
@@ -72,7 +72,7 @@ class AppListFragment : BaseFragment<FragmentAppBinding>() {
             ) {
                 if (ViewUtils.reverseVisibilitys(
                         type == ViewAssist.TYPE_SUCCESS,
-                        binding.vidRefresh, binding.vidState
+                        binding.vidRefresh, binding.vidStateSl
                     )
                 ) {
                     whorlView?.stop()
@@ -103,7 +103,7 @@ class AppListFragment : BaseFragment<FragmentAppBinding>() {
                 }
             }
         })
-        binding.vidState.showIng()
+        binding.vidStateSl.showIng()
         // 设置刷新事件
         binding.vidRefresh.setOnRefreshListener {
             AppListUtils.getAppLists(dataStore.typeEnum, true)
@@ -142,10 +142,10 @@ class AppListFragment : BaseFragment<FragmentAppBinding>() {
                     AppSearchUtils.filterAppList(it.lists, dataStore.searchContent)
                 }
                 if (lists.isEmpty()) {
-                    binding.vidState.showEmptyData()
+                    binding.vidStateSl.showEmptyData()
                 } else {
                     binding.vidRefresh.setAdapter(AppListAdapter(lists))
-                    binding.vidState.showSuccess()
+                    binding.vidStateSl.showSuccess()
                 }
             }
         }

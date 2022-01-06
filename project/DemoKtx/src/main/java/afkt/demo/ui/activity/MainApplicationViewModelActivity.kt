@@ -39,7 +39,7 @@ class MainApplicationViewModelActivity : DevBaseViewModelActivity<ApplicationVie
         )
 
         // 嵌套处理
-        ApplicationViewModelFragment.commit(supportFragmentManager, R.id.vid_frame, 0, 4)
+        ApplicationViewModelFragment.commit(supportFragmentManager, R.id.vid_fl, 0, 4)
     }
 
     override fun initViewModel() {

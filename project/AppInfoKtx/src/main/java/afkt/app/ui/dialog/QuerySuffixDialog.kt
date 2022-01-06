@@ -50,7 +50,7 @@ class QuerySuffixDialog(context: Context?) :
 
         // 初始化适配器并绑定
         val adapter = QuerySuffixAdapter()
-        binding.vidRecycleview.adapter = adapter
+        binding.vidRv.adapter = adapter
         adapter.refreshData()
 
         binding.vidCloseTv.setOnClickListener {
@@ -85,7 +85,7 @@ class QuerySuffixDialog(context: Context?) :
                 .setText(item, holder.binding.vidSuffixTv)
                 .setImageResource(
                     if (item.isEmpty()) R.drawable.icon_add else R.drawable.icon_close,
-                    holder.binding.vidIgview
+                    holder.binding.vidIv
                 )
                 .setOnClick({
                     if (item.isEmpty()) {
@@ -97,7 +97,7 @@ class QuerySuffixDialog(context: Context?) :
                         QuerySuffixUtils.refresh(maps)
                         refreshData()
                     }
-                }, holder.binding.vidFramelayout)
+                }, holder.binding.vidFl)
         }
 
         private var maps = LinkedHashMap<String, String>()

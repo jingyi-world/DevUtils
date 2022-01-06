@@ -10,7 +10,7 @@
     </data>
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/vid_scrollView"
+        android:id="@+id/vid_nsv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/color_d9"
@@ -20,7 +20,7 @@
         android:scrollbars="none">
 
         <LinearLayout
-            android:id="@+id/vid_linear"
+            android:id="@+id/vid_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -36,7 +36,7 @@
                 tools:text="标题" />
 
             <FrameLayout
-                android:id="@+id/vid_frame"
+                android:id="@+id/vid_fl"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 

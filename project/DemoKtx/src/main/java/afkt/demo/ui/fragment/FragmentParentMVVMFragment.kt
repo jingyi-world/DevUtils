@@ -56,7 +56,7 @@ class FragmentParentMVVMFragment :
             if (position >= max) return
 
             // 设置 Fragment
-            commit(childFragmentManager, binding.vidFrame.id, position + 1, max)
+            commit(childFragmentManager, binding.vidFl.id, position + 1, max)
         }
 
         LogPrintUtils.dTag(

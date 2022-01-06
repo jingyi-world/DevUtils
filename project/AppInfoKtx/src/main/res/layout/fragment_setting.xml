@@ -24,7 +24,7 @@
             android:textSize="@dimen/un_sp_15" />
 
         <LinearLayout
-            android:id="@+id/vid_appsort_linear"
+            android:id="@+id/vid_appsort_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/selector_bg_item_r3"
@@ -47,7 +47,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/vid_scanapk_linear"
+            android:id="@+id/vid_scanapk_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/selector_bg_item_r3"
@@ -70,7 +70,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/vid_storage_linear"
+            android:id="@+id/vid_storage_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/selector_bg_item_r3"
@@ -103,7 +103,7 @@
             android:textSize="@dimen/un_sp_15" />
 
         <LinearLayout
-            android:id="@+id/vid_reset_linear"
+            android:id="@+id/vid_reset_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/selector_bg_item_r3"

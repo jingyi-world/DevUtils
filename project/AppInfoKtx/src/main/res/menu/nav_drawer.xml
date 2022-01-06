@@ -8,10 +8,12 @@
             android:id="@+id/vid_nav_user_apps"
             android:icon="@drawable/icon_user_app"
             android:title="@string/str_user_apps" />
+
         <item
             android:id="@+id/vid_nav_system_apps"
             android:icon="@drawable/icon_system_app"
             android:title="@string/str_system_apps" />
+
         <item
             android:id="@+id/vid_nav_phone_info"
             android:icon="@drawable/icon_phone_info"

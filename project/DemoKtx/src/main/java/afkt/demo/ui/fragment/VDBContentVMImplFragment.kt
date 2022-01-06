@@ -61,7 +61,7 @@ class VDBContentVMImplFragment :
         )
 
         // 嵌套处理
-        ParentFragment.commit(childFragmentManager, binding.vidFrame.id, 0, 4)
+        ParentFragment.commit(childFragmentManager, binding.vidFl.id, 0, 4)
     }
 
     override fun initViewModel() {

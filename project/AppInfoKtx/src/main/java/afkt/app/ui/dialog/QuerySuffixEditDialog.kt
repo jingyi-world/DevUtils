@@ -50,14 +50,14 @@ class QuerySuffixEditDialog(
         // 关闭处理
         setOnDismissListener {
             HandlerUtils.postRunnable({ // 关闭软键盘
-                KeyBoardUtils.closeKeyboard(binding.vidEditText)
+                KeyBoardUtils.closeKeyboard(binding.vidQueryEt)
             }, 100)
         }
 
         notifyListener = onClickListener
 
         binding.vidAddTv.setOnClickListener {
-            var input = binding.vidEditText.text.toString()
+            var input = binding.vidQueryEt.text.toString()
             if (input.isBlank()) {
                 cancelDialog()
                 return@setOnClickListener
@@ -77,7 +77,7 @@ class QuerySuffixEditDialog(
     }
 
     private fun cancelDialog() {
-        KeyBoardUtils.closeKeyboard(binding.vidEditText)
+        KeyBoardUtils.closeKeyboard(binding.vidQueryEt)
         if (this.isShowing) cancel()
     }
 }

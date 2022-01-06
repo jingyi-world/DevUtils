@@ -47,25 +47,25 @@ class MainViewPagerActivity : DevBaseViewBindingActivity<ActivityMainViewpagerBi
                     return@setOnClick
                 }
                 setSelectTab(TAB_1)
-            }, binding.vidTab1)
+            }, binding.vidTab1Tv)
             .setOnClick({
                 if (isSelectTab(TAB_2)) {
                     return@setOnClick
                 }
                 setSelectTab(TAB_2)
-            }, binding.vidTab2)
+            }, binding.vidTab2Tv)
             .setOnClick({
                 if (isSelectTab(TAB_3)) {
                     return@setOnClick
                 }
                 setSelectTab(TAB_3)
-            }, binding.vidTab3)
+            }, binding.vidTab3Tv)
             .setOnClick({
                 if (isSelectTab(TAB_4)) {
                     return@setOnClick
                 }
                 setSelectTab(TAB_4)
-            }, binding.vidTab4)
+            }, binding.vidTab4Tv)
     }
 
     // Tab 类型索引

@@ -43,7 +43,7 @@ class AppListAdapter(data: List<AppInfoBean>?) :
         ViewHelper.get()
             .setText(item.appName, holder.binding.vidNameTv)
             .setText(item.appPackName, holder.binding.vidPackTv)
-            .setImageDrawable(item.appIcon, holder.binding.vidIgview)
+            .setImageDrawable(item.appIcon, holder.binding.vidIv)
             .setOnClick({
                 if (AppUtils.isInstalledApp(item.appPackName)) {
                     val intent = Intent(context, AppDetailsActivity::class.java)

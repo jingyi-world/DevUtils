@@ -16,7 +16,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/vid_package"
+            android:id="@+id/vid_package_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="packageName"
@@ -30,7 +30,7 @@
             android:background="@color/color_77" />
 
         <TextView
-            android:id="@+id/vid_class"
+            android:id="@+id/vid_class_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/un_dp_8"
@@ -40,7 +40,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/vid_close"
+        android:id="@+id/vid_close_iv"
         android:layout_width="@dimen/un_dp_20"
         android:layout_height="@dimen/un_dp_20"
         android:layout_marginLeft="@dimen/un_dp_8"

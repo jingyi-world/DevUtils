@@ -22,14 +22,14 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
         savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
-        binding.vidAppsortLinear.setOnClickListener { AppSortDialog(viewModel, context).show() }
-        binding.vidScanapkLinear.setOnClickListener { QuerySuffixDialog(context).show() }
-        binding.vidStorageLinear.setOnClickListener {
+        binding.vidAppsortLl.setOnClickListener { AppSortDialog(viewModel, context).show() }
+        binding.vidScanapkLl.setOnClickListener { QuerySuffixDialog(context).show() }
+        binding.vidStorageLl.setOnClickListener {
             if (VersionUtils.isR()) {
                 AppUtils.startActivity(IntentUtils.getManageAppAllFilesAccessPermissionIntent())
             }
         }
-        binding.vidResetLinear.setOnClickListener {
+        binding.vidResetLl.setOnClickListener {
             ProjectUtils.resetAppSortType() // 重置排序类型索引
             QuerySuffixUtils.reset() // 清空后缀
             AppListUtils.reset() // 清空应用列表
@@ -56,7 +56,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
         if (
             ViewUtils.setVisibility(
                 VersionUtils.isR(),
-                binding.vidStorageLinear
+                binding.vidStorageLl
             )
         ) {
             TextViewUtils.setText(

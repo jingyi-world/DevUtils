@@ -12,7 +12,7 @@
         android:background="@android:color/white" />
 
     <dev.widget.function.StateLayout
-        android:id="@+id/vid_state"
+        android:id="@+id/vid_state_sl"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </FrameLayout>

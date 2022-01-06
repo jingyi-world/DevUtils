@@ -56,11 +56,11 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
         binding.vidRefresh.setAdapter(mAdapter)
 
         whorlView = ViewUtils.findViewById(
-            binding.vidState.getView(ViewAssist.TYPE_ING),
-            R.id.vid_load_view
+            binding.vidStateSl.getView(ViewAssist.TYPE_ING),
+            R.id.vid_whv
         )
         // 设置监听
-        binding.vidState.setListener(object : StateLayout.Listener {
+        binding.vidStateSl.setListener(object : StateLayout.Listener {
             override fun onRemove(
                 layout: StateLayout,
                 type: Int,
@@ -73,7 +73,7 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
                 type: Int
             ) {
                 if (type == ViewAssist.TYPE_SUCCESS) {
-                    ViewUtils.reverseVisibilitys(true, binding.vidRefresh, binding.vidState)
+                    ViewUtils.reverseVisibilitys(true, binding.vidRefresh, binding.vidStateSl)
                     whorlView?.stop()
                     binding.vidRefresh.finishRefresh()
                 }
@@ -87,7 +87,7 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
             ) {
                 if (ViewUtils.reverseVisibilitys(
                         type == ViewAssist.TYPE_SUCCESS,
-                        binding.vidRefresh, binding.vidState
+                        binding.vidRefresh, binding.vidStateSl
                     )
                 ) {
                     whorlView?.stop()
@@ -118,7 +118,7 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
                 }
             }
         })
-        binding.vidState.showIng()
+        binding.vidStateSl.showIng()
         // 设置刷新事件
         binding.vidRefresh.setOnRefreshListener {
             requestReadWrite(true)
@@ -152,7 +152,7 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
                         DevLogger.e(e)
                     }
                     if (mAdapter.isDataEmpty) {
-                        binding.vidState.showEmptyData()
+                        binding.vidStateSl.showEmptyData()
                     }
                 }
             }
@@ -211,10 +211,10 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
                 AppSearchUtils.filterApkList(it, dataStore.searchContent)
             }
             if (lists.isEmpty()) {
-                binding.vidState.showEmptyData()
+                binding.vidStateSl.showEmptyData()
             } else {
                 mAdapter.setDataList(lists)
-                binding.vidState.showSuccess()
+                binding.vidStateSl.showSuccess()
             }
         }
         // 文件删除

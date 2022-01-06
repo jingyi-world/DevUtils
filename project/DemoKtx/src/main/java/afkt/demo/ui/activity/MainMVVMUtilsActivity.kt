@@ -38,7 +38,7 @@ class MainMVVMUtilsActivity :
         binding.vidInclude.color = ColorUtils.getRandomColor()
 
         // 嵌套处理
-        MVVMUtilsFragment.commit(supportFragmentManager, R.id.vid_frame, 0, 4)
+        MVVMUtilsFragment.commit(supportFragmentManager, R.id.vid_fl, 0, 4)
     }
 
     override fun initViewModel() {

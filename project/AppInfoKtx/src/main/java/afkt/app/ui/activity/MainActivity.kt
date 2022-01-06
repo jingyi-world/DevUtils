@@ -74,20 +74,20 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
         })
         initFragment()
         // 设置标题
-        binding.vidNavView.setCheckedItem(getNavItemId())
-        binding.vidToolbar.setTitle(DISPLAY_FRAGMENT_TYPE.titleId)
+        binding.vidNav.setCheckedItem(getNavItemId())
+        binding.vidTb.setTitle(DISPLAY_FRAGMENT_TYPE.titleId)
         binding.vidTopBtn.setOnClickListener {
             viewModel.postBackTop(mFragmentType)
         }
         // 设置侧边栏
-        setSupportActionBar(binding.vidToolbar)
+        setSupportActionBar(binding.vidTb)
         // 设置切换动画事件等
         val toggle = ActionBarDrawerToggle(
-            this, binding.vidDrawerLayout, binding.vidToolbar,
+            this, binding.vidDl, binding.vidTb,
             R.string.str_navigation_drawer_open,
             R.string.str_navigation_drawer_close
         )
-        binding.vidDrawerLayout.addDrawerListener(toggle)
+        binding.vidDl.addDrawerListener(toggle)
         toggle.syncState()
         // 显示 Fragment Type
         toggleFragment(DISPLAY_FRAGMENT_TYPE)
@@ -96,7 +96,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
     override fun initListener() {
         super.initListener()
         // 设置 NavigationView Item 点击事件
-        binding.vidNavView.setNavigationItemSelectedListener { item ->
+        binding.vidNav.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.vid_nav_user_apps -> toggleFragment(TypeEnum.APP_USER)
                 R.id.vid_nav_system_apps -> toggleFragment(TypeEnum.APP_SYSTEM)
@@ -105,7 +105,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
                 R.id.vid_nav_query_apk -> toggleFragment(TypeEnum.QUERY_APK)
                 R.id.vid_nav_setting -> toggleFragment(TypeEnum.SETTING)
             }
-            binding.vidDrawerLayout.closeDrawer(GravityCompat.START)
+            binding.vidDl.closeDrawer(GravityCompat.START)
             true
         }
     }
@@ -130,7 +130,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
 
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         for (item in mFragments.values) {
-            transaction.add(R.id.vid_linear, item, item.toString()).hide(item)
+            transaction.add(R.id.vid_ll, item, item.toString()).hide(item)
         }
         transaction.commit()
     }
@@ -161,8 +161,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
             // 发送 Fragment 切换通知事件
             viewModel.postFragmentChange(type)
             // 设置标题
-            binding.vidToolbar.setTitle(type.titleId)
-            binding.vidNavView.setCheckedItem(getNavItemId())
+            binding.vidTb.setTitle(type.titleId)
+            binding.vidNav.setCheckedItem(getNavItemId())
             // 失去焦点 ( 解决存在键盘, 点击侧边导航栏切换, 软键盘还存在 )
             searchView?.clearFocus()
         }
@@ -186,8 +186,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
 
     override fun onBackPressed() {
         // 如果显示了侧边栏, 则关闭
-        if (binding.vidDrawerLayout.isDrawerOpen(GravityCompat.START)) {
-            binding.vidDrawerLayout.closeDrawer(GravityCompat.START)
+        if (binding.vidDl.isDrawerOpen(GravityCompat.START)) {
+            binding.vidDl.closeDrawer(GravityCompat.START)
         } else {
             searchView?.let {
                 if (!it.isIconified) {
@@ -242,7 +242,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.vid_menu_refresh -> viewModel.postRefresh(mFragmentType)
-            R.id.vid_menu_export_item -> viewModel.postExportEvent(mFragmentType)
+            R.id.vid_menu_export -> viewModel.postExportEvent(mFragmentType)
         }
         return true
     }

@@ -17,7 +17,7 @@
     <!-- 底部选项 -->
 
     <LinearLayout
-        android:id="@+id/vid_bottom"
+        android:id="@+id/vid_bottom_ll"
         android:layout_width="match_parent"
         android:layout_height="@dimen/un_dp_100"
         android:layout_gravity="bottom"
@@ -25,7 +25,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/vid_tab1"
+            android:id="@+id/vid_tab1_tv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -35,7 +35,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/vid_tab2"
+            android:id="@+id/vid_tab2_tv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -45,7 +45,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/vid_tab3"
+            android:id="@+id/vid_tab3_tv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -55,7 +55,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/vid_tab4"
+            android:id="@+id/vid_tab4_tv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"

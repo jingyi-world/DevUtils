@@ -40,19 +40,19 @@ class AppDetailsActivity : BaseActivity<ActivityAppDetailsBinding>() {
             finish()
             return
         }
-        setSupportActionBar(binding.vidToolbar)
+        setSupportActionBar(binding.vidTb)
         supportActionBar?.let {
             // 给左上角图标的左边加上一个返回的图标
             it.setDisplayHomeAsUpEnabled(true)
             // 对应 ActionBar.DISPLAY_SHOW_TITLE
             it.setDisplayShowTitleEnabled(false)
             // 设置点击事件
-            binding.vidToolbar.setNavigationOnClickListener { finish() }
+            binding.vidTb.setNavigationOnClickListener { finish() }
         }
         // 获取 APP 信息
         val appInfoBean = appInfoItem.appInfoBean
         ViewHelper.get()
-            .setImageDrawable(appInfoBean.appIcon, binding.vidAppIgview) // 设置 app 图标
+            .setImageDrawable(appInfoBean.appIcon, binding.vidAppIv) // 设置 app 图标
             .setText(appInfoBean.appName, binding.vidNameTv) // 设置 app 名
             .setText(appInfoBean.versionName, binding.vidVnameTv) // 设置 app 版本
 
@@ -71,7 +71,7 @@ class AppDetailsActivity : BaseActivity<ActivityAppDetailsBinding>() {
                 ResourceUtils.getString(R.string.str_goto_app_details_setting)
             )
         )
-        binding.vidRecy.adapter = KeyValueAdapter(lists)
+        binding.vidRv.adapter = KeyValueAdapter(lists)
             .setItemCallback(object : dev.callback.DevItemClickCallback<KeyValue>() {
                 override fun onItemClick(
                     value: KeyValue?,

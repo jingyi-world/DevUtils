@@ -41,7 +41,7 @@ class ApkListAdapter :
         ViewHelper.get()
             .setText(appInfo.appName, holder.binding.vidNameTv)
             .setText(appInfo.appPackName, holder.binding.vidPackTv)
-            .setImageDrawable(appInfo.appIcon, holder.binding.vidIgview)
+            .setImageDrawable(appInfo.appIcon, holder.binding.vidIv)
             .setOnClick({
                 if (FileUtils.isFileExists(item.uri)) {
                     val intent = Intent(context, ApkDetailsActivity::class.java)

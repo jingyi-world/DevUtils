@@ -88,9 +88,9 @@ class FloatingView(
 
     private fun initialize() {
         View.inflate(context, R.layout.layout_floating, this)
-        packageNameTv = findViewById(R.id.vid_package)
-        classNameTv = findViewById(R.id.vid_class)
-        findViewById<View>(R.id.vid_close).setOnClickListener {
+        packageNameTv = findViewById(R.id.vid_package_tv)
+        classNameTv = findViewById(R.id.vid_class_tv)
+        findViewById<View>(R.id.vid_close_iv).setOnClickListener {
             ToastUtils.showShort(R.string.str_close_floating)
 
             context.startService(
