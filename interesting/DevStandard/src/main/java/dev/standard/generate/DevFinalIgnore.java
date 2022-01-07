@@ -32,19 +32,19 @@ final class DevFinalIgnore {
         // = 通用 =
         // =======
 
-        public static final String BUG      = "bug";
+        public static final String BUG = "bug";
 
-        public static final String VO   = "vo";
+        public static final String VO = "vo";
 
-        public static final String DB       = "db";
+        public static final String DB = "db";
 
         // =======
         // = 其他 =
         // =======
 
-        public static final String BANK    = "bank";
-        public static final String INDENT  = "indent";
-        public static final String TIMING  = "timing";
+        public static final String BANK   = "bank";
+        public static final String INDENT = "indent";
+        public static final String TIMING = "timing";
 
         // ==========
         // = 信息相关 =
@@ -54,7 +54,7 @@ final class DevFinalIgnore {
         // = 媒体 =
         // =======
 
-        public static final String IMAGES     = "images";
+        public static final String IMAGES = "images";
 
         public static final String AAC  = "aac";
         public static final String GIF  = "gif";
@@ -102,10 +102,10 @@ final class DevFinalIgnore {
         // = UI、APP 相关 =
         // ===============
 
-        public static final String ANIMATION  = "animation";
-        public static final String CHECKBOX   = "checkbox";
+        public static final String ANIMATION = "animation";
+        public static final String CHECKBOX  = "checkbox";
 
-        public static final String EXTRA       = "extra";
+        public static final String EXTRA = "extra";
 
         public static final String LIVE_DATA  = "live_data";
         public static final String VIEW_MODEL = "view_model";
@@ -138,7 +138,7 @@ final class DevFinalIgnore {
         public static final String THROWABLE = "throwable";
         public static final String TRY       = "try";
 
-        public static final String CYCLE    = "cycle";
+        public static final String CYCLE = "cycle";
 
         public static final String AGENT   = "agent";
         public static final String ALIAS   = "alias";
