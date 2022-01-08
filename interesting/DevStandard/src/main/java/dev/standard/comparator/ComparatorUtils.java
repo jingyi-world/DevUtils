@@ -1,11 +1,8 @@
 package dev.standard.comparator;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
-import dev.utils.common.CollectionUtils;
 
 /**
  * detail: 排序比较器工具类
@@ -16,8 +13,18 @@ public final class ComparatorUtils {
     private ComparatorUtils() {
     }
 
-    // 日志 TAG
-    private static final String TAG = ComparatorUtils.class.getSimpleName();
+    /**
+     * List 反转处理
+     * @param list 集合
+     * @return {@code true} success, {@code false} fail
+     */
+    public static boolean reverse(final List<?> list) {
+        if (list != null) {
+            Collections.reverse(list);
+            return true;
+        }
+        return false;
+    }
 
     /**
      * List 排序处理
@@ -59,18 +66,5 @@ public final class ComparatorUtils {
      */
     public static <T> boolean sortDesc(final List<T> list) {
         return sort(list, Collections.reverseOrder());
-    }
-
-    /**
-     * List 反转处理
-     * @param list 集合
-     * @return {@code true} success, {@code false} fail
-     */
-    public static boolean reverse(final List<?> list) {
-        if (list != null) {
-            Collections.reverse(list);
-            return true;
-        }
-        return false;
     }
 }
