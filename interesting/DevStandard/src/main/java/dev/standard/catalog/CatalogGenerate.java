@@ -8,6 +8,7 @@ import java.util.Map;
 import dev.utils.common.CollectionUtils;
 import dev.utils.common.FileUtils;
 import dev.utils.common.StringUtils;
+import dev.utils.common.comparator.ComparatorUtils;
 
 /**
  * detail: 文件目录结构生成
@@ -84,7 +85,8 @@ final class CatalogGenerate {
         // 获取文件路径
         File baseFile = new File(path);
         // 获取子文件
-        File[] files = baseFile.listFiles();
+        List<File> files = FileUtils.listFilesOrEmpty(baseFile);
+        ComparatorUtils.sortFileNameAsc(files);
         for (File file : files) {
             String name = file.getName();
             // 隐藏文件跳过
