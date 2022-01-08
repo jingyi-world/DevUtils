@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import dev.utils.common.CollectionUtils;
+import dev.utils.common.FileUtils;
 import dev.utils.common.comparator.sort.DateSort;
 import dev.utils.common.comparator.sort.DateSortAsc;
 import dev.utils.common.comparator.sort.DateSortDesc;
@@ -40,7 +42,11 @@ import dev.utils.common.comparator.sort.StringSortDesc;
  *     {@link #sortAsc(List)}
  *     {@link #sortDesc(List)}
  *     视情况可用以下方法清空 null 数据
- *     {@link dev.utils.common.CollectionUtils#clearNull(Collection)}
+ *     {@link CollectionUtils#clearNull(Collection)}
+ *     <p></p>
+ *     File 排序可直接使用以下方法获取 List
+ *     {@link FileUtils#listOrEmpty(File)}
+ *     {@link FileUtils#listFilesOrEmpty(File)}
  * </pre>
  */
 public final class ComparatorUtils {

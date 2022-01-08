@@ -1,13 +1,13 @@
-package dev.standard.comparator.sort;
+package dev.utils.common.comparator.sort;
 
 import java.io.File;
 import java.util.Comparator;
 
 /**
- * detail: 文件修改时间降序排序
+ * detail: 文件修改时间升序排序
  * @author Ttt
  */
-public class FileLastModifiedSortDesc
+public class FileLastModifiedSortAsc
         implements Comparator<File> {
 
     @Override
@@ -17,6 +17,6 @@ public class FileLastModifiedSortDesc
     ) {
         long value1 = (f != null) ? f.lastModified() : 0L;
         long value2 = (f1 != null) ? f1.lastModified() : 0L;
-        return Long.compare(value2, value1);
+        return Long.compare(value1, value2);
     }
 }

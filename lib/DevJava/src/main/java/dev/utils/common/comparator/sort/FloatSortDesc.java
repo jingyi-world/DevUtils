@@ -1,12 +1,12 @@
-package dev.standard.comparator.sort;
+package dev.utils.common.comparator.sort;
 
 import java.util.Comparator;
 
 /**
- * detail: Float 升序排序
+ * detail: Float 降序排序
  * @author Ttt
  */
-public class FloatSortAsc<T extends FloatSort>
+public class FloatSortDesc<T extends FloatSort>
         implements Comparator<T> {
 
     @Override
@@ -16,6 +16,6 @@ public class FloatSortAsc<T extends FloatSort>
     ) {
         float value1 = (t != null) ? t.getFloatSortValue() : 0F;
         float value2 = (t1 != null) ? t1.getFloatSortValue() : 0F;
-        return Float.compare(value1, value2);
+        return Float.compare(value2, value1);
     }
 }

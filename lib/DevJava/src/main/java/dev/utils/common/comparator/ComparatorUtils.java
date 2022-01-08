@@ -1,4 +1,4 @@
-package dev.standard.comparator;
+package dev.utils.common.comparator;
 
 import java.io.File;
 import java.util.Collection;
@@ -6,30 +6,32 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import dev.standard.comparator.sort.DateSort;
-import dev.standard.comparator.sort.DateSortAsc;
-import dev.standard.comparator.sort.DateSortDesc;
-import dev.standard.comparator.sort.DoubleSort;
-import dev.standard.comparator.sort.DoubleSortAsc;
-import dev.standard.comparator.sort.DoubleSortDesc;
-import dev.standard.comparator.sort.FileLastModifiedSortAsc;
-import dev.standard.comparator.sort.FileLastModifiedSortDesc;
-import dev.standard.comparator.sort.FileLengthSortAsc;
-import dev.standard.comparator.sort.FileLengthSortDesc;
-import dev.standard.comparator.sort.FileNameSortAsc;
-import dev.standard.comparator.sort.FileNameSortDesc;
-import dev.standard.comparator.sort.FloatSort;
-import dev.standard.comparator.sort.FloatSortAsc;
-import dev.standard.comparator.sort.FloatSortDesc;
-import dev.standard.comparator.sort.IntSort;
-import dev.standard.comparator.sort.IntSortAsc;
-import dev.standard.comparator.sort.IntSortDesc;
-import dev.standard.comparator.sort.LongSort;
-import dev.standard.comparator.sort.LongSortAsc;
-import dev.standard.comparator.sort.LongSortDesc;
-import dev.standard.comparator.sort.StringSort;
-import dev.standard.comparator.sort.StringSortAsc;
-import dev.standard.comparator.sort.StringSortDesc;
+import dev.utils.common.CollectionUtils;
+import dev.utils.common.FileUtils;
+import dev.utils.common.comparator.sort.DateSort;
+import dev.utils.common.comparator.sort.DateSortAsc;
+import dev.utils.common.comparator.sort.DateSortDesc;
+import dev.utils.common.comparator.sort.DoubleSort;
+import dev.utils.common.comparator.sort.DoubleSortAsc;
+import dev.utils.common.comparator.sort.DoubleSortDesc;
+import dev.utils.common.comparator.sort.FileLastModifiedSortAsc;
+import dev.utils.common.comparator.sort.FileLastModifiedSortDesc;
+import dev.utils.common.comparator.sort.FileLengthSortAsc;
+import dev.utils.common.comparator.sort.FileLengthSortDesc;
+import dev.utils.common.comparator.sort.FileNameSortAsc;
+import dev.utils.common.comparator.sort.FileNameSortDesc;
+import dev.utils.common.comparator.sort.FloatSort;
+import dev.utils.common.comparator.sort.FloatSortAsc;
+import dev.utils.common.comparator.sort.FloatSortDesc;
+import dev.utils.common.comparator.sort.IntSort;
+import dev.utils.common.comparator.sort.IntSortAsc;
+import dev.utils.common.comparator.sort.IntSortDesc;
+import dev.utils.common.comparator.sort.LongSort;
+import dev.utils.common.comparator.sort.LongSortAsc;
+import dev.utils.common.comparator.sort.LongSortDesc;
+import dev.utils.common.comparator.sort.StringSort;
+import dev.utils.common.comparator.sort.StringSortAsc;
+import dev.utils.common.comparator.sort.StringSortDesc;
 
 /**
  * detail: 排序比较器工具类
@@ -40,7 +42,11 @@ import dev.standard.comparator.sort.StringSortDesc;
  *     {@link #sortAsc(List)}
  *     {@link #sortDesc(List)}
  *     视情况可用以下方法清空 null 数据
- *     {@link dev.utils.common.CollectionUtils#clearNull(Collection)}
+ *     {@link CollectionUtils#clearNull(Collection)}
+ *     <p></p>
+ *     File 排序可直接使用以下方法获取 List
+ *     {@link FileUtils#listOrEmpty(File)}
+ *     {@link FileUtils#listFilesOrEmpty(File)}
  * </pre>
  */
 public final class ComparatorUtils {
@@ -73,7 +79,7 @@ public final class ComparatorUtils {
             final Comparator<? super T> comparator
     ) {
         if (list != null) {
-            list.sort(comparator);
+            Collections.sort(list, comparator);
             return true;
         }
         return false;

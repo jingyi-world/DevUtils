@@ -1,4 +1,4 @@
-package dev.standard.comparator.sort;
+package dev.utils.common.comparator.sort;
 
 /**
  * detail: String 排序值
