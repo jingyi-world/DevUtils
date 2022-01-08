@@ -6,5 +6,5 @@ package dev.standard.comparator.sort;
  */
 public interface StringSort {
 
-    CharSequence getStringSortValue();
+    String getStringSortValue();
 }
