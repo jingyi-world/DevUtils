@@ -140,8 +140,8 @@ final class GenerateDPValueFiles {
                     // 删除以前适配方式的目录 values-wXXXdp
                     File oldFile = new File(delFolderPath);
                     if (oldFile.exists() && oldFile.isDirectory() && Tools.isOldFolder(oldFile.getName(), isUseNewFolder)) {
-                        // 找出 res 目录下符合要求的 values 目录, 然后递归删除 values 目录
-                        Tools.deleteFile(oldFile);
+                        // 找出 res 目录下符合要求的 values 目录, 然后删除 values 目录
+                        Tools.deleteAllInDir(oldFile);
                     }
                 }
 

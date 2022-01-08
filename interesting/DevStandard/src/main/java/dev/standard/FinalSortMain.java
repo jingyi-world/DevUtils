@@ -5,7 +5,6 @@ import java.lang.reflect.Modifier;
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,9 +31,9 @@ public class FinalSortMain {
             lists.add(field.getName());
         }
         // Collator 类是用来执行区分语言环境的 String 比较的, 这里选择使用 CHINA
-        Comparator comparator = Collator.getInstance(java.util.Locale.CHINA);
+        Collator collator = Collator.getInstance(java.util.Locale.CHINA);
         // 使根据指定比较器产生的顺序对指定对象数组进行排序
-        Collections.sort(lists, comparator);
+        Collections.sort(lists, collator);
 
         StringBuilder builder = new StringBuilder();
         for (String key : lists) {

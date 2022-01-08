@@ -8,6 +8,8 @@ import java.util.HashSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import dev.utils.common.FileUtils;
+
 /**
  * detail: 算法工具类
  * @author duke
@@ -122,34 +124,11 @@ public class Tools {
     }
 
     /**
-     * 递归删除目录
+     * 删除目录下所有文件
      * @param file 待删除的文件或目录
      */
-    public static void deleteFile(final File file) {
-        if (file == null || !file.exists()) return;
-
-        if (file.isDirectory()) {
-            File[] files = file.listFiles();
-            if (files != null && files.length > 0) {
-                for (int i = 0; i < files.length; i++) {
-                    // 递归删除
-                    deleteFile(files[i]);
-                }
-            }
-            try {
-                // 删除当前空目录
-                file.delete();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else { // 是文件
-            try {
-                // 删除当前文件
-                file.delete();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+    public static void deleteAllInDir(final File file) {
+        FileUtils.deleteAllInDir(file);
     }
 
     /**

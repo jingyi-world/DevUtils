@@ -3,7 +3,6 @@ package dev.standard.pangu;
 import com.google.gson.GsonBuilder;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -95,19 +94,7 @@ final class PanguAnalyzeMain {
      * @return 文件目录列表
      */
     private static List<File> getFileCatalogLists(final String path) {
-        List<File> lists = new ArrayList<>();
-        try {
-            // 获取文件路径
-            File baseFile = new File(path);
-            // 获取子文件
-            File[] files = baseFile.listFiles();
-            for (File file : files) {
-                lists.add(file);
-            }
-        } catch (Exception e) {
-            JCLogUtils.e("getFileCatalogLists", e);
-        }
-        return lists;
+        return FileUtils.listFilesOrEmpty(path);
     }
 
     /**
