@@ -13,6 +13,7 @@ import dev.utils.common.FileIOUtils;
 import dev.utils.common.FileUtils;
 import dev.utils.common.MapUtils;
 import dev.utils.common.StringUtils;
+import dev.utils.common.comparator.ComparatorUtils;
 
 /**
  * detail: 全局检测处理
@@ -94,7 +95,9 @@ final class PanguAnalyzeMain {
      * @return 文件目录列表
      */
     private static List<File> getFileCatalogLists(final String path) {
-        return FileUtils.listFilesOrEmpty(path);
+        List<File> files = FileUtils.listFilesOrEmpty(path);
+        ComparatorUtils.sortFileNameAsc(files);
+        return files;
     }
 
     /**
