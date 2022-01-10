@@ -86,7 +86,7 @@ final class CatalogGenerate {
         File baseFile = new File(path);
         // 获取子文件
         List<File> files = FileUtils.listFilesOrEmpty(baseFile);
-        ComparatorUtils.sortFileNameAsc(files);
+        ComparatorUtils.sortWindowsExplorerFileSimpleComparatorAsc(files);
         for (File file : files) {
             String name = file.getName();
             // 隐藏文件跳过

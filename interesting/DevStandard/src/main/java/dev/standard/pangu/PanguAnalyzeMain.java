@@ -96,7 +96,7 @@ final class PanguAnalyzeMain {
      */
     private static List<File> getFileCatalogLists(final String path) {
         List<File> files = FileUtils.listFilesOrEmpty(path);
-        ComparatorUtils.sortFileNameAsc(files);
+        ComparatorUtils.sortWindowsExplorerFileSimpleComparatorAsc(files);
         return files;
     }
 
