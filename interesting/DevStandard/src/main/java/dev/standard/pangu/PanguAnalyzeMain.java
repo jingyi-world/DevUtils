@@ -117,7 +117,7 @@ final class PanguAnalyzeMain {
                     System.out.println("处理: " + file.getAbsolutePath());
                     // = 慎用, 需要仔细对比部分代码差异化, 如 " " 会被替换成 "" 等 =
                     // 读取文件内容
-                    String text = FileIOUtils.readFileToString(file, null);
+                    String text = FileIOUtils.readFileToString(file, null); // DevFinal.ENCODE.UTF_8
                     if (text != null) {
                         // 处理后的代码
                         String newText = sPangu.spacingText(text);
