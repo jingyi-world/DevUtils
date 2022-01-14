@@ -30,7 +30,7 @@ public class IntentDataKotlinGenerateMain {
         builder.append("\n     * @return Value");
         builder.append("\n     */");
         builder.append("\n    fun get%s(): String? {");
-        builder.append("\n        return get(DevFinal.STR.%s);");
+        builder.append("\n        return get(DevFinal.STR.%s)");
         builder.append("\n    }");
         builder.append("\n");
         builder.append("\n    /**");
@@ -39,7 +39,7 @@ public class IntentDataKotlinGenerateMain {
         builder.append("\n     * @return {@link IntentData}");
         builder.append("\n     */");
         builder.append("\n    fun set%s(value : String?): IntentData {");
-        builder.append("\n        return put(DevFinal.STR.%s, value);");
+        builder.append("\n        return put(DevFinal.STR.%s, value)");
         builder.append("\n    }");
         builder.append("\n");
         builder.append("\n    /**");
@@ -47,7 +47,7 @@ public class IntentDataKotlinGenerateMain {
         builder.append("\n     * @return {@link IntentData}");
         builder.append("\n     */");
         builder.append("\n    fun remove%s(): IntentData {");
-        builder.append("\n        return remove(DevFinal.STR.%s);");
+        builder.append("\n        return remove(DevFinal.STR.%s)");
         builder.append("\n    }");
         builder.append("\n");
         builder.append("\n    /**");
@@ -55,7 +55,7 @@ public class IntentDataKotlinGenerateMain {
         builder.append("\n     * @return {@code true} yes, {@code false} no");
         builder.append("\n     */");
         builder.append("\n    fun contains%s(): Boolean {");
-        builder.append("\n        return containsKey(DevFinal.STR.%s);");
+        builder.append("\n        return containsKey(DevFinal.STR.%s)");
         builder.append("\n    }");
         builder.append("\n");
         builder.append("\n    /**");
@@ -63,7 +63,7 @@ public class IntentDataKotlinGenerateMain {
         builder.append("\n     * @return {@code true} yes, {@code false} no");
         builder.append("\n     */");
         builder.append("\n    fun isNullValue%s(): Boolean {");
-        builder.append("\n        return isNullValue(DevFinal.STR.%s);");
+        builder.append("\n        return isNullValue(DevFinal.STR.%s)");
         builder.append("\n    }");
         METHOD_STR = builder.toString();
     }
