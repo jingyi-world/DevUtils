@@ -55,7 +55,7 @@ object ProjectUtils {
         DevThreadManager.getInstance(2).execute {
             var lists: ArrayList<DeviceInfoItem> = ArrayList()
             try {
-                lists = _getDeviceInfo()
+                lists = innerGetDeviceInfo()
             } catch (e: Exception) {
                 DevLogger.e(e)
             }
@@ -63,7 +63,7 @@ object ProjectUtils {
         }
     }
 
-    private fun _getDeviceInfo(): ArrayList<DeviceInfoItem> {
+    private fun innerGetDeviceInfo(): ArrayList<DeviceInfoItem> {
         val lists = ArrayList<DeviceInfoItem>()
         // 设备信息
         val map = DeviceUtils.getDeviceInfo()
@@ -172,7 +172,7 @@ object ProjectUtils {
         DevThreadManager.getInstance(2).execute {
             var lists: ArrayList<DeviceInfoItem> = ArrayList()
             try {
-                lists = _getScreenInfo()
+                lists = innerGetScreenInfo()
             } catch (e: Exception) {
                 DevLogger.e(e)
             }
@@ -180,7 +180,7 @@ object ProjectUtils {
         }
     }
 
-    private fun _getScreenInfo(): ArrayList<DeviceInfoItem> {
+    private fun innerGetScreenInfo(): ArrayList<DeviceInfoItem> {
         val lists = ArrayList<DeviceInfoItem>()
         // 屏幕尺寸 ( 英寸 )
         lists.add(DeviceInfoItem(R.string.str_info_screen, ScreenUtils.getScreenSizeOfDevice()))

@@ -19,18 +19,18 @@ class PushRouterActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _intent(intent)
+        innerIntent(intent)
     }
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        _intent(intent)
+        innerIntent(intent)
     }
 
     /**
      * 推送 Intent 解析处理
      */
-    private fun _intent(intent: Intent?) {
+    private fun innerIntent(intent: Intent?) {
         PushRouterChecker.getLauncherClass()?.let { launcher ->
             intent?.let {
                 // 获取推送数据
