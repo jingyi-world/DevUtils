@@ -113,9 +113,9 @@ enum class MiniProgramType {
  */
 class SharePlatformKey(
     // 分享平台
-    val platform: SharePlatform,
+    val platform: SharePlatform?,
     // APPId
-    val appId: String,
+    val appId: String?,
     // APPKey
     val appKey: String? = "",
     // 授权回调页
@@ -134,9 +134,9 @@ class SharePlatformKey(
  */
 class ShareConfig(
     // 分享 SDK APPKey
-    val appKey: String,
+    val appKey: String?,
     // 渠道信息
-    val channel: String,
+    val channel: String?,
     val pushSecret: String? = "",
     // 是否 debug 模式
     val isDebugMode: Boolean = false,
@@ -149,11 +149,11 @@ class ShareConfig(
  * @author Ttt
  * 自行根据所需参数进行封装
  */
-data class ShareParams(
+class ShareParams(
     // 分享平台
-    var platform: SharePlatform,
+    var platform: SharePlatform?,
     // 分享类型
-    var shareType: ShareType,
+    var shareType: ShareType?,
     // 缩略图资源 ( 封面 )
     var thumbnail: DevSource? = null,
     // 分享图片

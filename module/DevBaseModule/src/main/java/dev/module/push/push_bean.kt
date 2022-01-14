@@ -11,7 +11,7 @@ import kotlinx.parcelize.Parcelize
  * 自行根据所需参数进行封装
  */
 @Parcelize
-data class PushMessage(
+class PushMessage(
     val messageId: String? = "",
     val title: String? = "",
     val content: String? = "",
