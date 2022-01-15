@@ -21,6 +21,12 @@ import dev.utils.common.comparator.ComparatorUtils;
  */
 final class PanguAnalyzeMain {
 
+    // 匹配文件后缀
+    private static final String[] SUFFIX = {
+            "kt", "java", "gradle", "xml", "md", "txt",
+            "properties", "pro"
+    };
+
     // 代码间距等规范处理
     private static final Pangu                     sPangu                   = new Pangu();
     // 判断是否覆盖文件内容
@@ -37,28 +43,12 @@ final class PanguAnalyzeMain {
         forReader(lists, new Filter() {
             @Override
             public boolean filter(File file) {
-                // 获取完整路径
                 String absolutePath = file.getAbsolutePath();
-//                        && absolutePath.endsWith(".properties")
-//                        && absolutePath.endsWith(".pro")
-//                        && absolutePath.endsWith(".gradle")
-//                        && absolutePath.endsWith(".gradle")
-//                        && absolutePath.endsWith(".java")
+                if (isHidden(absolutePath)) return false;
+                if (isBuild(absolutePath)) return false;
 
-                return absolutePath.contains(File.separator + ".git")
-                        || absolutePath.contains(File.separator + ".idea")
-                        || absolutePath.contains(File.separator + ".gradlew")
-                        || absolutePath.contains(File.separator + "wrapper")
-                        || absolutePath.contains(File.separator + ".gradle")
-                        || absolutePath.contains(File.separator + "build")
-                        || FileUtils.isAudioFormats(file)
-                        || FileUtils.isVideoFormats(file)
-                        || FileUtils.isImageFormats(file)
-                        || absolutePath.endsWith("LICENSE")
-                        || absolutePath.endsWith(".zip")
-                        || absolutePath.endsWith(".rar")
-                        || absolutePath.endsWith(".iml")
-                        && absolutePath.endsWith(".xml");
+                String fileSuffix = FileUtils.getFileSuffix(file);
+                return StringUtils.isOrEquals(fileSuffix, SUFFIX);
             }
         });
         System.out.println("处理结束");
@@ -202,5 +192,37 @@ final class PanguAnalyzeMain {
             }
         }
         return "";
+    }
+
+    /**
+     * 是否隐藏文件、文件夹判断
+     * @param path 待判断文件路径
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isHidden(final String path) {
+        if (path != null) {
+            String temp = path.replaceAll("/../..", "")
+                    .replaceAll("\\...\\...", "")
+                    .replaceAll("\\..\\..", "");
+            // 判断是否存在特殊情况
+            if (temp.contains("..")) {
+                System.out.println("path replace 未彻底 : " + path);
+            }
+            return temp.contains("\\.") || temp.contains("/.");
+        }
+        return false;
+    }
+
+    /**
+     * 是否 Build 文件、文件夹判断
+     * @param path 待判断文件路径
+     * @return {@code true} yes, {@code false} no
+     */
+    public static boolean isBuild(final String path) {
+        if (path != null) {
+            if (path.contains("\\build\\")) return true;
+            return (path.contains("/build/"));
+        }
+        return false;
     }
 }
