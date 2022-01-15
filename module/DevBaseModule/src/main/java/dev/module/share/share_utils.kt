@@ -5,7 +5,7 @@ package dev.module.share
  * @param platform SharePlatform
  * @return Boolean
  */
-fun isSINA(platform: SharePlatform): Boolean {
+fun isSINA(platform: SharePlatform?): Boolean {
     return platform == SharePlatform.SINA
 }
 
@@ -14,7 +14,7 @@ fun isSINA(platform: SharePlatform): Boolean {
  * @param platform SharePlatform
  * @return Boolean
  */
-fun isQQ(platform: SharePlatform): Boolean {
+fun isQQ(platform: SharePlatform?): Boolean {
     return platform == SharePlatform.QQ
 }
 
@@ -23,7 +23,7 @@ fun isQQ(platform: SharePlatform): Boolean {
  * @param platform SharePlatform
  * @return Boolean
  */
-fun isQZONE(platform: SharePlatform): Boolean {
+fun isQZONE(platform: SharePlatform?): Boolean {
     return platform == SharePlatform.QZONE
 }
 
@@ -32,7 +32,7 @@ fun isQZONE(platform: SharePlatform): Boolean {
  * @param platform SharePlatform
  * @return Boolean
  */
-fun isWEIXIN(platform: SharePlatform): Boolean {
+fun isWEIXIN(platform: SharePlatform?): Boolean {
     return platform == SharePlatform.WEIXIN
 }
 
@@ -41,7 +41,7 @@ fun isWEIXIN(platform: SharePlatform): Boolean {
  * @param platform SharePlatform
  * @return Boolean
  */
-fun isWEIXIN_CIRCLE(platform: SharePlatform): Boolean {
+fun isWEIXIN_CIRCLE(platform: SharePlatform?): Boolean {
     return platform == SharePlatform.WEIXIN_CIRCLE
 }
 
@@ -50,7 +50,7 @@ fun isWEIXIN_CIRCLE(platform: SharePlatform): Boolean {
  * @param platform SharePlatform
  * @return Boolean
  */
-fun isWEIXIN_FAVORITE(platform: SharePlatform): Boolean {
+fun isWEIXIN_FAVORITE(platform: SharePlatform?): Boolean {
     return platform == SharePlatform.WEIXIN_FAVORITE
 }
 
@@ -59,7 +59,7 @@ fun isWEIXIN_FAVORITE(platform: SharePlatform): Boolean {
  * @param platform SharePlatform
  * @return Boolean
  */
-fun isWXWORK(platform: SharePlatform): Boolean {
+fun isWXWORK(platform: SharePlatform?): Boolean {
     return platform == SharePlatform.WXWORK
 }
 
@@ -68,7 +68,7 @@ fun isWXWORK(platform: SharePlatform): Boolean {
  * @param platform SharePlatform
  * @return Boolean
  */
-fun isALIPAY(platform: SharePlatform): Boolean {
+fun isALIPAY(platform: SharePlatform?): Boolean {
     return platform == SharePlatform.ALIPAY
 }
 
@@ -77,6 +77,6 @@ fun isALIPAY(platform: SharePlatform): Boolean {
  * @param platform SharePlatform
  * @return Boolean
  */
-fun isDINGTALK(platform: SharePlatform): Boolean {
+fun isDINGTALK(platform: SharePlatform?): Boolean {
     return platform == SharePlatform.DINGTALK
 }

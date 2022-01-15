@@ -165,7 +165,7 @@ internal fun convertShareImage(
  * @return SHARE_MEDIA
  */
 internal fun convertSharePlatform(
-    platform: SharePlatform,
+    platform: SharePlatform?,
     throwError: Boolean = true
 ): SHARE_MEDIA {
     return when (platform) {
@@ -249,7 +249,7 @@ internal fun convertShareListener(
  * @param listener 分享回调
  */
 internal fun listenerTriggerByNotSupportPlatform(
-    platform: SharePlatform,
+    platform: SharePlatform?,
     shareType: ShareType,
     listener: UMShareListener
 ) {

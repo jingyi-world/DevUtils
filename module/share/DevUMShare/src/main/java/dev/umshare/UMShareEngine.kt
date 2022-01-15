@@ -51,7 +51,7 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
                         }
                         SharePlatform.QQ,
                         SharePlatform.QZONE -> {
-                            // QQ设置
+                            // QQ 设置
                             PlatformConfig.setQQZone(
                                 it.appId, it.appKey
                             )

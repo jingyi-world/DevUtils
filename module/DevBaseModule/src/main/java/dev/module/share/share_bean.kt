@@ -153,7 +153,7 @@ class ShareParams(
     // 分享平台
     var platform: SharePlatform?,
     // 分享类型
-    var shareType: ShareType?,
+    var shareType: ShareType,
     // 缩略图资源 ( 封面 )
     var thumbnail: DevSource? = null,
     // 分享图片
