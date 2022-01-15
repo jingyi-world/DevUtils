@@ -16,7 +16,7 @@ import java.security.NoSuchAlgorithmException;
  *     <p></p>
  *     快捷搜索、下载地址:
  *     distributionUrl=https\://services.gradle.org/distributions/gradle-6.5-all.zip
- *     C:\Users\Administrator\.gradle\wrapper\dists
+ *     C:/Users/Administrator/.gradle/wrapper/dists
  * </pre>
  */
 class GradleMain {
