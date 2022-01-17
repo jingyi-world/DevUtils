@@ -152,6 +152,7 @@ final class Config {
         sDevUtilsIgnoreCatalogs.add("DevBaseMVVM");
         sDevUtilsIgnoreCatalogs.add("DevEngine");
         sDevUtilsIgnoreCatalogs.add("DevHttpCapture");
+        sDevUtilsIgnoreCatalogs.add("DevHttpManager");
         sDevUtilsIgnoreCatalogs.add("DevJava");
         sDevUtilsIgnoreCatalogs.add("DevOther");
         sDevUtilsIgnoreCatalogs.add("DevWidget");
