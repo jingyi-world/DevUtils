@@ -126,7 +126,7 @@ final class Config {
         sDevUtilsCatalogMap.put(".DevBase", "Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库");
         sDevUtilsCatalogMap.put(".DevBase2", "Base 基础代码 ( 非基类库 )");
         sDevUtilsCatalogMap.put(".DevBaseMVVM", "MVVM ( ViewDataBinding + ViewModel ) 基类库");
-        sDevUtilsCatalogMap.put(".DevEngine", "第三方框架解耦、一键替换第三方库");
+        sDevUtilsCatalogMap.put(".DevEngine", "第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用");
         sDevUtilsCatalogMap.put(".DevHttpCapture", "OKHttp 抓包工具库");
         sDevUtilsCatalogMap.put(".DevHttpManager", "Okhttp 管理类");
         sDevUtilsCatalogMap.put(".DevJava", "Java 工具类库 ( 不依赖 android api )");
