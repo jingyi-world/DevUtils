@@ -36,7 +36,7 @@ public class IntentDataKotlinGenerateMain {
         builder.append("\n    /**");
         builder.append("\n     * 设置 Key ( %s ) 对应的 Value");
         builder.append("\n     * @param value 保存的 value");
-        builder.append("\n     * @return {@link IntentData}");
+        builder.append("\n     * @return IntentData");
         builder.append("\n     */");
         builder.append("\n    fun set%s(value : String?): IntentData {");
         builder.append("\n        return put(DevFinal.STR.%s, value)");
@@ -44,7 +44,7 @@ public class IntentDataKotlinGenerateMain {
         builder.append("\n");
         builder.append("\n    /**");
         builder.append("\n     * 移除 Key ( %s )");
-        builder.append("\n     * @return {@link IntentData}");
+        builder.append("\n     * @return IntentData");
         builder.append("\n     */");
         builder.append("\n    fun remove%s(): IntentData {");
         builder.append("\n        return remove(DevFinal.STR.%s)");
