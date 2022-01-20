@@ -3,7 +3,7 @@ package dev.module.share
 /**
  * 是否新浪微博平台
  * @param platform SharePlatform
- * @return Boolean
+ * @return `true` yes, `false` no
  */
 fun isSINA(platform: SharePlatform?): Boolean {
     return platform == SharePlatform.SINA
@@ -12,7 +12,7 @@ fun isSINA(platform: SharePlatform?): Boolean {
 /**
  * 是否 QQ 平台
  * @param platform SharePlatform
- * @return Boolean
+ * @return `true` yes, `false` no
  */
 fun isQQ(platform: SharePlatform?): Boolean {
     return platform == SharePlatform.QQ
@@ -21,7 +21,7 @@ fun isQQ(platform: SharePlatform?): Boolean {
 /**
  * 是否 QQ 空间平台
  * @param platform SharePlatform
- * @return Boolean
+ * @return `true` yes, `false` no
  */
 fun isQZONE(platform: SharePlatform?): Boolean {
     return platform == SharePlatform.QZONE
@@ -30,7 +30,7 @@ fun isQZONE(platform: SharePlatform?): Boolean {
 /**
  * 是否微信平台
  * @param platform SharePlatform
- * @return Boolean
+ * @return `true` yes, `false` no
  */
 fun isWEIXIN(platform: SharePlatform?): Boolean {
     return platform == SharePlatform.WEIXIN
@@ -39,7 +39,7 @@ fun isWEIXIN(platform: SharePlatform?): Boolean {
 /**
  * 是否微信朋友圈平台
  * @param platform SharePlatform
- * @return Boolean
+ * @return `true` yes, `false` no
  */
 fun isWEIXIN_CIRCLE(platform: SharePlatform?): Boolean {
     return platform == SharePlatform.WEIXIN_CIRCLE
@@ -48,7 +48,7 @@ fun isWEIXIN_CIRCLE(platform: SharePlatform?): Boolean {
 /**
  * 是否微信收藏平台
  * @param platform SharePlatform
- * @return Boolean
+ * @return `true` yes, `false` no
  */
 fun isWEIXIN_FAVORITE(platform: SharePlatform?): Boolean {
     return platform == SharePlatform.WEIXIN_FAVORITE
@@ -57,7 +57,7 @@ fun isWEIXIN_FAVORITE(platform: SharePlatform?): Boolean {
 /**
  * 是否企业微信平台
  * @param platform SharePlatform
- * @return Boolean
+ * @return `true` yes, `false` no
  */
 fun isWXWORK(platform: SharePlatform?): Boolean {
     return platform == SharePlatform.WXWORK
@@ -66,7 +66,7 @@ fun isWXWORK(platform: SharePlatform?): Boolean {
 /**
  * 是否支付宝平台
  * @param platform SharePlatform
- * @return Boolean
+ * @return `true` yes, `false` no
  */
 fun isALIPAY(platform: SharePlatform?): Boolean {
     return platform == SharePlatform.ALIPAY
@@ -75,7 +75,7 @@ fun isALIPAY(platform: SharePlatform?): Boolean {
 /**
  * 是否钉钉平台
  * @param platform SharePlatform
- * @return Boolean
+ * @return `true` yes, `false` no
  */
 fun isDINGTALK(platform: SharePlatform?): Boolean {
     return platform == SharePlatform.DINGTALK

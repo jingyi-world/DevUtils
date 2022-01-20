@@ -52,7 +52,7 @@ public class IntentDataKotlinGenerateMain {
         builder.append("\n");
         builder.append("\n    /**");
         builder.append("\n     * 是否存在 Key ( %s )");
-        builder.append("\n     * @return {@code true} yes, {@code false} no");
+        builder.append("\n     * @return `true` yes, `false` no");
         builder.append("\n     */");
         builder.append("\n    fun contains%s(): Boolean {");
         builder.append("\n        return containsKey(DevFinal.STR.%s)");
@@ -60,7 +60,7 @@ public class IntentDataKotlinGenerateMain {
         builder.append("\n");
         builder.append("\n    /**");
         builder.append("\n     * Key ( %s ) 保存的 Value 是否为 null");
-        builder.append("\n     * @return {@code true} yes, {@code false} no");
+        builder.append("\n     * @return `true` yes, `false` no");
         builder.append("\n     */");
         builder.append("\n    fun isNullValue%s(): Boolean {");
         builder.append("\n        return isNullValue(DevFinal.STR.%s)");

@@ -103,7 +103,7 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
      * @param activity Activity
      * @param params   Share ( Data、Params ) Item
      * @param listener 分享回调
-     * @return {@code true} success, {@code false} fail
+     * @return `true` success, `false` fail
      */
     override fun openMinApp(
         activity: Activity?,
@@ -147,7 +147,7 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
      * @param activity Activity
      * @param params   Share ( Data、Params ) Item
      * @param listener 分享回调
-     * @return {@code true} success, {@code false} fail
+     * @return `true` success, `false` fail
      */
     override fun shareMinApp(
         activity: Activity?,
@@ -221,7 +221,7 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
      * @param activity Activity
      * @param params   Share ( Data、Params ) Item
      * @param listener 分享回调
-     * @return {@code true} success, {@code false} fail
+     * @return `true` success, `false` fail
      */
     override fun shareUrl(
         activity: Activity?,
@@ -263,7 +263,7 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
      * @param activity Activity
      * @param params   Share ( Data、Params ) Item
      * @param listener 分享回调
-     * @return {@code true} success, {@code false} fail
+     * @return `true` success, `false` fail
      */
     override fun shareImage(
         activity: Activity?,
@@ -304,7 +304,7 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
      * @param activity Activity
      * @param params   Share ( Data、Params ) Item
      * @param listener 分享回调
-     * @return {@code true} success, {@code false} fail
+     * @return `true` success, `false` fail
      */
     override fun shareImageList(
         activity: Activity?,
@@ -352,7 +352,7 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
      * @param activity Activity
      * @param params   Share ( Data、Params ) Item
      * @param listener 分享回调
-     * @return {@code true} success, {@code false} fail
+     * @return `true` success, `false` fail
      */
     override fun shareText(
         activity: Activity?,
@@ -393,7 +393,7 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
      * @param activity Activity
      * @param params   Share ( Data、Params ) Item
      * @param listener 分享回调
-     * @return {@code true} success, {@code false} fail
+     * @return `true` success, `false` fail
      */
     override fun shareVideo(
         activity: Activity?,
@@ -438,7 +438,7 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
      * @param activity Activity
      * @param params   Share ( Data、Params ) Item
      * @param listener 分享回调
-     * @return {@code true} success, {@code false} fail
+     * @return `true` success, `false` fail
      */
     override fun shareMusic(
         activity: Activity?,
@@ -484,7 +484,7 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
      * @param activity Activity
      * @param params   Share ( Data、Params ) Item
      * @param listener 分享回调
-     * @return {@code true} success, {@code false} fail
+     * @return `true` success, `false` fail
      */
     override fun shareEmoji(
         activity: Activity?,
@@ -528,7 +528,7 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
      * @param activity Activity
      * @param params   Share ( Data、Params ) Item
      * @param listener 分享回调
-     * @return {@code true} success, {@code false} fail
+     * @return `true` success, `false` fail
      */
     override fun shareFile(
         activity: Activity?,
@@ -554,7 +554,7 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
      * @param activity Activity
      * @param params   Share ( Data、Params ) Item
      * @param listener 分享回调
-     * @return {@code true} success, {@code false} fail
+     * @return `true` success, `false` fail
      */
     override fun share(
         activity: Activity?,
