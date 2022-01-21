@@ -29,8 +29,8 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="@dimen/un_dp_100"
-                android:layout_height="@dimen/un_dp_100"
+                android:layout_width="@dimen/dp_100"
+                android:layout_height="@dimen/dp_100"
                 android:layout_gravity="center"
                 android:background="@{image}"
                 tools:background="@mipmap/icon_launcher_round" />
@@ -40,9 +40,9 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:includeFontPadding="false"
-                android:padding="@dimen/un_dp_10"
+                android:padding="@dimen/dp_10"
                 android:text="@{content}"
-                android:textSize="@dimen/un_sp_14"
+                android:textSize="@dimen/sp_14"
                 tools:text="随机内容" />
 
             <!-- 嵌套测试 parentFragment -->
@@ -51,7 +51,7 @@
                 android:id="@+id/vid_fl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:layout_height="@dimen/un_dp_200" />
+                tools:layout_height="@dimen/dp_200" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

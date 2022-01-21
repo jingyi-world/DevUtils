@@ -11,7 +11,7 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@id/vid_fl"
-        android:paddingLeft="@dimen/un_dp_10" />
+        android:paddingLeft="@dimen/dp_10" />
 
     <FrameLayout
         android:id="@+id/vid_fl"
@@ -19,7 +19,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:padding="@dimen/un_dp_10">
+        android:padding="@dimen/dp_10">
 
         <ImageView
             android:id="@+id/vid_iv"

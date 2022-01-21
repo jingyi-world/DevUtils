@@ -9,10 +9,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/un_dp_50"
-        android:padding="@dimen/un_dp_30"
+        android:layout_marginBottom="@dimen/dp_50"
+        android:padding="@dimen/dp_30"
         app:dev_backgroundColor="@color/white"
-        app:dev_radius="@dimen/un_dp_20">
+        app:dev_radius="@dimen/dp_20">
 
         <ImageView
             android:layout_width="wrap_content"

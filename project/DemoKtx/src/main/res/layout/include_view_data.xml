@@ -17,7 +17,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/un_dp_150"
+            android:layout_height="@dimen/dp_150"
             android:orientation="horizontal">
 
             <View
@@ -41,7 +41,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/un_dp_150"
+            android:layout_height="@dimen/dp_150"
             android:orientation="horizontal">
 
             <View
@@ -59,7 +59,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/un_dp_150"
+            android:layout_height="@dimen/dp_150"
             android:orientation="horizontal">
 
             <View
@@ -78,7 +78,7 @@
         <View
             android:id="@+id/vid_view"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/un_dp_150"
+            android:layout_height="@dimen/dp_150"
             android:layout_weight="1"
             android:background="@{color}"
             tools:background="@color/mediumorchid" />

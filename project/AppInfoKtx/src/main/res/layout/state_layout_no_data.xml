@@ -9,18 +9,18 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingBottom="@dimen/un_dp_50">
+        android:paddingBottom="@dimen/dp_50">
 
         <ImageView
-            android:layout_width="@dimen/un_dp_180"
-            android:layout_height="@dimen/un_dp_180"
+            android:layout_width="@dimen/dp_180"
+            android:layout_height="@dimen/dp_180"
             android:background="@drawable/icon_tips" />
 
         <TextView
             android:id="@+id/vid_tips_tv"
             style="@style/AppTheme.Base_TextView"
-            android:layout_marginTop="@dimen/un_dp_20"
+            android:layout_marginTop="@dimen/dp_20"
             android:gravity="center"
-            android:textSize="@dimen/un_sp_15" />
+            android:textSize="@dimen/sp_15" />
     </LinearLayout>
 </FrameLayout>

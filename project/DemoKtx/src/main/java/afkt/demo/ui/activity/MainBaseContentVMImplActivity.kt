@@ -46,7 +46,7 @@ class MainBaseContentVMImplActivity :
                 .setBackgroundColor(ResourceUtils.getColor(R.color.pink))
                 .setWidthHeight(
                     ViewUtils.MATCH_PARENT,
-                    ResourceUtils.getDimensionInt(R.dimen.un_dp_50)
+                    ResourceUtils.getDimensionInt(R.dimen.dp_50)
                 )
                 .setGravity(Gravity.CENTER)
                 .setBold()
@@ -60,8 +60,8 @@ class MainBaseContentVMImplActivity :
         contentAssist.addFloatView(
             QuickHelper.get(ImageView(this))
                 .setWidthHeight(
-                    ResourceUtils.getDimensionInt(R.dimen.un_dp_50),
-                    ResourceUtils.getDimensionInt(R.dimen.un_dp_50)
+                    ResourceUtils.getDimensionInt(R.dimen.dp_50),
+                    ResourceUtils.getDimensionInt(R.dimen.dp_50)
                 )
                 .setImageResource(R.mipmap.icon_launcher_round)
                 .getView()
@@ -70,7 +70,7 @@ class MainBaseContentVMImplActivity :
         // 悬浮 View 居下显示 ( 需要 addBodyView 后进行设置 LayoutParams 才有效 )
         contentAssist.floatFrame?.let {
             QuickHelper.get(ViewUtils.getChildAtLast<ImageView>(it))
-                .setMargin(ResourceUtils.getDimensionInt(R.dimen.un_dp_20))
+                .setMargin(ResourceUtils.getDimensionInt(R.dimen.dp_20))
                 .setLayoutGravity(Gravity.END or Gravity.BOTTOM)
                 .setOnClick {
                     showToast("点击了悬浮 View")

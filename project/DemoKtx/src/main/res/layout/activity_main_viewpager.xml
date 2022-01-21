@@ -9,7 +9,7 @@
         android:id="@+id/vid_vp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/un_dp_100"
+        android:layout_marginBottom="@dimen/dp_100"
         android:fadingEdge="none"
         android:overScrollMode="never"
         android:scrollbars="none" />
@@ -19,7 +19,7 @@
     <LinearLayout
         android:id="@+id/vid_bottom_ll"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/un_dp_100"
+        android:layout_height="@dimen/dp_100"
         android:layout_gravity="bottom"
         android:background="@color/white"
         android:orientation="horizontal">
@@ -31,7 +31,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="1"
-            android:textSize="@dimen/un_sp_40"
+            android:textSize="@dimen/sp_40"
             android:textStyle="bold" />
 
         <TextView
@@ -41,7 +41,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="2"
-            android:textSize="@dimen/un_sp_40"
+            android:textSize="@dimen/sp_40"
             android:textStyle="bold" />
 
         <TextView
@@ -51,7 +51,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="3"
-            android:textSize="@dimen/un_sp_40"
+            android:textSize="@dimen/sp_40"
             android:textStyle="bold" />
 
         <TextView
@@ -61,7 +61,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="4"
-            android:textSize="@dimen/un_sp_40"
+            android:textSize="@dimen/sp_40"
             android:textStyle="bold" />
     </LinearLayout>
 </FrameLayout>

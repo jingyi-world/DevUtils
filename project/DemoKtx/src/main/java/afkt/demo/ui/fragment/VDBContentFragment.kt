@@ -42,7 +42,7 @@ class VDBContentFragment : DevBaseContentViewDataBindingFragment<FragmentVdbCont
                 .setTextColors(ResourceUtils.getColor(R.color.black))
                 .setWidthHeight(
                     ViewUtils.MATCH_PARENT,
-                    ResourceUtils.getDimensionInt(R.dimen.un_dp_50)
+                    ResourceUtils.getDimensionInt(R.dimen.dp_50)
                 )
                 .setGravity(Gravity.CENTER)
                 .setBold()

@@ -11,8 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingLeft="@dimen/un_dp_10"
-        android:paddingRight="@dimen/un_dp_10">
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10">
 
         <Button
             android:id="@+id/vid_activity_tracker_btn"

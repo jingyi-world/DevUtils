@@ -23,9 +23,9 @@
         <!-- 设置铺满 -->
         <item name="android:layout_width">match_parent</item>
         <!-- 设置高度 -->
-        <item name="android:layout_height">@dimen/un_dp_50</item>
+        <item name="android:layout_height">@dimen/dp_50</item>
         <!-- 设置向上边距 -->
-        <item name="android:layout_marginTop">@dimen/un_dp_10</item>
+        <item name="android:layout_marginTop">@dimen/dp_10</item>
         <!-- 设置字体颜色 -->
         <item name="android:textColor">@color/black</item>
         <!-- 解决控件字母自动大写问题 -->
