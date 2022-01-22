@@ -35,7 +35,7 @@ class AppSortDialog(
 
         val params = window!!.attributes
         val screen = ScreenUtils.getScreenWidthHeight()
-        params.dimAmount = 0.5f
+        params.dimAmount = 0.5F
         params.width = screen[0]
         params.height = screen[1]
         params.gravity = Gravity.CENTER
