@@ -13,13 +13,13 @@ public class DimensValueMain {
 
     public static void main(String[] args) {
         // 生成正数 dp dimen 值
-        System.out.println(generateDimen(10f, 50f, 0.5f, false, "dp"));
+        System.out.println(generateDimen(10F, 50F, 0.5F, false, "dp"));
 
         // 生成负数 dp dimen 值
-        System.out.println(generateDimen(10f, 50f, 0.5f, true, "dp"));
+        System.out.println(generateDimen(10F, 50F, 0.5F, true, "dp"));
 
         // 生成字体 sp dimen 值
-        System.out.println(generateDimen(10f, 50f, 0.5f, false, "sp"));
+        System.out.println(generateDimen(10F, 50F, 0.5F, false, "sp"));
     }
 
     /**
