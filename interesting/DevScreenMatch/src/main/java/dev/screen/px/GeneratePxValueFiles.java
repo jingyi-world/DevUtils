@@ -146,6 +146,6 @@ final class GeneratePxValueFiles {
      */
     private float change(final float value) {
         int temp = (int) (value * 100);
-        return temp / 100f;
+        return temp / 100F;
     }
 }
