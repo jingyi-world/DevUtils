@@ -4,7 +4,6 @@ import dev.utils.DevFinal;
 
 /**
  * detail: dimen.xml dp、sp 循环创建
- *
  * @author Ttt
  */
 public class DimenGenerateMain {
@@ -30,7 +29,6 @@ public class DimenGenerateMain {
      * <pre>
      *     从 0 开始创建, 间隔 0.5
      * </pre>
-     *
      * @param max    最大值
      * @param format 格式化字符串
      * @param title  标题
