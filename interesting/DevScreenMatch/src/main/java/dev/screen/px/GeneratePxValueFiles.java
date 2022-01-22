@@ -94,7 +94,7 @@ final class GeneratePxValueFiles {
         StringBuilder widthBuilder = new StringBuilder();
         widthBuilder.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
         widthBuilder.append("<resources>\n");
-        float cellw = width * 1.0f / BASE_WIDTH;
+        float cellw = width * 1.0F / BASE_WIDTH;
         for (int i = 1; i <= BASE_WIDTH; i++) {
             widthBuilder.append(
                     WIDTH_TEMPLATE.replace("{0}", String.valueOf(i))
@@ -107,7 +107,7 @@ final class GeneratePxValueFiles {
         StringBuilder heightBuilder = new StringBuilder();
         heightBuilder.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
         heightBuilder.append("<resources>\n");
-        float cellh = height * 1.0f / BASE_HEIGHT;
+        float cellh = height * 1.0F / BASE_HEIGHT;
         for (int i = 1; i <= BASE_HEIGHT; i++) {
             heightBuilder.append(
                     HEIGHT_TEMPLATE.replace("{0}", String.valueOf(i))
