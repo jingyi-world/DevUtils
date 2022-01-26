@@ -22,8 +22,12 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
         savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
-        binding.vidAppsortLl.setOnClickListener { AppSortDialog(viewModel, context).show() }
-        binding.vidScanapkLl.setOnClickListener { QuerySuffixDialog(context).show() }
+        binding.vidAppsortLl.setOnClickListener {
+            context?.let { AppSortDialog(viewModel, it).show() }
+        }
+        binding.vidScanapkLl.setOnClickListener {
+            context?.let { QuerySuffixDialog(it).show() }
+        }
         binding.vidStorageLl.setOnClickListener {
             if (VersionUtils.isR()) {
                 AppUtils.startActivity(IntentUtils.getManageAppAllFilesAccessPermissionIntent())
@@ -46,8 +50,9 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
 
     private fun selectAppSort() {
         // 设置选择排序文案
-        binding.vidAppsortTv.text =
-            ResourceUtils.getStringArray(R.array.array_app_sort)!![ProjectUtils.getAppSortType()]
+        binding.vidAppsortTv.text = ResourceUtils.getStringArray(
+            R.array.array_app_sort
+        )!![ProjectUtils.getAppSortType()]
     }
 
     override fun onResume() {

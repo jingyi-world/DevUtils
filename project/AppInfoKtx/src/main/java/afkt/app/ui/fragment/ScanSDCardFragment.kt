@@ -29,7 +29,6 @@ import dev.utils.common.FileUtils
 import dev.utils.common.HtmlUtils
 import dev.widget.assist.ViewAssist
 import dev.widget.function.StateLayout
-import java.util.*
 
 class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
 
@@ -49,7 +48,7 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
         // 设置扫描回调
         ScanSDCardUtils.instance.setCallback(object : DevCallback<ArrayList<FileApkItem>>() {
             override fun callback(value: ArrayList<FileApkItem>?) {
-                viewModel.postSDCardScan(value!!)
+                value?.let { viewModel.postSDCardScan(it) }
             }
         })
         binding.vidRefresh.setEnableLoadMore(false)

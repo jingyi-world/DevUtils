@@ -27,21 +27,28 @@ class QuerySuffixEditDialog(
     private val notifyListener: View.OnClickListener
 
     init {
-        window!!.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
-        window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN or WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
+        window?.apply {
+            setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
+            setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN
+                        or WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE
+            )
+        }
         binding = DialogQuerySuffixEditBinding.inflate(layoutInflater)
         this.setContentView(binding.root)
 
-        val params = window!!.attributes
-        val screen = ScreenUtils.getScreenWidthHeight()
-        params.dimAmount = 0.5F
-        params.width = screen[0]
-        params.height = WindowManager.LayoutParams.WRAP_CONTENT
-        params.gravity = Gravity.CENTER
-        window!!.attributes = params
+        window?.apply {
+            val params = attributes
+            val screen = ScreenUtils.getScreenWidthHeight()
+            params.dimAmount = 0.5F
+            params.width = screen[0]
+            params.height = WindowManager.LayoutParams.WRAP_CONTENT
+            params.gravity = Gravity.CENTER
+            attributes = params
+        }
 
         // 禁止返回键关闭
         setCancelable(false)

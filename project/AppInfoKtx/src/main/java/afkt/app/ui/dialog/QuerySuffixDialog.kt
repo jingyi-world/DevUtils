@@ -21,27 +21,34 @@ import dev.utils.app.toast.ToastTintUtils
  * detail: 搜索后缀设置 Dialog
  * @author Ttt
  */
-class QuerySuffixDialog(context: Context?) :
-    Dialog(context!!, R.style.Theme_Light_FullScreenDialogOperate) {
+class QuerySuffixDialog(context: Context) :
+    Dialog(context, R.style.Theme_Light_FullScreenDialogOperate) {
 
     private var binding: DialogQuerySuffixBinding
 
     init {
-        window!!.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
-        window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE or WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
+        window?.apply {
+            setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
+            setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
+                        or WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN
+            )
+        }
         binding = DialogQuerySuffixBinding.inflate(layoutInflater)
         this.setContentView(binding.root)
 
-        val params = window!!.attributes
-        val screen = ScreenUtils.getScreenWidthHeight()
-        params.dimAmount = 0.5F
-        params.width = screen[0]
-        params.height = screen[1]
-        params.gravity = Gravity.CENTER
-        window!!.attributes = params
+        window?.apply {
+            val params = attributes
+            val screen = ScreenUtils.getScreenWidthHeight()
+            params.dimAmount = 0.5F
+            params.width = screen[0]
+            params.height = screen[1]
+            params.gravity = Gravity.CENTER
+            attributes = params
+        }
 
         // 禁止返回键关闭
         setCancelable(false)

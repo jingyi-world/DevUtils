@@ -19,27 +19,31 @@ import dev.utils.app.share.SharedUtils
  */
 class AppSortDialog(
     viewModel: AppViewModel,
-    context: Context?
+    context: Context
 ) :
-    Dialog(context!!, R.style.Theme_Light_FullScreenDialogOperate) {
+    Dialog(context, R.style.Theme_Light_FullScreenDialogOperate) {
 
     private var binding: DialogAppSortBinding
 
     init {
-        window!!.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
+        window?.apply {
+            setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
+        }
         binding = DialogAppSortBinding.inflate(layoutInflater)
         this.setContentView(binding.root)
 
-        val params = window!!.attributes
-        val screen = ScreenUtils.getScreenWidthHeight()
-        params.dimAmount = 0.5F
-        params.width = screen[0]
-        params.height = screen[1]
-        params.gravity = Gravity.CENTER
-        window!!.attributes = params
+        window?.apply {
+            val params = attributes
+            val screen = ScreenUtils.getScreenWidthHeight()
+            params.dimAmount = 0.5F
+            params.width = screen[0]
+            params.height = screen[1]
+            params.gravity = Gravity.CENTER
+            attributes = params
+        }
 
         val inflater = LayoutInflater.from(context)
         val appSortArrays: Array<String> = ResourceUtils.getStringArray(R.array.array_app_sort)
