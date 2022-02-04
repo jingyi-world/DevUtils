@@ -136,7 +136,7 @@ public class ColorSortMain {
          * detail: 解析 Handler
          * @author Ttt
          */
-        class SAXHandler
+        static class SAXHandler
                 extends DefaultHandler {
 
             private       String                     colorKey;
