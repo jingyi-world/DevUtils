@@ -28,9 +28,9 @@ object ViewModelTempUtils {
     ) {
         viewModel?.let {
             // 进行监听
-            viewModel.number.observe(owner, {
+            viewModel.number.observe(owner) {
                 DevLogger.dTag(TAG, "%s observe number: %s", tag, viewModel.number.value)
-            })
+            }
         }
     }
 
@@ -47,9 +47,9 @@ object ViewModelTempUtils {
     ) {
         viewModel?.let {
             // 进行监听
-            viewModel.number.observe(owner, {
+            viewModel.number.observe(owner) {
                 DevLogger.dTag(TAG, "%s observe number: %s", tag, viewModel.number.value)
-            })
+            }
         }
     }
 
@@ -66,9 +66,9 @@ object ViewModelTempUtils {
     ) {
         viewModel?.let {
             // 进行监听
-            viewModel.number.observe(owner, {
+            viewModel.number.observe(owner) {
                 DevLogger.dTag(TAG, "%s observe number: %s", tag, viewModel.number.value)
-            })
+            }
         }
     }
 }

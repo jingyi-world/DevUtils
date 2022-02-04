@@ -36,12 +36,12 @@ class InfoFragment : BaseFragment<FragmentInfoBinding>() {
             .setEnableLoadMore(false)
         binding.root.setAdapter(mAdapter)
 
-        viewModel.infoObserve(viewLifecycleOwner, {
+        viewModel.infoObserve(viewLifecycleOwner) {
             if (it.type == dataStore.typeEnum) {
                 mAdapter.setDataList(it.lists)
             }
-        })
-        viewModel.exportEvent.observe(viewLifecycleOwner, {
+        }
+        viewModel.exportEvent.observe(viewLifecycleOwner) {
             if (it == dataStore.typeEnum) {
                 if (mAdapter.isDataNotEmpty) {
                     val content: String? = DeviceInfoBean.jsonString(mAdapter.dataList)
@@ -53,7 +53,7 @@ class InfoFragment : BaseFragment<FragmentInfoBinding>() {
                     )
                 }
             }
-        })
+        }
         when (dataStore.typeEnum) {
             TypeEnum.DEVICE_INFO -> ProjectUtils.getDeviceInfo(viewModel)
             TypeEnum.SCREEN_INFO -> ProjectUtils.getScreenInfo(viewModel)

@@ -48,7 +48,7 @@
     <string name="str_set_query_apk_suffix">设置搜索后缀</string>
     <string name="str_set_query_apk_suffix_hint">设置搜索后缀(无需添加 .)</string>
 
-    <string name="str_empty"></string>
+    <string name="str_empty"/>
     <string name="str_copy_suc">复制成功</string>
     <string name="str_export_suc">导出成功</string>
     <string name="str_export_fail">导出失败</string>
