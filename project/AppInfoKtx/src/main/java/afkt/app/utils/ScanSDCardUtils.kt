@@ -10,7 +10,6 @@ import dev.utils.common.assist.search.FileBreadthFirstSearchUtils
 import dev.utils.common.thread.DevThreadPool
 import java.io.File
 import java.util.*
-import kotlin.collections.ArrayList
 
 /**
  * detail: 扫描 SDCard 工具类

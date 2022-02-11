@@ -3,7 +3,6 @@ package afkt.app.utils
 import com.google.gson.Gson
 import dev.utils.DevFinal
 import dev.utils.app.share.SharedUtils
-import java.util.*
 
 /**
  * detail: 搜索后缀 工具类

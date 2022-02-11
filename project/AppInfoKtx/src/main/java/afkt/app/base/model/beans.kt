@@ -6,7 +6,6 @@ import dev.utils.app.ResourceUtils
 import dev.utils.app.info.AppInfoBean
 import dev.utils.app.info.KeyValue
 import java.io.File
-import java.util.*
 
 /**
  * detail: 设备参数导出实体类
