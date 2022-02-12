@@ -48,7 +48,7 @@
     <string name="str_set_query_apk_suffix">set query suffix</string>
     <string name="str_set_query_apk_suffix_hint">set query suffix(No need to add .)</string>
 
-    <string name="str_empty"/>
+    <string name="str_empty" />
     <string name="str_copy_suc">copy suc</string>
     <string name="str_export_suc">export suc</string>
     <string name="str_export_fail">export fail</string>
