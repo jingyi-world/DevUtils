@@ -8,7 +8,7 @@ import com.umeng.socialize.bean.SHARE_MEDIA
 import com.umeng.socialize.media.UMEmoji
 import com.umeng.socialize.media.UMImage
 import dev.base.DevSource
-import dev.engine.log.DevLogEngine
+import dev.engine.DevEngine
 import dev.engine.share.listener.ShareListener
 import dev.module.share.*
 import dev.utils.app.ResourceUtils
@@ -206,7 +206,7 @@ internal fun convertShareListener(
 
     return object : UMShareListener {
         override fun onStart(platform: SHARE_MEDIA?) {
-            DevLogEngine.getEngine()?.dTag(
+            DevEngine.getLog()?.dTag(
                 LOG_TAG, "onStart: UM $platform, $operate"
             )
             // 触发回调
@@ -214,7 +214,7 @@ internal fun convertShareListener(
         }
 
         override fun onResult(platform: SHARE_MEDIA?) {
-            DevLogEngine.getEngine()?.dTag(
+            DevEngine.getLog()?.dTag(
                 LOG_TAG, "onResult: UM $platform, $operate"
             )
             // 触发回调
@@ -225,7 +225,7 @@ internal fun convertShareListener(
             platform: SHARE_MEDIA?,
             error: Throwable?
         ) {
-            DevLogEngine.getEngine()?.eTag(
+            DevEngine.getLog()?.eTag(
                 LOG_TAG, error, "onError: UM $platform, $operate"
             )
             // 触发回调
@@ -233,7 +233,7 @@ internal fun convertShareListener(
         }
 
         override fun onCancel(platform: SHARE_MEDIA?) {
-            DevLogEngine.getEngine()?.dTag(
+            DevEngine.getLog()?.dTag(
                 LOG_TAG, "onCancel: UM $platform, $operate"
             )
             // 触发回调
