@@ -40,10 +40,8 @@ class BaseApplication : MultiDexApplication() {
             DevUtils.openDebug()
         }
 
-        // 使用内部默认实现 Engine
-        DevEngine.defaultMMKVInitialize(this)
-            .defaultEngine(DevEngine.getMMKVConfig())
-
+        // DevEngine 完整初始化
+        DevEngine.completeInitialize(this)
         // 友盟分享 Engine 实现并初始化
         DevShareEngine.setEngine(UMShareEngine()).initialize(
             this, shareConfig

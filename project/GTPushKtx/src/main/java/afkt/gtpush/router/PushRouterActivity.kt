@@ -197,50 +197,6 @@ private object DataManager {
     // 推送数据 ( JSON 格式 )
     private const val PUSH_DATA = "pushData"
 
-    private fun clear(context: Context) {
-        DevEngine.getKeyValue(PUSH_KEYVALUE_ID)?.clear()
-    }
-
-    private fun getBoolean(
-        context: Context,
-        key: String,
-        defaultValue: Boolean
-    ): Boolean {
-        return DevEngine.getKeyValue(
-            PUSH_KEYVALUE_ID
-        )?.getBoolean(key, defaultValue) ?: defaultValue
-    }
-
-    private fun putBoolean(
-        context: Context,
-        key: String,
-        value: Boolean
-    ) {
-        DevEngine.getKeyValue(
-            PUSH_KEYVALUE_ID
-        )?.putBoolean(key, value)
-    }
-
-    private fun getString(
-        context: Context,
-        key: String,
-        defaultValue: String?
-    ): String? {
-        return DevEngine.getKeyValue(
-            PUSH_KEYVALUE_ID
-        )?.getString(key, defaultValue) ?: defaultValue
-    }
-
-    private fun putString(
-        context: Context,
-        key: String,
-        value: String?
-    ) {
-        DevEngine.getKeyValue(
-            PUSH_KEYVALUE_ID
-        )?.putString(key, value)
-    }
-
     // =============
     // = 对外公开方法 =
     // =============
@@ -249,7 +205,9 @@ private object DataManager {
      * 是否点击通知栏推送消息 ( 用于判断是否处理推送路由 )
      */
     fun isClickPush(context: Context): Boolean {
-        return getBoolean(context, IS_CLICK_PUSH, false)
+        return DevEngine.getKeyValue(
+            PUSH_KEYVALUE_ID
+        )?.getBoolean(IS_CLICK_PUSH) ?: false
     }
 
     /**
@@ -260,17 +218,24 @@ private object DataManager {
         pushData: String
     ) {
         // 表示需要处理推送消息
-        putBoolean(context, IS_CLICK_PUSH, true)
+        DevEngine.getKeyValue(
+            PUSH_KEYVALUE_ID
+        )?.putBoolean(IS_CLICK_PUSH, true)
         // 保存推送数据
-        putString(context, PUSH_DATA, pushData)
+        DevEngine.getKeyValue(
+            PUSH_KEYVALUE_ID
+        )?.putString(PUSH_DATA, pushData)
     }
 
     /**
      * 获取推送数据
      */
     fun getPushData(context: Context): String? {
-        val pushData = getString(context, PUSH_DATA, null)
-        clear(context) // 移除旧数据
+        val pushData = DevEngine.getKeyValue(
+            PUSH_KEYVALUE_ID
+        )?.getString(PUSH_DATA)
+        // 移除旧数据
+        DevEngine.getKeyValue(PUSH_KEYVALUE_ID)?.clear()
         return pushData
     }
 }

@@ -44,9 +44,8 @@ class BaseApplication : MultiDexApplication(),
             DevUtils.openDebug()
         }
 
-        // 使用内部默认实现 Engine
-        DevEngine.defaultMMKVInitialize(this)
-            .defaultEngine(DevEngine.getMMKVConfig())
+        // DevEngine 完整初始化
+        DevEngine.completeInitialize(this)
 
         // 全局状态布局配置
         val global = StateLayout.Global(object : StateLayout.Listener {

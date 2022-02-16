@@ -11,6 +11,7 @@ import android.app.Activity
 import android.text.TextUtils
 import androidx.multidex.MultiDexApplication
 import com.alibaba.android.arouter.launcher.ARouter
+import com.tencent.mmkv.MMKV
 import dev.DevUtils
 import dev.engine.DevEngine
 import dev.engine.keyvalue.DevKeyValueEngine
@@ -51,21 +52,18 @@ class BaseApplication : MultiDexApplication() {
             DevUtils.openDebug()
         }
 
-        // 使用内部默认实现 Engine
-        DevEngine.defaultMMKVInitialize(this)
-            .defaultEngine()
+        // DevEngine 完整初始化
+        DevEngine.completeInitialize(this)
         // MMKV Key-Value Engine 实现
-        DevEngine.getMMKVByHolder()?.let { mmkv ->
-            DevKeyValueEngine.setEngine(
-                PUSH_KEYVALUE_ID,
-                MMKVKeyValueEngineImpl(
-                    MMKVConfig(
-                        cipher = null,
-                        mmkv = mmkv
-                    )
+        DevKeyValueEngine.setEngine(
+            PUSH_KEYVALUE_ID,
+            MMKVKeyValueEngineImpl(
+                MMKVConfig(
+                    cipher = null,
+                    mmkv = MMKV.mmkvWithID(PUSH_KEYVALUE_ID, MMKV.MULTI_PROCESS_MODE)
                 )
             )
-        }
+        )
 
         // 个推推送 Engine 实现并初始化
         DevPushEngine.setEngine(GTPushEngineImpl()).initialize(
