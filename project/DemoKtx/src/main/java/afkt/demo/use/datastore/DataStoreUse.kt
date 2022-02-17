@@ -5,7 +5,7 @@ import androidx.lifecycle.asLiveData
 import dev.utils.app.logger.DevLogger
 import dev.utils.app.share.SPUtils
 import kotlinx.coroutines.flow.first
-import java.dev.other.DataStoreUtils
+import ktx.dev.other.DataStoreUtils
 
 object DataStoreUse {
 
