@@ -11,7 +11,7 @@ import dev.utils.app.assist.floating.FloatingWindowManagerAssist
 import dev.utils.app.toast.ToastUtils
 
 /**
- * 具体代码 copy Github ActivityTracker 库
+ * 具体代码 copy GitHub ActivityTracker 库
  * @see https://github.com/fashare2015/ActivityTracker
  * <p></p>
  * 内部只是封装 AccessibilityListenerService 以及 BaseApplication 结合 DevApp#AccessibilityUtils 使用
