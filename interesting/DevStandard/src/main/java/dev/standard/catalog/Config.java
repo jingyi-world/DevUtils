@@ -163,6 +163,7 @@ final class Config {
 
         sModuleCatalogMap.put("module", "根目录");
         sModuleCatalogMap.put(".DevBaseModule", "Module 基础复用组件");
+        sModuleCatalogMap.put(".DevComponent", "[【100% Kotlin 实现 Android 项目组件化示例代码】](https://github.com/afkT/DevComponent)");
         sModuleCatalogMap.put(".push", "推送 SDK Engine 实现 ( 推送组件化实现 )");
         sModuleCatalogMap.put(".push.DevGTPush", "个推推送 Engine 实现代码");
         sModuleCatalogMap.put(".push.DevJPush", "极光推送 Engine 实现代码");
