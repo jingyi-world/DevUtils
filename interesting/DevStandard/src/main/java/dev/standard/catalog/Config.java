@@ -131,6 +131,7 @@ final class Config {
         sDevUtilsCatalogMap.put(".DevHttpManager", "OkHttp 管理类");
         sDevUtilsCatalogMap.put(".DevJava", "Java 工具类库 ( 不依赖 android api )");
         sDevUtilsCatalogMap.put(".DevOther", "第三方库封装、以及部分特殊工具类等, 方便 copy 封装类使用");
+        sDevUtilsCatalogMap.put(".DevSKU", "商品 SKU 组合封装实现");
         sDevUtilsCatalogMap.put(".DevWidget", "自定义 View UI 库");
         sDevUtilsCatalogMap.put(".Environment", "Android 环境配置切换库");
         sDevUtilsCatalogMap.put(".Environment.DevEnvironment", "环境切换可视化 UI 操作");
@@ -155,6 +156,7 @@ final class Config {
         sDevUtilsIgnoreCatalogs.add("DevHttpManager");
         sDevUtilsIgnoreCatalogs.add("DevJava");
         sDevUtilsIgnoreCatalogs.add("DevOther");
+        sDevUtilsIgnoreCatalogs.add("DevSKU");
         sDevUtilsIgnoreCatalogs.add("DevWidget");
 
         // ===================
@@ -163,7 +165,8 @@ final class Config {
 
         sModuleCatalogMap.put("module", "根目录");
         sModuleCatalogMap.put(".DevBaseModule", "Module 基础复用组件");
-        sModuleCatalogMap.put(".DevComponent", "[【100% Kotlin 实现 Android 项目组件化示例代码】](https://github.com/afkT/DevComponent)");
+        sModuleCatalogMap.put(".DevComponent", "【100% Kotlin 实现 Android 项目组件化示例代码】");
+        sModuleCatalogMap.put(".DevComponent.lib_utils", "/core/libs/lib_utils");
         sModuleCatalogMap.put(".push", "推送 SDK Engine 实现 ( 推送组件化实现 )");
         sModuleCatalogMap.put(".push.DevGTPush", "个推推送 Engine 实现代码");
         sModuleCatalogMap.put(".push.DevJPush", "极光推送 Engine 实现代码");
