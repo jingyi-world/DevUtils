@@ -338,7 +338,6 @@ class AppAutoSize {
         px2sp
     }
 
-
     /**
      * detail: 转换适配值封装
      * @author Ttt
