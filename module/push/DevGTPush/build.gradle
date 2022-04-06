@@ -52,8 +52,8 @@ dependencies {
     // ==========
 
     // https://mvnrepository.com/search?q=com.getui
-    api 'com.getui:gtsdk:3.2.3.0'  // 个推 SDK
-    api 'com.getui:gtc:3.1.4.0'  // 个推核心组件
+    api 'com.getui:gtsdk:3.2.9.0'  // 个推 SDK
+    api 'com.getui:gtc:3.1.8.0'  // 个推核心组件
 
     // ============
     // = 第三方厂商 =
@@ -67,16 +67,16 @@ dependencies {
     api 'com.getui.opt:hwp:3.1.0'
 
     // 小米
-    api 'com.getui.opt:xmp:3.0.2'
+    api 'com.getui.opt:xmp:3.1.1'
 
     // OPPO
-    api 'com.assist-v3:oppo:3.0.2'
+    api 'com.assist-v3:oppo:3.1.0'
 
     // VIVO
-    api 'com.assist-v3:vivo:3.0.3'
+    api 'com.assist-v3:vivo:3.1.0'
 
     // 魅族
-    api 'com.getui.opt:mzp:3.0.2'
+    api 'com.getui.opt:mzp:3.2.0'
 
     // UPS 目前支持坚果、索尼、海信手机
     api 'com.getui.opt:ups:3.0.2'

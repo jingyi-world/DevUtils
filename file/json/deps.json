@@ -17,7 +17,7 @@
         "dev_http_manager": "io.github.afkt:DevHttpManager:1.0.0"
     },
     "kotlin": {
-        "stdlib": "org.jetbrains.kotlin:kotlin-stdlib:1.6.10",
+        "stdlib": "org.jetbrains.kotlin:kotlin-stdlib:1.6.20",
         "core": "androidx.core:core-ktx:1.7.0",
         "coroutines": "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0",
         "lifecycle_runtime": "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0",
