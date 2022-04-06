@@ -52,35 +52,35 @@ dependencies {
     // ==========
 
     // https://mvnrepository.com/search?q=cn.jiguang.sdk
-    api 'cn.jiguang.sdk:jpush:4.3.0'
-    api 'cn.jiguang.sdk:jcore:2.9.0'
+    api 'cn.jiguang.sdk:jpush:4.6.3'
+    api 'cn.jiguang.sdk:jcore:3.2.2'
 
 //    // Google Play 版本
-//    api 'cn.jiguang.sdk:jpush-google:4.2.2'
-//    api 'cn.jiguang.sdk:jcore-google:2.9.0'
+//    api 'cn.jiguang.sdk:jpush-google:4.6.3'
+//    api 'cn.jiguang.sdk:jcore-google:3.2.2'
 
     // ============
     // = 第三方厂商 =
     // ============
 
     // https://mvnrepository.com/search?q=cn.jiguang.sdk.plugin
-    // https://docs.jiguang.cn/jpush/client/Android/huawei-Push-guide
+    // https://developer.huawei.com/consumer/cn/doc/overview/HMS
 
     // 华为
-    api 'com.huawei.hms:push:5.3.0.301'
-    api 'cn.jiguang.sdk.plugin:huawei:4.3.0'
+    api 'com.huawei.hms:push:6.3.0.304'
+    api 'cn.jiguang.sdk.plugin:huawei:4.6.3'
 
     // 小米
-    api 'cn.jiguang.sdk.plugin:xiaomi:4.3.0'
+    api 'cn.jiguang.sdk.plugin:xiaomi:4.6.3'
 
     // OPPO
-    api 'cn.jiguang.sdk.plugin:oppo:4.3.0'
+    api 'cn.jiguang.sdk.plugin:oppo:4.6.3'
 
     // VIVO
-    api 'cn.jiguang.sdk.plugin:vivo:4.3.0'
+    api 'cn.jiguang.sdk.plugin:vivo:4.6.3'
 
     // 魅族
-    api 'cn.jiguang.sdk.plugin:meizu:4.3.0'
+    api 'cn.jiguang.sdk.plugin:meizu:4.6.3'
 
     // 第三方厂商点击回调触发
     // https://go48pg.yuque.com/docs/share/f95b8034-38c7-4baa-951b-ea85948a546e?#Nz1Do
