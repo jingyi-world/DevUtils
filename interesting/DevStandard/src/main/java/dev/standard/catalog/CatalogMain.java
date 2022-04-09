@@ -16,22 +16,40 @@ final class CatalogMain {
 
     public static void main(String[] args) {
         // 生成 Android 汇总项目目录结构 - https://github.com/afkT/Android
-        print(Config.ANDROID_LOCAL_PATH, Config.ANDROID_DIR_NAME, Config.sAndroidCatalogMap, null, 0);
+        print(
+                Config.ANDROID_LOCAL_PATH, Config.ANDROID_DIR_NAME,
+                Config.sAndroidCatalogMap, null, 0
+        );
 
         // 生成 Java 汇总项目目录结构 - https://github.com/afkT/Java
-        print(Config.JAVA_LOCAL_PATH, Config.JAVA_DIR_NAME, Config.sJavaCatalogMap, null, 0);
+        print(
+                Config.JAVA_LOCAL_PATH, Config.JAVA_DIR_NAME,
+                Config.sJavaCatalogMap, null, 0
+        );
 
         // 生成 DevUtils Lib 汇总项目目录结构 - https://github.com/afkT/DevUtils/blob/master/lib
-        print(Config.DEV_UTILS_LOCAL_PATH, Config.DEV_UTILS_DIR_NAME, Config.sDevUtilsCatalogMap, Config.sDevUtilsIgnoreCatalogs, 1);
+        print(
+                Config.DEV_UTILS_LOCAL_PATH, Config.DEV_UTILS_DIR_NAME,
+                Config.sDevUtilsCatalogMap, Config.sDevUtilsIgnoreCatalogs, 1
+        );
 
         // 生成 DevUtils Module 汇总项目目录结构 - https://github.com/afkT/DevUtils/blob/master/module
-        print(Config.MODULE_LOCAL_PATH, Config.MODULE_DIR_NAME, Config.sModuleCatalogMap, Config.sModuleIgnoreCatalogs, 1);
-
-        // 生成 DevUtils Project 汇总项目目录结构 - https://github.com/afkT/DevUtils/blob/master/project
-        print(Config.PROJECT_LOCAL_PATH, Config.PROJECT_DIR_NAME, Config.sProjectCatalogMap, null, 0);
+        print(
+                Config.MODULE_LOCAL_PATH, Config.MODULE_DIR_NAME,
+                Config.sModuleCatalogMap, Config.sModuleIgnoreCatalogs, 1
+        );
 
         // 生成 DevUtils Interesting 汇总项目目录结构 - https://github.com/afkT/DevUtils/blob/master/interesting
-        print(Config.INTERESTING_LOCAL_PATH, Config.INTERESTING_DIR_NAME, Config.sInterestingCatalogMap, null, 0);
+        print(
+                Config.INTERESTING_LOCAL_PATH, Config.INTERESTING_DIR_NAME,
+                Config.sInterestingCatalogMap, null, 0
+        );
+
+        // 生成 DevUtils Application 汇总项目目录结构 - https://github.com/afkT/DevUtils/blob/master/application
+        print(
+                Config.APPLICATION_LOCAL_PATH, Config.APPLICATION_DIR_NAME,
+                Config.sApplicationCatalogMap, null, 0
+        );
 
         String all = sBuilder.toString();
     }

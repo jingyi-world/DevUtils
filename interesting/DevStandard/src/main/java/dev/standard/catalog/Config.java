@@ -70,17 +70,6 @@ final class Config {
     // DevUtils Module 忽略目录
     public static final List<String>        sModuleIgnoreCatalogs = new ArrayList<>();
 
-    // ====================
-    // = DevUtils Project =
-    // ====================
-
-    // DevUtils Project 文件名
-    public static final String              PROJECT_DIR_NAME   = "project";
-    // DevUtils Project 项目本地路径
-    public static final String              PROJECT_LOCAL_PATH = USER_DIR + File.separator + PROJECT_DIR_NAME;
-    // DevUtils Project 文件目录注释
-    public static final Map<String, String> sProjectCatalogMap = new HashMap<>();
-
     // ========================
     // = DevUtils Interesting =
     // ========================
@@ -91,6 +80,17 @@ final class Config {
     public static final String              INTERESTING_LOCAL_PATH = USER_DIR + File.separator + INTERESTING_DIR_NAME;
     // DevUtils Interesting 文件目录注释
     public static final Map<String, String> sInterestingCatalogMap = new HashMap<>();
+
+    // ========================
+    // = DevUtils Application =
+    // ========================
+
+    // DevUtils Application 文件名
+    public static final String              APPLICATION_DIR_NAME   = "application";
+    // DevUtils Application 项目本地路径
+    public static final String              APPLICATION_LOCAL_PATH = USER_DIR + File.separator + APPLICATION_DIR_NAME;
+    // DevUtils Application 文件目录注释
+    public static final Map<String, String> sApplicationCatalogMap = new HashMap<>();
 
     static {
 
@@ -179,18 +179,6 @@ final class Config {
 
         sModuleIgnoreCatalogs.add("DevBaseModule");
 
-        // ====================
-        // = DevUtils Project =
-        // ====================
-
-        sProjectCatalogMap.put("project", "根目录");
-        sProjectCatalogMap.put(".Accessibility", "Android 无障碍使用 ( Activity 栈 )");
-        sProjectCatalogMap.put(".AppInfo", "APP 信息提取器");
-        sProjectCatalogMap.put(".Demo", "临时测试代码、库调用调试 Demo");
-        sProjectCatalogMap.put(".GTPush", "个推推送 ( 逻辑 ) 处理 ( 含设备管理 )");
-        sProjectCatalogMap.put(".JPush", "极光推送 ( 逻辑 ) 处理 ( 含设备管理 )");
-        sProjectCatalogMap.put(".UMShare", "友盟分享 ( 逻辑 ) 处理");
-
         // ========================
         // = DevUtils Interesting =
         // ========================
@@ -198,5 +186,18 @@ final class Config {
         sInterestingCatalogMap.put("interesting", "根目录");
         sInterestingCatalogMap.put(".DevScreenMatch", "Android 屏幕适配生成对应的尺寸文件");
         sInterestingCatalogMap.put(".DevStandard", "项目规范统一检测、生成替换等");
+
+        // ========================
+        // = DevUtils Application =
+        // ========================
+
+        sApplicationCatalogMap.put("application", "根目录");
+        sApplicationCatalogMap.put(".Accessibility", "Android 无障碍使用 ( Activity 栈 )");
+        sApplicationCatalogMap.put(".AppInfo", "APP 信息提取器");
+        sApplicationCatalogMap.put(".Demo", "临时测试代码、库调用调试 Demo");
+        sApplicationCatalogMap.put(".DevUtilsApp", "DevUtils 代码演示应用");
+        sApplicationCatalogMap.put(".GTPush", "个推推送 ( 逻辑 ) 处理 ( 含设备管理 )");
+        sApplicationCatalogMap.put(".JPush", "极光推送 ( 逻辑 ) 处理 ( 含设备管理 )");
+        sApplicationCatalogMap.put(".UMShare", "友盟分享 ( 逻辑 ) 处理");
     }
 }
