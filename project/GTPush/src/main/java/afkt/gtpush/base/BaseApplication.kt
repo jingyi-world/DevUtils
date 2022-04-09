@@ -43,7 +43,7 @@ class BaseApplication : MultiDexApplication() {
             DevLogger.initialize(
                 LogConfig()
                     .logLevel(LogLevel.DEBUG)
-                    .tag("GTPushKtx_TAG")
+                    .tag("GTPush_TAG")
                     .sortLog(true)
                     .methodCount(0)
             )

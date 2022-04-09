@@ -43,7 +43,7 @@ class BaseApplication : MultiDexApplication() {
             DevLogger.initialize(
                 LogConfig()
                     .logLevel(LogLevel.DEBUG)
-                    .tag("JPushKtx_TAG")
+                    .tag("JPush_TAG")
                     .sortLog(true)
                     .methodCount(0)
             )

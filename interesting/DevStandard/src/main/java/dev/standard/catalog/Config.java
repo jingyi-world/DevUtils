@@ -184,12 +184,12 @@ final class Config {
         // ====================
 
         sProjectCatalogMap.put("project", "根目录");
-        sProjectCatalogMap.put(".AccessibilityKtx", "Android 无障碍使用 ( Activity 栈 )");
-        sProjectCatalogMap.put(".AppInfoKtx", "APP 信息提取器");
-        sProjectCatalogMap.put(".DemoKtx", "临时测试代码、库调用调试 Demo");
-        sProjectCatalogMap.put(".GTPushKtx", "个推推送 ( 逻辑 ) 处理 ( 含设备管理 )");
-        sProjectCatalogMap.put(".JPushKtx", "极光推送 ( 逻辑 ) 处理 ( 含设备管理 )");
-        sProjectCatalogMap.put(".UMShareKtx", "友盟分享 ( 逻辑 ) 处理");
+        sProjectCatalogMap.put(".Accessibility", "Android 无障碍使用 ( Activity 栈 )");
+        sProjectCatalogMap.put(".AppInfo", "APP 信息提取器");
+        sProjectCatalogMap.put(".Demo", "临时测试代码、库调用调试 Demo");
+        sProjectCatalogMap.put(".GTPush", "个推推送 ( 逻辑 ) 处理 ( 含设备管理 )");
+        sProjectCatalogMap.put(".JPush", "极光推送 ( 逻辑 ) 处理 ( 含设备管理 )");
+        sProjectCatalogMap.put(".UMShare", "友盟分享 ( 逻辑 ) 处理");
 
         // ========================
         // = DevUtils Interesting =

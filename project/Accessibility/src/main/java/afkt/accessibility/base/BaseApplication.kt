@@ -19,7 +19,7 @@ import dev.utils.common.StringUtils
 
 class BaseApplication : MultiDexApplication() {
 
-    private val TAG = "AccessibilityKtx_TAG"
+    private val TAG = "Accessibility_TAG"
 
     override fun onCreate() {
         super.onCreate()

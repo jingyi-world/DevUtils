@@ -31,7 +31,7 @@ class BaseApplication : MultiDexApplication() {
             DevLogger.initialize(
                 LogConfig()
                     .logLevel(LogLevel.DEBUG)
-                    .tag("UMShareKtx_TAG")
+                    .tag("UMShare_TAG")
                     .sortLog(true)
                     .methodCount(0)
             )

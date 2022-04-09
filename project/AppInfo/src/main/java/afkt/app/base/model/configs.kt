@@ -15,13 +15,7 @@ object AppConfig {
     // ==========
 
     // 项目名
-    const val BASE_NAME = "AppInfoKtx"
-
-    // 缩写标识 - 小写
-    const val BASE_NAME_SHORT = "aiktx"
-
-    // 缩写标识 - 大写
-    const val BASE_NAME_SHORT_CAP = "AIKTX"
+    const val BASE_NAME = "AppInfo"
 
     // ==========
     // = 其他配置 =
