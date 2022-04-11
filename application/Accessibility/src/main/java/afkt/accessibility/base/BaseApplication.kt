@@ -50,8 +50,10 @@ class BaseApplication : MultiDexApplication() {
                 event: AccessibilityEvent?,
                 service: AccessibilityListenerService?
             ) {
-                // 打印 Event 信息
-//                AccessibilityUtils.printAccessibilityEvent(event)
+//                // 打印 Event 信息
+//                AccessibilityUtils.Print.logEvent(event)?.let { log ->
+//                    DevLogger.d(log)
+//                }
 
                 event?.let {
                     // 窗口改变时通知
