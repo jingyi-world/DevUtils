@@ -5,7 +5,6 @@ import afkt.accessibility.base.model.ActivityChangedEvent
 import afkt.accessibility.service.AccessibilityListenerService
 import afkt.accessibility.service.AccessibilityListenerService.Listener
 import afkt.accessibility.utils.EventBusUtils
-import android.os.Build
 import android.text.TextUtils
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
@@ -50,8 +49,12 @@ class BaseApplication : MultiDexApplication() {
                 event: AccessibilityEvent?,
                 service: AccessibilityListenerService?
             ) {
-//                // 打印 Event 信息
+//                // 打印 AccessibilityEvent 信息日志
 //                AccessibilityUtils.Print.logEvent(event)?.let { log ->
+//                    DevLogger.d(log)
+//                }
+//                // 打印 AccessibilityEvent、AccessibilityService 完整信息日志
+//                AccessibilityUtils.Print.logComplete(event, service)?.let { log ->
 //                    DevLogger.d(log)
 //                }
 
@@ -69,31 +72,6 @@ class BaseApplication : MultiDexApplication() {
                             )
                         }
                     }
-                }
-
-                // =============
-                // = 打印事件信息 =
-                // =============
-
-                val print = false
-                if (print) { // 开发时打印, 用于获取事件节点信息
-                    val builder = StringBuilder()
-                    service?.let { serviceIT ->
-                        if (serviceIT.rootInActiveWindow != null) {
-                            track(serviceIT.rootInActiveWindow, builder, 0)
-                        } else {
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                                val lists = serviceIT.windows
-                                for (info in lists) {
-                                    info?.let { track(it.root, builder, 0) }
-                                }
-                            }
-                        }
-                    }
-                    event?.let {
-                        track(it.source, builder, 0)
-                    }
-                    DevLogger.w(builder.toString())
                 }
             }
         })
