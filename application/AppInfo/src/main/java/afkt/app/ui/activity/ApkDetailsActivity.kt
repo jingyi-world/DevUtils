@@ -84,7 +84,7 @@ class ApkDetailsActivity : BaseActivity<ActivityApkDetailsBinding>() {
         binding.vidInstallTv.setOnClickListener {
             val sourceDir = apkInfoItem.appInfoBean.sourceDir
             if (FileUtils.isFileExists(sourceDir)) {
-                // Android 8.0以上
+                // Android 8.0 以上
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     if (packageManager.canRequestPackageInstalls()) {
                         AppUtils.installApp(sourceDir) // 安装 APK
