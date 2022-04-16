@@ -50,7 +50,9 @@ public class DimensValueMain {
         for (float value = start; value <= end; value += interval) {
             int    intValue = (int) value;
             String strValue = String.valueOf(value);
-            strValue = BigDecimalUtils.operation(strValue).round(1, BigDecimal.ROUND_HALF_UP).toPlainString();
+            strValue = BigDecimalUtils.operation(strValue)
+                    .round(1, BigDecimal.ROUND_HALF_UP)
+                    .toPlainString();
             // 属于整数
             if (strValue.endsWith(".0")) {
                 strValue = String.valueOf(intValue);
