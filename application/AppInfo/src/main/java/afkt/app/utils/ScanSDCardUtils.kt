@@ -18,6 +18,7 @@ import java.util.*
 class ScanSDCardUtils private constructor() {
 
     companion object {
+
         val instance: ScanSDCardUtils by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
             ScanSDCardUtils()
         }
