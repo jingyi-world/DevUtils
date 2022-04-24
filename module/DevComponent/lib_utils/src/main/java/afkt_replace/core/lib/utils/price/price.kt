@@ -38,13 +38,13 @@ fun String.toRMBSubZeroAndDot(): String {
 
 /**
  * 提供精确的小数位四舍五入处理
- * @param defValue     默认值
+ * @param defaultValue 默认值
  * @param scale        保留 scale 位小数
  * @param roundingMode 舍入模式
  * @return 四舍五入后的结果
  */
 fun Any.toPriceString(
-    defValue: String? = null,
+    defaultValue: String? = null,
     scale: Int = 2,
     roundingMode: Int = BigDecimal.ROUND_DOWN
 ): String? {
@@ -53,19 +53,19 @@ fun Any.toPriceString(
             this, scale, roundingMode
         ).toString()
     } catch (e: Exception) {
-        defValue
+        defaultValue
     }
 }
 
 /**
  * 提供精确的小数位四舍五入处理
- * @param defValue     默认值
+ * @param defaultValue 默认值
  * @param scale        保留 scale 位小数
  * @param roundingMode 舍入模式
  * @return 四舍五入后的结果
  */
 fun Any.toPriceDouble(
-    defValue: Double = 0.0,
+    defaultValue: Double = 0.0,
     scale: Int = 2,
     roundingMode: Int = BigDecimal.ROUND_DOWN
 ): Double {
@@ -74,24 +74,24 @@ fun Any.toPriceDouble(
             this, scale, roundingMode
         )
     } catch (e: Exception) {
-        defValue
+        defaultValue
     }
 }
 
 /**
  * 提供精确的小数位四舍五入处理
- * @param defValue     默认值
+ * @param defaultValue 默认值
  * @param scale        保留 scale 位小数
  * @param roundingMode 舍入模式
  * @return 四舍五入后的结果
  */
 fun Any.toPriceFloat(
-    defValue: Float = 0F,
+    defaultValue: Float = 0F,
     scale: Int = 2,
     roundingMode: Int = BigDecimal.ROUND_DOWN
 ): Float {
     return toPriceDouble(
-        defValue = defValue.toDouble(),
+        defaultValue = defaultValue.toDouble(),
         scale = scale,
         roundingMode = roundingMode
     ).toFloat()
@@ -99,18 +99,18 @@ fun Any.toPriceFloat(
 
 /**
  * 提供精确的小数位四舍五入处理
- * @param defValue     默认值
+ * @param defaultValue 默认值
  * @param scale        保留 scale 位小数
  * @param roundingMode 舍入模式
  * @return 四舍五入后的结果
  */
 fun Any.toPriceLong(
-    defValue: Long = 0,
+    defaultValue: Long = 0,
     scale: Int = 2,
     roundingMode: Int = BigDecimal.ROUND_DOWN
 ): Long {
     return toPriceDouble(
-        defValue = defValue.toDouble(),
+        defaultValue = defaultValue.toDouble(),
         scale = scale,
         roundingMode = roundingMode
     ).toLong()
@@ -118,18 +118,18 @@ fun Any.toPriceLong(
 
 /**
  * 提供精确的小数位四舍五入处理
- * @param defValue     默认值
+ * @param defaultValue 默认值
  * @param scale        保留 scale 位小数
  * @param roundingMode 舍入模式
  * @return 四舍五入后的结果
  */
 fun Any.toPriceInt(
-    defValue: Int = 0,
+    defaultValue: Int = 0,
     scale: Int = 2,
     roundingMode: Int = BigDecimal.ROUND_DOWN
 ): Int {
     return toPriceDouble(
-        defValue = defValue.toDouble(),
+        defaultValue = defaultValue.toDouble(),
         scale = scale,
         roundingMode = roundingMode
     ).toInt()
