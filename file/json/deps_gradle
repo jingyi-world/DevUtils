@@ -36,7 +36,7 @@ dependencies {
 	// = kotlin =
 
 	// stdlib
-	implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.6.20'
+	implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.6.21'
 	// core
 	implementation 'androidx.core:core-ktx:1.7.0'
 	// coroutines
