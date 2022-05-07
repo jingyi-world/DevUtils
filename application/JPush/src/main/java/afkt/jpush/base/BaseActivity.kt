@@ -18,7 +18,7 @@ abstract class BaseActivity<VB : ViewBinding> : DevBaseContentViewBindingActivit
         super.onCreate(savedInstanceState)
 
         // 内部初始化
-        priInitialize()
+        innerInitialize()
 
         // 是否需要 ToolBar
         if (isToolBar()) initToolBar()
@@ -67,7 +67,7 @@ abstract class BaseActivity<VB : ViewBinding> : DevBaseContentViewBindingActivit
     // = 内部初始化 =
     // ============
 
-    private fun priInitialize() {
+    private fun innerInitialize() {
         try {
             ARouter.getInstance().inject(this)
         } catch (e: Exception) {
