@@ -128,7 +128,7 @@ final class Config {
         sDevUtilsCatalogMap.put(".DevBaseMVVM", "MVVM ( ViewDataBinding + ViewModel ) 基类库");
         sDevUtilsCatalogMap.put(".DevEngine", "第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用");
         sDevUtilsCatalogMap.put(".DevHttpCapture", "OkHttp 抓包工具库");
-        sDevUtilsCatalogMap.put(".DevHttpManager", "OkHttp 管理库 ( Retrofit 多 BaseUrl 等 )");
+        sDevUtilsCatalogMap.put(".DevHttpManager", "OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )");
         sDevUtilsCatalogMap.put(".DevJava", "Java 工具类库 ( 不依赖 android api )");
         sDevUtilsCatalogMap.put(".DevOther", "第三方库封装、以及部分特殊工具类等, 方便 copy 封装类使用");
         sDevUtilsCatalogMap.put(".DevSKU", "商品 SKU 组合封装实现");
