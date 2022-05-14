@@ -10,4 +10,7 @@ dependencies {
     implementation project(':DevApp')
     implementation project(':DevBaseMVVM')
     implementation project(':DevOther')
+
+    // DevComponent /core/libs/lib_utils
+    implementation project(':lib_utils')
 }

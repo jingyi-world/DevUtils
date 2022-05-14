@@ -48,15 +48,18 @@ android {
 }
 
 dependencies {
-    api project(':DevBaseMVVM')
+    implementation project(':DevBaseMVVM')
+
+    // DevComponent /core/libs/lib_utils
+    implementation project(':lib_utils')
 
     // ==========
     // = Module =
     // ==========
 
     // Module 基础复用组件
-    api project(':DevBaseModule')
+    implementation project(':DevBaseModule')
 
     // 极光推送 Module
-    api project(':DevJPush')
+    implementation project(':DevJPush')
 }

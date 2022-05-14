@@ -14,6 +14,9 @@ dependencies {
     implementation project(':DevEngine')
     implementation project(':DevWidget')
 
+    // DevComponent /core/libs/lib_utils
+    implementation project(':lib_utils')
+
     // ============
     // = 快捷开发库 =
     // ============
