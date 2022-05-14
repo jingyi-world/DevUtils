@@ -1,5 +1,6 @@
 package afkt.jpush.router
 
+import afkt_replace.core.lib.utils.json.toJson
 import android.app.Activity
 import android.content.ComponentName
 import android.content.Context
@@ -76,7 +77,7 @@ class PushRouterActivity : Activity() {
             pushMessage: PushMessage,
         ): Boolean {
             val intent = Intent(context, PushRouterActivity::class.java)
-            intent.putExtra(DevFinal.STR.DATA, DevEngine.getJSON()?.toJson(pushMessage))
+            intent.putExtra(DevFinal.STR.DATA, pushMessage.toJson())
             return AppUtils.startActivity(intent)
         }
     }
