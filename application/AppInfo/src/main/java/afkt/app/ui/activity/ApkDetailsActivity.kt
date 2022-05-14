@@ -5,6 +5,8 @@ import afkt.app.base.BaseActivity
 import afkt.app.databinding.ActivityApkDetailsBinding
 import afkt.app.ui.adapter.KeyValueAdapter
 import afkt.app.utils.ExportUtils
+import afkt_replace.core.lib.utils.log.log_d
+import afkt_replace.core.lib.utils.log.log_e
 import android.Manifest
 import android.os.Build
 import android.view.Menu
@@ -21,7 +23,6 @@ import dev.utils.app.helper.view.ViewHelper
 import dev.utils.app.info.ApkInfoItem
 import dev.utils.app.info.AppInfoUtils
 import dev.utils.app.info.KeyValue
-import dev.utils.app.logger.DevLogger
 import dev.utils.app.toast.ToastTintUtils
 import dev.utils.common.FileUtils
 
@@ -38,7 +39,7 @@ class ApkDetailsActivity : BaseActivity<ActivityApkDetailsBinding>() {
             val apkInfo = AppInfoUtils.getApkInfoItem(intent.getStringExtra(DevFinal.STR.URI))
             apkInfo?.let { apkInfoItem = it }
         } catch (e: Exception) {
-            DevLogger.e(e)
+            log_e(throwable = e)
         }
         if (!this::apkInfoItem.isInitialized) {
             ToastTintUtils.warning(ResourceUtils.getString(R.string.str_get_apkinfo_fail))
@@ -110,7 +111,7 @@ class ApkDetailsActivity : BaseActivity<ActivityApkDetailsBinding>() {
                                         .append(DevFinal.SYMBOL.NEW_LINE)
                                         .append("未找到的权限").append(notFoundList.toString())
                                     if (deniedList.isNotEmpty()) {
-                                        DevLogger.d(builder.toString())
+                                        log_d(message = builder.toString())
                                         ToastTintUtils.info(ResourceUtils.getString(R.string.str_install_request_tips))
                                         // 跳转设置页面, 开启安装未知应用权限
                                         startActivity(IntentUtils.getLaunchAppInstallPermissionSettingsIntent())

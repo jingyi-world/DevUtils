@@ -5,6 +5,7 @@ import afkt.app.base.BaseActivity
 import afkt.app.databinding.ActivityAppDetailsBinding
 import afkt.app.ui.adapter.KeyValueAdapter
 import afkt.app.utils.ExportUtils
+import afkt_replace.core.lib.utils.log.log_e
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -16,7 +17,6 @@ import dev.utils.app.helper.view.ViewHelper
 import dev.utils.app.info.AppInfoItem
 import dev.utils.app.info.AppInfoUtils
 import dev.utils.app.info.KeyValue
-import dev.utils.app.logger.DevLogger
 import dev.utils.app.toast.ToastTintUtils
 
 class AppDetailsActivity : BaseActivity<ActivityAppDetailsBinding>() {
@@ -33,7 +33,7 @@ class AppDetailsActivity : BaseActivity<ActivityAppDetailsBinding>() {
                 AppInfoUtils.getAppInfoItem(intent.getStringExtra(DevFinal.STR.PACKNAME))
             appInfo?.let { appInfoItem = it }
         } catch (e: Exception) {
-            DevLogger.e(e)
+            log_e(throwable = e)
         }
         if (!this::appInfoItem.isInitialized) {
             ToastTintUtils.warning(ResourceUtils.getString(R.string.str_get_apkinfo_fail))

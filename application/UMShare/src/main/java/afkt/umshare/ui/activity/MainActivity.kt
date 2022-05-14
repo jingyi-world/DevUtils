@@ -4,6 +4,7 @@ import afkt.umshare.R
 import afkt.umshare.base.BaseActivity
 import afkt.umshare.base.config.RouterPath
 import afkt.umshare.databinding.ActivityMainBinding
+import afkt_replace.core.lib.utils.log.log_dTag
 import android.content.Intent
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.engine.DevEngine
@@ -117,23 +118,34 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     private val shareListener: ShareListener<ShareParams> by lazy {
         object : ShareListener<ShareParams> {
             override fun onStart(params: ShareParams?) {
-                DevEngine.getLog()?.dTag(TAG, "开始分享")
+                log_dTag(
+                    tag = TAG,
+                    message = "开始分享"
+                )
             }
 
             override fun onResult(params: ShareParams?) {
-                DevEngine.getLog()?.dTag(TAG, "分享成功")
+                log_dTag(
+                    tag = TAG,
+                    message = "分享成功"
+                )
             }
 
             override fun onError(
                 params: ShareParams?,
                 throwable: Throwable?
             ) {
-                DevEngine.getLog()
-                    ?.dTag(TAG, "分享失败\n" + ThrowableUtils.getThrowable(throwable))
+                log_dTag(
+                    tag = TAG,
+                    message = "分享失败\n${ThrowableUtils.getThrowable(throwable)}"
+                )
             }
 
             override fun onCancel(params: ShareParams?) {
-                DevEngine.getLog()?.dTag(TAG, "取消分享")
+                log_dTag(
+                    tag = TAG,
+                    message = "取消分享"
+                )
             }
         }
     }

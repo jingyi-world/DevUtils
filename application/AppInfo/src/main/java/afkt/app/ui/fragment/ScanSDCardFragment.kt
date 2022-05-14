@@ -9,6 +9,8 @@ import afkt.app.databinding.FragmentAppBinding
 import afkt.app.ui.adapter.ApkListAdapter
 import afkt.app.utils.AppSearchUtils
 import afkt.app.utils.ScanSDCardUtils
+import afkt_replace.core.lib.utils.log.log_d
+import afkt_replace.core.lib.utils.log.log_e
 import android.Manifest
 import android.os.Bundle
 import android.view.View
@@ -23,7 +25,6 @@ import dev.utils.app.ListViewUtils
 import dev.utils.app.ResourceUtils
 import dev.utils.app.TextViewUtils
 import dev.utils.app.ViewUtils
-import dev.utils.app.logger.DevLogger
 import dev.utils.app.toast.ToastTintUtils
 import dev.utils.common.FileUtils
 import dev.utils.common.HtmlUtils
@@ -148,7 +149,7 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
                         FileUtils.deleteFile(mAdapter.getDataItem(position).uri)
                         mAdapter.removeDataAt(position)
                     } catch (e: Exception) {
-                        DevLogger.e(e)
+                        log_e(throwable = e)
                     }
                     if (mAdapter.isDataEmpty) {
                         binding.vidStateSl.showEmptyData()
@@ -257,7 +258,7 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
                         .append(DevFinal.SYMBOL.NEW_LINE)
                         .append("未找到的权限").append(notFoundList.toString())
                     if (deniedList.isNotEmpty()) {
-                        DevLogger.d(builder.toString())
+                        log_d(message = builder.toString())
                         ToastTintUtils.info(ResourceUtils.getString(R.string.str_read_write_request_tips))
                     } else {
                         onGranted()

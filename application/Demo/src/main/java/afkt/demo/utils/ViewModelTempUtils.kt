@@ -3,8 +3,8 @@ package afkt.demo.utils
 import afkt.demo.model.ActivityViewModel
 import afkt.demo.model.ApplicationViewModel
 import afkt.demo.model.FragmentViewModel
+import afkt_replace.core.lib.utils.log.log_dTag
 import androidx.lifecycle.LifecycleOwner
-import dev.utils.app.logger.DevLogger
 
 /**
  * detail: ViewModel 临时工具类
@@ -29,7 +29,11 @@ object ViewModelTempUtils {
         viewModel?.let {
             // 进行监听
             viewModel.number.observe(owner) {
-                DevLogger.dTag(TAG, "%s observe number: %s", tag, viewModel.number.value)
+                log_dTag(
+                    tag = TAG,
+                    message = "%s observe number: %s",
+                    args = arrayOf(tag, viewModel.number.value)
+                )
             }
         }
     }
@@ -48,7 +52,11 @@ object ViewModelTempUtils {
         viewModel?.let {
             // 进行监听
             viewModel.number.observe(owner) {
-                DevLogger.dTag(TAG, "%s observe number: %s", tag, viewModel.number.value)
+                log_dTag(
+                    tag = TAG,
+                    message = "%s observe number: %s",
+                    args = arrayOf(tag, viewModel.number.value)
+                )
             }
         }
     }
@@ -67,7 +75,11 @@ object ViewModelTempUtils {
         viewModel?.let {
             // 进行监听
             viewModel.number.observe(owner) {
-                DevLogger.dTag(TAG, "%s observe number: %s", tag, viewModel.number.value)
+                log_dTag(
+                    tag = TAG,
+                    message = "%s observe number: %s",
+                    args = arrayOf(tag, viewModel.number.value)
+                )
             }
         }
     }

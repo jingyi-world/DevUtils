@@ -1,8 +1,8 @@
 package afkt.demo.use.datastore
 
+import afkt_replace.core.lib.utils.log.log_dTag
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.asLiveData
-import dev.utils.app.logger.DevLogger
 import dev.utils.app.share.SPUtils
 import kotlinx.coroutines.flow.first
 import ktx.dev.other.DataStoreUtils
@@ -53,9 +53,10 @@ object DataStoreUse {
          */
         DataStoreUtils.get(spStoreName).getStringFlow("one")?.let {
             it.asLiveData().observe(activity) { value ->
-                DevLogger.dTag(
-                    TAG, "listener %s, key : %s, value : %s",
-                    spStoreName, "one", value
+                log_dTag(
+                    tag = TAG,
+                    message = "listener %s, key : %s, value : %s",
+                    args = arrayOf(spStoreName, "one", value)
                 )
             }
         }
@@ -87,54 +88,76 @@ object DataStoreUse {
      * 读取数据
      */
     private suspend fun read(activity: AppCompatActivity) {
-        DevLogger.dTag(
-            TAG, "getFlow %s, key : %s, value : %s",
-            TAG, "aaaaa", DataStoreUtils.get(TAG).getStringFlow("aaaaa", "不存在该 key 返回指定值")?.first()
+        log_dTag(
+            tag = TAG,
+            message = "getFlow %s, key : %s, value : %s",
+            args = arrayOf(
+                TAG, "aaaaa",
+                DataStoreUtils.get(TAG).getStringFlow("aaaaa", "不存在该 key 返回指定值")?.first()
+            )
         )
 
-        DevLogger.dTag(
-            TAG, "getFlow %s, key : %s, value : %s",
-            TAG, "double", DataStoreUtils.get(TAG).getDoubleFlow("double")?.first()
+        log_dTag(
+            tag = TAG,
+            message = "getFlow %s, key : %s, value : %s",
+            args = arrayOf(TAG, "double", DataStoreUtils.get(TAG).getDoubleFlow("double")?.first())
         )
 
-        DevLogger.dTag(
-            TAG, "getFlow %s, key : %s, value : %s",
-            spStoreName, "type", DataStoreUtils.get(spStoreName).getStringFlow("type")?.first()
+        log_dTag(
+            tag = TAG,
+            message = "getFlow %s, key : %s, value : %s",
+            args = arrayOf(
+                spStoreName, "type",
+                DataStoreUtils.get(spStoreName).getStringFlow("type")?.first()
+            )
         )
 
-        DevLogger.dTag(
-            TAG, "getValue %s, key : %s, value : %s",
-            spStoreName, "errorType", DataStoreUtils.get(spStoreName).getString("errorType")
+        log_dTag(
+            tag = TAG,
+            message = "getValue %s, key : %s, value : %s",
+            args = arrayOf(
+                spStoreName, "errorType",
+                DataStoreUtils.get(spStoreName).getString("errorType")
+            )
         )
 
-        DevLogger.dTag(
-            TAG, "getValue %s, key : %s, value : %s",
-            spStoreName, "errorType", DataStoreUtils.get(spStoreName).getInt("errorType")
+        log_dTag(
+            tag = TAG,
+            message = "getValue %s, key : %s, value : %s",
+            args = arrayOf(
+                spStoreName, "errorType",
+                DataStoreUtils.get(spStoreName).getInt("errorType")
+            )
         )
 
-        DevLogger.dTag(
-            TAG, "getValue %s, key : %s, value : %s",
-            spStoreName, "one", DataStoreUtils.get(spStoreName).getInt("one")
+        log_dTag(
+            tag = TAG,
+            message = "getValue %s, key : %s, value : %s",
+            args = arrayOf(spStoreName, "one", DataStoreUtils.get(spStoreName).getInt("one"))
         )
 
-        DevLogger.dTag(
-            TAG, "getValue %s, key : %s, value : %s",
-            spStoreName, "two", DataStoreUtils.get(spStoreName).getString("two")
+        log_dTag(
+            tag = TAG,
+            message = "getValue %s, key : %s, value : %s",
+            args = arrayOf(spStoreName, "two", DataStoreUtils.get(spStoreName).getString("two"))
         )
 
-        DevLogger.dTag(
-            TAG, "getValue %s, key : %s, value : %s",
-            spStoreName, "abc", DataStoreUtils.get(spStoreName).getString("abc")
+        log_dTag(
+            tag = TAG,
+            message = "getValue %s, key : %s, value : %s",
+            args = arrayOf(spStoreName, "abc", DataStoreUtils.get(spStoreName).getString("abc"))
         )
 
-        DevLogger.dTag(
-            TAG, "getValue %s, key : %s, value : %s",
-            TAG, "double", DataStoreUtils.get(TAG).getDouble("double")
+        log_dTag(
+            tag = TAG,
+            message = "getValue %s, key : %s, value : %s",
+            args = arrayOf(TAG, "double", DataStoreUtils.get(TAG).getDouble("double"))
         )
 
-        DevLogger.dTag(
-            TAG, "getValue %s, key : %s, value : %s",
-            TAG, "double", DataStoreUtils.get(TAG).getBoolean("double")
+        log_dTag(
+            tag = TAG,
+            message = "getValue %s, key : %s, value : %s",
+            args = arrayOf(TAG, "double", DataStoreUtils.get(TAG).getBoolean("double"))
         )
     }
 
@@ -147,9 +170,10 @@ object DataStoreUse {
          */
         DataStoreUtils.get(TAG).getIntFlow("int")?.let {
             it.asLiveData().observe(activity) { value ->
-                DevLogger.dTag(
-                    TAG, "listener %s, key : %s, value : %s",
-                    TAG, "int", value
+                log_dTag(
+                    tag = TAG,
+                    message = "listener %s, key : %s, value : %s",
+                    args = arrayOf(TAG, "int", value)
                 )
             }
         }
@@ -165,9 +189,10 @@ object DataStoreUse {
 //         */
 //        DataStoreUtils.get(spStoreName).getStringFlow("one")?.let {
 //            it.asLiveData().observe(activity) { value ->
-//                DevLogger.dTag(
-//                    TAG, "listener %s, key : %s, value : %s",
-//                    spStoreName, "one", value
+//                log_dTag(
+//                    tag = TAG,
+//                    message = "listener %s, key : %s, value : %s",
+//                    args = arrayOf(spStoreName, "one", value)
 //                )
 //            }
 //        }

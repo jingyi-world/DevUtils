@@ -1,10 +1,10 @@
 package afkt.jpush.device
 
+import afkt_replace.core.lib.utils.log.log_dTag
 import android.app.admin.DeviceAdminReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.UserHandle
-import dev.utils.app.logger.DevLogger
 
 /**
  * detail: 设备管理广播监听
@@ -19,21 +19,30 @@ class DeviceReceiver : DeviceAdminReceiver() {
         context: Context,
         intent: Intent
     ) {
-        DevLogger.dTag(TAG, "[onEnabled] 设备管理: 可用")
+        log_dTag(
+            tag = TAG,
+            message = "[onEnabled] 设备管理: 可用"
+        )
     }
 
     override fun onDisabled(
         context: Context,
         intent: Intent
     ) {
-        DevLogger.dTag(TAG, "[onDisabled] 设备管理: 不可用")
+        log_dTag(
+            tag = TAG,
+            message = "[onDisabled] 设备管理: 不可用"
+        )
     }
 
     override fun onDisableRequested(
         context: Context,
         intent: Intent
     ): CharSequence {
-        DevLogger.dTag(TAG, "[onDisableRequested] 设备管理: ACTION_DEVICE_ADMIN_DISABLE_REQUESTED")
+        log_dTag(
+            tag = TAG,
+            message = "[onDisableRequested] 设备管理: ACTION_DEVICE_ADMIN_DISABLE_REQUESTED"
+        )
         return "这是一个可选的消息, 警告有关禁止用户的请求"
     }
 
@@ -42,7 +51,10 @@ class DeviceReceiver : DeviceAdminReceiver() {
         intent: Intent,
         user: UserHandle
     ) {
-        DevLogger.dTag(TAG, "[onPasswordChanged] 设备管理: 密码己修改")
+        log_dTag(
+            tag = TAG,
+            message = "[onPasswordChanged] 设备管理: 密码己修改"
+        )
     }
 
     override fun onPasswordFailed(
@@ -50,7 +62,10 @@ class DeviceReceiver : DeviceAdminReceiver() {
         intent: Intent,
         user: UserHandle
     ) {
-        DevLogger.dTag(TAG, "[onPasswordFailed] 设备管理: 修改密码失败")
+        log_dTag(
+            tag = TAG,
+            message = "[onPasswordFailed] 设备管理: 修改密码失败"
+        )
     }
 
     override fun onPasswordSucceeded(
@@ -58,7 +73,10 @@ class DeviceReceiver : DeviceAdminReceiver() {
         intent: Intent,
         user: UserHandle
     ) {
-        DevLogger.dTag(TAG, "[onPasswordSucceeded] 设备管理: 修改密码成功")
+        log_dTag(
+            tag = TAG,
+            message = "[onPasswordSucceeded] 设备管理: 修改密码成功"
+        )
     }
 
     override fun onPasswordExpiring(
@@ -66,6 +84,9 @@ class DeviceReceiver : DeviceAdminReceiver() {
         intent: Intent,
         user: UserHandle
     ) {
-        DevLogger.dTag(TAG, "[onPasswordExpiring] 设备管理: 密码即将到期")
+        log_dTag(
+            tag = TAG,
+            message = "[onPasswordExpiring] 设备管理: 密码即将到期"
+        )
     }
 }

@@ -1,10 +1,10 @@
 package afkt.app.utils
 
 import afkt.app.base.model.FileApkItem
+import afkt_replace.core.lib.utils.log.log_d
 import dev.callback.DevCallback
 import dev.utils.app.PathUtils
 import dev.utils.app.info.AppInfoUtils
-import dev.utils.app.logger.DevLogger
 import dev.utils.common.StringUtils
 import dev.utils.common.assist.search.FileBreadthFirstSearchUtils
 import dev.utils.common.thread.DevThreadPool
@@ -68,8 +68,7 @@ class ScanSDCardUtils private constructor() {
                 startTime: Long,
                 endTime: Long
             ) {
-                val diff = endTime - startTime
-                DevLogger.d("搜索耗时: $diff ms")
+                log_d(message = "搜索耗时: ${endTime - startTime} ms")
                 val lists = convertList()
                 Collections.sort(lists, ApkListsComparator())
                 data = lists

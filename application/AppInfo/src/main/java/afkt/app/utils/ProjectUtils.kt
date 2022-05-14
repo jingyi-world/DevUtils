@@ -5,12 +5,12 @@ import afkt.app.base.AppViewModel
 import afkt.app.base.model.DeviceInfo
 import afkt.app.base.model.DeviceInfoItem
 import afkt.app.base.model.TypeEnum
+import afkt_replace.core.lib.utils.log.log_e
 import afkt_replace.core.lib.utils.log.log_eTag
 import android.os.Build
 import com.google.gson.GsonBuilder
 import dev.utils.DevFinal
 import dev.utils.app.*
-import dev.utils.app.logger.DevLogger
 import dev.utils.app.share.SharedUtils
 import dev.utils.common.thread.DevThreadManager
 import kotlin.math.max
@@ -62,7 +62,7 @@ object ProjectUtils {
             try {
                 lists = innerGetDeviceInfo()
             } catch (e: Exception) {
-                DevLogger.e(e)
+                log_e(throwable = e)
             }
             viewModel.postDeviceInfo(DeviceInfo(TypeEnum.DEVICE_INFO, lists))
         }
@@ -179,7 +179,7 @@ object ProjectUtils {
             try {
                 lists = innerGetScreenInfo()
             } catch (e: Exception) {
-                DevLogger.e(e)
+                log_e(throwable = e)
             }
             viewModel.postScreenInfo(DeviceInfo(TypeEnum.SCREEN_INFO, lists))
         }

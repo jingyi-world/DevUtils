@@ -9,6 +9,7 @@ android {
 dependencies {
     implementation project(':DevApp')
     implementation project(':DevBaseMVVM')
+    implementation project(':DevEngine')
     implementation project(':DevOther')
 
     // DevComponent /core/libs/lib_utils

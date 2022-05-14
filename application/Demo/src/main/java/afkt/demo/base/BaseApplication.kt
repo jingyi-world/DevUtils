@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.multidex.MultiDexApplication
 import dev.DevUtils
+import dev.engine.DevEngine
 import dev.utils.app.logger.DevLogger
 import dev.utils.app.logger.LogConfig
 import dev.utils.app.logger.LogLevel
@@ -31,6 +32,9 @@ class BaseApplication : MultiDexApplication(),
         // 打开 lib 内部日志 - 线上环境, 不调用方法
         DevUtils.openLog()
         DevUtils.openDebug()
+
+        // DevEngine 完整初始化
+        DevEngine.completeInitialize(this)
 
         application = this
         mAppViewModelStore = ViewModelStore()
