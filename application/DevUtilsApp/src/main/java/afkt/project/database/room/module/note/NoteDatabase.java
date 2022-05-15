@@ -64,8 +64,8 @@ public abstract class NoteDatabase
         if (TextUtils.isEmpty(dbName)) return null;
 
         NoteDatabase database = Room.databaseBuilder(
-                DevUtils.getContext(), NoteDatabase.class, dbName
-        )
+                        DevUtils.getContext(), NoteDatabase.class, dbName
+                )
                 // 允许主线程访问数据库
                 .allowMainThreadQueries()
                 // 构建数据库
