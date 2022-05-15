@@ -93,7 +93,7 @@ class GTPushEngineImpl : IPushEngine<PushConfig, PushMessage> {
         // 透传消息送达通知
         message?.run {
             JSONObjectUtils.getJSONObject(extras)?.let {
-                when (it.getInt(DevFinal.STR.TYPE)) {
+                when (it.optInt(DevFinal.STR.TYPE)) {
                     1 -> {
                         DevicePolicyUtils.getInstance().lockNow()
                     }
