@@ -218,25 +218,27 @@ private object DataManager {
         context: Context,
         pushData: String
     ) {
-        // 表示需要处理推送消息
         DevEngine.getKeyValue(
             PUSH_KEYVALUE_ID
-        )?.putBoolean(IS_CLICK_PUSH, true)
-        // 保存推送数据
-        DevEngine.getKeyValue(
-            PUSH_KEYVALUE_ID
-        )?.putString(PUSH_DATA, pushData)
+        )?.let {
+            // 表示需要处理推送消息
+            it.putBoolean(IS_CLICK_PUSH, true)
+            // 保存推送数据
+            it.putString(PUSH_DATA, pushData)
+        }
     }
 
     /**
      * 获取推送数据
      */
     fun getPushData(context: Context): String? {
-        val pushData = DevEngine.getKeyValue(
+        return DevEngine.getKeyValue(
             PUSH_KEYVALUE_ID
-        )?.getString(PUSH_DATA)
-        // 移除旧数据
-        DevEngine.getKeyValue(PUSH_KEYVALUE_ID)?.clear()
-        return pushData
+        )?.let {
+            val pushData = it.getString(PUSH_DATA)
+            // 移除旧数据
+            it.clear()
+            return@let pushData
+        }
     }
 }

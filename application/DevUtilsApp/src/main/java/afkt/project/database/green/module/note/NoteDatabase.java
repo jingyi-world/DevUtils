@@ -1,5 +1,7 @@
 package afkt.project.database.green.module.note;
 
+import static afkt_replace.core.lib.utils.log.LogKt.log_dTag;
+
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
@@ -9,7 +11,6 @@ import org.greenrobot.greendao.database.Database;
 import afkt.project.database.green.MigrationHelper;
 import afkt.project.database.green.able.AbsGreenDatabase;
 import dev.DevUtils;
-import dev.engine.DevEngine;
 import dev.utils.common.StringUtils;
 import gen.greendao.DaoMaster;
 import gen.greendao.DaoSession;
@@ -149,7 +150,10 @@ public final class NoteDatabase
                 int oldVersion,
                 int newVersion
         ) {
-            DevEngine.INSTANCE.getLog().dTag(TAG, "oldVersion: %s, newVersion: %s", oldVersion, newVersion);
+            log_dTag(
+                    null, TAG,
+                    "oldVersion: %s, newVersion: %s", oldVersion, newVersion
+            );
             MigrationHelper.migrate(db, NoteDao.class, NotePictureDao.class);
         }
     }
