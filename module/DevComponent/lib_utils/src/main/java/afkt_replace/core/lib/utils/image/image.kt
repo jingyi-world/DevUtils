@@ -12,14 +12,14 @@ import dev.engine.image.IImageEngine
 import dev.engine.image.listener.LoadListener
 import dev.engine.image.listener.OnConvertListener
 
-// ===========================================
-// = IImageEngine<IImageEngine.EngineConfig> =
-// ===========================================
+// ==============================
+// = IImageEngine<EngineConfig> =
+// ==============================
 
 /**
  * 通过 Key 获取 Image Engine
  * @param engine String?
- * @return IImageEngine<IImageEngine.EngineConfig>
+ * @return IImageEngine<EngineConfig>
  * 内部做了处理如果匹配不到则返回默认 Image Engine
  */
 internal fun getEngine(engine: String?): IImageEngine<in IImageEngine.EngineConfig>? {

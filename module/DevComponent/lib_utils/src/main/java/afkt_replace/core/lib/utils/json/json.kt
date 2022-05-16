@@ -4,14 +4,14 @@ import dev.engine.DevEngine
 import dev.engine.json.IJSONEngine
 import java.lang.reflect.Type
 
-// =========================================
-// = IJSONEngine<IJSONEngine.EngineConfig> =
-// =========================================
+// =============================
+// = IJSONEngine<EngineConfig> =
+// =============================
 
 /**
  * 通过 Key 获取 JSON Engine
  * @param engine String?
- * @return IJSONEngine<IJSONEngine.EngineConfig>
+ * @return IJSONEngine<EngineConfig>
  * 内部做了处理如果匹配不到则返回默认 JSON Engine
  */
 internal fun getEngine(engine: String?): IJSONEngine<in IJSONEngine.EngineConfig>? {

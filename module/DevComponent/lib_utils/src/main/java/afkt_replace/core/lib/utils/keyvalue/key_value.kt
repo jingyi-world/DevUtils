@@ -5,14 +5,14 @@ import dev.engine.keyvalue.IKeyValueEngine
 import dev.utils.DevFinal
 import java.lang.reflect.Type
 
-// =================================================
-// = IKeyValueEngine<IKeyValueEngine.EngineConfig> =
-// =================================================
+// =================================
+// = IKeyValueEngine<EngineConfig> =
+// =================================
 
 /**
  * 通过 Key 获取 KeyValue Engine
  * @param engine String?
- * @return IKeyValueEngine<IKeyValueEngine.EngineConfig>
+ * @return IKeyValueEngine<EngineConfig>
  * 内部做了处理如果匹配不到则返回默认 KeyValue Engine
  */
 internal fun getEngine(engine: String?): IKeyValueEngine<in IKeyValueEngine.EngineConfig>? {
