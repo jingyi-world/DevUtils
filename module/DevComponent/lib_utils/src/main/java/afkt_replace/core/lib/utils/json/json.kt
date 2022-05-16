@@ -2,12 +2,11 @@ package afkt_replace.core.lib.utils.json
 
 import dev.engine.DevEngine
 import dev.engine.json.IJSONEngine
-import dev.engine.json.JSONConfig
 import java.lang.reflect.Type
 
-// ===========================================
-// = IJSONEngine<dev.engine.json.JSONConfig> =
-// ===========================================
+// =========================================
+// = IJSONEngine<IJSONEngine.EngineConfig> =
+// =========================================
 
 /**
  * 通过 Key 获取 JSON Engine
@@ -32,9 +31,9 @@ fun Any.toJson(
     return getEngine(engine)?.toJson(this)
 }
 
-fun Any.toJson(
+fun <Config : IJSONEngine.EngineConfig> Any.toJson(
     engine: String? = null,
-    config: JSONConfig?
+    config: Config?
 ): String? {
     return getEngine(engine)?.toJson(this, config)
 }
@@ -48,10 +47,10 @@ fun <T : Any> String.fromJson(
     return getEngine(engine)?.fromJson(this, classOfT)
 }
 
-fun <T : Any> String.fromJson(
+fun <T : Any, Config : IJSONEngine.EngineConfig> String.fromJson(
     engine: String? = null,
     classOfT: Class<T>?,
-    config: JSONConfig?
+    config: Config?
 ): T? {
     return getEngine(engine)?.fromJson(this, classOfT, config)
 }
@@ -63,10 +62,10 @@ fun <T : Any> String.fromJson(
     return getEngine(engine)?.fromJson(this, typeOfT)
 }
 
-fun <T : Any> String.fromJson(
+fun <T : Any, Config : IJSONEngine.EngineConfig> String.fromJson(
     engine: String? = null,
     typeOfT: Type?,
-    config: JSONConfig?
+    config: Config?
 ): T? {
     return getEngine(engine)?.fromJson(this, typeOfT, config)
 }
@@ -99,9 +98,9 @@ fun Any.toJsonIndent(
     return getEngine(engine)?.toJsonIndent(this)
 }
 
-fun Any.toJsonIndent(
+fun <Config : IJSONEngine.EngineConfig> Any.toJsonIndent(
     engine: String? = null,
-    config: JSONConfig?
+    config: Config?
 ): String? {
     return getEngine(engine)?.toJsonIndent(this, config)
 }

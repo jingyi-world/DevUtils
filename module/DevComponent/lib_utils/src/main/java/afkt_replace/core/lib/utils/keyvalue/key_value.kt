@@ -5,9 +5,9 @@ import dev.engine.keyvalue.IKeyValueEngine
 import dev.utils.DevFinal
 import java.lang.reflect.Type
 
-// =========================================================
-// = IKeyValueEngine<extends IKeyValueEngine.EngineConfig> =
-// =========================================================
+// =================================================
+// = IKeyValueEngine<IKeyValueEngine.EngineConfig> =
+// =================================================
 
 /**
  * 通过 Key 获取 KeyValue Engine
@@ -36,10 +36,10 @@ private const val BOOLEAN_DEFAULT: Boolean = DevFinal.DEFAULT.BOOLEAN
 // = Key KeyValue Engine =
 // =======================
 
-fun <T : IKeyValueEngine.EngineConfig> kv_getConfig(
+fun <Config : IKeyValueEngine.EngineConfig> kv_getConfig(
     engine: String? = null
-): T? {
-    return getEngine(engine)?.config as? T
+): Config? {
+    return getEngine(engine)?.config as? Config
 }
 
 fun String.kv_remove(
