@@ -41,12 +41,8 @@ fun <Config : IBarCodeEngine.EngineConfig> barcode_initialize(
     getEngine(engine)?.initialize(config)
 }
 
-/**
- * 获取 BarCode Engine Config
- * @return BarCode Engine Config
- */
 fun <Config : IBarCodeEngine.EngineConfig> barcode_getConfig(
-    engine: String? = null,
+    engine: String? = null
 ): Config? {
     return getEngine(engine)?.config as? Config
 }
@@ -55,11 +51,6 @@ fun <Config : IBarCodeEngine.EngineConfig> barcode_getConfig(
 // = 生成条码 =
 // ==========
 
-/**
- * 编码 ( 生成 ) 条码图片
- * @param params   BarCode ( Data、Params ) Item
- * @param callback 生成结果回调
- */
 fun <Item : IBarCodeEngine.EngineItem> barcode_encodeBarCode(
     engine: String? = null,
     params: Item?,
@@ -80,11 +71,6 @@ fun <Item : IBarCodeEngine.EngineItem> barcode_encodeBarCodeSync(
 // = 解析条码 =
 // ==========
 
-/**
- * 解码 ( 解析 ) 条码图片
- * @param bitmap   待解析的条码图片
- * @param callback 解析结果回调
- */
 fun <Result : IBarCodeEngine.EngineResult> barcode_decodeBarCode(
     engine: String? = null,
     bitmap: Bitmap?,

@@ -1,25 +1,25 @@
 package afkt_replace.core.lib.utils.media
 
 import dev.engine.DevEngine
-import dev.engine.analytics.IAnalyticsEngine
+import dev.engine.media.IMediaEngine
 
-// ================================================================================
-// = IAnalyticsEngine<IAnalyticsEngine.EngineConfig, IAnalyticsEngine.EngineItem> =
-// ================================================================================
+// ==========================================
+// = IMediaEngine<EngineConfig, EngineData> =
+// ==========================================
 
 /**
- * 通过 Key 获取 Analytics Engine
+ * 通过 Key 获取 Media Engine
  * @param engine String?
- * @return IAnalyticsEngine<IAnalyticsEngine.EngineConfig, IAnalyticsEngine.EngineItem>
- * 内部做了处理如果匹配不到则返回默认 Analytics Engine
+ * @return IMediaEngine<EngineConfig, EngineData>
+ * 内部做了处理如果匹配不到则返回默认 Media Engine
  */
-internal fun getEngine(engine: String?): IAnalyticsEngine<in IAnalyticsEngine.EngineConfig, in IAnalyticsEngine.EngineItem>? {
-    DevEngine.getAnalytics(engine)?.let { value ->
+internal fun getEngine(engine: String?): IMediaEngine<in IMediaEngine.EngineConfig, in IMediaEngine.EngineData>? {
+    DevEngine.getMedia(engine)?.let { value ->
         return value
     }
-    return DevEngine.getAnalytics()
+    return DevEngine.getMedia()
 }
 
-// ========================
-// = Key Analytics Engine =
-// ========================
+// ====================
+// = Key Media Engine =
+// ====================

@@ -1,25 +1,25 @@
 package afkt_replace.core.lib.utils.cache
 
 import dev.engine.DevEngine
-import dev.engine.analytics.IAnalyticsEngine
+import dev.engine.cache.ICacheEngine
 
-// ================================================================================
-// = IAnalyticsEngine<IAnalyticsEngine.EngineConfig, IAnalyticsEngine.EngineItem> =
-// ================================================================================
+// ==========================================
+// = ICacheEngine<EngineConfig, EngineItem> =
+// ==========================================
 
 /**
- * 通过 Key 获取 Analytics Engine
+ * 通过 Key 获取 Cache Engine
  * @param engine String?
- * @return IAnalyticsEngine<IAnalyticsEngine.EngineConfig, IAnalyticsEngine.EngineItem>
- * 内部做了处理如果匹配不到则返回默认 Analytics Engine
+ * @return ICacheEngine<EngineConfig, EngineItem>
+ * 内部做了处理如果匹配不到则返回默认 Cache Engine
  */
-internal fun getEngine(engine: String?): IAnalyticsEngine<in IAnalyticsEngine.EngineConfig, in IAnalyticsEngine.EngineItem>? {
-    DevEngine.getAnalytics(engine)?.let { value ->
+internal fun getEngine(engine: String?): ICacheEngine<in ICacheEngine.EngineConfig, in ICacheEngine.EngineItem>? {
+    DevEngine.getCache(engine)?.let { value ->
         return value
     }
-    return DevEngine.getAnalytics()
+    return DevEngine.getCache()
 }
 
-// ========================
-// = Key Analytics Engine =
-// ========================
+// ====================
+// = Key Cache Engine =
+// ====================

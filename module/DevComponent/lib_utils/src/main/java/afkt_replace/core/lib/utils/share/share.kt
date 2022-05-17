@@ -1,25 +1,25 @@
 package afkt_replace.core.lib.utils.share
 
 import dev.engine.DevEngine
-import dev.engine.analytics.IAnalyticsEngine
+import dev.engine.share.IShareEngine
 
-// ================================================================================
-// = IAnalyticsEngine<IAnalyticsEngine.EngineConfig, IAnalyticsEngine.EngineItem> =
-// ================================================================================
+// ==========================================
+// = IShareEngine<EngineConfig, EngineItem> =
+// ==========================================
 
 /**
- * 通过 Key 获取 Analytics Engine
+ * 通过 Key 获取 Share Engine
  * @param engine String?
- * @return IAnalyticsEngine<IAnalyticsEngine.EngineConfig, IAnalyticsEngine.EngineItem>
- * 内部做了处理如果匹配不到则返回默认 Analytics Engine
+ * @return IShareEngine<EngineConfig, EngineItem>
+ * 内部做了处理如果匹配不到则返回默认 Share Engine
  */
-internal fun getEngine(engine: String?): IAnalyticsEngine<in IAnalyticsEngine.EngineConfig, in IAnalyticsEngine.EngineItem>? {
-    DevEngine.getAnalytics(engine)?.let { value ->
+internal fun getEngine(engine: String?): IShareEngine<in IShareEngine.EngineConfig, in IShareEngine.EngineItem>? {
+    DevEngine.getShare(engine)?.let { value ->
         return value
     }
-    return DevEngine.getAnalytics()
+    return DevEngine.getShare()
 }
 
-// ========================
-// = Key Analytics Engine =
-// ========================
+// ====================
+// = Key Share Engine =
+// ====================
