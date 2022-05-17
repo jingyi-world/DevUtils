@@ -26,14 +26,14 @@ internal fun getEngine(engine: String?): IPermissionEngine {
 // = Key Permission Engine =
 // =========================
 
-fun Context.isGranted(
+fun Context.permission_isGranted(
     engine: String? = null,
     vararg permissions: String?
 ): Boolean {
     return getEngine(engine).isGranted(this, *permissions)
 }
 
-fun Activity.shouldShowRequestPermissionRationale(
+fun Activity.permission_shouldShowRequestPermissionRationale(
     engine: String? = null,
     vararg permissions: String?
 ): Boolean {
@@ -42,7 +42,7 @@ fun Activity.shouldShowRequestPermissionRationale(
     )
 }
 
-fun Activity.getDeniedPermissionStatus(
+fun Activity.permission_getDeniedPermissionStatus(
     engine: String? = null,
     shouldShow: Boolean,
     vararg permissions: String?
@@ -52,7 +52,7 @@ fun Activity.getDeniedPermissionStatus(
     )
 }
 
-fun Activity.againRequest(
+fun Activity.permission_againRequest(
     engine: String? = null,
     callback: IPermissionEngine.Callback?,
     deniedList: MutableList<String>?
@@ -64,14 +64,14 @@ fun Activity.againRequest(
 // = 权限请求方法 =
 // =============
 
-fun Activity.request(
+fun Activity.permission_request(
     engine: String? = null,
     permissions: Array<out String>?
 ) {
     return getEngine(engine).request(this, permissions)
 }
 
-fun Activity.request(
+fun Activity.permission_request(
     engine: String? = null,
     permissions: Array<out String>?,
     callback: IPermissionEngine.Callback?
@@ -79,7 +79,7 @@ fun Activity.request(
     return getEngine(engine).request(this, permissions, callback)
 }
 
-fun Activity.request(
+fun Activity.permission_request(
     engine: String? = null,
     permissions: Array<out String>?,
     callback: IPermissionEngine.Callback?,
