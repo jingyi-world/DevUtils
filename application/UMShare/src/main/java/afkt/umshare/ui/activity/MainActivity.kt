@@ -4,7 +4,7 @@ import afkt.umshare.R
 import afkt.umshare.base.BaseActivity
 import afkt.umshare.base.config.RouterPath
 import afkt.umshare.databinding.ActivityMainBinding
-import afkt_replace.core.lib.utils.engine.log.log_dTag
+import dev.kotlin.engine.log.log_dTag
 import android.content.Intent
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.engine.DevEngine

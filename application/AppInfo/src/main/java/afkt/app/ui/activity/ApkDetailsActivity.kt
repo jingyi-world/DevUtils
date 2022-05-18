@@ -5,8 +5,8 @@ import afkt.app.base.BaseActivity
 import afkt.app.databinding.ActivityApkDetailsBinding
 import afkt.app.ui.adapter.KeyValueAdapter
 import afkt.app.utils.ExportUtils
-import afkt_replace.core.lib.utils.engine.log.log_d
-import afkt_replace.core.lib.utils.engine.log.log_e
+import dev.kotlin.engine.log.log_d
+import dev.kotlin.engine.log.log_e
 import android.Manifest
 import android.os.Build
 import android.view.Menu

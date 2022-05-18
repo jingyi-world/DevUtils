@@ -1,6 +1,6 @@
 package afkt.gtpush.router
 
-import afkt_replace.core.lib.utils.engine.json.toJson
+import dev.kotlin.engine.json.toJson
 import android.app.Activity
 import android.content.ComponentName
 import android.content.Context

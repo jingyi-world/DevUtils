@@ -1,6 +1,6 @@
 package afkt.demo.use.datastore
 
-import afkt_replace.core.lib.utils.engine.log.log_dTag
+import dev.kotlin.engine.log.log_dTag
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.asLiveData
 import dev.utils.app.share.SPUtils

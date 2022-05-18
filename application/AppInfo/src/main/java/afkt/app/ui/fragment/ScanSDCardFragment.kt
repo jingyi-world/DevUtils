@@ -9,8 +9,8 @@ import afkt.app.databinding.FragmentAppBinding
 import afkt.app.ui.adapter.ApkListAdapter
 import afkt.app.utils.AppSearchUtils
 import afkt.app.utils.ScanSDCardUtils
-import afkt_replace.core.lib.utils.engine.log.log_d
-import afkt_replace.core.lib.utils.engine.log.log_e
+import dev.kotlin.engine.log.log_d
+import dev.kotlin.engine.log.log_e
 import android.Manifest
 import android.os.Bundle
 import android.view.View
