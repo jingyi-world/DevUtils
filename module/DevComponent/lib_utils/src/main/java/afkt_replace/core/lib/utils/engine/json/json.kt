@@ -1,4 +1,4 @@
-package afkt_replace.core.lib.utils.json
+package afkt_replace.core.lib.utils.engine.json
 
 import dev.engine.DevEngine
 import dev.engine.json.IJSONEngine

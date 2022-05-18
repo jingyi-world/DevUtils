@@ -5,8 +5,8 @@ import afkt.app.base.AppViewModel
 import afkt.app.base.model.DeviceInfo
 import afkt.app.base.model.DeviceInfoItem
 import afkt.app.base.model.TypeEnum
-import afkt_replace.core.lib.utils.log.log_e
-import afkt_replace.core.lib.utils.log.log_eTag
+import afkt_replace.core.lib.utils.engine.log.log_e
+import afkt_replace.core.lib.utils.engine.log.log_eTag
 import android.os.Build
 import com.google.gson.GsonBuilder
 import dev.utils.DevFinal

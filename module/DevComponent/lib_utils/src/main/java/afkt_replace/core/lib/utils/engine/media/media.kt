@@ -1,4 +1,4 @@
-package afkt_replace.core.lib.utils.media
+package afkt_replace.core.lib.utils.engine.media
 
 import dev.engine.DevEngine
 import dev.engine.media.IMediaEngine

@@ -1,4 +1,4 @@
-package afkt_replace.core.lib.utils.compress
+package afkt_replace.core.lib.utils.engine.compress
 
 import dev.engine.DevEngine
 import dev.engine.compress.ICompressEngine

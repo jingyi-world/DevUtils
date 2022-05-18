@@ -1,4 +1,4 @@
-package afkt_replace.core.lib.utils.cache
+package afkt_replace.core.lib.utils.engine.cache
 
 import dev.engine.DevEngine
 import dev.engine.cache.ICacheEngine

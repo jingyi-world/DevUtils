@@ -1,4 +1,4 @@
-package afkt_replace.core.lib.utils.share
+package afkt_replace.core.lib.utils.engine.share
 
 import dev.engine.DevEngine
 import dev.engine.share.IShareEngine

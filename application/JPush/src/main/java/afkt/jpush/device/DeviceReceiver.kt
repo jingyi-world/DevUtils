@@ -1,6 +1,6 @@
 package afkt.jpush.device
 
-import afkt_replace.core.lib.utils.log.log_dTag
+import afkt_replace.core.lib.utils.engine.log.log_dTag
 import android.app.admin.DeviceAdminReceiver
 import android.content.Context
 import android.content.Intent

@@ -1,4 +1,4 @@
-package afkt_replace.core.lib.utils.image
+package afkt_replace.core.lib.utils.engine.image
 
 import android.content.Context
 import android.graphics.Bitmap

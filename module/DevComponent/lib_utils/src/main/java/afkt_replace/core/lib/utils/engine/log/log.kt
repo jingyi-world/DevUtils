@@ -1,4 +1,4 @@
-package afkt_replace.core.lib.utils.log
+package afkt_replace.core.lib.utils.engine.log
 
 import dev.engine.DevEngine
 import dev.engine.log.ILogEngine

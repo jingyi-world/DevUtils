@@ -1,4 +1,4 @@
-package afkt_replace.core.lib.utils.barcode
+package afkt_replace.core.lib.utils.engine.barcode
 
 import android.graphics.Bitmap
 import dev.engine.DevEngine

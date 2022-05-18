@@ -15,7 +15,7 @@ import gen.greendao.DaoSession;
 import gen.greendao.NoteDao;
 import gen.greendao.NotePictureDao;
 
-import static afkt_replace.core.lib.utils.log.LogKt.log_dTag;
+import static afkt_replace.core.lib.utils.engine.log.LogKt.log_dTag;
 
 /*
  * detail: Note 数据库

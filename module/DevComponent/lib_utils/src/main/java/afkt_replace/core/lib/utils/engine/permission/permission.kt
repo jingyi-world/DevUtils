@@ -1,4 +1,4 @@
-package afkt_replace.core.lib.utils.permission
+package afkt_replace.core.lib.utils.engine.permission
 
 import android.app.Activity
 import android.content.Context

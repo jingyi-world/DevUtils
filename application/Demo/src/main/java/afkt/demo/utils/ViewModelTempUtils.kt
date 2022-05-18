@@ -3,7 +3,7 @@ package afkt.demo.utils
 import afkt.demo.model.ActivityViewModel
 import afkt.demo.model.ApplicationViewModel
 import afkt.demo.model.FragmentViewModel
-import afkt_replace.core.lib.utils.log.log_dTag
+import afkt_replace.core.lib.utils.engine.log.log_dTag
 import androidx.lifecycle.LifecycleOwner
 
 /**

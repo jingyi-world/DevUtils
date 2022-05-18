@@ -1,4 +1,4 @@
-package afkt_replace.core.lib.utils.image
+package afkt_replace.core.lib.utils.engine.image
 
 import afkt_replace.core.lib.utils.size.GLOBAL_APP_AUTO_SIZE
 import dev.base.DevVariable

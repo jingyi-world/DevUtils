@@ -1,4 +1,4 @@
-package afkt_replace.core.lib.utils.analytics
+package afkt_replace.core.lib.utils.engine.analytics
 
 import android.app.Application
 import android.content.Context

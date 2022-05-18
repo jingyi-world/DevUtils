@@ -1,4 +1,4 @@
-package afkt_replace.core.lib.utils.keyvalue
+package afkt_replace.core.lib.utils.engine.keyvalue
 
 import dev.engine.DevEngine
 import dev.engine.keyvalue.IKeyValueEngine

@@ -4,7 +4,7 @@ import afkt.jpush.R
 import afkt.jpush.base.BaseActivity
 import afkt.jpush.base.config.RouterPath
 import afkt.jpush.databinding.ActivityMessageBinding
-import afkt_replace.core.lib.utils.json.toJsonIndent
+import afkt_replace.core.lib.utils.engine.json.toJsonIndent
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import dev.utils.DevFinal
