@@ -5,8 +5,6 @@ import afkt.app.base.BaseActivity
 import afkt.app.databinding.ActivityApkDetailsBinding
 import afkt.app.ui.adapter.KeyValueAdapter
 import afkt.app.utils.ExportUtils
-import dev.kotlin.engine.log.log_d
-import dev.kotlin.engine.log.log_e
 import android.Manifest
 import android.os.Build
 import android.view.Menu
@@ -14,6 +12,8 @@ import android.view.MenuItem
 import dev.callback.DevItemClickCallback
 import dev.engine.DevEngine
 import dev.engine.permission.IPermissionEngine
+import dev.kotlin.engine.log.log_d
+import dev.kotlin.engine.log.log_e
 import dev.utils.DevFinal
 import dev.utils.app.AppUtils
 import dev.utils.app.ClipboardUtils

@@ -5,10 +5,10 @@ import afkt.app.base.BaseActivity
 import afkt.app.databinding.ActivityAppDetailsBinding
 import afkt.app.ui.adapter.KeyValueAdapter
 import afkt.app.utils.ExportUtils
-import dev.kotlin.engine.log.log_e
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import dev.kotlin.engine.log.log_e
 import dev.utils.DevFinal
 import dev.utils.app.AppUtils
 import dev.utils.app.ClipboardUtils

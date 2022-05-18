@@ -5,10 +5,10 @@ import afkt.app.base.AppViewModel
 import afkt.app.base.model.DeviceInfo
 import afkt.app.base.model.DeviceInfoItem
 import afkt.app.base.model.TypeEnum
-import dev.kotlin.engine.log.log_e
-import dev.kotlin.engine.log.log_eTag
 import android.os.Build
 import com.google.gson.GsonBuilder
+import dev.kotlin.engine.log.log_e
+import dev.kotlin.engine.log.log_eTag
 import dev.utils.DevFinal
 import dev.utils.app.*
 import dev.utils.app.share.SharedUtils

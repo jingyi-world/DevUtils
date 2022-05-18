@@ -9,8 +9,6 @@ import afkt.app.databinding.FragmentAppBinding
 import afkt.app.ui.adapter.ApkListAdapter
 import afkt.app.utils.AppSearchUtils
 import afkt.app.utils.ScanSDCardUtils
-import dev.kotlin.engine.log.log_d
-import dev.kotlin.engine.log.log_e
 import android.Manifest
 import android.os.Bundle
 import android.view.View
@@ -20,6 +18,8 @@ import com.tt.whorlviewlibrary.WhorlView
 import dev.callback.DevCallback
 import dev.engine.DevEngine
 import dev.engine.permission.IPermissionEngine
+import dev.kotlin.engine.log.log_d
+import dev.kotlin.engine.log.log_e
 import dev.utils.DevFinal
 import dev.utils.app.ListViewUtils
 import dev.utils.app.ResourceUtils

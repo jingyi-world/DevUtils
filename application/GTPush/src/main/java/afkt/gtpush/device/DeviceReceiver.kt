@@ -1,10 +1,10 @@
 package afkt.gtpush.device
 
-import dev.kotlin.engine.log.log_dTag
 import android.app.admin.DeviceAdminReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.UserHandle
+import dev.kotlin.engine.log.log_dTag
 
 /**
  * detail: 设备管理广播监听
