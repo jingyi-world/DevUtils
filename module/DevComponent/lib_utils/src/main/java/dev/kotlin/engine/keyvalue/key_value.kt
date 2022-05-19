@@ -36,11 +36,17 @@ private const val BOOLEAN_DEFAULT: Boolean = DevFinal.DEFAULT.BOOLEAN
 // = Key KeyValue Engine =
 // =======================
 
+// =============
+// = 对外公开方法 =
+// =============
+
 fun <Config : IKeyValueEngine.EngineConfig> kv_getConfig(
     engine: String? = null
 ): Config? {
     return getEngine(engine)?.config as? Config
 }
+
+// =
 
 fun String.kv_remove(
     engine: String? = null
@@ -66,6 +72,10 @@ fun kv_clear(
 ) {
     getEngine(engine)?.clear()
 }
+
+// =======
+// = 存储 =
+// =======
 
 fun String.kv_putInt(
     engine: String? = null,
@@ -116,17 +126,14 @@ fun <T : Any> String.kv_putEntity(
     return getEngine(engine)?.putEntity(this, value) ?: false
 }
 
+// =======
+// = 获取 =
+// =======
+
 fun String.kv_getInt(
     engine: String? = null
 ): Int {
     return getEngine(engine)?.getInt(this) ?: INTEGER_DEFAULT
-}
-
-fun String.kv_getInt(
-    engine: String? = null,
-    defaultValue: Int
-): Int {
-    return getEngine(engine)?.getInt(this, defaultValue) ?: INTEGER_DEFAULT
 }
 
 fun String.kv_getLong(
@@ -135,24 +142,10 @@ fun String.kv_getLong(
     return getEngine(engine)?.getLong(this) ?: LONG_DEFAULT
 }
 
-fun String.kv_getLong(
-    engine: String? = null,
-    defaultValue: Long
-): Long {
-    return getEngine(engine)?.getLong(this, defaultValue) ?: LONG_DEFAULT
-}
-
 fun String.kv_getFloat(
     engine: String? = null
 ): Float {
     return getEngine(engine)?.getFloat(this) ?: FLOAT_DEFAULT
-}
-
-fun String.kv_getFloat(
-    engine: String? = null,
-    defaultValue: Float
-): Float {
-    return getEngine(engine)?.getFloat(this, defaultValue) ?: FLOAT_DEFAULT
 }
 
 fun String.kv_getDouble(
@@ -161,24 +154,10 @@ fun String.kv_getDouble(
     return getEngine(engine)?.getDouble(this) ?: DOUBLE_DEFAULT
 }
 
-fun String.kv_getDouble(
-    engine: String? = null,
-    defaultValue: Double
-): Double {
-    return getEngine(engine)?.getDouble(this, defaultValue) ?: DOUBLE_DEFAULT
-}
-
 fun String.kv_getBoolean(
     engine: String? = null
 ): Boolean {
     return getEngine(engine)?.getBoolean(this) ?: BOOLEAN_DEFAULT
-}
-
-fun String.kv_getBoolean(
-    engine: String? = null,
-    defaultValue: Boolean
-): Boolean {
-    return getEngine(engine)?.getBoolean(this, defaultValue) ?: BOOLEAN_DEFAULT
 }
 
 fun String.kv_getString(
@@ -187,18 +166,57 @@ fun String.kv_getString(
     return getEngine(engine)?.getString(this)
 }
 
-fun String.kv_getString(
-    engine: String? = null,
-    defaultValue: String?
-): String? {
-    return getEngine(engine)?.getString(this, defaultValue)
-}
-
 fun <T : Any> String.kv_getEntity(
     engine: String? = null,
     typeOfT: Type?
 ): T? {
     return getEngine(engine)?.getEntity(this, typeOfT) as? T
+}
+
+// =================
+// = 获取 ( 默认值 ) =
+// =================
+
+fun String.kv_getInt(
+    engine: String? = null,
+    defaultValue: Int
+): Int {
+    return getEngine(engine)?.getInt(this, defaultValue) ?: defaultValue
+}
+
+fun String.kv_getLong(
+    engine: String? = null,
+    defaultValue: Long
+): Long {
+    return getEngine(engine)?.getLong(this, defaultValue) ?: defaultValue
+}
+
+fun String.kv_getFloat(
+    engine: String? = null,
+    defaultValue: Float
+): Float {
+    return getEngine(engine)?.getFloat(this, defaultValue) ?: defaultValue
+}
+
+fun String.kv_getDouble(
+    engine: String? = null,
+    defaultValue: Double
+): Double {
+    return getEngine(engine)?.getDouble(this, defaultValue) ?: defaultValue
+}
+
+fun String.kv_getBoolean(
+    engine: String? = null,
+    defaultValue: Boolean
+): Boolean {
+    return getEngine(engine)?.getBoolean(this, defaultValue) ?: defaultValue
+}
+
+fun String.kv_getString(
+    engine: String? = null,
+    defaultValue: String?
+): String? {
+    return getEngine(engine)?.getString(this, defaultValue)
 }
 
 fun <T : Any> String.kv_getEntity(

@@ -341,35 +341,35 @@ fun String.cache_getInt(
     engine: String? = null,
     defaultValue: Int
 ): Int {
-    return getEngine(engine)?.getInt(this, defaultValue) ?: INTEGER_DEFAULT
+    return getEngine(engine)?.getInt(this, defaultValue) ?: defaultValue
 }
 
 fun String.cache_getLong(
     engine: String? = null,
     defaultValue: Long
 ): Long {
-    return getEngine(engine)?.getLong(this, defaultValue) ?: LONG_DEFAULT
+    return getEngine(engine)?.getLong(this, defaultValue) ?: defaultValue
 }
 
 fun String.cache_getFloat(
     engine: String? = null,
     defaultValue: Float
 ): Float {
-    return getEngine(engine)?.getFloat(this, defaultValue) ?: FLOAT_DEFAULT
+    return getEngine(engine)?.getFloat(this, defaultValue) ?: defaultValue
 }
 
 fun String.cache_getDouble(
     engine: String? = null,
     defaultValue: Double
 ): Double {
-    return getEngine(engine)?.getDouble(this, defaultValue) ?: DOUBLE_DEFAULT
+    return getEngine(engine)?.getDouble(this, defaultValue) ?: defaultValue
 }
 
 fun String.cache_getBoolean(
     engine: String? = null,
     defaultValue: Boolean
 ): Boolean {
-    return getEngine(engine)?.getBoolean(this, defaultValue) ?: BOOLEAN_DEFAULT
+    return getEngine(engine)?.getBoolean(this, defaultValue) ?: defaultValue
 }
 
 fun String.cache_getString(

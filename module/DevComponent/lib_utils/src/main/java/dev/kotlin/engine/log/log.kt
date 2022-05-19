@@ -24,7 +24,9 @@ internal fun getEngine(engine: String?): ILogEngine {
 // = Key Log Engine =
 // ==================
 
-fun log_isPrintLog(engine: String? = null): Boolean {
+fun log_isPrintLog(
+    engine: String? = null
+): Boolean {
     return getEngine(engine).isPrintLog
 }
 
