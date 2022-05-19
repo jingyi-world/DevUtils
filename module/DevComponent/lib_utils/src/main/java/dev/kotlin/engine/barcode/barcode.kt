@@ -60,7 +60,7 @@ fun <Item : IBarCodeEngine.EngineItem> Item.barcode_encodeBarCode(
 
 @Throws(Exception::class)
 fun <Item : IBarCodeEngine.EngineItem> Item.barcode_encodeBarCodeSync(
-    engine: String? = null,
+    engine: String? = null
 ): Bitmap? {
     return getEngine(engine)?.encodeBarCodeSync(this)
 }
@@ -82,7 +82,7 @@ fun <Result : IBarCodeEngine.EngineResult> Bitmap.barcode_decodeBarCode(
 
 @Throws(Exception::class)
 fun <Result : IBarCodeEngine.EngineResult> Bitmap.barcode_decodeBarCodeSync(
-    engine: String? = null,
+    engine: String? = null
 ): Result? {
     return getEngine(engine)?.decodeBarCodeSync(this) as? Result
 }
