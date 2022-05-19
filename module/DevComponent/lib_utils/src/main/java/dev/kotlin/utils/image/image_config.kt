@@ -1,4 +1,4 @@
-package dev.kotlin.engine.image
+package dev.kotlin.utils.image
 
 import dev.base.DevVariable
 import dev.engine.image.ImageConfig
