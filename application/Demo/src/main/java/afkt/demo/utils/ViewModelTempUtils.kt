@@ -29,8 +29,7 @@ object ViewModelTempUtils {
         viewModel?.let {
             // 进行监听
             viewModel.number.observe(owner) {
-                log_dTag(
-                    tag = TAG,
+                TAG.log_dTag(
                     message = "%s observe number: %s",
                     args = arrayOf(tag, viewModel.number.value)
                 )
@@ -52,8 +51,7 @@ object ViewModelTempUtils {
         viewModel?.let {
             // 进行监听
             viewModel.number.observe(owner) {
-                log_dTag(
-                    tag = TAG,
+                TAG.log_dTag(
                     message = "%s observe number: %s",
                     args = arrayOf(tag, viewModel.number.value)
                 )
@@ -75,8 +73,7 @@ object ViewModelTempUtils {
         viewModel?.let {
             // 进行监听
             viewModel.number.observe(owner) {
-                log_dTag(
-                    tag = TAG,
+                TAG.log_dTag(
                     message = "%s observe number: %s",
                     args = arrayOf(tag, viewModel.number.value)
                 )

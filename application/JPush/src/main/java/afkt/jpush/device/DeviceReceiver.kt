@@ -19,8 +19,7 @@ class DeviceReceiver : DeviceAdminReceiver() {
         context: Context,
         intent: Intent
     ) {
-        log_dTag(
-            tag = TAG,
+        TAG.log_dTag(
             message = "[onEnabled] 设备管理: 可用"
         )
     }
@@ -29,8 +28,7 @@ class DeviceReceiver : DeviceAdminReceiver() {
         context: Context,
         intent: Intent
     ) {
-        log_dTag(
-            tag = TAG,
+        TAG.log_dTag(
             message = "[onDisabled] 设备管理: 不可用"
         )
     }
@@ -39,8 +37,7 @@ class DeviceReceiver : DeviceAdminReceiver() {
         context: Context,
         intent: Intent
     ): CharSequence {
-        log_dTag(
-            tag = TAG,
+        TAG.log_dTag(
             message = "[onDisableRequested] 设备管理: ACTION_DEVICE_ADMIN_DISABLE_REQUESTED"
         )
         return "这是一个可选的消息, 警告有关禁止用户的请求"
@@ -51,8 +48,7 @@ class DeviceReceiver : DeviceAdminReceiver() {
         intent: Intent,
         user: UserHandle
     ) {
-        log_dTag(
-            tag = TAG,
+        TAG.log_dTag(
             message = "[onPasswordChanged] 设备管理: 密码己修改"
         )
     }
@@ -62,8 +58,7 @@ class DeviceReceiver : DeviceAdminReceiver() {
         intent: Intent,
         user: UserHandle
     ) {
-        log_dTag(
-            tag = TAG,
+        TAG.log_dTag(
             message = "[onPasswordFailed] 设备管理: 修改密码失败"
         )
     }
@@ -73,8 +68,7 @@ class DeviceReceiver : DeviceAdminReceiver() {
         intent: Intent,
         user: UserHandle
     ) {
-        log_dTag(
-            tag = TAG,
+        TAG.log_dTag(
             message = "[onPasswordSucceeded] 设备管理: 修改密码成功"
         )
     }
@@ -84,8 +78,7 @@ class DeviceReceiver : DeviceAdminReceiver() {
         intent: Intent,
         user: UserHandle
     ) {
-        log_dTag(
-            tag = TAG,
+        TAG.log_dTag(
             message = "[onPasswordExpiring] 设备管理: 密码即将到期"
         )
     }

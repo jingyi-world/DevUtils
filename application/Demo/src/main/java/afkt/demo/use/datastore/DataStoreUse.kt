@@ -53,8 +53,7 @@ object DataStoreUse {
          */
         DataStoreUtils.get(spStoreName).getStringFlow("one")?.let {
             it.asLiveData().observe(activity) { value ->
-                log_dTag(
-                    tag = TAG,
+                TAG.log_dTag(
                     message = "listener %s, key : %s, value : %s",
                     args = arrayOf(spStoreName, "one", value)
                 )
@@ -88,8 +87,7 @@ object DataStoreUse {
      * 读取数据
      */
     private suspend fun read(activity: AppCompatActivity) {
-        log_dTag(
-            tag = TAG,
+        TAG.log_dTag(
             message = "getFlow %s, key : %s, value : %s",
             args = arrayOf(
                 TAG, "aaaaa",
@@ -97,14 +95,12 @@ object DataStoreUse {
             )
         )
 
-        log_dTag(
-            tag = TAG,
+        TAG.log_dTag(
             message = "getFlow %s, key : %s, value : %s",
             args = arrayOf(TAG, "double", DataStoreUtils.get(TAG).getDoubleFlow("double")?.first())
         )
 
-        log_dTag(
-            tag = TAG,
+        TAG.log_dTag(
             message = "getFlow %s, key : %s, value : %s",
             args = arrayOf(
                 spStoreName, "type",
@@ -112,8 +108,7 @@ object DataStoreUse {
             )
         )
 
-        log_dTag(
-            tag = TAG,
+        TAG.log_dTag(
             message = "getValue %s, key : %s, value : %s",
             args = arrayOf(
                 spStoreName, "errorType",
@@ -121,8 +116,7 @@ object DataStoreUse {
             )
         )
 
-        log_dTag(
-            tag = TAG,
+        TAG.log_dTag(
             message = "getValue %s, key : %s, value : %s",
             args = arrayOf(
                 spStoreName, "errorType",
@@ -130,32 +124,27 @@ object DataStoreUse {
             )
         )
 
-        log_dTag(
-            tag = TAG,
+        TAG.log_dTag(
             message = "getValue %s, key : %s, value : %s",
             args = arrayOf(spStoreName, "one", DataStoreUtils.get(spStoreName).getInt("one"))
         )
 
-        log_dTag(
-            tag = TAG,
+        TAG.log_dTag(
             message = "getValue %s, key : %s, value : %s",
             args = arrayOf(spStoreName, "two", DataStoreUtils.get(spStoreName).getString("two"))
         )
 
-        log_dTag(
-            tag = TAG,
+        TAG.log_dTag(
             message = "getValue %s, key : %s, value : %s",
             args = arrayOf(spStoreName, "abc", DataStoreUtils.get(spStoreName).getString("abc"))
         )
 
-        log_dTag(
-            tag = TAG,
+        TAG.log_dTag(
             message = "getValue %s, key : %s, value : %s",
             args = arrayOf(TAG, "double", DataStoreUtils.get(TAG).getDouble("double"))
         )
 
-        log_dTag(
-            tag = TAG,
+        TAG.log_dTag(
             message = "getValue %s, key : %s, value : %s",
             args = arrayOf(TAG, "double", DataStoreUtils.get(TAG).getBoolean("double"))
         )
@@ -170,8 +159,7 @@ object DataStoreUse {
          */
         DataStoreUtils.get(TAG).getIntFlow("int")?.let {
             it.asLiveData().observe(activity) { value ->
-                log_dTag(
-                    tag = TAG,
+                TAG.log_dTag(
                     message = "listener %s, key : %s, value : %s",
                     args = arrayOf(TAG, "int", value)
                 )
@@ -189,8 +177,7 @@ object DataStoreUse {
 //         */
 //        DataStoreUtils.get(spStoreName).getStringFlow("one")?.let {
 //            it.asLiveData().observe(activity) { value ->
-//                log_dTag(
-//                    tag = TAG,
+//                TAG.log_dTag(
 //                    message = "listener %s, key : %s, value : %s",
 //                    args = arrayOf(spStoreName, "one", value)
 //                )

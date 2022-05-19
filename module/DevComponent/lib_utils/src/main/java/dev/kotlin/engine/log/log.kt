@@ -13,7 +13,7 @@ import dev.engine.log.ILogEngine
  * @return ILogEngine
  * 内部做了处理如果匹配不到则返回默认 Log Engine
  */
-internal fun getEngine(engine: String?): ILogEngine {
+internal fun getEngine(engine: String?): ILogEngine? {
     DevEngine.getLog(engine)?.let { value ->
         return value
     }
@@ -27,7 +27,7 @@ internal fun getEngine(engine: String?): ILogEngine {
 fun log_isPrintLog(
     engine: String? = null
 ): Boolean {
-    return getEngine(engine).isPrintLog
+    return getEngine(engine)?.isPrintLog ?: false
 }
 
 // =============================
@@ -39,7 +39,7 @@ fun log_d(
     message: String?,
     vararg args: Any?
 ) {
-    getEngine(engine).d(message, *args)
+    getEngine(engine)?.d(message, *args)
 }
 
 fun log_e(
@@ -47,14 +47,14 @@ fun log_e(
     message: String?,
     vararg args: Any?
 ) {
-    getEngine(engine).e(message, *args)
+    getEngine(engine)?.e(message, *args)
 }
 
 fun log_e(
     engine: String? = null,
     throwable: Throwable?
 ) {
-    getEngine(engine).e(throwable)
+    getEngine(engine)?.e(throwable)
 }
 
 fun log_e(
@@ -63,7 +63,7 @@ fun log_e(
     message: String?,
     vararg args: Any?
 ) {
-    getEngine(engine).e(throwable, message, *args)
+    getEngine(engine)?.e(throwable, message, *args)
 }
 
 fun log_w(
@@ -71,7 +71,7 @@ fun log_w(
     message: String?,
     vararg args: Any?
 ) {
-    getEngine(engine).w(message, *args)
+    getEngine(engine)?.w(message, *args)
 }
 
 fun log_i(
@@ -79,7 +79,7 @@ fun log_i(
     message: String?,
     vararg args: Any?
 ) {
-    getEngine(engine).i(message, *args)
+    getEngine(engine)?.i(message, *args)
 }
 
 fun log_v(
@@ -87,7 +87,7 @@ fun log_v(
     message: String?,
     vararg args: Any?
 ) {
-    getEngine(engine).v(message, *args)
+    getEngine(engine)?.v(message, *args)
 }
 
 fun log_wtf(
@@ -95,111 +95,105 @@ fun log_wtf(
     message: String?,
     vararg args: Any?
 ) {
-    getEngine(engine).wtf(message, *args)
+    getEngine(engine)?.wtf(message, *args)
 }
+
+// =
 
 fun log_json(
     engine: String? = null,
     json: String?
 ) {
-    getEngine(engine).json(json)
+    getEngine(engine)?.json(json)
 }
 
 fun log_xml(
     engine: String? = null,
     xml: String?
 ) {
-    getEngine(engine).xml(xml)
+    getEngine(engine)?.xml(xml)
 }
 
 // ==============================
 // = 使用自定义 TAG ( 日志打印方法 ) =
 // ==============================
 
-fun log_dTag(
+fun String.log_dTag(
     engine: String? = null,
-    tag: String?,
     message: String?,
     vararg args: Any?
 ) {
-    getEngine(engine).dTag(tag, message, *args)
+    getEngine(engine)?.dTag(this, message, *args)
 }
 
-fun log_eTag(
+fun String.log_eTag(
     engine: String? = null,
-    tag: String?,
     message: String?,
     vararg args: Any?
 ) {
-    getEngine(engine).eTag(tag, message, *args)
+    getEngine(engine)?.eTag(this, message, *args)
 }
 
-fun log_eTag(
+fun String.log_eTag(
     engine: String? = null,
-    tag: String?,
     throwable: Throwable?
 ) {
-    getEngine(engine).eTag(tag, throwable)
+    getEngine(engine)?.eTag(this, throwable)
 }
 
-fun log_eTag(
+fun String.log_eTag(
     engine: String? = null,
-    tag: String?,
     throwable: Throwable?,
     message: String?,
     vararg args: Any?
 ) {
-    getEngine(engine).eTag(tag, throwable, message, *args)
+    getEngine(engine)?.eTag(this, throwable, message, *args)
 }
 
-fun log_wTag(
+fun String.log_wTag(
     engine: String? = null,
-    tag: String?,
     message: String?,
     vararg args: Any?
 ) {
-    getEngine(engine).wTag(tag, message, *args)
+    getEngine(engine)?.wTag(this, message, *args)
 }
 
-fun log_iTag(
+fun String.log_iTag(
     engine: String? = null,
-    tag: String?,
     message: String?,
     vararg args: Any?
 ) {
-    getEngine(engine).iTag(tag, message, *args)
+    getEngine(engine)?.iTag(this, message, *args)
 }
 
-fun log_vTag(
+fun String.log_vTag(
     engine: String? = null,
-    tag: String?,
     message: String?,
     vararg args: Any?
 ) {
-    getEngine(engine).vTag(tag, message, *args)
+    getEngine(engine)?.vTag(this, message, *args)
 }
 
-fun log_wtfTag(
+fun String.log_wtfTag(
     engine: String? = null,
-    tag: String?,
     message: String?,
     vararg args: Any?
 ) {
-    getEngine(engine).wtfTag(tag, message, *args)
+    getEngine(engine)?.wtfTag(this, message, *args)
 }
 
-fun log_jsonTag(
+// =
+
+fun String.log_jsonTag(
     engine: String? = null,
-    tag: String?,
     json: String?
 ) {
-    getEngine(engine).jsonTag(tag, json)
+    getEngine(engine)?.jsonTag(this, json)
 }
 
-fun log_xmlTag(
+fun String.log_xmlTag(
     engine: String? = null,
-    tag: String?,
     xml: String?
 ) {
-    getEngine(engine).xmlTag(tag, xml)
+    getEngine(engine)?.xmlTag(this, xml)
 }

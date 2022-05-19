@@ -118,15 +118,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     private val shareListener: ShareListener<ShareParams> by lazy {
         object : ShareListener<ShareParams> {
             override fun onStart(params: ShareParams?) {
-                log_dTag(
-                    tag = TAG,
+                TAG.log_dTag(
                     message = "开始分享"
                 )
             }
 
             override fun onResult(params: ShareParams?) {
-                log_dTag(
-                    tag = TAG,
+                TAG.log_dTag(
                     message = "分享成功"
                 )
             }
@@ -135,15 +133,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 params: ShareParams?,
                 throwable: Throwable?
             ) {
-                log_dTag(
-                    tag = TAG,
+                TAG.log_dTag(
                     message = "分享失败\n${ThrowableUtils.getThrowable(throwable)}"
                 )
             }
 
             override fun onCancel(params: ShareParams?) {
-                log_dTag(
-                    tag = TAG,
+                TAG.log_dTag(
                     message = "取消分享"
                 )
             }

@@ -28,8 +28,7 @@ object ProjectUtils {
         try {
             return GsonBuilder().setPrettyPrinting().create().toJson(obj)
         } catch (e: Exception) {
-            log_eTag(
-                tag = TAG,
+            TAG.log_eTag(
                 throwable = e,
                 message = "toJson"
             )

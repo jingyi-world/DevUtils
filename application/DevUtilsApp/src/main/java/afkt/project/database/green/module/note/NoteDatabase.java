@@ -151,7 +151,7 @@ public final class NoteDatabase
                 int newVersion
         ) {
             log_dTag(
-                    null, TAG,
+                    TAG, null,
                     "oldVersion: %s, newVersion: %s", oldVersion, newVersion
             );
             MigrationHelper.migrate(db, NoteDao.class, NotePictureDao.class);
