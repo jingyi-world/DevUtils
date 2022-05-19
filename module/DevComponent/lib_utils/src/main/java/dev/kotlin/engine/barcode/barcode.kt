@@ -51,52 +51,51 @@ fun <Config : IBarCodeEngine.EngineConfig> barcode_getConfig(
 // = 生成条码 =
 // ==========
 
-fun <Item : IBarCodeEngine.EngineItem> barcode_encodeBarCode(
+fun <Item : IBarCodeEngine.EngineItem> Item.barcode_encodeBarCode(
     engine: String? = null,
-    params: Item?,
     callback: BarCodeEncodeCallback?
 ) {
-    getEngine(engine)?.encodeBarCode(params, callback)
+    getEngine(engine)?.encodeBarCode(this, callback)
 }
 
 @Throws(Exception::class)
-fun <Item : IBarCodeEngine.EngineItem> barcode_encodeBarCodeSync(
+fun <Item : IBarCodeEngine.EngineItem> Item.barcode_encodeBarCodeSync(
     engine: String? = null,
-    params: Item?
 ): Bitmap? {
-    return getEngine(engine)?.encodeBarCodeSync(params)
+    return getEngine(engine)?.encodeBarCodeSync(this)
 }
 
 // ==========
 // = 解析条码 =
 // ==========
 
-fun <Result : IBarCodeEngine.EngineResult> barcode_decodeBarCode(
+fun <Result : IBarCodeEngine.EngineResult> Bitmap.barcode_decodeBarCode(
     engine: String? = null,
-    bitmap: Bitmap?,
     callback: BarCodeDecodeCallback<Result>?
 ) {
     getEngine(engine)?.let {
         (it as? IBarCodeEngine<*, *, Result>)?.decodeBarCode(
-            bitmap, callback
+            this, callback
         )
     }
 }
 
 @Throws(Exception::class)
-fun <Result : IBarCodeEngine.EngineResult> barcode_decodeBarCodeSync(
+fun <Result : IBarCodeEngine.EngineResult> Bitmap.barcode_decodeBarCodeSync(
     engine: String? = null,
-    bitmap: Bitmap?
 ): Result? {
-    return getEngine(engine)?.decodeBarCodeSync(bitmap) as? Result
+    return getEngine(engine)?.decodeBarCodeSync(this) as? Result
 }
 
+// ==========
+// = 其他功能 =
+// ==========
+
 @Throws(Exception::class)
-fun <Item : IBarCodeEngine.EngineItem> barcode_addIconToBarCode(
+fun <Item : IBarCodeEngine.EngineItem> Item.barcode_addIconToBarCode(
     engine: String? = null,
-    params: Item?,
     src: Bitmap?,
     icon: Bitmap?
 ): Bitmap? {
-    return getEngine(engine)?.addIconToBarCode(params, src, icon)
+    return getEngine(engine)?.addIconToBarCode(this, src, icon)
 }

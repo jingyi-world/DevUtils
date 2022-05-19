@@ -53,9 +53,8 @@ fun <Config : IAnalyticsEngine.EngineConfig> Context.analytics_unregister(
     getEngine(engine)?.unregister(this, config)
 }
 
-fun <Item : IAnalyticsEngine.EngineItem> analytics_track(
-    engine: String? = null,
-    params: Item?
+fun <Item : IAnalyticsEngine.EngineItem> Item.analytics_track(
+    engine: String? = null
 ): Boolean {
-    return getEngine(engine)?.track(params) ?: false
+    return getEngine(engine)?.track(this) ?: false
 }
