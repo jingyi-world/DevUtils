@@ -58,7 +58,7 @@ fun kv_removeForKeys(
 fun String.kv_contains(
     engine: String? = null
 ): Boolean {
-    return getEngine(engine)?.contains(this) == true
+    return getEngine(engine)?.contains(this) ?: false
 }
 
 fun kv_clear(
@@ -71,49 +71,49 @@ fun String.kv_putInt(
     engine: String? = null,
     value: Int
 ): Boolean {
-    return getEngine(engine)?.putInt(this, value) == true
+    return getEngine(engine)?.putInt(this, value) ?: false
 }
 
 fun String.kv_putLong(
     engine: String? = null,
     value: Long
 ): Boolean {
-    return getEngine(engine)?.putLong(this, value) == true
+    return getEngine(engine)?.putLong(this, value) ?: false
 }
 
 fun String.kv_putFloat(
     engine: String? = null,
     value: Float
 ): Boolean {
-    return getEngine(engine)?.putFloat(this, value) == true
+    return getEngine(engine)?.putFloat(this, value) ?: false
 }
 
 fun String.kv_putDouble(
     engine: String? = null,
     value: Double
 ): Boolean {
-    return getEngine(engine)?.putDouble(this, value) == true
+    return getEngine(engine)?.putDouble(this, value) ?: false
 }
 
 fun String.kv_putBoolean(
     engine: String? = null,
     value: Boolean
 ): Boolean {
-    return getEngine(engine)?.putBoolean(this, value) == true
+    return getEngine(engine)?.putBoolean(this, value) ?: false
 }
 
 fun String.kv_putString(
     engine: String? = null,
     value: String?
 ): Boolean {
-    return getEngine(engine)?.putString(this, value) == true
+    return getEngine(engine)?.putString(this, value) ?: false
 }
 
 fun <T : Any> String.kv_putEntity(
     engine: String? = null,
     value: T
 ): Boolean {
-    return getEngine(engine)?.putEntity(this, value) == true
+    return getEngine(engine)?.putEntity(this, value) ?: false
 }
 
 fun String.kv_getInt(

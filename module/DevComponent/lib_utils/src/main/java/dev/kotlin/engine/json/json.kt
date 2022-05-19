@@ -25,6 +25,10 @@ internal fun getEngine(engine: String?): IJSONEngine<in IJSONEngine.EngineConfig
 // = Key JSON Engine =
 // ===================
 
+// ==========
+// = 转换方法 =
+// ==========
+
 fun Any.toJson(
     engine: String? = null
 ): String? {
@@ -55,6 +59,8 @@ fun <T : Any, Config : IJSONEngine.EngineConfig> String.fromJson(
     return getEngine(engine)?.fromJson(this, classOfT, config)
 }
 
+// =
+
 fun <T : Any> String.fromJson(
     engine: String? = null,
     typeOfT: Type?
@@ -77,19 +83,34 @@ fun <T : Any, Config : IJSONEngine.EngineConfig> String.fromJson(
 fun String.isJSON(
     engine: String? = null
 ): Boolean {
-    return getEngine(engine)?.isJSON(this) == true
+    return getEngine(engine)?.isJSON(this) ?: false
 }
 
 fun String.isJSONObject(
     engine: String? = null
 ): Boolean {
-    return getEngine(engine)?.isJSONObject(this) == true
+    return getEngine(engine)?.isJSONObject(this) ?: false
 }
 
 fun String.isJSONArray(
     engine: String? = null
 ): Boolean {
-    return getEngine(engine)?.isJSONArray(this) == true
+    return getEngine(engine)?.isJSONArray(this) ?: false
+}
+
+// =
+
+fun String.toJsonIndent(
+    engine: String? = null
+): String? {
+    return getEngine(engine)?.toJsonIndent(this)
+}
+
+fun <Config : IJSONEngine.EngineConfig> String.toJsonIndent(
+    engine: String? = null,
+    config: Config?
+): String? {
+    return getEngine(engine)?.toJsonIndent(this, config)
 }
 
 fun Any.toJsonIndent(
