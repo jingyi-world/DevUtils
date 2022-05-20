@@ -50,9 +50,9 @@ fun <Item : IShareEngine.EngineItem> Activity.share_openMinApp(
     listener: ShareListener<Item?>?
 ): Boolean {
     return getEngine(engine)?.let {
-        (it as? IShareEngine<*, Item>)?.openMinApp(
+        return (it as? IShareEngine<*, Item>)?.openMinApp(
             this, params, listener
-        )
+        ) ?: false
     } ?: false
 }
 
@@ -62,9 +62,9 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareMinApp(
     listener: ShareListener<Item?>?
 ): Boolean {
     return getEngine(engine)?.let {
-        (it as? IShareEngine<*, Item>)?.shareMinApp(
+        return (it as? IShareEngine<*, Item>)?.shareMinApp(
             this, params, listener
-        )
+        ) ?: false
     } ?: false
 }
 
@@ -74,9 +74,9 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareUrl(
     listener: ShareListener<Item?>?
 ): Boolean {
     return getEngine(engine)?.let {
-        (it as? IShareEngine<*, Item>)?.shareUrl(
+        return (it as? IShareEngine<*, Item>)?.shareUrl(
             this, params, listener
-        )
+        ) ?: false
     } ?: false
 }
 
@@ -86,9 +86,9 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareImage(
     listener: ShareListener<Item?>?
 ): Boolean {
     return getEngine(engine)?.let {
-        (it as? IShareEngine<*, Item>)?.shareImage(
+        return (it as? IShareEngine<*, Item>)?.shareImage(
             this, params, listener
-        )
+        ) ?: false
     } ?: false
 }
 
@@ -98,9 +98,9 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareImageList(
     listener: ShareListener<Item?>?
 ): Boolean {
     return getEngine(engine)?.let {
-        (it as? IShareEngine<*, Item>)?.shareImageList(
+        return (it as? IShareEngine<*, Item>)?.shareImageList(
             this, params, listener
-        )
+        ) ?: false
     } ?: false
 }
 
@@ -110,9 +110,9 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareText(
     listener: ShareListener<Item?>?
 ): Boolean {
     return getEngine(engine)?.let {
-        (it as? IShareEngine<*, Item>)?.shareText(
+        return (it as? IShareEngine<*, Item>)?.shareText(
             this, params, listener
-        )
+        ) ?: false
     } ?: false
 }
 
@@ -122,9 +122,9 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareVideo(
     listener: ShareListener<Item?>?
 ): Boolean {
     return getEngine(engine)?.let {
-        (it as? IShareEngine<*, Item>)?.shareVideo(
+        return (it as? IShareEngine<*, Item>)?.shareVideo(
             this, params, listener
-        )
+        ) ?: false
     } ?: false
 }
 
@@ -134,9 +134,9 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareMusic(
     listener: ShareListener<Item?>?
 ): Boolean {
     return getEngine(engine)?.let {
-        (it as? IShareEngine<*, Item>)?.shareMusic(
+        return (it as? IShareEngine<*, Item>)?.shareMusic(
             this, params, listener
-        )
+        ) ?: false
     } ?: false
 }
 
@@ -146,9 +146,9 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareEmoji(
     listener: ShareListener<Item?>?
 ): Boolean {
     return getEngine(engine)?.let {
-        (it as? IShareEngine<*, Item>)?.shareEmoji(
+        return (it as? IShareEngine<*, Item>)?.shareEmoji(
             this, params, listener
-        )
+        ) ?: false
     } ?: false
 }
 
@@ -158,9 +158,9 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareFile(
     listener: ShareListener<Item?>?
 ): Boolean {
     return getEngine(engine)?.let {
-        (it as? IShareEngine<*, Item>)?.shareFile(
+        return (it as? IShareEngine<*, Item>)?.shareFile(
             this, params, listener
-        )
+        ) ?: false
     } ?: false
 }
 
@@ -170,9 +170,9 @@ fun <Item : IShareEngine.EngineItem> Activity.share_share(
     listener: ShareListener<Item?>?
 ): Boolean {
     return getEngine(engine)?.let {
-        (it as? IShareEngine<*, Item>)?.share(
+        return (it as? IShareEngine<*, Item>)?.share(
             this, params, listener
-        )
+        ) ?: false
     } ?: false
 }
 
