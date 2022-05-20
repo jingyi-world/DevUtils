@@ -26,6 +26,10 @@ internal fun getEngine(engine: String?): IPermissionEngine? {
 // = Key Permission Engine =
 // =========================
 
+// =============
+// = 对外公开方法 =
+// =============
+
 fun Context.permission_isGranted(
     engine: String? = null,
     vararg permissions: String?
