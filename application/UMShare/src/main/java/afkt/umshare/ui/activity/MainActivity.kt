@@ -101,12 +101,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun onActivityResult(
         requestCode: Int,
         resultCode: Int,
-        data: Intent?
+        intent: Intent?
     ) {
-        super.onActivityResult(requestCode, resultCode, data)
+        super.onActivityResult(requestCode, resultCode, intent)
 
         DevEngine.getShare()?.onActivityResult(
-            this, requestCode, resultCode, data
+            this, requestCode, resultCode, intent
         )
     }
 

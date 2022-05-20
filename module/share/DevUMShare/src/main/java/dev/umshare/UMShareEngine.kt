@@ -598,17 +598,17 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
      * @param context     Context
      * @param requestCode 请求 code
      * @param resultCode  resultCode
-     * @param data        Intent
+     * @param intent      Intent
      */
     override fun onActivityResult(
         context: Context?,
         requestCode: Int,
         resultCode: Int,
-        data: Intent?
+        intent: Intent?
     ) {
         context?.let {
             UMShareAPI.get(context).onActivityResult(
-                requestCode, resultCode, data
+                requestCode, resultCode, intent
             )
         }
     }

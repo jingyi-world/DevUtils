@@ -47,9 +47,9 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(
         requestCode: Int,
         resultCode: Int,
-        data: Intent?
+        intent: Intent?
     ) {
-        super.onActivityResult(requestCode, resultCode, data)
+        super.onActivityResult(requestCode, resultCode, intent)
 
         if (FloatingWindowManagerAssist.isOverlayRequestCode(requestCode)) {
             checkOverlayPermission()
