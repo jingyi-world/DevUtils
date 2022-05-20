@@ -47,7 +47,7 @@ fun <Config : IShareEngine.EngineConfig> Application.share_initialize(
 fun <Item : IShareEngine.EngineItem> Activity.share_openMinApp(
     engine: String? = null,
     params: Item?,
-    listener: ShareListener<Item?>?
+    listener: ShareListener<Item>?
 ): Boolean {
     return getEngine(engine)?.let {
         return (it as? IShareEngine<*, Item>)?.openMinApp(
@@ -59,7 +59,7 @@ fun <Item : IShareEngine.EngineItem> Activity.share_openMinApp(
 fun <Item : IShareEngine.EngineItem> Activity.share_shareMinApp(
     engine: String? = null,
     params: Item?,
-    listener: ShareListener<Item?>?
+    listener: ShareListener<Item>?
 ): Boolean {
     return getEngine(engine)?.let {
         return (it as? IShareEngine<*, Item>)?.shareMinApp(
@@ -71,7 +71,7 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareMinApp(
 fun <Item : IShareEngine.EngineItem> Activity.share_shareUrl(
     engine: String? = null,
     params: Item?,
-    listener: ShareListener<Item?>?
+    listener: ShareListener<Item>?
 ): Boolean {
     return getEngine(engine)?.let {
         return (it as? IShareEngine<*, Item>)?.shareUrl(
@@ -83,7 +83,7 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareUrl(
 fun <Item : IShareEngine.EngineItem> Activity.share_shareImage(
     engine: String? = null,
     params: Item?,
-    listener: ShareListener<Item?>?
+    listener: ShareListener<Item>?
 ): Boolean {
     return getEngine(engine)?.let {
         return (it as? IShareEngine<*, Item>)?.shareImage(
@@ -95,7 +95,7 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareImage(
 fun <Item : IShareEngine.EngineItem> Activity.share_shareImageList(
     engine: String? = null,
     params: Item?,
-    listener: ShareListener<Item?>?
+    listener: ShareListener<Item>?
 ): Boolean {
     return getEngine(engine)?.let {
         return (it as? IShareEngine<*, Item>)?.shareImageList(
@@ -107,7 +107,7 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareImageList(
 fun <Item : IShareEngine.EngineItem> Activity.share_shareText(
     engine: String? = null,
     params: Item?,
-    listener: ShareListener<Item?>?
+    listener: ShareListener<Item>?
 ): Boolean {
     return getEngine(engine)?.let {
         return (it as? IShareEngine<*, Item>)?.shareText(
@@ -119,7 +119,7 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareText(
 fun <Item : IShareEngine.EngineItem> Activity.share_shareVideo(
     engine: String? = null,
     params: Item?,
-    listener: ShareListener<Item?>?
+    listener: ShareListener<Item>?
 ): Boolean {
     return getEngine(engine)?.let {
         return (it as? IShareEngine<*, Item>)?.shareVideo(
@@ -131,7 +131,7 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareVideo(
 fun <Item : IShareEngine.EngineItem> Activity.share_shareMusic(
     engine: String? = null,
     params: Item?,
-    listener: ShareListener<Item?>?
+    listener: ShareListener<Item>?
 ): Boolean {
     return getEngine(engine)?.let {
         return (it as? IShareEngine<*, Item>)?.shareMusic(
@@ -143,7 +143,7 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareMusic(
 fun <Item : IShareEngine.EngineItem> Activity.share_shareEmoji(
     engine: String? = null,
     params: Item?,
-    listener: ShareListener<Item?>?
+    listener: ShareListener<Item>?
 ): Boolean {
     return getEngine(engine)?.let {
         return (it as? IShareEngine<*, Item>)?.shareEmoji(
@@ -155,7 +155,7 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareEmoji(
 fun <Item : IShareEngine.EngineItem> Activity.share_shareFile(
     engine: String? = null,
     params: Item?,
-    listener: ShareListener<Item?>?
+    listener: ShareListener<Item>?
 ): Boolean {
     return getEngine(engine)?.let {
         return (it as? IShareEngine<*, Item>)?.shareFile(
@@ -167,7 +167,7 @@ fun <Item : IShareEngine.EngineItem> Activity.share_shareFile(
 fun <Item : IShareEngine.EngineItem> Activity.share_share(
     engine: String? = null,
     params: Item?,
-    listener: ShareListener<Item?>?
+    listener: ShareListener<Item>?
 ): Boolean {
     return getEngine(engine)?.let {
         return (it as? IShareEngine<*, Item>)?.share(
