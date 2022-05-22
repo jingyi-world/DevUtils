@@ -266,35 +266,33 @@ dependencies {
 	// calendarview
 	"com.haibin:calendarview:3.7.1",
 	// ucrop
-	"com.github.yalantis:ucrop:2.2.6",
+	"com.github.yalantis:ucrop:2.2.8",
 	// ucrop_native
-	"com.github.yalantis:ucrop:2.2.6-native",
+	"com.github.yalantis:ucrop:2.2.8-native",
 	// stickyDecoration
 	"com.gavin.com.library:stickyDecoration:1.5.3",
 	// smartrefreshlayout
-	"com.scwang.smart:refresh-layout-kernel:2.0.3",
+	"io.github.scwang90:refresh-layout-kernel:2.0.5",
 	// smartrefresh_header_classics
-	"com.scwang.smart:refresh-header-classics:2.0.3",
+	"io.github.scwang90:refresh-header-classics:2.0.5",
 	// smartrefresh_header_radar
-	"com.scwang.smart:refresh-header-radar:2.0.3",
+	"io.github.scwang90:refresh-header-radar:2.0.5",
 	// smartrefresh_header_falsify
-	"com.scwang.smart:refresh-header-falsify:2.0.3",
+	"io.github.scwang90:refresh-header-falsify:2.0.5",
 	// smartrefresh_header_material
-	"com.scwang.smart:refresh-header-material:2.0.3",
+	"io.github.scwang90:refresh-header-material:2.0.5",
 	// smartrefresh_header_two_level
-	"com.scwang.smart:refresh-header-two-level:2.0.3",
+	"io.github.scwang90:refresh-header-two-level:2.0.5",
 	// smartrefresh_footer_ball
-	"com.scwang.smart:refresh-footer-ball:2.0.3",
+	"io.github.scwang90:refresh-footer-ball:2.0.5",
 	// smartrefresh_footer_classics
-	"com.scwang.smart:refresh-footer-classics:2.0.3",
-	// smartrefreshHorizontal
-	"com.scwang.smart:refresh-layout-horizontal:2.0.0",
+	"io.github.scwang90:refresh-footer-classics:2.0.5",
 	// base_recyclerview_adapter_helper
 	"com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7",
 	// multitype
 	"com.drakeet.multitype:multitype:4.3.0",
 	// qmui
-	"com.qmuiteam:qmui:2.0.0-alpha10",
+	"com.qmuiteam:qmui:2.1.0",
 	// ratingbar
 	"com.hedgehog.ratingbar:app:1.1.2",
 
