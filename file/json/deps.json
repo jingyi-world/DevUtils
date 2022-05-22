@@ -125,7 +125,7 @@
     },
     "build_apk": {
         "walle": "com.meituan.android.walle:library:1.1.7",
-        "vas_dolly": "com.leon.channel:helper:3.0.3"
+        "vas_dolly": "com.tencent.vasdolly:helper:3.0.4"
     },
     "widget": {
         "gpuimage": "jp.co.cyberagent.android:gpuimage:2.1.0",

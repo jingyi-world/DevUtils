@@ -247,7 +247,7 @@ dependencies {
 	// walle
 	implementation 'com.meituan.android.walle:library:1.1.7'
 	// vas_dolly
-	implementation 'com.leon.channel:helper:3.0.3'
+	implementation 'com.tencent.vasdolly:helper:3.0.4'
 
 	// = widget =
 
