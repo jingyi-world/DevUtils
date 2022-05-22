@@ -40,23 +40,23 @@ dependencies {
 	// core
 	implementation 'androidx.core:core-ktx:1.7.0'
 	// coroutines
-	implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0'
+	implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1'
 	// lifecycle_runtime
-	implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0'
+	implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
 	// lifecycle_viewmodel
-	implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
+	implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
 	// lifecycle_livedata
-	implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0'
+	implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
 	// lifecycle_viewmodel_savedstate
-	implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:2.4.0'
+	implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:2.4.1'
 	// lifecycle_common_java8
-	implementation 'androidx.lifecycle:lifecycle-common-java8:2.4.0'
+	implementation 'androidx.lifecycle:lifecycle-common-java8:2.4.1'
 	// room_runtime
-	implementation 'androidx.room:room-runtime:2.4.1'
+	implementation 'androidx.room:room-runtime:2.4.2'
 	// room_compiler
-	implementation 'androidx.room:room-compiler:2.4.1'
+	implementation 'androidx.room:room-compiler:2.4.2'
 	// room_ktx
-	implementation 'androidx.room:room-ktx:2.4.1'
+	implementation 'androidx.room:room-ktx:2.4.2'
 	// work_runtime_ktx
 	implementation 'androidx.work:work-runtime-ktx:2.7.1'
 	// work_runtime
@@ -222,21 +222,23 @@ dependencies {
 	// blockcanary_no_op
 	implementation 'com.github.markzhai:blockcanary-no-op:1.5.0'
 	// matrix_android_lib
-	implementation 'com.tencent.matrix:matrix-android-lib:2.0.5'
+	implementation 'com.tencent.matrix:matrix-android-lib:2.0.8'
 	// matrix_android_commons
-	implementation 'com.tencent.matrix:matrix-android-commons:2.0.5'
+	implementation 'com.tencent.matrix:matrix-android-commons:2.0.8'
 	// matrix_trace_canary
-	implementation 'com.tencent.matrix:matrix-trace-canary:2.0.5'
+	implementation 'com.tencent.matrix:matrix-trace-canary:2.0.8'
 	// matrix_resource_canary_android
-	implementation 'com.tencent.matrix:matrix-resource-canary-android:2.0.5'
+	implementation 'com.tencent.matrix:matrix-resource-canary-android:2.0.8'
 	// matrix_resource_canary_common
-	implementation 'com.tencent.matrix:matrix-resource-canary-common:2.0.5'
+	implementation 'com.tencent.matrix:matrix-resource-canary-common:2.0.8'
 	// matrix_io_canary
-	implementation 'com.tencent.matrix:matrix-io-canary:2.0.5'
+	implementation 'com.tencent.matrix:matrix-io-canary:2.0.8'
 	// matrix_sqlite_lint
-	implementation 'com.tencent.matrix:matrix-sqlite-lint-android-sdk:2.0.5'
+	implementation 'com.tencent.matrix:matrix-sqlite-lint-android-sdk:2.0.8'
 	// matrix_battery_canary
-	implementation 'com.tencent.matrix:matrix-battery-canary:2.0.5'
+	implementation 'com.tencent.matrix:matrix-battery-canary:2.0.8'
+	// matrix_hooks
+	implementation 'com.tencent.matrix:matrix-hooks:2.0.8'
 
 	// = build_apk =
 
