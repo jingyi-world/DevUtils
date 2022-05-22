@@ -81,7 +81,7 @@ dependencies {
 	// multidex
 	implementation 'androidx.multidex:multidex:2.0.1'
 	// constraint_layout
-	implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+	implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 	// viewpager2
 	implementation 'androidx.viewpager2:viewpager2:1.0.0'
 	// sqlite
@@ -112,9 +112,9 @@ dependencies {
 	// gson
 	implementation 'com.google.code.gson:gson:2.9.0'
 	// glide
-	implementation 'com.github.bumptech.glide:glide:4.13.0'
+	implementation 'com.github.bumptech.glide:glide:4.13.2'
 	// glide_compiler
-	implementation 'com.github.bumptech.glide:compiler:4.13.0'
+	implementation 'com.github.bumptech.glide:compiler:4.13.2'
 	// glide_transformations
 	implementation 'jp.wasabeef:glide-transformations:4.3.0'
 	// eventbus
@@ -122,7 +122,7 @@ dependencies {
 	// live_eventbus
 	implementation 'io.github.jeremyliao:live-event-bus-x:1.8.0'
 	// okio
-	implementation 'com.squareup.okio:okio:3.0.0'
+	implementation 'com.squareup.okio:okio:3.1.0'
 	// okhttp3
 	implementation 'com.squareup.okhttp3:okhttp:4.9.3'
 	// okhttp3_logging
@@ -134,7 +134,7 @@ dependencies {
 	// retrofit_rxjava3
 	implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
 	// rxjava3
-	implementation 'io.reactivex.rxjava3:rxjava:3.1.3'
+	implementation 'io.reactivex.rxjava3:rxjava:3.1.4'
 	// rxandroid3
 	implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
 	// rxkotlin
@@ -146,15 +146,15 @@ dependencies {
 	// rxlifecycle_android_lifecycle_kotlin
 	implementation 'com.trello.rxlifecycle4:rxlifecycle-android-lifecycle-kotlin:4.0.2'
 	// auto_dispose
-	implementation 'com.uber.autodispose2:autodispose:2.0.0'
+	implementation 'com.uber.autodispose2:autodispose:2.1.1'
 	// auto_dispose_android
-	implementation 'com.uber.autodispose2:autodispose-android:2.0.0'
+	implementation 'com.uber.autodispose2:autodispose-android:2.1.1'
 	// auto_dispose_lifecycle
-	implementation 'com.uber.autodispose2:autodispose-androidx-lifecycle:2.0.0'
+	implementation 'com.uber.autodispose2:autodispose-androidx-lifecycle:2.1.1'
 	// fastjson
-	implementation 'com.alibaba:fastjson:1.2.79'
+	implementation 'com.alibaba:fastjson:2.0.4'
 	// fastjson_android
-	implementation 'com.alibaba:fastjson:1.1.73.android'
+	implementation 'com.alibaba:fastjson:2.0.4.android'
 	// anchors
 	implementation 'com.github.YummyLau:Anchors:v1.1.4'
 	// panelSwitchHelper
@@ -162,37 +162,35 @@ dependencies {
 	// pictureSelector
 	implementation 'io.github.lucksiege:pictureselector:v2.7.3-rc10'
 	// lottie
-	implementation 'com.airbnb.android:lottie:4.2.2'
+	implementation 'com.airbnb.android:lottie:5.1.1'
 	// aria_core
-	implementation 'com.arialyy.aria:core:3.8.16'
+	implementation 'me.laoyuyu.aria:core:3.8.16'
 	// aria_compiler
-	implementation 'com.arialyy.aria:compiler:3.8.16'
+	implementation 'me.laoyuyu.aria:compiler:3.8.16'
 	// aria_ftp
-	implementation 'com.arialyy.aria:ftpComponent:3.8.16'
+	implementation 'me.laoyuyu.aria:ftp:3.8.16'
 	// aria_sftp
-	implementation 'com.arialyy.aria:sftpComponent:3.8.16'
+	implementation 'me.laoyuyu.aria:sftp:3.8.16'
 	// aria_m3u8
-	implementation 'com.arialyy.aria:m3u8Component:3.8.16'
+	implementation 'me.laoyuyu.aria:m3u8:3.8.16'
 	// zxing_code
-	implementation 'com.google.zxing:core:3.4.1'
+	implementation 'com.google.zxing:core:3.5.0'
 	// zxing_android_code
 	implementation 'com.google.zxing:android-core:3.3.0'
 	// mmkv
-	implementation 'com.tencent:mmkv-static:1.2.12'
+	implementation 'com.tencent:mmkv-static:1.2.13'
 	// autosize
-	implementation 'me.jessyan:autosize:1.2.1'
-	// progressmanager
-	implementation 'me.jessyan:progressmanager:1.5.0'
+	implementation 'com.github.JessYanCoding:AndroidAutoSize:v1.2.1'
 	// greenDAO
 	implementation 'org.greenrobot:greendao:3.3.0'
 	// sqlcipher
-	implementation 'net.zetetic:android-database-sqlcipher:4.5.0'
+	implementation 'net.zetetic:android-database-sqlcipher:4.5.1'
 	// luban
 	implementation 'top.zibin:Luban:1.1.8'
 	// kluban
 	implementation 'com.github.forJrking:KLuban:1.1.0'
 	// xxPermissions
-	implementation 'com.github.getActivity:XXPermissions:13.2'
+	implementation 'com.github.getActivity:XXPermissions:13.6'
 	// arouter_api
 	implementation 'com.alibaba:arouter-api:1.5.2'
 	// arouter_compiler
@@ -203,12 +201,12 @@ dependencies {
 	// javapoet
 	implementation 'com.squareup:javapoet:1.13.0'
 	// auto_service
-	implementation 'com.google.auto.service:auto-service:1.0'
+	implementation 'com.google.auto.service:auto-service:1.0.1'
 
 	// = property =
 
 	// bugly
-	implementation 'com.tencent.bugly:crashreport:4.0.0'
+	implementation 'com.tencent.bugly:crashreport:4.0.4'
 	// bugly_ndk
 	implementation 'com.tencent.bugly:nativecrashreport:3.9.2'
 	// uetool
@@ -218,7 +216,7 @@ dependencies {
 	// uetool_no_op
 	implementation 'com.github.eleme.UETool:uetool-no-op:1.3.2'
 	// leakcanary
-	implementation 'com.squareup.leakcanary:leakcanary-android:2.8.1'
+	implementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
 	// blockcanary_android
 	implementation 'com.github.markzhai:blockcanary-android:1.5.0'
 	// blockcanary_no_op
