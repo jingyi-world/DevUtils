@@ -16,10 +16,10 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.tt.whorlviewlibrary.WhorlView
 import dev.callback.DevCallback
-import dev.engine.DevEngine
 import dev.engine.permission.IPermissionEngine
 import dev.kotlin.engine.log.log_d
 import dev.kotlin.engine.log.log_e
+import dev.kotlin.engine.permission.permission_request
 import dev.utils.DevFinal
 import dev.utils.app.ListViewUtils
 import dev.utils.app.ResourceUtils
@@ -237,11 +237,12 @@ class ScanSDCardFragment : BaseFragment<FragmentAppBinding>() {
      * @param refresh 是否刷新
      */
     private fun requestReadWrite(refresh: Boolean) {
-        DevEngine.getPermission()?.request(
-            activity, arrayOf(
+        activity?.permission_request(
+            permissions = arrayOf(
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
-            ), object : IPermissionEngine.Callback {
+            ),
+            callback = object : IPermissionEngine.Callback {
                 override fun onGranted() {
                     ScanSDCardUtils.instance.query(refresh) // 扫描 SDCard
                 }

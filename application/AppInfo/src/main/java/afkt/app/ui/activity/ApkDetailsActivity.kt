@@ -10,10 +10,10 @@ import android.os.Build
 import android.view.Menu
 import android.view.MenuItem
 import dev.callback.DevItemClickCallback
-import dev.engine.DevEngine
 import dev.engine.permission.IPermissionEngine
 import dev.kotlin.engine.log.log_d
 import dev.kotlin.engine.log.log_e
+import dev.kotlin.engine.permission.permission_request
 import dev.utils.DevFinal
 import dev.utils.app.AppUtils
 import dev.utils.app.ClipboardUtils
@@ -90,10 +90,11 @@ class ApkDetailsActivity : BaseActivity<ActivityApkDetailsBinding>() {
                     if (packageManager.canRequestPackageInstalls()) {
                         AppUtils.installApp(sourceDir) // 安装 APK
                     } else {
-                        DevEngine.getPermission()?.request(
-                            this, arrayOf(
+                        permission_request(
+                            permissions = arrayOf(
                                 Manifest.permission.REQUEST_INSTALL_PACKAGES
-                            ), object : IPermissionEngine.Callback {
+                            ),
+                            callback = object : IPermissionEngine.Callback {
                                 override fun onGranted() {
                                     AppUtils.installApp(sourceDir) // 安装 APK
                                 }
