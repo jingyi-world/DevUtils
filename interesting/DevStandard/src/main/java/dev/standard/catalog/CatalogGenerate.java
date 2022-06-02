@@ -122,6 +122,13 @@ final class CatalogGenerate {
     private static int sMaxLength = 0;
 
     /**
+     * 重置目录信息最大长度
+     */
+    private static void resetMaxLength() {
+        sMaxLength = 0;
+    }
+
+    /**
      * 计算目录最大长度
      * @param name       目录名
      * @param lineNumber 行数
@@ -135,7 +142,7 @@ final class CatalogGenerate {
         int length = builder.length();
         // 判断长度 => 大于最大长度, 则重新设置
         if ((length + 6) >= sMaxLength) {
-            sMaxLength = length + 6;
+            sMaxLength = length + 12; // 6
         }
     }
 
@@ -229,6 +236,9 @@ final class CatalogGenerate {
             final List<String> listIgnoreCatalog,
             final int layer
     ) {
+        // 重置目录信息最大长度
+        resetMaxLength();
+        // 拼接信息
         StringBuilder builder = new StringBuilder();
         // 获取文件夹列表
         List<FileUtils.FileList> lists = getFolderLists(path, new CatalogCallback() {
