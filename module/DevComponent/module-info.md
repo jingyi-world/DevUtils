@@ -9,7 +9,7 @@
 
 为了统一维护 ( 两个项目只需进行更新一份代码全部通用, 且使用方式一致 ), 故 copy 到 DevUtils 中
 
-https://github.com/afkT/DevComponent/blob/main/component/core/libs/lib_utils
+[DevComponent - lib_utils](https://github.com/afkT/DevComponent/blob/main/component/core/libs/lib_utils)
 
 
 
@@ -17,7 +17,7 @@ https://github.com/afkT/DevComponent/blob/main/component/core/libs/lib_utils
 
 
 
-https://github.com/afkT/DevComponent
+[DevComponent](https://github.com/afkT/DevComponent)
 
 【100% Kotlin 实现 Android 项目组件化示例代码】
 
