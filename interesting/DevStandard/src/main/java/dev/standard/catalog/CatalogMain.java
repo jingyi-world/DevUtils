@@ -15,17 +15,30 @@ final class CatalogMain {
     private static StringBuilder sBuilder = new StringBuilder();
 
     public static void main(String[] args) {
+
+        // ================
+        // = afkT/Android =
+        // ================
+
         // 生成 Android 汇总项目目录结构 - https://github.com/afkT/Android
         print(
                 Config.ANDROID_LOCAL_PATH, Config.ANDROID_DIR_NAME,
                 Config.sAndroidCatalogMap, null, 0
         );
 
+        // =============
+        // = afkT/Java =
+        // =============
+
         // 生成 Java 汇总项目目录结构 - https://github.com/afkT/Java
         print(
                 Config.JAVA_LOCAL_PATH, Config.JAVA_DIR_NAME,
                 Config.sJavaCatalogMap, null, 0
         );
+
+        // =================
+        // = afkT/DevUtils =
+        // =================
 
         // 生成 DevUtils Lib 汇总项目目录结构 - https://github.com/afkT/DevUtils/blob/master/lib
         print(
@@ -73,7 +86,9 @@ final class CatalogMain {
     ) {
         System.out.println(DevFinal.SYMBOL.NEW_LINE_X2);
         if (FileUtils.isFileExists(path)) {
-            String catalog = CatalogGenerate.generate(path, dirName, mapCatalog, listIgnoreCatalog, layer);
+            String catalog = CatalogGenerate.generate(
+                    path, dirName, mapCatalog, listIgnoreCatalog, layer
+            );
             System.out.println(catalog);
             // 拼接全部
             sBuilder.append(catalog)
