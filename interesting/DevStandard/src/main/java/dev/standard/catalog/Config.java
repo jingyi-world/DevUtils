@@ -128,8 +128,8 @@ final class Config {
         sDevUtilsCatalogMap.put(".DevEngine", "第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用");
         sDevUtilsCatalogMap.put(".DevHttpCapture", "OkHttp 抓包工具库");
         sDevUtilsCatalogMap.put(".DevHttpManager", "OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )");
-        sDevUtilsCatalogMap.put(".DevRetrofit", "Retrofit + Kotlin Coroutines 封装");
         sDevUtilsCatalogMap.put(".DevJava", "Java 工具类库 ( 不依赖 android api )");
+        sDevUtilsCatalogMap.put(".DevRetrofit", "Retrofit + Kotlin Coroutines 封装");
         sDevUtilsCatalogMap.put(".DevWidget", "自定义 View UI 库");
         sDevUtilsCatalogMap.put(".Environment", "Android 环境配置切换库");
         sDevUtilsCatalogMap.put(".Environment.DevEnvironment", "环境切换可视化 UI 操作");
