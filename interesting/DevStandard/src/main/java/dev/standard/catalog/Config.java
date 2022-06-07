@@ -124,14 +124,12 @@ final class Config {
         sDevUtilsCatalogMap.put(".DevApp", "Android 工具类库");
         sDevUtilsCatalogMap.put(".DevAssist", "封装逻辑代码, 实现多个快捷功能辅助类、以及 Engine 兼容框架等");
         sDevUtilsCatalogMap.put(".DevBase", "Base ( Activity、Fragment )、MVP、ViewBinding、ContentLayout 基类库");
-        sDevUtilsCatalogMap.put(".DevBase2", "Base 基础代码 ( 非基类库 )");
         sDevUtilsCatalogMap.put(".DevBaseMVVM", "MVVM ( ViewDataBinding + ViewModel ) 基类库");
         sDevUtilsCatalogMap.put(".DevEngine", "第三方框架解耦、一键替换第三方库、同类库多 Engine 组件化混合使用");
         sDevUtilsCatalogMap.put(".DevHttpCapture", "OkHttp 抓包工具库");
         sDevUtilsCatalogMap.put(".DevHttpManager", "OkHttp 管理库 ( Retrofit 多 BaseUrl 管理、Progress 监听 )");
+        sDevUtilsCatalogMap.put(".DevRetrofit", "Retrofit + Kotlin Coroutines 封装");
         sDevUtilsCatalogMap.put(".DevJava", "Java 工具类库 ( 不依赖 android api )");
-        sDevUtilsCatalogMap.put(".DevOther", "第三方库封装、以及部分特殊工具类等, 方便 copy 封装类使用");
-        sDevUtilsCatalogMap.put(".DevSKU", "商品 SKU 组合封装实现");
         sDevUtilsCatalogMap.put(".DevWidget", "自定义 View UI 库");
         sDevUtilsCatalogMap.put(".Environment", "Android 环境配置切换库");
         sDevUtilsCatalogMap.put(".Environment.DevEnvironment", "环境切换可视化 UI 操作");
@@ -141,6 +139,10 @@ final class Config {
         sDevUtilsCatalogMap.put(".HttpCapture", "OkHttp 抓包工具库 ( 可视化功能 )");
         sDevUtilsCatalogMap.put(".HttpCapture.DevHttpCaptureCompiler", "Debug ( 打包 / 编译 ) 实现代码");
         sDevUtilsCatalogMap.put(".HttpCapture.DevHttpCaptureCompilerRelease", "Release ( 打包 / 编译 ) 实现代码");
+        sDevUtilsCatalogMap.put(".LocalModules", "本地 Module lib ( 非发布库 )");
+        sDevUtilsCatalogMap.put(".LocalModules.DevBase2", "Base 基础代码 ( 非基类库 )");
+        sDevUtilsCatalogMap.put(".LocalModules.DevOther", "第三方库封装、以及部分特殊工具类等, 方便 copy 封装类使用");
+        sDevUtilsCatalogMap.put(".LocalModules.DevSKU", "商品 SKU 组合封装实现");
 
         // =======================
         // = DevUtils Lib 忽略目录 =
@@ -154,6 +156,7 @@ final class Config {
         sDevUtilsIgnoreCatalogs.add("DevEngine");
         sDevUtilsIgnoreCatalogs.add("DevHttpCapture");
         sDevUtilsIgnoreCatalogs.add("DevHttpManager");
+        sDevUtilsIgnoreCatalogs.add("DevRetrofit");
         sDevUtilsIgnoreCatalogs.add("DevJava");
         sDevUtilsIgnoreCatalogs.add("DevOther");
         sDevUtilsIgnoreCatalogs.add("DevSKU");
