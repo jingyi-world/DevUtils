@@ -52,12 +52,12 @@ dependencies {
     // ==========
 
     // https://mvnrepository.com/search?q=cn.jiguang.sdk
-    api 'cn.jiguang.sdk:jpush:4.6.3'
-    api 'cn.jiguang.sdk:jcore:3.2.2'
+    api 'cn.jiguang.sdk:jpush:4.7.0'
+    api 'cn.jiguang.sdk:jcore:3.2.4'
 
 //    // Google Play 版本
-//    api 'cn.jiguang.sdk:jpush-google:4.6.3'
-//    api 'cn.jiguang.sdk:jcore-google:3.2.2'
+//    api 'cn.jiguang.sdk:jpush-google:4.7.0'
+//    api 'cn.jiguang.sdk:jcore-google:3.2.4'
 
     // ============
     // = 第三方厂商 =
@@ -68,19 +68,19 @@ dependencies {
 
     // 华为
     api 'com.huawei.hms:push:6.3.0.304'
-    api 'cn.jiguang.sdk.plugin:huawei:4.6.3'
+    api 'cn.jiguang.sdk.plugin:huawei:4.7.0'
 
     // 小米
-    api 'cn.jiguang.sdk.plugin:xiaomi:4.6.3'
+    api 'cn.jiguang.sdk.plugin:xiaomi:4.7.0'
 
     // OPPO
-    api 'cn.jiguang.sdk.plugin:oppo:4.6.3'
+    api 'cn.jiguang.sdk.plugin:oppo:4.7.0'
 
     // VIVO
-    api 'cn.jiguang.sdk.plugin:vivo:4.6.3'
+    api 'cn.jiguang.sdk.plugin:vivo:4.7.0'
 
     // 魅族
-    api 'cn.jiguang.sdk.plugin:meizu:4.6.3'
+    api 'cn.jiguang.sdk.plugin:meizu:4.7.0'
 
     // 第三方厂商点击回调触发
     // https://go48pg.yuque.com/docs/share/f95b8034-38c7-4baa-951b-ea85948a546e?#Nz1Do
