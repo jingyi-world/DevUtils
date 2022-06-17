@@ -52,8 +52,8 @@ dependencies {
     // ==========
 
     // https://mvnrepository.com/search?q=com.getui
-    api 'com.getui:gtsdk:3.2.9.0'  // 个推 SDK
-    api 'com.getui:gtc:3.1.8.0'  // 个推核心组件
+    api 'com.getui:gtsdk:3.2.10.0'  // 个推 SDK
+    api 'com.getui:gtc:3.1.9.0'  // 个推核心组件
 
     // ============
     // = 第三方厂商 =
@@ -67,7 +67,7 @@ dependencies {
     api 'com.getui.opt:hwp:3.1.0'
 
     // 小米
-    api 'com.getui.opt:xmp:3.1.1'
+    api 'com.getui.opt:xmp:3.2.0'
 
     // OPPO
     api 'com.assist-v3:oppo:3.1.0'
