@@ -13,7 +13,7 @@ class BaseApplication : MultiDexApplication(),
     ViewModelStoreOwner {
 
     // 日志 TAG
-    private val TAG = "Demo_TAG"
+    private val TAG = "DevBaseDemo_TAG"
 
     // ViewModelStore
     private lateinit var mAppViewModelStore: ViewModelStore
