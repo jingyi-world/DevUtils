@@ -57,6 +57,7 @@ object AppListUtils {
         when (type) {
             TypeEnum.APP_USER -> getAppLists(AppType.USER)
             TypeEnum.APP_SYSTEM -> getAppLists(AppType.SYSTEM)
+            else -> {}
         }
     }
 
@@ -72,6 +73,7 @@ object AppListUtils {
         when (type) {
             TypeEnum.APP_USER -> getAppLists(AppType.USER, refresh)
             TypeEnum.APP_SYSTEM -> getAppLists(AppType.SYSTEM, refresh)
+            else -> {}
         }
     }
 

@@ -88,6 +88,7 @@ class UMShareEngine : IShareEngine<ShareConfig, ShareParams> {
                             // 钉钉设置
                             PlatformConfig.setDing(it.appId)
                         }
+                        else -> {}
                     }
                 }
             }

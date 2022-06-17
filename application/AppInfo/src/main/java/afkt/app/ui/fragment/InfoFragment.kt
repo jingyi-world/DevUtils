@@ -57,6 +57,7 @@ class InfoFragment : BaseFragment<FragmentInfoBinding>() {
         when (dataStore.typeEnum) {
             TypeEnum.DEVICE_INFO -> ProjectUtils.getDeviceInfo(viewModel)
             TypeEnum.SCREEN_INFO -> ProjectUtils.getScreenInfo(viewModel)
+            else -> {}
         }
     }
 }
