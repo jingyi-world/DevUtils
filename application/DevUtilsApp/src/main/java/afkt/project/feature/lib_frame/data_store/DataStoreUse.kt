@@ -1,4 +1,4 @@
-package afkt.demo.use.datastore
+package afkt.project.feature.lib_frame.data_store
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.asLiveData
@@ -28,9 +28,9 @@ object DataStoreUse {
     private suspend fun write(activity: AppCompatActivity) {
 
         // 首先进行 SP 数据存储存储
-        // 会在 /data/data/afkt.demo/shared_prefs/ 创建 **.xml
+        // 会在 /data/data/afkt.project/shared_prefs/ 创建 **.xml
         // 接着运行 migrationSPToDataStore 则会把 shared_prefs 文件夹内的 xml
-        // 存储到 /data/data/afkt.demo/files/datastore/ 中指定的 **.preferences_pb
+        // 存储到 /data/data/afkt.project/files/datastore/ 中指定的 **.preferences_pb
         // 并且会把 shared_prefs 下迁移成功的文件进行删除
 
         SPUtils.getPreference(activity, "AA").put("type", "AA")
