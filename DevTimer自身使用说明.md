@@ -22,4 +22,5 @@
             }
         });
     }
+    devTimer.start();
 ```
