@@ -1,5 +1,5 @@
 # DevTimer 定时器 retry 重试
-### 使用示例代码
+### retry重试使用示例代码
 ```java
     private void initRegisterLOUDNESS() {
         DevTimer devTimer = new DevTimer.Builder(0, 1000, 10, "register").build();
